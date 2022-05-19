@@ -1,3 +1,13 @@
+"""
+Практическое задание к уроку №1 курса Клиент-серверные приложения
+на Python.
+Студент: Максим Сапунов, Jenny6199@yanex.ru
+Преподаватель: Илья Барбылев
+
+Задание: Написать код, который выполняет пинг веб-ресурсов yandex.ru, 
+youtube.com и преобразовывает результат из байтовового типа данных в
+ строковый без ошибок для любой кодировки операционной системы.
+"""
 import subprocess
 import os
 import chardet
@@ -18,7 +28,7 @@ def universal_decoding(repeat, aim):
     декодированное сообщение содержащее ответ сервера.
     :param repeat: int number of cycles
     :param aim: str - url
-    :return:
+    :return: str - decoding response of server
     """
     try:
         os.environ.get('OS').lower().__contains__('window')
