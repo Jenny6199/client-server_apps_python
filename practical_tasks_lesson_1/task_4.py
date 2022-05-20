@@ -16,6 +16,7 @@ data = [
     'standard',
 ]
 
+
 def convert_string_to_bytes(string, encode_type='utf-8'):
     """
     Преобразует строковый объект в байтовый используя
@@ -48,14 +49,14 @@ def run():
         reverse_conversation.append(convert_bytes_to_string(elem))
     i = 0
     while i != len(conversion_data):
-        print('%7s %7s %7s' %(
+        print('%7s %7s %7s' % (
             data[i],
             conversion_data[i], 
             reverse_conversation[i],
             )
         )
-        i+=1
+        i += 1
 
 
-if __name__ ==  '__main__':
+if __name__ == '__main__':
     run()

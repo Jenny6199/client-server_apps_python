@@ -28,7 +28,7 @@ data_unicode = [
     ]
 
 
-def get_type_of_data(list):
+def get_type_of_data(data_list):
     """
     Принимает список и возвращает словарь значениями
     которого являются типы данных элементов полученного списка.
@@ -36,22 +36,22 @@ def get_type_of_data(list):
     return: dict{elem1: type(elem1), elem2: type(elem2),...} 
     """
     output_data = {}
-    for elem in list:
+    for elem in data_list:
         output_data[elem] = type(elem)
     return output_data
 
 
-def get_descriptive_output(dict):
+def get_descriptive_output(data_dict):
     """
     Обеспечивает вывод в терминал информационного сообщения
     param: dict
     return: None
     """
     decor = '-'*20
-    print('%22s %16s %22s' %(decor, 'начало сообщения', decor))
-    for keys, values in dict.items():
-        print('%-18s %-10s' %(keys, values))
-    print('%22s %16s %22s' %(decor, 'конец сообщения', decor))
+    print('%22s %16s %22s' % (decor, 'начало сообщения', decor))
+    for keys, values in data_dict.items():
+        print('%-18s %-10s' % (keys, values))
+    print('%22s %16s %22s' % (decor, 'конец сообщения', decor))
     
 
 def run():

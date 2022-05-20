@@ -17,11 +17,11 @@ incoming_data = [
     'function', 
     'method',
     'lambda',
-    'interpretator',
+    'interpreter',
 ]
 
 
-def get_byte_type(data:list):
+def get_byte_type(data: list):
     """
     Получает на вход список данными, возвращает
     список данные в котором преобразованы в байтовый
@@ -29,10 +29,10 @@ def get_byte_type(data:list):
     param: list[el1, el2, ...]
     return: list[b'el1', b'el2', ... ]
     """
-    return [bytes(elem, encoding = 'utf-8') for elem in data]
+    return [bytes(elem, encoding='utf-8') for elem in data]
 
 
-def prepeare_information_array(data:list):
+def prepare_information_array(data: list):
     """
     Получает на вход список с данными, возвращает
     данные в виде списка списков, заполненных информацией
@@ -42,7 +42,6 @@ def prepeare_information_array(data:list):
     """
     output_data = []
     for elem in data:
-        info = []
         info = [elem, type(elem), len(elem)]
         output_data.append(info)
     return output_data
@@ -56,17 +55,17 @@ def get_descriptive_output(data):
     return: None
     """
     decor = '-'*20
-    print('%22s %16s %22s' %(decor, 'начало сообщения', decor))
-    print('%-17s %17s %15s' %('Переменная', 'Тип данных', 'Длина'))
+    print('%22s %16s %22s' % (decor, 'начало сообщения', decor))
+    print('%-17s %17s %15s' % ('Переменная', 'Тип данных', 'Длина'))
     for elem in data:
-        print('%-20s %17s %15d' %(elem[0], elem[1], elem[2]))
-    print('%22s %16s %22s' %(decor, 'конец сообщения', decor))
+        print('%-20s %17s %15d' % (elem[0], elem[1], elem[2]))
+    print('%22s %16s %22s' % (decor, 'конец сообщения', decor))
 
 
 def run():
     """Запуск работы программы"""
     transform_data = get_byte_type(incoming_data)
-    data_dict = prepeare_information_array(transform_data)
+    data_dict = prepare_information_array(transform_data)
     get_descriptive_output(data_dict)
 
 

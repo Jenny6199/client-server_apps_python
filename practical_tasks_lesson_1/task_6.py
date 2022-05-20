@@ -29,19 +29,19 @@ file_path = './test_file.txt'
 def create_txt_with_shadow_encoding(path, text, encode_variant):
     """
     Создает текстовый файл в случайной кодировке
-    :param - path: str - idicate place where file will be create
+    :param - path: str - indicate place where file will be create
     :param - text: str - file content
     :param - encode_variant: list - list with variant of encoding
     """
-    random_encode = encode_variant[random.randint(0, len(encode_variant)-1)]
+    random_encode = encode_variant[random.randint(0, len(encode_variant) - 1)]
     with open(
-        path, 
-        'w', 
-        encoding=random_encode, 
-        buffering=1,
-        newline='\n',
+            path,
+            'w',
+            encoding=random_encode,
+            buffering=1,
+            newline='\n',
     ) as f:
-            f.write(text)
+        f.write(text)
     print(f'Создан файл со случайной кодировкой: \n {path}')
     return
 

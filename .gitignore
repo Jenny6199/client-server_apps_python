@@ -133,3 +133,6 @@ dmypy.json
 
 # hide password
 .shadow
+
+# PyCharm files
+.idea/
