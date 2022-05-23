@@ -104,4 +104,4 @@ def write_to_csv(path):
 
 
 if __name__ == '__main__':
-    write_to_csv('result_v2.csv')
+    write_to_csv('./results/task_1_v2.csv')

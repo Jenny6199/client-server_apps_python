@@ -91,7 +91,7 @@ def get_data(file_list: list):
         # Добавляем результат поиска совпадений в список с помощью заготовленной функции.
         export_data.append(extract_data_form_file(path=path, code=code))
         # Формируем csv-файл из полученного списка списков (заголовки добавлены ранее)
-        with open('result.csv', 'w') as w_f:
+        with open('./results/task_1.csv', 'w') as w_f:
             w_f_write = csv.writer(w_f)
             for row in export_data:
                 w_f_write.writerow(row)
