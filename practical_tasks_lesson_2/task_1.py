@@ -27,9 +27,9 @@ from chardet import detect
 
 # Входящие данные:
 INPUT_DATA = [
-    '/input_data/info_1.txt',
-    '/input_data/info_2.txt',
-    '/input_data/info_3.txt',
+    'input_data/info_1.txt',
+    'input_data/info_2.txt',
+    'input_data/info_3.txt',
 ]
 
 
@@ -59,33 +59,33 @@ def extract_data_form_file(path, code):
         data = []
 
         re_compile = re.compile(r'Изготовитель системы:\s*\S*')
-        find_stirng = re.findall(re_compile, content)
-        data.append([el.strip() for el in find_stirng[0].split(':')][1])
+        find_string = re.findall(re_compile, content)
+        data.append([el.strip() for el in find_string[0].split(':')][1])
         
         re_compile = re.compile(r'Название ОС:\s*\S*')
-        find_stirng = re.findall(re_compile, content)
-        data.append([el.strip() for el in find_stirng[0].split(':')][1])
+        find_string = re.findall(re_compile, content)
+        data.append([el.strip() for el in find_string[0].split(':')][1])
 
         re_compile = re.compile(r'Код продукта:\s*\S*')
-        find_stirng = re.findall(re_compile, content)
-        data.append([el.strip() for el in find_stirng[0].split(':')][1])
+        find_string = re.findall(re_compile, content)
+        data.append([el.strip() for el in find_string[0].split(':')][1])
 
         re_compile = re.compile(r'Тип системы:\s*\S*')
-        find_stirng = re.findall(re_compile, content)
-        data.append([el.strip() for el in find_stirng[0].split(':')][1])
+        find_string = re.findall(re_compile, content)
+        data.append([el.strip() for el in find_string[0].split(':')][1])
 
     return data
 
 
-def run(file_list: list):
+def get_data(file_list: list):
     """
     :param file_list: list
     """
     # Добавляем заголовки
-    export_data = [['manufacter', 'system_name', 'product_code', 'system_type'],]
+    export_data = [['manufacturer', 'system_name', 'product_code', 'system_type']]
     # Последовательно обрабатываем файлы из списка
     for datafile in file_list:
-        path = environ.get('PWD') + datafile
+        path = datafile
         # Определяем кодировку с помощью заготовленной функции. 
         code = get_encoding(path)
         # Добавляем результат поиска совпадений в список с помощью заготовленной функции.
@@ -95,15 +95,16 @@ def run(file_list: list):
             w_f_write = csv.writer(w_f)
             for row in export_data:
                 w_f_write.writerow(row)
+    print('Создан файл отчета - result.csv')
     return
 
 
 if __name__ == '__main__':
-    run(INPUT_DATA)
+    get_data(INPUT_DATA)
 
 
 # Вышеприведнное решение работает, формирует целевой файл csv,
-# но не соответствует в итоге тех.заданию,
+# но в процессе работы отклонился от тех.задания,
 # потому решено было исправить в соответствии.
 # Было решено сохранить эту реализацию, для демонстрации хода рассуждения 
 # при выполнени практической работы.

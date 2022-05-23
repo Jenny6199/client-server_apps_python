@@ -86,8 +86,22 @@ def get_data(data: list):
         line = [row[idx] for row in data_for_rows]
         main_data.append(line)
 
-    print(main_data)
+    return main_data
+
+
+def write_to_csv(path):
+    """
+    Запись данных в файл csv
+    :param - path: str - path to file csv
+    """
+    content = get_data(INPUT_DATA)
+    with open(path, 'w', encoding='utf-8') as w_f:
+        w_f_write = csv.writer(w_f)
+        for row in content:
+            w_f_write.writerow(row)
+    print('Создан файл отчета - result_v2.csv')
+    return
 
 
 if __name__ == '__main__':
-    get_data(INPUT_DATA)
+    write_to_csv('result_v2.csv')
