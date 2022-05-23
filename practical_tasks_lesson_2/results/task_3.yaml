@@ -1,0 +1,9 @@
+trip:
+- Mallorca
+- Parga
+- Limassol
+count: 3
+airlines:
+  Lufthansa: 300€
+  Aeroflot: 500€
+  Turkish airlines: 200€
