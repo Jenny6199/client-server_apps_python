@@ -28,3 +28,11 @@ def parse_server_message():
     :return:
     """
     pass
+
+
+def main():
+    """
+    Агрегация работы функций и запуск программы-клиента.
+    :return:
+    """
+    pass
