@@ -1,7 +1,8 @@
 """ Переменные."""
-
-# Адрес для сервера
-ADDR_LISTEN = '127.0.0.1'
+# IP-адрес по умолчанию
+DEFAULT_IP = '127.0.0.1'
+# IP-адреса для сервера
+ADDR_LISTEN = ''
 # Порт по умолчанию
 PORT_LISTEN = '7777'
 # Максимальное количество подключений
@@ -16,6 +17,13 @@ ACTION = 'action'
 TIME = 'time'
 USER = 'user'
 ACCOUNT_NAME = 'account_name'
+
+# Список пользователей
+ALLOWED_USERS = [
+    'Guest',
+    'Maksim',
+    'Sergey',
+]
 
 # Прочие ключи
 PRESENCE = 'presence'

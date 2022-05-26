@@ -16,7 +16,7 @@ def make_presence_message(account_name='Guest'):
     """
     out = {
         ACTION: PRESENCE,
-        TIME: time.time(),
+        TIME: time.ctime(),
         USER: {
             ACCOUNT_NAME: account_name
         }
@@ -24,7 +24,7 @@ def make_presence_message(account_name='Guest'):
     return out
 
 
-def parse_server_message(message):
+def exam_server_message(message):
     """
     Осуществляет парсинг сообщения от сервера
     :param message - json словарь с данными.
@@ -33,24 +33,31 @@ def parse_server_message(message):
     if RESPONSE not in message:
         raise ValueError
     if message[RESPONSE] == 200:
-        return '200: OK'
+        return message
     return f'400: {message[ERROR]}'
+
+
+def get_descriptive_output(message):
+    """Обеспечивает аккуратный вывод данных на дисплей"""
+    for key, value in message.items():
+        print(f'{key}: {value}')
 
 
 def main():
     """
     Агрегация работы функций и запуск программы-клиента.
-    :return:
     """
-    options = get_port_and_address_for_use()
+    # Анализ параметров коммандной строки
+    option = get_port_and_address_for_use(sender='client')
+
     # Запуск сокета
     transport = socket(AF_INET, SOCK_STREAM)
-    transport.connect(options)
+    transport.connect(option)
     message_for_server = make_presence_message()
     send_response(transport, message_for_server)
     try:
-        answer = parse_server_message(get_response(transport))
-        print(answer)
+        response = exam_server_message(get_response(transport))
+        get_descriptive_output(response)
     except (ValueError, json.JSONDecodeError):
         print('Не удалось обработать сообщение от сервера')
 
