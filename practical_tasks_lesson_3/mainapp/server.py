@@ -16,7 +16,8 @@ def prepare_response(message):
     if ACTION in message \
             and message[ACTION] == PRESENCE \
             and TIME in message \
-            and USER in message[USER][ACCOUNT_NAME] == 'Guest':
+            and USER in message \
+            and message[USER][ACCOUNT_NAME] == 'Guest':
         return {RESPONSE: 200}
     return {
         RESPONSE: 400,
@@ -40,7 +41,7 @@ def main():
     transport.listen(CONNECTION_LIMIT)
 
     while True:
-        client, client_address = transport.accept()  # socket, address
+        client, client_address = transport.accept()
         try:
             message_from_client = get_response(client)
             print(message_from_client)

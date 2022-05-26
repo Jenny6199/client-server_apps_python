@@ -1,6 +1,6 @@
 """ Переменные."""
 
-# ip-адрес сервера
+# Адрес для сервера
 ADDR_LISTEN = '127.0.0.1'
 # Порт по умолчанию
 PORT_LISTEN = '7777'
@@ -21,5 +21,3 @@ ACCOUNT_NAME = 'account_name'
 PRESENCE = 'presence'
 RESPONSE = 'response'
 ERROR = 'error'
-
-

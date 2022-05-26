@@ -1,5 +1,6 @@
 """ Общие функции для сервера и клиента"""
 
+import sys
 import json
 import argparse
 from .variables import PACKAGE_SIZE, ENCODING_METHOD, PORT_LISTEN, ADDR_LISTEN
