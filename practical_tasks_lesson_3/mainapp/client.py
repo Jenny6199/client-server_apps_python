@@ -1,9 +1,7 @@
 from socket import *
 from common.utils import get_response, send_response, get_port_and_address_for_use
 from common.variables import ACTION, PRESENCE, TIME, USER, \
-    ACCOUNT_NAME, RESPONSE, ERROR, ADDR_LISTEN, PORT_LISTEN
-
-import sys
+    ACCOUNT_NAME, RESPONSE, ERROR
 import json
 import time
 
@@ -47,4 +45,14 @@ def main():
     # Запуск сокета
     transport = socket(AF_INET, SOCK_STREAM)
     transport.connect(options)
+    message_for_server = make_presence_message()
+    send_response(transport, message_for_server)
+    try:
+        answer = parse_server_message(get_response(transport))
+        print(answer)
+    except (ValueError, json.JSONDecodeError):
+        print('Не удалось обработать сообщение от сервера')
 
+
+if __name__ == '__main__':
+    main()
