@@ -1,7 +1,7 @@
 """ Общие функции для сервера и клиента"""
 
 import json
-from variables import PACKAGE_SIZE, ENCODING_METHOD
+from .variables import PACKAGE_SIZE, ENCODING_METHOD
 
 
 def send_response(client, response):

@@ -2,6 +2,7 @@
 
 from socket import *
 from common.utils import get_response, send_response
+
 import json
 import sys
 import argparse
@@ -14,8 +15,8 @@ from common.variables import ADDR_LISTEN, PORT_LISTEN, CONNECTION_LIMIT, \
 def prepare_response(message):
     """
     Подготавливает ответное сообщение
-    :param message:
-    :return:
+    :param message: сообщение от клиента.
+    :return: response: dict
     """
     if ACTION in message \
             and message[ACTION] == PRESENCE \
@@ -62,7 +63,7 @@ def get_port_and_address_for_use():
     except ValueError:
         print('Номер порта должен быть указан в диапазоне от 1024 до 65535.')
         sys.exit(1)
-    return addr_listen, port_listen
+    return addr_listen, int(port_listen)
 
 
 def main():
@@ -77,14 +78,15 @@ def main():
     transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     transport.bind(server_options)
     # Слушаем порт
+    print(f'Ожидание сообщения от {server_options[0]}:{server_options[1]}')
     transport.listen(CONNECTION_LIMIT)
 
     while True:
         client, client_address = transport.accept()  # socket, address
         try:
-            message_from_client = get_response()
+            message_from_client = get_response(client)
             print(message_from_client)
-            response = prepare_response()
+            response = prepare_response(message_from_client)
             send_response(client, response)
             client.close()
         except (ValueError, json.JSONDecodeError):
