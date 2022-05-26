@@ -1,5 +1,5 @@
 from socket import *
-from common.utils import get_response, send_response
+from common.utils import get_response, send_response, get_port_and_address_for_use
 from common.variables import ACTION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, ADDR_LISTEN, PORT_LISTEN
 
@@ -42,4 +42,9 @@ def main():
     Агрегация работы функций и запуск программы-клиента.
     :return:
     """
-    pass
+    options = get_port_and_address_for_use()
+
+    # Запуск сокета
+    transport = socket(AF_INET, SOCK_STREAM)
+    transport.connect(options)
+
