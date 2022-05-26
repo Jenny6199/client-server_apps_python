@@ -4,12 +4,20 @@ import json
 from .variables import PACKAGE_SIZE, ENCODING_METHOD
 
 
-def send_response(client, response):
+def send_response(sock, message):
     """
-    Отправляет сообщение
-    :return:
+    Принимает сообщение в виде словаря, осуществляет проверку соответствия.
+    Генерирует ошибку в случае несовпадения содержимого.
+    Кодирует сообщение в байтовый формат.
+    Отправляет сообщение.
+    :param - sock: socket
+    :param - message: dict
     """
-    return client, response
+    if not isinstance(message, dict):
+        raise TypeError
+    json_message = json.dumps(message)
+    encoded_message = json_message.encode(ENCODING_METHOD)
+    sock.send(encoded_message)
 
 
 def get_response(client):
