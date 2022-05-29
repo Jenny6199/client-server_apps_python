@@ -1,25 +1,23 @@
 """Серверная часть программы."""
 
-import socket
 import json
-import sys
-import argparse
 import time
+from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
+from common.utils import get_response, send_response, \
+    get_port_and_address_for_use
+from common.variables import CONNECTION_LIMIT, \
+    ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
+    RESPONSE, ERROR, ALLOWED_USERS
 
+<<<<<<< HEAD
 from common.variables import ADDR_LISTEN, PORT_LISTEN
+=======
+>>>>>>> c5d01734998cdbfe32fc7b0d33f0b0c0bc579a56
 
-
-def get_client_message():
-    """
-    Принимает сообщение от клиента
-    :return:
-    """
-    pass
-
-
-def prepare_response():
+def prepare_response(message):
     """
     Подготавливает ответное сообщение
+<<<<<<< HEAD
     :return:
     """
     pass
@@ -74,17 +72,57 @@ def get_port_and_address_for_use():
               'Укажите иное значение порта, или используйте порт по умолчанию')
         sys.exit(1)
     return addr_listen, port_listen
+=======
+    :param message: dict - сообщение c данными от клиента.
+    :return: response: dict - ответное сообщение
+    """
+    if ACTION in message \
+            and message[ACTION] == PRESENCE \
+            and TIME in message \
+            and USER in message \
+            and message[USER][ACCOUNT_NAME] in ALLOWED_USERS:
+        return {
+            RESPONSE: 200,
+            'time': time.ctime(),
+            'text': 'Hello client!'
+        }
+    return {
+        RESPONSE: 400,
+        ERROR: 'Bad Request'
+    }
+>>>>>>> c5d01734998cdbfe32fc7b0d33f0b0c0bc579a56
 
 
 def main():
     """
     Агрегация работы функций и запуск программы-сервера.
-    :return:
     """
+<<<<<<< HEAD
     c = get_port_and_address_for_use()
     print(c)
 
     return
+=======
+    # Анализ параметров коммандной строки
+    option = get_port_and_address_for_use(sender='server')
+    # Инициализация сокета
+    transport = socket(AF_INET, SOCK_STREAM)
+    transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    transport.bind(option)
+    # Режим ожидания входящих сообщений
+    transport.listen(CONNECTION_LIMIT)
+    while True:
+        client, client_address = transport.accept()
+        try:
+            message_from_client = get_response(client)
+            print(message_from_client)
+            response = prepare_response(message_from_client)
+            send_response(client, response)
+            client.close()
+        except (ValueError, json.JSONDecodeError):
+            print('Получено некорректное сообщение от клиента')
+            client.close()
+>>>>>>> c5d01734998cdbfe32fc7b0d33f0b0c0bc579a56
 
 
 if __name__ == '__main__':
