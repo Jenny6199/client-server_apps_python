@@ -16,9 +16,22 @@ class TestClient(unittest.TestCase):
     Тестирование функций клиентской части программы.
     """
 
+    def setUp(self):
+        """Настройка тестов"""
+        pass
+
+    def tearDown(self):
+        """Выполнить завершающие действия"""
+        print(f'log: Успешное завершение теста: {self.__str__()}')
+
     def test_make_presence_message(self):
-        """Проверка наличия поля user в сообщении"""
-        self.assertEqual(
+        """Проверка наличия полей user и action в сообщении"""
+        self.assertEquals(
+            'action' in make_presence_message(),
             'user' in make_presence_message(),
             True
         )
+
+
+if __name__ == '__main__':
+    unittest.main()

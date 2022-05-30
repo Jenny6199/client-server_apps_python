@@ -40,7 +40,7 @@ class TestPrepareResponse(unittest.TestCase):
 
     def tearDown(self):
         """Выполнить завершающие действия"""
-        print('log: Успешное завершение теста.')
+        print(f'log: Успешное завершение теста: {self.__str__()}')
 
     def test_response_not_None(self):
         """
