@@ -6,7 +6,7 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.getcwd(), '..'))
-# PyCharm грубо ругается на пути и переменные, импорт  но продолжает работать :)
+# PyCharm грубо ругается на пути и переменные, импорт но продолжает работать :)
 from server import prepare_response
 from common.variables import RESPONSE, ERROR
 
@@ -33,6 +33,14 @@ class TestPrepareResponse(unittest.TestCase):
         RESPONSE: 400,
         ERROR: 'Bad Request'
     }
+
+    def setUp(self):
+        """Настройка тестов"""
+        pass
+
+    def tearDown(self):
+        """Выполнить завершающие действия"""
+        pass
 
     def test_response_not_None(self):
         """
