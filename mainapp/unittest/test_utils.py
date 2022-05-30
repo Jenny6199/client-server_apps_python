@@ -12,7 +12,7 @@ import json
 sys.path.append(os.path.join(os.getcwd(), '..'))
 
 from common.utils import send_response, get_response, get_port_and_address_for_use
-from common.variables import ENCODING_METHOD, RESPONSE, ERROR
+from common.variables import DEFAULT_IP, ENCODING_METHOD, RESPONSE, ERROR, PORT_LISTEN
 
 
 right_message = {
@@ -29,7 +29,6 @@ response_error = {
     RESPONSE: 400,
     ERROR: 'Bad Request'
 }
-
 
 
 class TestSocket:
@@ -110,6 +109,32 @@ class TestGetResponse(unittest.TestCase):
         """
         test_soket = TestSocket(response_error)
         self.assertEqual(get_response(test_soket), response_error)
+
+
+class TestGetPortAndAddressForUse(unittest.TestCase):
+    """Тестирование функции get_port_and_address_for_use"""
+    def setUp(self):
+        """Настройка тестов"""
+        pass
+
+    def tearDown(self):
+        """Выполнить завершающие действия"""
+        print(f'log: Успешное завершение теста: {self.__str__()}')
+    
+    def test_result_is_tuple(self):
+        """Проверка типа возвращаемых данных"""
+        self.assertIsInstance(get_port_and_address_for_use('server'), tuple)
+        
+    def test_default_port(self):
+        """Проверка возвращаемого значения по умолчанию"""
+        self.assertEqual(get_port_and_address_for_use('client')[1], int(PORT_LISTEN))
+    
+    def test_check_result(self):
+        """
+        Проверяет совпадение значений при вызове функции 
+        без указания параметров в комманой строке
+        """
+        self.assertEqual(get_port_and_address_for_use('client'), (DEFAULT_IP, int(PORT_LISTEN)))
 
 
 if __name__ == '__main__':
