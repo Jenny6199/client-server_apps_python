@@ -7,8 +7,8 @@ import sys
 import os
 sys.path.append(os.path.join(os.getcwd(), '..'))
 
-from client import make_presence_message
-from common.variables import ACTION, PRESENCE, USER, ACCOUNT_NAME
+from client import make_presence_message, exam_server_message
+from common.variables import RESPONSE, ACTION, PRESENCE, USER, ACCOUNT_NAME
 
 
 class TestClient(unittest.TestCase):
@@ -26,10 +26,29 @@ class TestClient(unittest.TestCase):
 
     def test_make_presence_message(self):
         """Проверка наличия полей user и action в сообщении"""
-        self.assertEquals(
+        self.assertEqual(
             'action' in make_presence_message(),
             'user' in make_presence_message(),
             True
+        )
+
+    def test_exam_server_message(self):
+        """
+        Проверка генерации исключения функцией exam_sever_message
+        при получении ошибочного сообщения.
+        """
+        msg = ''
+        with self.assertRaises(ValueError):
+            exam_server_message(msg)
+
+    def test_exam_server_message_with_right_message(self):
+        """
+        Проверка работы функции с корректным сообщением.
+        """
+        msg = {RESPONSE: 200}
+        self.assertEqual(
+            exam_server_message(msg)[RESPONSE],
+            200
         )
 
 
