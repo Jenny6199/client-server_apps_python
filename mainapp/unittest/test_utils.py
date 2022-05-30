@@ -15,6 +15,23 @@ from common.utils import send_response, get_response, get_port_and_address_for_u
 from common.variables import ENCODING_METHOD, RESPONSE, ERROR
 
 
+right_message = {
+    'action': 'presence',
+    'time': 'Mon May 30 01:10:47 2022',
+    'user': {'account_name': 'Guest'}
+}
+
+response_ok = {
+    RESPONSE: 200
+}
+
+response_error = {
+    RESPONSE: 400,
+    ERROR: 'Bad Request'
+}
+
+
+
 class TestSocket:
     """Имитация работы сокета"""
     def __init__(self, test_message):
@@ -32,7 +49,7 @@ class TestSocket:
         self.encoded_message = json_test_message.encode(ENCODING_METHOD)
         self.received_message = message
 
-    def recv(self):
+    def recv(self, lenght):
         """
         Тестовая функция, имитирующая получение значений
         из сокета.
@@ -45,26 +62,18 @@ class TestSendResponse(unittest.TestCase):
     """
     Тестирование функции send_response
     """
+    def setUp(self):
+        """Настройка тестов"""
+        pass
 
-    right_message = {
-        'action': 'presence',
-        'time': 'Mon May 30 01:10:47 2022',
-        'user': {'account_name': 'Guest'}
-    }
-
-    response_ok = {
-        RESPONSE: 200
-    }
-
-    response_error = {
-        RESPONSE: 400,
-        ERROR: 'Bad Request'
-    }
-
+    def tearDown(self):
+        """Выполнить завершающие действия"""
+        print(f'log: Успешное завершение теста: {self.__str__()}')
+    
     def test_send_response_right_message(self):
         """Тестирование функции с корректным сообщением"""
-        test_socket = TestSocket(self.right_message)
-        send_response(test_socket, self.right_message)
+        test_socket = TestSocket(right_message)
+        send_response(test_socket, right_message)
         self.assertEqual(
             test_socket.encoded_message, 
             test_socket.received_message
@@ -72,9 +81,35 @@ class TestSendResponse(unittest.TestCase):
 
     def test_send_response_with_empty_message(self):
         """Тестирование функции с некорректным (пустым) сообщением"""
-        test_socket = TestSocket(self.right_message)
+        test_socket = TestSocket(right_message)
         with self.assertRaises(TypeError):
             send_response(test_socket, '')
+
+
+class TestGetResponse(unittest.TestCase):
+    """Тестирование функции get_response"""
+    def setUp(self):
+        """Настройка тестов"""
+        pass
+
+    def tearDown(self):
+        """Выполнить завершающие действия"""
+        print(f'log: Успешное завершение теста: {self.__str__()}')
+    
+    def test_get_response_correct_message(self):
+        """
+        Тестирование функции get_response с корректным сообщением
+        """
+        test_socket = TestSocket(response_ok)
+        self.assertEqual(get_response(test_socket), response_ok)
+
+    
+    def test_get_response_wrong_message(self):
+        """
+        Тестирование функции get_response c ошибочным сообщением
+        """
+        test_soket = TestSocket(response_error)
+        self.assertEqual(get_response(test_soket), response_error)
 
 
 if __name__ == '__main__':
