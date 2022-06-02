@@ -16,7 +16,7 @@ PATH = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.join(PATH, 'server.log')
 
 # Регистратор
-surface_log = logging.getLogger('server')
+server_log = logging.getLogger('server')
 
 # Форматтеры
 STREAM_FORMATTER = logging.Formatter(
@@ -42,18 +42,18 @@ STREAM_HANDLER.setFormatter(STREAM_FORMATTER)
 RECORD_FILE.setFormatter(RECORD_FORMATTER)
 
 # Подключение обработчиков к регистратору
-surface_log.addHandler(STREAM_HANDLER)
-surface_log.addHandler(RECORD_FILE)
+server_log.addHandler(STREAM_HANDLER)
+server_log.addHandler(RECORD_FILE)
 
 # Устанавливаем уровни реагирования регистратора.
-surface_log.setLevel(LOGGING_LEVEL)
+server_log.setLevel(LOGGING_LEVEL)
 
 
 if __name__ == '__main__':
     print('Тестовый запуск логера:')
     print(PATH)
-    surface_log.debug('Отладочная информация')
-    surface_log.info('Информационное сообщение')
-    surface_log.warning('Внимание!')
-    surface_log.error('Ошибка!')
-    surface_log.critical('Все сломалось!')
+    server_log.debug('Отладочная информация')
+    server_log.info('Информационное сообщение')
+    server_log.warning('Внимание!')
+    server_log.error('Ошибка!')
+    server_log.critical('Все сломалось!')
