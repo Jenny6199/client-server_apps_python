@@ -1,0 +1,10 @@
+2022-06-02 06:59:58,640   DEBUG    client_log_config.py Отладочная информация
+2022-06-02 06:59:58,641   INFO     client_log_config.py Информационное сообщение
+2022-06-02 06:59:58,641   WARNING  client_log_config.py Внимание!
+2022-06-02 06:59:58,642   ERROR    client_log_config.py Ошибка!
+2022-06-02 06:59:58,642   CRITICAL client_log_config.py Все сломалось!
+2022-06-02 07:00:39,603   DEBUG    client_log_config.py Отладочная информация
+2022-06-02 07:00:39,607   INFO     client_log_config.py Информационное сообщение
+2022-06-02 07:00:39,610   WARNING  client_log_config.py Внимание!
+2022-06-02 07:00:39,615   ERROR    client_log_config.py Ошибка!
+2022-06-02 07:00:39,619   CRITICAL client_log_config.py Все сломалось!
