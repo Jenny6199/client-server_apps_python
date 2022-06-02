@@ -19,3 +19,19 @@
 2022-06-02 13:19:07,429   DEBUG    server.py Сообщение от клиента корректное
 2022-06-02 13:19:07,429   INFO     utils.py Сообщение отправлено
 2022-06-02 13:19:07,444   INFO     server.py Соединение с клиентом разорвано.
+2022-06-02 21:38:28,273   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-02 21:38:28,276   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-02 21:38:46,482   INFO     server.py Новое подключение: ('127.0.0.1', 47372)
+2022-06-02 21:38:46,490   INFO     utils.py Получены новые данные.
+2022-06-02 21:38:46,490   DEBUG    server.py Подключение: <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47372)>
+2022-06-02 21:38:46,491   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Thu Jun  2 21:38:46 2022', 'user': {'account_name': 'Guest'}}
+2022-06-02 21:38:46,492   DEBUG    server.py Сообщение от клиента корректное
+2022-06-02 21:38:46,492   INFO     utils.py Сообщение отправлено
+2022-06-02 21:38:46,494   INFO     server.py Соединение с клиентом разорвано.
+2022-06-02 21:39:35,764   INFO     server.py Новое подключение: ('127.0.0.1', 47374)
+2022-06-02 21:39:35,765   INFO     utils.py Получены новые данные.
+2022-06-02 21:39:35,766   DEBUG    server.py Подключение: <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47374)>
+2022-06-02 21:39:35,766   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Thu Jun  2 21:39:35 2022', 'user': {'account_name': 'Guest'}}
+2022-06-02 21:39:35,767   DEBUG    server.py Сообщение от клиента корректное
+2022-06-02 21:39:35,767   INFO     utils.py Сообщение отправлено
+2022-06-02 21:39:35,768   INFO     server.py Соединение с клиентом разорвано.
