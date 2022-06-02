@@ -1,28 +1,57 @@
-"""Логирование серверной части программы"""
+"""
+Логирование серверной части программы
+В процессе работы программы используется два обработчика. 
+Реализован вывод сообщений в консоль и запись в log-файл.
+"""
 import sys
 import logging
+import logging.handlers
+import os
 
-# Регистратор верхнего уровня
-surface_log = logging.getLogger('server_log.basic')
+sys.path.append(os.path.join(os.getcwd(), '..'))
+from common.variables import ENCODING_METHOD, LOGGING_LEVEL
 
-# Потоковый обработчик
-stream_handler = logging.StreamHandler(sys.stdout)
+# Путь к журналу
+PATH = os.path.dirname(os.path.abspath(__file__))
+PATH = os.path.join(PATH, 'server.log')
 
-# Начальный форматтер
-surface_formatter = logging.Formatter('%(levelname)-8s %(asctime)-25s %(message)5s')
+# Регистратор
+surface_log = logging.getLogger('server')
 
-# Подключение форметтера к обработчику
-stream_handler.setFormatter(surface_formatter)
+# Форматтеры
+STREAM_FORMATTER = logging.Formatter(
+    '%(asctime)-25s %(levelname)-8s %(filename)5s %(message)5s'
+    )
+RECORD_FORMATTER = logging.Formatter(
+    '%(asctime)-25s %(levelname)-8s %(filename)5s %(message)5s'
+    )
 
-# Подключение обработчика к регистратору
-surface_log.addHandler(stream_handler)
+# Обработчики
+STREAM_HANDLER = logging.StreamHandler(
+    sys.stdout    # Вывод информационных сообщений в консоль.
+    )
+RECORD_FILE = logging.handlers.TimedRotatingFileHandler(
+    PATH,     # Путь к log-файлу.
+    encoding=ENCODING_METHOD,  # Кодировка задана в общих настройках.
+    interval=1,    # 1-ежедневно, 2-раз в 2 дня, и.т.д.
+    when='D',    # S-сек., M-мин., H-час, D-день, W-неделя, midnight-полночь.
+    )
 
-# Устанавливаем уровень реагирования регистратора.
-surface_log.setLevel(logging.DEBUG)
+# Подключение форматтеров к обработчикам
+STREAM_HANDLER.setFormatter(STREAM_FORMATTER)
+RECORD_FILE.setFormatter(RECORD_FORMATTER)
+
+# Подключение обработчиков к регистратору
+surface_log.addHandler(STREAM_HANDLER)
+surface_log.addHandler(RECORD_FILE)
+
+# Устанавливаем уровни реагирования регистратора.
+surface_log.setLevel(LOGGING_LEVEL)
 
 
 if __name__ == '__main__':
     print('Тестовый запуск логера:')
+    print(PATH)
     surface_log.debug('Отладочная информация')
     surface_log.info('Информационное сообщение')
     surface_log.warning('Внимание!')

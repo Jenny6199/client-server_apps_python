@@ -29,3 +29,8 @@ ALLOWED_USERS = [
 PRESENCE = 'presence'
 RESPONSE = 'response'
 ERROR = 'error'
+
+
+# Уровень реагирования обработчиков
+# CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
+LOGGING_LEVEL = 'DEBUG'
