@@ -11,7 +11,7 @@ import log.client_log_config
 from common.errors import MessageHasNoResponse
 
 # Инициализация журнала логирования сервера.
-# Имя регистратора должно соответствовать имени в server_log_config.py
+# Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
 
 

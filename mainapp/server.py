@@ -66,9 +66,7 @@ def main():
             client.close()
             SERVER_LOG.info('Соединение с клиентом разорвано.')
         except (ValueError, json.JSONDecodeError):
-            SERVER_LOG.warning(
-                f'Получено некорректное сообщение {message_from_client}'
-            )
+            SERVER_LOG.warning(f'Получено некорректное сообщение')
             client.close()
             SERVER_LOG.info(f'Соединение с клиентом {client} разорвано.')
 
