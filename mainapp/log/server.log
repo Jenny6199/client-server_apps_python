@@ -1,14 +1,21 @@
-2022-06-02 06:16:11,561   WARNING  server_log_config.py Внимание!
-2022-06-02 06:16:11,563   ERROR    server_log_config.py Ошибка!
-2022-06-02 06:16:11,566   CRITICAL server_log_config.py Все сломалось!
-2022-06-02 06:16:41,418   DEBUG    server_log_config.py Отладочная информация
-2022-06-02 06:16:41,418   INFO     server_log_config.py Информационное сообщение
-2022-06-02 06:16:41,419   WARNING  server_log_config.py Внимание!
-2022-06-02 06:16:41,419   ERROR    server_log_config.py Ошибка!
-2022-06-02 06:16:41,419   CRITICAL server_log_config.py Все сломалось!
-2022-06-02 08:57:37,605   INFO     server.py Сервер ожидает входящие сообщения.
-2022-06-02 09:12:05,217   DEBUG    server.py Запущен сервер ip-адрес: , порт: 7777
-2022-06-02 09:12:05,217   INFO     server.py Сервер ожидает входящие сообщения.
-2022-06-02 09:12:15,326   INFO     server.py {'action': 'presence', 'time': 'Thu Jun  2 09:12:15 2022', 'user': {'account_name': 'Guest'}}
-2022-06-02 09:12:15,326   DEBUG    server.py Получено корректное сообщение от клиента
-2022-06-02 09:12:15,326   INFO     server.py Отправлено сообщение клиенту
+2022-06-02 13:17:54,280   DEBUG    server_log_config.py Отладочная информация
+2022-06-02 13:17:54,280   INFO     server_log_config.py Информационное сообщение
+2022-06-02 13:17:54,280   WARNING  server_log_config.py Внимание!
+2022-06-02 13:17:54,280   ERROR    server_log_config.py Ошибка!
+2022-06-02 13:17:54,280   CRITICAL server_log_config.py Все сломалось!
+2022-06-02 13:18:22,064   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-02 13:18:22,064   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-02 13:18:36,463   INFO     server.py Новое подключение: ('127.0.0.1', 50236)
+2022-06-02 13:18:36,463   INFO     utils.py Получены новые данные.
+2022-06-02 13:18:36,463   DEBUG    server.py Подключение: <socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50236)>
+2022-06-02 13:18:36,463   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Thu Jun  2 13:18:36 2022', 'user': {'account_name': 'Guest'}}
+2022-06-02 13:18:36,463   DEBUG    server.py Сообщение от клиента корректное
+2022-06-02 13:18:36,463   INFO     utils.py Сообщение отправлено
+2022-06-02 13:18:36,463   INFO     server.py Соединение с клиентом разорвано.
+2022-06-02 13:19:07,429   INFO     server.py Новое подключение: ('127.0.0.1', 50252)
+2022-06-02 13:19:07,429   INFO     utils.py Получены новые данные.
+2022-06-02 13:19:07,429   DEBUG    server.py Подключение: <socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50252)>
+2022-06-02 13:19:07,429   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Thu Jun  2 13:19:07 2022', 'user': {'account_name': 'Guest'}}
+2022-06-02 13:19:07,429   DEBUG    server.py Сообщение от клиента корректное
+2022-06-02 13:19:07,429   INFO     utils.py Сообщение отправлено
+2022-06-02 13:19:07,444   INFO     server.py Соединение с клиентом разорвано.

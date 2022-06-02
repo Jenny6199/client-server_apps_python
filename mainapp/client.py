@@ -1,11 +1,18 @@
 """Клиентская часть программы."""
-
+import sys
 from socket import *
 from common.utils import get_response, send_response, get_port_and_address_for_use
 from common.variables import ACTION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR
 import json
 import time
+import logging
+import log.client_log_config
+from common.errors import MessageHasNoResponse
+
+# Инициализация журнала логирования сервера.
+# Имя регистратора должно соответствовать имени в server_log_config.py
+CLIENT_LOG = logging.getLogger('client')
 
 
 def make_presence_message(account_name='Guest'):
@@ -31,10 +38,14 @@ def exam_server_message(message):
     :return:
     """
     if RESPONSE not in message:
-        raise ValueError
+        CLIENT_LOG.warning(f'Получены ошибочные данные: {message}')
+        raise MessageHasNoResponse
     if message[RESPONSE] == 200:
         return message
-    return f'400: {message[ERROR]}'
+    elif message[RESPONSE] == 403:
+        raise ConnectionError
+    else:
+        return f'400: {message[ERROR]}'
 
 
 def get_descriptive_output(message):
@@ -52,14 +63,22 @@ def main():
 
     # Запуск сокета
     transport = socket(AF_INET, SOCK_STREAM)
-    transport.connect(option)
-    message_for_server = make_presence_message()
-    send_response(transport, message_for_server)
     try:
-        response = exam_server_message(get_response(transport))
+        transport.connect(option)
+    except ConnectionRefusedError:
+        CLIENT_LOG.warning('Невозможно установить соединение - удаленный сервер не отвечает.')
+        sys.exit(1)
+    CLIENT_LOG.info(f'Установлено соединение (ip: {option[0]}, port: {option[1]})')
+    message_for_server = make_presence_message()
+    send_response(transport, message_for_server, 'client')
+    try:
+        response = exam_server_message(get_response(transport, 'client'))
         get_descriptive_output(response)
     except (ValueError, json.JSONDecodeError):
-        print('Не удалось обработать сообщение от сервера')
+        CLIENT_LOG.warning('Не удалось обработать сообщение от сервера.')
+    except ConnectionResetError:
+        CLIENT_LOG.warning('Удаленный сервер разорвал соединение.')
+        sys.exit(1)
 
 
 if __name__ == '__main__':

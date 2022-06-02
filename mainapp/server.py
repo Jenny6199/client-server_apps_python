@@ -27,13 +27,13 @@ def prepare_response(message):
             and TIME in message \
             and USER in message \
             and message[USER][ACCOUNT_NAME] in ALLOWED_USERS:
-        SERVER_LOG.debug('Получено корректное сообщение от клиента')
+        SERVER_LOG.debug('Сообщение от клиента корректное')
         return {
             RESPONSE: 200,
             'time': time.ctime(),
             'text': 'Hello client!'
         }
-    SERVER_LOG.debug('Получено ошибочное сообщение от клиента')
+    SERVER_LOG.debug(f'Получено ошибочное сообщение от клиента {message}')
     return {
         RESPONSE: 400,
         ERROR: 'Bad Request'
@@ -50,22 +50,27 @@ def main():
     transport = socket(AF_INET, SOCK_STREAM)
     transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     transport.bind(option)
-    SERVER_LOG.debug(f'Запущен сервер ip-адрес: {option[0]}, порт: {option[1]}')
+    SERVER_LOG.info(f'Сервер запущен и слушает порт: {option[1]}.')
     # Режим ожидания входящих сообщений
     SERVER_LOG.info('Сервер ожидает входящие сообщения.')
     transport.listen(CONNECTION_LIMIT)
     while True:
         client, client_address = transport.accept()
+        SERVER_LOG.info(f'Новое подключение: {client_address}')
         try:
-            message_from_client = get_response(client)
-            SERVER_LOG.info(message_from_client)
+            message_from_client = get_response(client, 'server')
+            SERVER_LOG.debug(f'Подключение: {client}')
+            SERVER_LOG.debug(f'Сообщение: {message_from_client}')
             response = prepare_response(message_from_client)
-            send_response(client, response)
-            SERVER_LOG.info('Отправлено сообщение клиенту')
+            send_response(client, response, 'server')
             client.close()
+            SERVER_LOG.info('Соединение с клиентом разорвано.')
         except (ValueError, json.JSONDecodeError):
-            SERVER_LOG.warning('Получено некорректное сообщение от клиента')
+            SERVER_LOG.warning(
+                f'Получено некорректное сообщение {message_from_client}'
+            )
             client.close()
+            SERVER_LOG.info(f'Соединение с клиентом {client} разорвано.')
 
 
 if __name__ == '__main__':
