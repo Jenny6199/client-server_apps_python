@@ -10,12 +10,14 @@ from common.variables import CONNECTION_LIMIT, \
     RESPONSE, ERROR, ALLOWED_USERS
 import logging
 import log.server_log_config
+from decorators.log_deco import debug_log
 
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в server_log_config.py
 SERVER_LOG = logging.getLogger('server')
 
 
+@debug_log
 def prepare_response(message):
     """
     Подготавливает ответное сообщение

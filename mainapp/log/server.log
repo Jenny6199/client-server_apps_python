@@ -19,3 +19,54 @@
 2022-06-02 13:19:07,429   DEBUG    server.py Сообщение от клиента корректное
 2022-06-02 13:19:07,429   INFO     utils.py Сообщение отправлено
 2022-06-02 13:19:07,444   INFO     server.py Соединение с клиентом разорвано.
+2022-06-06 16:25:07,357   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:25:07,357   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-06 16:25:07,357   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-06 16:25:21,833   INFO     server.py Новое подключение: ('127.0.0.1', 60789)
+2022-06-06 16:25:21,833   INFO     utils.py Получены новые данные.
+2022-06-06 16:25:21,833   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60789)>, 'server'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:25:21,833   DEBUG    server.py Подключение: <socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60789)>
+2022-06-06 16:25:21,833   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Mon Jun  6 16:25:21 2022', 'user': {'account_name': 'Guest'}}
+2022-06-06 16:25:21,833   DEBUG    server.py Сообщение от клиента корректное
+2022-06-06 16:25:21,833   DEBUG    log_deco.py 
+ Вызов функции prepare_response с параметрами ({'action': 'presence', 'time': 'Mon Jun  6 16:25:21 2022', 'user': {'account_name': 'Guest'}},), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:25:21,833   INFO     utils.py Сообщение отправлено
+2022-06-06 16:25:21,849   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60789)>, {'response': 200, 'time': 'Mon Jun  6 16:25:21 2022', 'text': 'Hello client!'}, 'server'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:25:21,849   INFO     server.py Соединение с клиентом разорвано.
+2022-06-06 16:43:34,871   INFO     server.py Новое подключение: ('127.0.0.1', 60879)
+2022-06-06 16:43:34,871   INFO     utils.py Получены новые данные.
+2022-06-06 16:43:34,871   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60879)>, 'server'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:43:34,871   DEBUG    server.py Подключение: <socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60879)>
+2022-06-06 16:43:34,871   DEBUG    server.py Сообщение: {'action': 'presence', 'time': 'Mon Jun  6 16:43:34 2022', 'user': {'account_name': 'Guest'}}
+2022-06-06 16:43:34,871   DEBUG    server.py Сообщение от клиента корректное
+2022-06-06 16:43:34,871   DEBUG    log_deco.py 
+ Вызов функции prepare_response с параметрами ({'action': 'presence', 'time': 'Mon Jun  6 16:43:34 2022', 'user': {'account_name': 'Guest'}},), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:43:34,871   INFO     utils.py Сообщение отправлено
+2022-06-06 16:43:34,871   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=132, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 60879)>, {'response': 200, 'time': 'Mon Jun  6 16:43:34 2022', 'text': 'Hello client!'}, 'server'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-06 16:43:34,871   INFO     server.py Соединение с клиентом разорвано.

@@ -9,12 +9,14 @@ import time
 import logging
 import log.client_log_config
 from common.errors import MessageHasNoResponse
+from decorators.log_deco import debug_log
 
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
 
 
+@debug_log
 def make_presence_message(account_name='Guest'):
     """
     Формирует приветственное сообщение от клиента
@@ -31,6 +33,7 @@ def make_presence_message(account_name='Guest'):
     return out
 
 
+@debug_log
 def exam_server_message(message):
     """
     Осуществляет парсинг сообщения от сервера
@@ -48,6 +51,7 @@ def exam_server_message(message):
         return f'400: {message[ERROR]}'
 
 
+@debug_log
 def get_descriptive_output(message):
     """Обеспечивает аккуратный вывод данных на дисплей"""
     for key, value in message.items():

@@ -17,6 +17,8 @@ sys.path.append(os.path.join(os.getcwd(), '..'))
 import logging
 import log.server_log_config
 import log.client_log_config
+# Загружаем декораторы
+from decorators.log_deco import debug_log
 
 
 def choose_log(sender):
@@ -34,6 +36,7 @@ def choose_log(sender):
         raise SenderIndicationError
 
 
+@debug_log
 def send_response(sock, message, sender):
     """
     Принимает сообщение в виде словаря, осуществляет проверку соответствия.
@@ -58,6 +61,7 @@ def send_response(sock, message, sender):
     log_aim.info('Сообщение отправлено')
 
 
+@debug_log
 def get_response(client, sender):
     """
     Функция принимает сообщение в байтовом формате,
@@ -83,6 +87,7 @@ def get_response(client, sender):
     return response
 
 
+@debug_log
 def get_port_and_address_for_use(sender):
     """
     Осуществляет парсинг коммандной строки, возвращает кортеж с
