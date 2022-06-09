@@ -99,7 +99,7 @@ def main():
 
         # Проверяем наличие клиентов ожидающих ответ сервера
         try:
-            if client:
+            if clients:
                 res_data_list, send_data_list, err_data_list = select.select(clients, clients, [], 0)
         except OSError:
             pass
