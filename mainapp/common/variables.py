@@ -29,6 +29,8 @@ ALLOWED_USERS = [
 PRESENCE = 'presence'
 RESPONSE = 'response'
 ERROR = 'error'
+MESSAGE = 'message'
+MESSAGE_TEXT = 'mess_text'
 
 
 # Уровень реагирования обработчиков
