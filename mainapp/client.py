@@ -3,7 +3,7 @@ import sys
 from socket import *
 from common.utils import get_response, send_response, get_port_and_address_for_use
 from common.variables import ACTION, PRESENCE, TIME, USER, \
-    ACCOUNT_NAME, RESPONSE, ERROR
+    ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, SENDER
 import json
 import time
 import logging
@@ -56,6 +56,47 @@ def get_descriptive_output(message):
     """Обеспечивает аккуратный вывод данных на дисплей"""
     for key, value in message.items():
         print(f'{key}: {value}')
+
+
+@debug_log
+def message_from_server(message):
+    """Обработчик"""
+    if ACTION in message \
+            and message[ACTION] == MESSAGE \
+            and SENDER in message \
+            and MESSAGE_TEXT in message:
+        print(f'Получено сообщение от пользователя: '
+              f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
+        CLIENT_LOG.info(f'Получено сообщение от пользователя:'
+                        f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
+    else:
+        CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
+                         f'{message}')
+
+
+@debug_log
+def create_message(sock, account_name='Guest'):
+    """Запрашивает текст сообщения"""
+    print('Введите сообщение или quit для выхода из программы:')
+    message = input('Текст сообщения: ')
+    if message == 'quit':
+        sock.close()
+        CLIENT_LOG(f'Работа завершена по команде пользователя.')
+        sys.exit(0)
+    message_dict = {
+        ACTION: MESSAGE,
+        TIME: time.time(),
+        ACCOUNT_NAME: account_name,
+        MESSAGE_TEXT: message
+    }
+    LOGGER.debug(f'Сформирован словарь сообщения: {message_dict}')
+    return message_dict
+
+
+@debug_log
+def process_response_ans(message):
+    """Обработчик"""
+    pass
 
 
 def main():

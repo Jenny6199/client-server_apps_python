@@ -87,3 +87,142 @@
  Вызов осуществлен из модуля __main__. 
  Вызов осуществлен из функции main(). 
 
+2022-06-09 17:50:49,921   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:50:49,937   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 17:50:49,937   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:50:49,937   INFO     utils.py Сообщение отправлено
+2022-06-09 17:50:49,937   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=160, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61266), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 17:50:49 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:51:32,642   WARNING  client.py Удаленный сервер разорвал соединение.
+2022-06-09 17:52:44,202   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:52:44,202   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 17:52:44,202   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:52:44,202   INFO     utils.py Сообщение отправлено
+2022-06-09 17:52:44,202   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=160, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61280), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 17:52:44 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:53:22,446   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:53:22,446   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 17:53:22,446   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:53:22,446   INFO     utils.py Сообщение отправлено
+2022-06-09 17:53:22,446   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=160, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61284), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 17:53:22 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 17:55:12,594   WARNING  client.py Удаленный сервер разорвал соединение.
+2022-06-09 18:08:56,359   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:08:56,359   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 18:08:56,374   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:08:56,374   INFO     utils.py Сообщение отправлено
+2022-06-09 18:08:56,374   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=160, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61337), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 18:08:56 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:11,974   WARNING  client.py Удаленный сервер разорвал соединение.
+2022-06-09 18:09:44,130   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:44,130   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 18:09:44,130   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:44,130   INFO     utils.py Сообщение отправлено
+2022-06-09 18:09:44,130   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=416, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61350), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 18:09:44 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:55,767   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:55,767   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 18:09:55,767   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:09:55,783   INFO     utils.py Сообщение отправлено
+2022-06-09 18:09:55,783   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=412, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61355), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 18:09:55 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:10:19,276   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:10:56,876   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 18:11:54,998   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:12:46,562   INFO     utils.py Сообщение отправлено
+2022-06-09 18:12:51,585   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=484, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61360), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 18:11:36 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:45:43,247   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:45:53,296   INFO     client.py Установлено соединение (ip: 127.0.0.1, port: 7777)
+2022-06-09 18:46:04,934   DEBUG    log_deco.py 
+ Вызов функции make_presence_message с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-09 18:46:20,382   INFO     utils.py Сообщение отправлено
+2022-06-09 18:46:34,292   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=492, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 61519), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Thu Jun  9 18:46:00 2022', 'user': {'account_name': 'Guest'}}, 'client'), {}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+

@@ -119,23 +119,21 @@ def main():
                     )
                     clients.remove(client_with_message)
 
-            if messages and send_data_list:
-                message = {
-                    ACTION: MESSAGE,
-                    SENDER: messages[0][0],
-                    TIME: time.time(),
-                    MESSAGE_TEXT: messages[0][1]
-                }
-                del messages[0]
-                for waiting_client in send_data_list:
-                    try:
-                        send_response(waiting_client, message, sender='server')
-                    except:
-                        SERVER_LOG.info(
-                            f'Клиент {waiting_client.getpeername()} отключился от сервера.'
-                        )
-                        waiting_client.close()
-                        clients.remove(waiting_client)
+        if messages and send_data_list:
+            message = {
+                ACTION: MESSAGE,
+                SENDER: messages[0][0],
+                TIME: time.time(),
+                MESSAGE_TEXT: messages[0][1]
+            }
+            del messages[0]
+            for waiting_client in send_data_list:
+                try:
+                    send_response(waiting_client, message, sender='server')
+                except:
+                    SERVER_LOG.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                    waiting_client.close()
+                    clients.remove(waiting_client)
 
 
 if __name__ == '__main__':
