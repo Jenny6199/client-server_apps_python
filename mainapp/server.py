@@ -8,7 +8,7 @@ from common.utils import get_response, send_response, \
     get_port_and_address_for_use
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT
+    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, SENDER
 import logging
 import log.server_log_config
 from decorators.log_deco import debug_log
@@ -45,7 +45,23 @@ def prepare_response(message):
 
 def process_client_message(message, messages_list, client):
     """Обработчик сообщений"""
-    pass
+    SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
+    if ACTION in message \
+        and message[ACTION] == PRESENCE \
+        and TIME in message \
+        and USER in message \
+        and message[USER][ACCOUNT_NAME] == 'Guest':
+        send_response(client, {RESPONSE: 200})
+        return
+    elif ACTION in message \
+        and message[ACTION] == MESSAGE \
+        and TIME in message \
+        and MESSAGE_TEXT in message:
+        messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
+        return
+    else:
+        send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'})
+        return
 
 
 def main():

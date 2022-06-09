@@ -31,6 +31,7 @@ RESPONSE = 'response'
 ERROR = 'error'
 MESSAGE = 'message'
 MESSAGE_TEXT = 'mess_text'
+SENDER = 'sender'
 
 
 # Уровень реагирования обработчиков
