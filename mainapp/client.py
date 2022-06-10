@@ -188,8 +188,8 @@ def mainloop():
     try:
         transport = socket(AF_INET, SOCK_STREAM)
         transport.connect((server_address, server_port))
-        send_response(transport, create_presence())
-        answer = process_response_ans(get_response(transport))
+        send_response(transport, create_presence(), sender='client')
+        answer = process_response_ans(get_response(transport, sender='client'))
         CLIENT_LOG.info(f'Установлено соединение с сервером. Получен ответ: {answer}')
     except ServerError as err:
         CLIENT_LOG.error(f'При установке соединения сервер вернул ошибку: {err.text}')
