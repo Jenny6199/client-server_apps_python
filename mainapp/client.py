@@ -1,19 +1,33 @@
 """Клиентская часть программы."""
+
 import sys
 from socket import *
-from common.utils import get_response, send_response, get_port_and_address_for_use
-from common.variables import ACTION, PRESENCE, TIME, USER, \
-    ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, SENDER, DEFAULT_IP, PORT_LISTEN
 import json
 import time
 import logging
 import argparse
+from common.utils import get_response, send_response, get_port_and_address_for_use
+from common.variables import ACTION, PRESENCE, TIME, USER, \
+    ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
+    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
 
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
+
+
+@debug_log
+def create_exit_message(account_name):
+    """
+    Функция генерирует сообщение при отключении клиента.
+    """
+    return {
+        ACTION: LEAVE_MESSAGE,
+        TIME: time.time(),
+        ACCOUNT_NAME: account_name
+    }
 
 
 @debug_log
@@ -149,7 +163,7 @@ def arg_parser():
     return server_address, server_port, client_mode
 
 
-def main():
+def main():     # Старый вариант, не  используется.
     """
     Агрегация работы функций и запуск программы-клиента.
     """
