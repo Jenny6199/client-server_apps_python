@@ -6,6 +6,7 @@ import json
 import time
 import logging
 import argparse
+import threading
 from common.utils import get_response, send_response, get_port_and_address_for_use
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
@@ -190,6 +191,11 @@ def mainloop():
     
     # Загрузка параметров коммандной строки
     server_address, server_port, client_name = arg_parser()
+
+    # Проверка наличия имени пользователя
+    if not client_name:
+        client_name = input('Введите имя пользователя: ')
+
     CLIENT_LOG.info(f'Запущен клиент с параметрами: \n'
                     f'- адрес сервера: {server_address}, \n'
                     f'- порт: {server_port}, \n'
@@ -198,10 +204,9 @@ def mainloop():
     # Титульное сообщение
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
           f'КЛИЕНТ. \n'
-          f'ПОЛЬЗОВАТЕЛЬ: {client_'
+          f'ПОЛЬЗОВАТЕЛЬ: {client_name}'
           )
         
-
     # Инициализация работы сокета
     try:
         transport = socket(AF_INET, SOCK_STREAM)
@@ -222,33 +227,34 @@ def mainloop():
         CLIENT_LOG.critical(f'Не удалось подключиться к серверу: {server_address}:{server_port}'
                             f'Конечный компьютер отверг запрос на подключение.')
         sys.exit(1)
+    
+    # После успешного подключения формируем потоки
     else:
-        if client_mode == 'send':
-            print('Режим работы - отправка сообщений.')
-        else:
-            print('Режим работы - прием сообщений.')
 
-        while True:
+     # Поток запуска процесса приема сообщений       
+        receiver = threading.Thread(
+            target=message_from_server,
+            args=(transport, client_name)
+            )
+        receiver.daemon = True
+        receiver.start()
 
-            # Режим работы на передачу сообщений
-            if client_mode == 'send':
-                try:
-                    send_response(
-                        transport, 
-                        create_new_message(transport), 
-                        sender='client'
-                    )
-                except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    CLIENT_LOG.error(f'Соединение с сервером {server_address} было потеряно.')
-                    sys.exit(1)
+    # Поток запуска процесса отправки сообщений
+        transmitter = threading.Tread(
+            target=create_new_message,
+            args=(transport, client_name)
+        )
+        transmitter.daemon = True
+        transmitter.start()
 
-            # Режим работы на прием сообщений
-            if client_mode == 'listen':
-                try:
-                    message_from_server(get_response(transport, sender='client'))
-                except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                    CLIENT_LOG.error(f'Соединение с сервером {server_address} было потеряно.')
-                    sys.exit(1)
+    CLIENT_LOG.debug('Потоки для отправки/получения сообщений успешно запущены.')
+
+    # Основной цикл клиентской программы
+    while True:
+        time.sleep(1)
+        if receiver.is_alive and transmitter.is_alive:
+            continue
+        break
 
 
 if __name__ == '__main__':
