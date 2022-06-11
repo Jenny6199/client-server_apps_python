@@ -17,6 +17,7 @@ ACTION = 'action'
 TIME = 'time'
 USER = 'user'
 ACCOUNT_NAME = 'account_name'
+DESTINATION = 'to'
 
 # Список пользователей
 ALLOWED_USERS = [

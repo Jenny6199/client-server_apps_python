@@ -9,7 +9,8 @@ from common.utils import get_response, send_response, \
     get_port_and_address_for_use
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, SENDER, LEAVE_MESSAGE
+    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
+    SENDER, LEAVE_MESSAGE, DESTINATION
 import logging
 import log.server_log_config
 from decorators.log_deco import debug_log
@@ -63,11 +64,23 @@ def process_client_message(message, messages_list, client, clients, names):
     if ACTION in message \
         and message[ACTION] == PRESENCE \
         and TIME in message \
-        and USER in message \
-        and message[USER][ACCOUNT_NAME] == 'Guest':
-        send_response(client, {RESPONSE: 200}, sender='server')
-        SERVER_LOG.debug('Ответ клиенту - 200:OK')
+        and USER in message:
+        # Проверка регистрации клиента
+        if message[USER][ACCOUNT_NAME] not in names.keys():
+            names[message[USER][ACCOUNT_NAME]] = client
+            response = {
+                RESPONSE: 200
+                }
+            SERVER_LOG.debug('Ответ клиенту - 200:OK')
+        else: 
+            response = {
+                RESPONSE: 400, 
+                ERROR: 'Пользователь с таким именем уже существует'
+                }
+            SERVER_LOG.debug('Ответ клиенту - 400:Пользователь существует')
+        send_response(client, response, sender='server')
         return
+
     # Получено текстовое сообщение.
     elif ACTION in message \
         and message[ACTION] == MESSAGE \
@@ -76,6 +89,7 @@ def process_client_message(message, messages_list, client, clients, names):
         messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
         SERVER_LOG.debug('Сообщение добавлено в список сообщений')
         return
+
     # Получено сообщение о выходе клиента.
     elif ACTION in message \
         and message[ACTION] == LEAVE_MESSAGE \
@@ -84,13 +98,40 @@ def process_client_message(message, messages_list, client, clients, names):
         names[message[ACCOUNT_NAME]].close()
         del names[message[ACCOUNT_NAME]]
         SERVER_LOG.debug(f'Клиент {ACCOUNT_NAME} завершил работу.')
-         
+        return
+
     # Получено некорректное сообщение
     else:
         send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
         SERVER_LOG.debug('Ответ клиенту - 400:Bad Request')
         return
 
+
+@debug_log
+def process_message(message, names, listen_socks):
+    """
+    Функция для отправки сообщения конкретному клиенту
+    Принимает словарь с сообщением, список пользователей, список сокетов.
+    Возвращает None.
+    :param message: dict - message
+    :param names: list - clients' list
+    :param liste_socks: list - sockets' list
+    :return: None
+    """
+    if message[DESTINATION] in names \
+        and names[message[DESTINATION]] in listen_socks:
+        send_response(names[message[DESTINATION]], message, sender='server')
+        SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]}'
+                        f'пользователю {message[SENDER]}')
+    elif message[DESTINATION] in names \
+        and names[message[DESTINATION]] not in listen_socks:
+        raise ConnectionError
+    else:
+        SERVER_LOG.error(
+            f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
+            f'Сообщение не было отправлено.'
+        )
+        
 
 def main():
     """
