@@ -108,22 +108,47 @@ def message_from_server(sock, username):
 
 
 @debug_log
-def create_message(sock, account_name='Guest'):
-    """Запрашивает текст сообщения"""
-    print('Введите сообщение или quit для выхода из программы:')
+def create_new_message(sock, account_name='Guest'):
+    """
+    Функция запрашивает у пользователя данные (получатель сообщения и
+    текст сообщения), формирует словарь-сообщение и отправляет сообщение
+    на сервер.
+    Добавлена возможность выхода из программы по запросу пользователя.
+    :param sock: dict - сокет
+    :param account_name: str - имя пользователя
+    :return None
+    """
+    # Блок ввода данных
+    recipient = input('Укажите получателя сообщения: ')
+    print('Введите текст сообщения или quit! для выхода из программы')
     message = input('Текст сообщения: ')
-    if message == 'quit':
+    
+    # Возможность выхода из программы по запросу пользователя
+    if message == 'quit!':
         sock.close()
         CLIENT_LOG.info(f'Работа завершена по команде пользователя.')
         sys.exit(0)
+
+    # Формирование словаря для отправки
     message_dict = {
         ACTION: MESSAGE,
+        SENDER: account_name,
+        DESTINATION: recipient,
         TIME: time.time(),
-        ACCOUNT_NAME: account_name,
         MESSAGE_TEXT: message
     }
     CLIENT_LOG.debug(f'Сформирован словарь сообщения: {message_dict}')
-    return message_dict
+
+    # Блок отправки сообщения на сервер.
+    try:
+        send_response(sock, message_dict, sender='client')
+        CLIENT_LOG.info(f'Успешно отправлено сообщение пользователю {recipient}.')
+    except Exception as exc:
+        print(exc)
+        CLIENT_LOG.critical('\033[031m Соединение с сервером разорвано \033[0m')
+        sys.exit(1)
+
+
 
 
 @debug_log
@@ -209,7 +234,11 @@ def mainloop():
             # Режим работы на передачу сообщений
             if client_mode == 'send':
                 try:
-                    send_response(transport, create_message(transport), sender='client')
+                    send_response(
+                        transport, 
+                        create_new_message(transport), 
+                        sender='client'
+                    )
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
                     CLIENT_LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
