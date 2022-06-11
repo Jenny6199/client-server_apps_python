@@ -28,6 +28,7 @@ ALLOWED_USERS = [
 # Прочие ключи
 PRESENCE = 'presence'
 RESPONSE = 'response'
+LEAVE_MESSAGE = 'exit'
 ERROR = 'error'
 MESSAGE = 'message'
 MESSAGE_TEXT = 'mess_text'

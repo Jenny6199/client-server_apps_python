@@ -1,6 +1,7 @@
 """Серверная часть программы."""
 
 import json
+import sys
 import select
 import time
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
@@ -8,7 +9,7 @@ from common.utils import get_response, send_response, \
     get_port_and_address_for_use
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, SENDER
+    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, SENDER, LEAVE_MESSAGE
 import logging
 import log.server_log_config
 from decorators.log_deco import debug_log
@@ -43,24 +44,51 @@ def prepare_response(message):
     }
 
 
-def process_client_message(message, messages_list, client):
-    """Обработчик сообщений"""
+def process_client_message(message, messages_list, client, clients, names):
+    """
+    Обработчик сообщений полученных от клиента
+    На вход принимает словарь - проверяет соответствие форме,
+    отправляет ответ клиенту при получении приветственного сообщения или ошибке
+    добавляет сообщение в список сообщений
+    возвращает None
+    :param message: data from client
+    :param messages_list: list of data
+    :param client: object of client
+    :param clients: list of clients
+    :param names: clients account_name's list.
+    """
     SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
+
+    # Получено приветственное сообщение.
     if ACTION in message \
         and message[ACTION] == PRESENCE \
         and TIME in message \
         and USER in message \
         and message[USER][ACCOUNT_NAME] == 'Guest':
         send_response(client, {RESPONSE: 200}, sender='server')
+        SERVER_LOG.debug('Ответ клиенту - 200:OK')
         return
+    # Получено текстовое сообщение.
     elif ACTION in message \
         and message[ACTION] == MESSAGE \
         and TIME in message \
         and MESSAGE_TEXT in message:
         messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
+        SERVER_LOG.debug('Сообщение добавлено в список сообщений')
         return
+    # Получено сообщение о выходе клиента.
+    elif ACTION in message \
+        and message[ACTION] == LEAVE_MESSAGE \
+        and ACCOUNT_NAME in message:
+        clients.remove(names[message[ACCOUNT_NAME]])
+        names[message[ACCOUNT_NAME]].close()
+        del names[message[ACCOUNT_NAME]]
+        SERVER_LOG.debug(f'Клиент {ACCOUNT_NAME} завершил работу.')
+         
+    # Получено некорректное сообщение
     else:
-        send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'})
+        send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
+        SERVER_LOG.debug('Ответ клиенту - 400:Bad Request')
         return
 
 
