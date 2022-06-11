@@ -226,3 +226,25 @@
  Вызов осуществлен из модуля common.utils. 
  Вызов осуществлен из функции main(). 
 
+2022-06-11 07:03:46,815   DEBUG    log_deco.py 
+ Вызов функции arg_parser с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 07:03:46,827   INFO     client.py Запущен клиент с параметрами: 
+- адрес сервера: 127.0.0.1, 
+- порт: 7777, 
+- режим работы: listen.
+2022-06-11 07:03:46,829   DEBUG    client.py Сформировано presence сообщение для пользователя Guest.
+2022-06-11 07:03:46,830   DEBUG    log_deco.py 
+ Вызов функции create_presence с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 07:03:46,830   INFO     utils.py Сообщение отправлено
+2022-06-11 07:03:46,831   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 49668), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1654920226.8293405, 'user': {'account_name': 'Guest'}}), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 07:06:13,575   ERROR    client.py Не удалось декодировать JSON.

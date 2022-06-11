@@ -94,6 +94,10 @@ def main():
             # Печатает None если время вышло
             print(err.errno)
             pass
+        else:
+            SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
+            clients.append(client)
+        
         # Создаем списки для Select
         res_data_list, send_data_list, err_data_list = [], [], []
 
