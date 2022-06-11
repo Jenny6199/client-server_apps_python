@@ -149,8 +149,6 @@ def create_new_message(sock, account_name='Guest'):
         sys.exit(1)
 
 
-
-
 @debug_log
 def process_response_ans(message):
     """
@@ -172,11 +170,11 @@ def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('addr', default=DEFAULT_IP, nargs='?')
     parser.add_argument('port', default=PORT_LISTEN, type=int, nargs='?')
-    parser.add_argument('-m', '--mode', default='listen', nargs='?')
+    parser.add_argument('-n', '--name', default=None, nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
     server_address = namespace.addr
     server_port = namespace.port
-    client_mode = namespace.mode
+    client_name = namespace.name
 
     # Проверка доступности порта
     if not 1023 < server_port < 65536:
@@ -184,24 +182,25 @@ def arg_parser():
                             f'Допустимы адреса с 1024 до 65535. Клиент завершает работу.')
         sys.exit(1)
 
-    # Проверка режима работы клиента
-    if client_mode not in ('listen', 'send'):
-        CLIENT_LOG.critical(f'Указан недопустимый режим работы клиента {client_mode}.'
-                            f'Допустимые режимы listen, send. Клиент завершает работу.')
-        sys.exit(1)
-
-    return server_address, server_port, client_mode
+    return server_address, server_port, client_name
 
 
 def mainloop():
     """Агрегация работы функций и запуск программы-клиента"""
     
     # Загрузка параметров коммандной строки
-    server_address, server_port, client_mode = arg_parser()
+    server_address, server_port, client_name = arg_parser()
     CLIENT_LOG.info(f'Запущен клиент с параметрами: \n'
                     f'- адрес сервера: {server_address}, \n'
                     f'- порт: {server_port}, \n'
-                    f'- режим работы: {client_mode}.')
+                    f'- имя пользователя: {client_name}.')
+
+    # Титульное сообщение
+    print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
+          f'КЛИЕНТ. \n'
+          f'ПОЛЬЗОВАТЕЛЬ: {client_'
+          )
+        
 
     # Инициализация работы сокета
     try:
