@@ -7,7 +7,7 @@ import time
 import logging
 import argparse
 from common.utils import get_response, send_response, get_port_and_address_for_use
-from common.variables import ACTION, PRESENCE, TIME, USER, \
+from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
@@ -31,7 +31,7 @@ def create_exit_message(account_name):
 
 
 @debug_log
-def make_presence_message(account_name='Guest'):
+def create_presence_message(account_name='Guest'):
     """
     Формирует приветственное сообщение от клиента
     :param account_name: string - name of client
@@ -44,6 +44,7 @@ def make_presence_message(account_name='Guest'):
             ACCOUNT_NAME: account_name
         }
     }
+    CLIENT_LOG.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}.')
     return out
 
 
@@ -73,19 +74,37 @@ def get_descriptive_output(message):
 
 
 @debug_log
-def message_from_server(message):
-    """Обработчик"""
-    if ACTION in message \
-            and message[ACTION] == MESSAGE \
-            and SENDER in message \
-            and MESSAGE_TEXT in message:
-        print(f'Получено сообщение от пользователя: '
-              f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
-        CLIENT_LOG.info(f'Получено сообщение от пользователя:'
-                        f'{message[SENDER]}:\n{message[MESSAGE_TEXT]}')
-    else:
-        CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
-                         f'{message}')
+def message_from_server(sock, username):
+    """
+    Функция обработчик сообщений полученных от других пользователей.
+    При получении корректных данных выводит сообщение на дисплей
+    или генерирует исключение и прерывает работу клиента.
+    :param sock: dict - сокет
+    :param username: str - имя пользователя
+    :return None
+    """
+    while True:
+        try:
+            message = get_response(sock, sender='client')
+            if ACTION in message \
+                    and message[ACTION] == MESSAGE \
+                    and SENDER in message \
+                    and DESTINATION in message \
+                    and MESSAGE_TEXT in message \
+                    and message[DESTINATION] == username:
+                    print(f'\033[104m Получено новое сообщение: \n'
+                        f'    от {message[SENDER]}: {message[MESSAGE_TEXT]} \033[0m')
+                    CLIENT_LOG.info(f'Получено сообщение от пользователя:'
+                                    f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+            else:
+                CLIENT_LOG.error(f'\033[091m Получено некорректное сообщение от сервера:'
+                                 f'{message} \033[0m')
+        except MessageHasNoResponse:
+            CLIENT_LOG.error('Получено некорректное сообщение.')
+        except (OSError, ConnectionError, ConnectionAbortedError, 
+                ConnectionResetError, json.JSONDecodeError):
+            CLIENT_LOG.critical('\033[031m Соединение с сервером потеряно. \033[0m')
+            break
 
 
 @debug_log
@@ -105,20 +124,6 @@ def create_message(sock, account_name='Guest'):
     }
     CLIENT_LOG.debug(f'Сформирован словарь сообщения: {message_dict}')
     return message_dict
-
-
-@debug_log
-def create_presence(account_name='Guest'):
-    """Генерирует запрос о присутствии клиента"""
-    out = {
-        ACTION: PRESENCE,
-        TIME: time.time(),
-        USER: {
-            ACCOUNT_NAME: account_name
-        }
-    }
-    CLIENT_LOG.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}.')
-    return out
 
 
 @debug_log
@@ -163,33 +168,6 @@ def arg_parser():
     return server_address, server_port, client_mode
 
 
-def main():     # Старый вариант, не  используется.
-    """
-    Агрегация работы функций и запуск программы-клиента.
-    """
-    # Анализ параметров коммандной строки
-    option = get_port_and_address_for_use(sender='client')
-
-    # Запуск сокета
-    transport = socket(AF_INET, SOCK_STREAM)
-    try:
-        transport.connect(option)
-    except ConnectionRefusedError:
-        CLIENT_LOG.warning('Невозможно установить соединение - удаленный сервер не отвечает.')
-        sys.exit(1)
-    CLIENT_LOG.info(f'Установлено соединение (ip: {option[0]}, port: {option[1]})')
-    message_for_server = make_presence_message()
-    send_response(transport, message_for_server, 'client')
-    try:
-        response = exam_server_message(get_response(transport, 'client'))
-        get_descriptive_output(response)
-    except (ValueError, json.JSONDecodeError):
-        CLIENT_LOG.warning('Не удалось обработать сообщение от сервера.')
-    except ConnectionResetError:
-        CLIENT_LOG.warning('Удаленный сервер разорвал соединение.')
-        sys.exit(1)
-
-
 def mainloop():
     """Агрегация работы функций и запуск программы-клиента"""
     
@@ -204,7 +182,7 @@ def mainloop():
     try:
         transport = socket(AF_INET, SOCK_STREAM)
         transport.connect((server_address, server_port))
-        send_response(transport, create_presence(), sender='client')
+        send_response(transport, create_presence_message(), sender='client')
         answer = process_response_ans(get_response(transport, sender='client'))
         CLIENT_LOG.info(f'Установлено соединение с сервером. Получен ответ: {answer}')
     except ServerError as err:
