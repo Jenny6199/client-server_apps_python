@@ -211,7 +211,7 @@ def mainloop():
     try:
         transport = socket(AF_INET, SOCK_STREAM)
         transport.connect((server_address, server_port))
-        send_response(transport, create_presence_message(), sender='client')
+        send_response(transport, create_presence_message(client_name), sender='client')
         answer = process_response_ans(get_response(transport, sender='client'))
         CLIENT_LOG.info(f'Установлено соединение с сервером. Получен ответ: {answer}')
     except ServerError as err:
@@ -240,7 +240,7 @@ def mainloop():
         receiver.start()
 
     # Поток запуска процесса отправки сообщений
-        transmitter = threading.Tread(
+        transmitter = threading.Thread(
             target=create_new_message,
             args=(transport, client_name)
         )

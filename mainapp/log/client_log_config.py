@@ -45,7 +45,7 @@ STREAM_HANDLER.setFormatter(STREAM_FORMATTER)
 RECORD_FILE.setFormatter(RECORD_FORMATTER)
 
 # Подключаем обработчики к регистратору
-client_log.addHandler(STREAM_HANDLER)
+# client_log.addHandler(STREAM_HANDLER)
 client_log.addHandler(RECORD_FILE)
 
 # Устанавливаем уровни реагирования регистратора
