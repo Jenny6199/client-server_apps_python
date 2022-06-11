@@ -131,7 +131,7 @@ def process_message(message, names, listen_socks):
             f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
             f'Сообщение не было отправлено.'
         )
-        
+
 
 def main():
     """
@@ -151,17 +151,20 @@ def main():
     clients = []
     messages = []
 
+    #  Словарь для хранения имен пользователей и соответствующих сокетов
+    names = {}
+
     # Режим ожидания входящих сообщений
     SERVER_LOG.info('Сервер ожидает входящие сообщения.')
     transport.listen(CONNECTION_LIMIT)
+
+    # Основной цикл серверной части программы.
     while True:
         # Устанавливаем обход блокирующего accept через таймаут и исключение
         try:
             client, client_address = transport.accept()
             SERVER_LOG.info(f'Новое подключение: {client_address}')
         except OSError as err:
-            # Печатает None если время вышло
-            print(err.errno)
             pass
         else:
             SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
@@ -184,29 +187,23 @@ def main():
                     process_client_message(
                         get_response(client_with_message, sender='server'),
                         messages,
-                        client_with_message
+                        client_with_message,
+                        clients,
+                        names
                     )
                 except:
                     SERVER_LOG.info(
-                        f'Клиент {client_with_message.getpeername()} отключился от сервера'
-                    )
+                        f'Клиент {client_with_message.getpeername()} отключился от сервера')
                     clients.remove(client_with_message)
 
-        if messages and send_data_list:
-            message = {
-                ACTION: MESSAGE,
-                SENDER: messages[0][0],
-                TIME: time.time(),
-                MESSAGE_TEXT: messages[0][1]
-            }
-            del messages[0]
-            for waiting_client in send_data_list:
-                try:
-                    send_response(waiting_client, message, sender='server')
-                except:
-                    SERVER_LOG.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                    waiting_client.close()
-                    clients.remove(waiting_client)
+        for mail in messages:
+            try:
+                process_message(mail, names, send_data_list)
+            except Exception:
+                SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
+                clients.remove(names[mail[DESTINATION]])
+                del names[mail[DESTINATION]]
+        messages.clear()
 
 
 if __name__ == '__main__':
