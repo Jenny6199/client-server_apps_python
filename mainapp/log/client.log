@@ -598,3 +598,66 @@ hello world!
  Вызов осуществлен из модуля __main__. 
  Вызов осуществлен из функции mainloop(). 
 
+2022-06-11 20:45:36,487   DEBUG    log_deco.py 
+ Вызов функции arg_parser с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:45:36,500   INFO     client.py Запущен клиент с параметрами: 
+- адрес сервера: 127.0.0.1, 
+- порт: 7777, 
+- режим работы: listen.
+2022-06-11 20:45:36,500   DEBUG    client.py Сформировано presence сообщение для пользователя Guest.
+2022-06-11 20:45:36,501   DEBUG    log_deco.py 
+ Вызов функции create_presence с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:45:36,501   INFO     utils.py Сообщение отправлено
+2022-06-11 20:45:36,502   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 40102), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1654969536.5009184, 'user': {'account_name': 'Guest'}}), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:45:36,505   INFO     utils.py Получены новые данные.
+2022-06-11 20:45:36,506   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 40102), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:45:36,506   DEBUG    client.py Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-11 20:45:36,506   DEBUG    log_deco.py 
+ Вызов функции process_response_ans с параметрами ({'response': 200},), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:45:36,507   INFO     client.py Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-11 20:47:16,464   DEBUG    log_deco.py 
+ Вызов функции arg_parser с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:47:16,464   INFO     client.py Запущен клиент с параметрами: 
+- адрес сервера: 127.0.0.1, 
+- порт: 7777, 
+- режим работы: send.
+2022-06-11 20:47:16,465   DEBUG    client.py Сформировано presence сообщение для пользователя Guest.
+2022-06-11 20:47:16,466   DEBUG    log_deco.py 
+ Вызов функции create_presence с параметрами (), {}. 
+ Вызов осуществлен из модуля __main__. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:47:16,466   INFO     utils.py Сообщение отправлено
+2022-06-11 20:47:16,467   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 40108), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1654969636.4656086, 'user': {'account_name': 'Guest'}}), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:47:16,969   INFO     utils.py Получены новые данные.
+2022-06-11 20:47:16,970   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 40108), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mainloop(). 
+
+2022-06-11 20:47:16,970   DEBUG    client.py Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Пользователь с таким именем уже существует'}
+2022-06-11 20:47:16,971   ERROR    client.py При установке соединения сервер вернул ошибку: 400: Пользователь с таким именем уже существует

@@ -39,3 +39,8 @@ SENDER = 'sender'
 # Уровень реагирования обработчиков
 # CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET
 LOGGING_LEVEL = 'DEBUG'
+
+
+# Стандартные словари ответов:
+RSP_200 = {RESPONSE: 200}
+RSP_400 = {RESPONSE: 400}

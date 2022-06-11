@@ -10,7 +10,7 @@ from common.utils import get_response, send_response, \
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
-    SENDER, LEAVE_MESSAGE, DESTINATION
+    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400
 import logging
 import log.server_log_config
 from decorators.log_deco import debug_log
@@ -21,7 +21,7 @@ SERVER_LOG = logging.getLogger('server')
 
 
 @debug_log
-def prepare_response(message):
+def prepare_response(message):  # Больше не нужна?
     """
     Подготавливает ответное сообщение
     :param message: dict - сообщение c данными от клиента.
@@ -45,6 +45,7 @@ def prepare_response(message):
     }
 
 
+@debug_log
 def process_client_message(message, messages_list, client, clients, names):
     """
     Обработчик сообщений полученных от клиента
@@ -68,16 +69,12 @@ def process_client_message(message, messages_list, client, clients, names):
         # Проверка регистрации клиента
         if message[USER][ACCOUNT_NAME] not in names.keys():
             names[message[USER][ACCOUNT_NAME]] = client
-            response = {
-                RESPONSE: 200
-                }
+            response = RSP_200
             SERVER_LOG.debug('Ответ клиенту - 200:OK')
         else: 
-            response = {
-                RESPONSE: 400, 
-                ERROR: 'Пользователь с таким именем уже существует'
-                }
-            SERVER_LOG.debug('Ответ клиенту - 400:Пользователь существует')
+            response = RSP_400     
+            response[ERROR] = 'Пользователь с таким именем уже существует'
+            SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
         send_response(client, response, sender='server')
         return
 
