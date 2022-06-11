@@ -51,7 +51,7 @@ def process_client_message(message, messages_list, client):
         and TIME in message \
         and USER in message \
         and message[USER][ACCOUNT_NAME] == 'Guest':
-        send_response(client, {RESPONSE: 200})
+        send_response(client, {RESPONSE: 200}, sender='server')
         return
     elif ACTION in message \
         and message[ACTION] == MESSAGE \

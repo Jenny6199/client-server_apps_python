@@ -178,6 +178,8 @@ def main():
 
 def mainloop():
     """Агрегация работы функций и запуск программы-клиента"""
+    
+    # Загрузка параметров коммандной строки
     server_address, server_port, client_mode = arg_parser()
     CLIENT_LOG.info(f'Запущен клиент с параметрами: \n'
                     f'- адрес сервера: {server_address}, \n'
@@ -215,7 +217,7 @@ def mainloop():
             # Режим работы на передачу сообщений
             if client_mode == 'send':
                 try:
-                    send_response(transport, create_message(transport))
+                    send_response(transport, create_message(transport), sender='client')
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
                     CLIENT_LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)
@@ -223,7 +225,7 @@ def mainloop():
             # Режим работы на прием сообщений
             if client_mode == 'listen':
                 try:
-                    message_from_server(get_response(transport))
+                    message_from_server(get_response(transport, sender='client'))
                 except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
                     CLIENT_LOG.error(f'Соединение с сервером {server_address} было потеряно.')
                     sys.exit(1)

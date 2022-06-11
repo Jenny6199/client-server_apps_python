@@ -172,3 +172,213 @@
 
 2022-06-11 07:03:47,332   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654920226.8293405, 'user': {'account_name': 'Guest'}}
 2022-06-11 07:03:47,332   INFO     server.py Клиент ('127.0.0.1', 49668) отключился от сервера
+2022-06-11 07:17:57,011   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 07:17:57,011   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 07:17:57,012   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 07:21:51,250   INFO     server.py Новое подключение: ('127.0.0.1', 49772)
+2022-06-11 07:21:51,250   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49772)
+2022-06-11 07:21:51,752   INFO     utils.py Получены новые данные.
+2022-06-11 07:21:51,753   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49772)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 07:21:51,753   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654921311.2513282, 'user': {'account_name': 'Guest'}}
+2022-06-11 07:21:51,754   INFO     server.py Клиент ('127.0.0.1', 49772) отключился от сервера
+2022-06-11 07:25:01,023   INFO     server.py Новое подключение: ('127.0.0.1', 49774)
+2022-06-11 07:25:01,023   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49774)
+2022-06-11 07:25:01,524   INFO     utils.py Получены новые данные.
+2022-06-11 07:25:01,525   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49774)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 07:25:01,525   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654921501.0239747, 'user': {'account_name': 'Guest'}}
+2022-06-11 07:25:01,526   INFO     server.py Клиент ('127.0.0.1', 49774) отключился от сервера
+2022-06-11 07:43:05,996   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 07:43:05,996   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 07:43:05,997   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 07:44:36,710   INFO     server.py Новое подключение: ('127.0.0.1', 49806)
+2022-06-11 07:44:36,710   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49806)
+2022-06-11 07:46:06,277   INFO     utils.py Получены новые данные.
+2022-06-11 07:46:06,278   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49806)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 07:46:06,280   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654922701.0267723, 'user': {'account_name': 'Guest'}}
+2022-06-11 07:46:06,281   INFO     server.py Клиент ('127.0.0.1', 49806) отключился от сервера
+2022-06-11 07:49:18,822   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mod_spec). 
+
+2022-06-11 07:49:18,825   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 07:49:18,826   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 07:50:16,805   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mod_spec). 
+
+2022-06-11 07:50:16,808   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 07:50:16,808   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 07:50:44,982   INFO     server.py Новое подключение: ('127.0.0.1', 49884)
+2022-06-11 07:50:50,422   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49884)
+2022-06-11 07:53:01,224   INFO     utils.py Получены новые данные.
+2022-06-11 07:53:14,700   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mod_spec). 
+
+2022-06-11 07:53:58,165   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654923035.326467, 'user': {'account_name': 'Guest'}}
+2022-06-11 07:55:54,035   INFO     server.py Клиент ('127.0.0.1', 49884) отключился от сервера
+2022-06-11 07:57:25,720   INFO     server.py Новое подключение: ('127.0.0.1', 49926)
+2022-06-11 07:57:29,936   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49926)
+2022-06-11 08:00:49,065   INFO     utils.py Получены новые данные.
+2022-06-11 08:01:02,865   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49926)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции mod_spec). 
+
+2022-06-11 08:07:20,088   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654923436.121358, 'user': {'account_name': 'Guest'}}
+2022-06-11 08:08:56,167   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:08:56,168   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 08:08:56,168   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 08:09:00,461   INFO     server.py Новое подключение: ('127.0.0.1', 49974)
+2022-06-11 08:09:00,461   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49974)
+2022-06-11 08:09:00,962   INFO     utils.py Получены новые данные.
+2022-06-11 08:09:00,963   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49974)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:09:00,964   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654924140.4612339, 'user': {'account_name': 'Guest'}}
+2022-06-11 08:09:00,964   INFO     utils.py Сообщение отправлено
+2022-06-11 08:09:00,965   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49974)>, {'response': 200}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:09:01,466   INFO     server.py Клиент ('127.0.0.1', 49974) отключился от сервера
+2022-06-11 08:10:25,899   DEBUG    log_deco.py 
+ Вызов функции get_port_and_address_for_use с параметрами (), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:10:25,900   INFO     server.py Сервер запущен и слушает порт: 7777.
+2022-06-11 08:10:25,900   INFO     server.py Сервер ожидает входящие сообщения.
+2022-06-11 08:10:28,838   INFO     server.py Новое подключение: ('127.0.0.1', 49984)
+2022-06-11 08:10:28,841   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49984)
+2022-06-11 08:10:28,841   INFO     utils.py Получены новые данные.
+2022-06-11 08:10:28,842   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49984)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:10:28,842   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654924228.8383644, 'user': {'account_name': 'Guest'}}
+2022-06-11 08:10:28,842   INFO     utils.py Сообщение отправлено
+2022-06-11 08:10:28,843   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49984)>, {'response': 200}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:10:41,955   INFO     server.py Новое подключение: ('127.0.0.1', 49988)
+2022-06-11 08:10:41,955   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49988)
+2022-06-11 08:10:41,955   INFO     utils.py Получены новые данные.
+2022-06-11 08:10:41,956   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49988)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:10:41,956   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654924241.9520664, 'user': {'account_name': 'Guest'}}
+2022-06-11 08:10:41,957   INFO     utils.py Сообщение отправлено
+2022-06-11 08:10:41,958   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49988)>, {'response': 200}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:10:47,465   INFO     server.py Клиент ('127.0.0.1', 49988) отключился от сервера
+2022-06-11 08:11:42,305   INFO     server.py Новое подключение: ('127.0.0.1', 49994)
+2022-06-11 08:11:42,305   INFO     server.py Установлено новое соединение с клиентом ('127.0.0.1', 49994)
+2022-06-11 08:11:42,807   INFO     utils.py Получены новые данные.
+2022-06-11 08:11:42,807   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:11:42,808   DEBUG    server.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1654924302.3049037, 'user': {'account_name': 'Guest'}}
+2022-06-11 08:11:42,809   INFO     utils.py Сообщение отправлено
+2022-06-11 08:11:42,810   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>, {'response': 200}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:11:47,316   INFO     utils.py Получены новые данные.
+2022-06-11 08:11:47,317   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:11:47,317   DEBUG    server.py Разбор сообщения от клиента: {'action': 'message', 'time': 1654924306.901389, 'account_name': 'Guest', 'mess_text': 'Hi server'}
+2022-06-11 08:11:47,318   INFO     utils.py Сообщение отправлено
+2022-06-11 08:11:47,319   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49984)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924307.3182273, 'mess_text': 'Hi server'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:11:47,321   INFO     utils.py Сообщение отправлено
+2022-06-11 08:11:47,322   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924307.3182273, 'mess_text': 'Hi server'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:12:03,343   INFO     utils.py Получены новые данные.
+2022-06-11 08:12:03,344   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:12:03,345   DEBUG    server.py Разбор сообщения от клиента: {'action': 'message', 'time': 1654924322.851084, 'account_name': 'Guest', 'mess_text': 'hello world!'}
+2022-06-11 08:12:03,345   INFO     utils.py Сообщение отправлено
+2022-06-11 08:12:03,346   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49984)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924323.3453553, 'mess_text': 'hello world!'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:12:03,346   INFO     utils.py Сообщение отправлено
+2022-06-11 08:12:03,347   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924323.3453553, 'mess_text': 'hello world!'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:13:09,972   INFO     utils.py Получены новые данные.
+2022-06-11 08:13:09,973   DEBUG    log_deco.py 
+ Вызов функции get_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>,), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:13:09,973   DEBUG    server.py Разбор сообщения от клиента: {'action': 'message', 'time': 1654924389.756519, 'account_name': 'Guest', 'mess_text': 'Отправка'}
+2022-06-11 08:13:09,974   INFO     utils.py Сообщение отправлено
+2022-06-11 08:13:09,975   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49984)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924389.9740705, 'mess_text': 'Отправка'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
+2022-06-11 08:13:09,976   INFO     utils.py Сообщение отправлено
+2022-06-11 08:13:09,977   DEBUG    log_deco.py 
+ Вызов функции send_response с параметрами (<socket.socket fd=8, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49994)>, {'action': 'message', 'sender': 'Guest', 'time': 1654924389.9740705, 'mess_text': 'Отправка'}), {'sender': 'server'}. 
+ Вызов осуществлен из модуля common.utils. 
+ Вызов осуществлен из функции main(). 
+
