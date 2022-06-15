@@ -7,7 +7,7 @@ import time
 import logging
 import argparse
 import threading
-from common.utils import get_response, send_response, get_port_and_address_for_use
+from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE
@@ -93,16 +93,16 @@ def message_from_server(sock, username):
                     and DESTINATION in message \
                     and MESSAGE_TEXT in message \
                     and message[DESTINATION] == username:
-                    print(f'\033[104m Получено новое сообщение: \n'
-                        f'    от {message[SENDER]}: {message[MESSAGE_TEXT]} \033[0m')
-                    CLIENT_LOG.info(f'Получено сообщение от пользователя:'
-                                    f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+                print(f'\033[104m Получено новое сообщение: \n'
+                      f'    от {message[SENDER]}: {message[MESSAGE_TEXT]} \033[0m')
+                CLIENT_LOG.info(f'Получено сообщение от пользователя:'
+                                f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
             else:
                 CLIENT_LOG.error(f'\033[091m Получено некорректное сообщение от сервера:'
                                  f'{message} \033[0m')
         except MessageHasNoResponse:
             CLIENT_LOG.error('Получено некорректное сообщение.')
-        except (OSError, ConnectionError, ConnectionAbortedError, 
+        except (OSError, ConnectionError, ConnectionAbortedError,
                 ConnectionResetError, json.JSONDecodeError):
             CLIENT_LOG.critical('\033[031m Соединение с сервером потеряно. \033[0m')
             break
@@ -123,7 +123,7 @@ def create_new_message(sock, account_name='Guest'):
     recipient = input('Укажите получателя сообщения: ')
     print('Введите текст сообщения или quit! для выхода из программы')
     message = input('Текст сообщения: ')
-    
+
     # Возможность выхода из программы по запросу пользователя
     if message == 'quit!':
         sock.close()
@@ -188,7 +188,7 @@ def arg_parser():
 
 def mainloop():
     """Агрегация работы функций и запуск программы-клиента"""
-    
+
     # Загрузка параметров коммандной строки
     server_address, server_port, client_name = arg_parser()
 
@@ -206,7 +206,7 @@ def mainloop():
           f'КЛИЕНТ. \n'
           f'ПОЛЬЗОВАТЕЛЬ: {client_name}'
           )
-        
+
     # Инициализация работы сокета
     try:
         transport = socket(AF_INET, SOCK_STREAM)
@@ -227,19 +227,19 @@ def mainloop():
         CLIENT_LOG.critical(f'Не удалось подключиться к серверу: {server_address}:{server_port}'
                             f'Конечный компьютер отверг запрос на подключение.')
         sys.exit(1)
-    
+
     # После успешного подключения формируем потоки
     else:
 
-     # Поток запуска процесса приема сообщений       
+        # Поток запуска процесса приема сообщений
         receiver = threading.Thread(
             target=message_from_server,
             args=(transport, client_name)
-            )
+        )
         receiver.daemon = True
         receiver.start()
 
-    # Поток запуска процесса отправки сообщений
+        # Поток запуска процесса отправки сообщений
         transmitter = threading.Thread(
             target=create_new_message,
             args=(transport, client_name)
