@@ -63,16 +63,16 @@ def process_client_message(message, messages_list, client, clients, names):
 
     # Получено приветственное сообщение.
     if ACTION in message \
-        and message[ACTION] == PRESENCE \
-        and TIME in message \
-        and USER in message:
+            and message[ACTION] == PRESENCE \
+            and TIME in message \
+            and USER in message:
         # Проверка регистрации клиента
         if message[USER][ACCOUNT_NAME] not in names.keys():
             names[message[USER][ACCOUNT_NAME]] = client
             response = RSP_200
             SERVER_LOG.debug('Ответ клиенту - 200:OK')
-        else: 
-            response = RSP_400     
+        else:
+            response = RSP_400
             response[ERROR] = 'Пользователь с таким именем уже существует'
             SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
         send_response(client, response, sender='server')
@@ -80,17 +80,17 @@ def process_client_message(message, messages_list, client, clients, names):
 
     # Получено текстовое сообщение.
     elif ACTION in message \
-        and message[ACTION] == MESSAGE \
-        and TIME in message \
-        and MESSAGE_TEXT in message:
+            and message[ACTION] == MESSAGE \
+            and TIME in message \
+            and MESSAGE_TEXT in message:
         messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
         SERVER_LOG.debug('Сообщение добавлено в список сообщений')
         return
 
     # Получено сообщение о выходе клиента.
     elif ACTION in message \
-        and message[ACTION] == LEAVE_MESSAGE \
-        and ACCOUNT_NAME in message:
+            and message[ACTION] == LEAVE_MESSAGE \
+            and ACCOUNT_NAME in message:
         clients.remove(names[message[ACCOUNT_NAME]])
         names[message[ACCOUNT_NAME]].close()
         del names[message[ACCOUNT_NAME]]
@@ -116,12 +116,12 @@ def process_message(message, names, listen_socks):
     :return: None
     """
     if message[DESTINATION] in names \
-        and names[message[DESTINATION]] in listen_socks:
+            and names[message[DESTINATION]] in listen_socks:
         send_response(names[message[DESTINATION]], message, sender='server')
         SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]}'
                         f'пользователю {message[SENDER]}')
     elif message[DESTINATION] in names \
-        and names[message[DESTINATION]] not in listen_socks:
+            and names[message[DESTINATION]] not in listen_socks:
         raise ConnectionError
     else:
         SERVER_LOG.error(
@@ -166,7 +166,7 @@ def main():
         else:
             SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
             clients.append(client)
-        
+
         # Создаем списки для Select
         res_data_list, send_data_list, err_data_list = [], [], []
 
