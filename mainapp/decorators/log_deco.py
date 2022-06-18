@@ -9,10 +9,11 @@ def debug_log(func):
         """Функция-обертка"""
         logger_type = 'server' if 'server.py' in sys.argv[0] else 'client'
         logger = logging.getLogger(logger_type)
+        func_name = f'Вызов функции {func.__name__}.'
+        func_module = f'Из модуля {func.__module__}.'
+        func_caller = f'Из из функции {traceback.format_stack()[0].strip().split()[-1]}.'
+        func_params = f'Параметры: {args}, {kwargs}'
+        logger.debug('%s %s %s %s' % (func_name, func_module, func_caller, func_params))
         result = func(*args, **kwargs)
-        func_name = f'Вызов функции {func.__name__} с параметрами {args}, {kwargs}. \n'
-        func_module = f'Вызов осуществлен из модуля {func.__module__}. \n'
-        func_caller = f'Вызов осуществлен из функции {traceback.format_stack()[0].strip().split()[-1]}. \n'
-        logger.debug('\n %s %s %s' % (func_name, func_module, func_caller))
         return result
     return wrap
