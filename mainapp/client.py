@@ -146,7 +146,7 @@ def create_new_message(sock, account_name='Guest'):
         CLIENT_LOG.info(f'Успешно отправлено сообщение пользователю {recipient}.')
     except Exception as exc:
         print(exc)
-        CLIENT_LOG.critical('\033[031m Соединение с сервером разорвано \033[0m')
+        CLIENT_LOG.critical('Соединение с сервером разорвано')
         sys.exit(1)
 
 
@@ -238,6 +238,7 @@ def mainloop():
         )
         receiver.daemon = True
         receiver.start()
+        CLIENT_LOG.debug('Поток для получения сообщений успешно запущен.')
 
         # Поток запуска процесса отправки сообщений
         transmitter = threading.Thread(
@@ -246,8 +247,7 @@ def mainloop():
         )
         transmitter.daemon = True
         transmitter.start()
-
-    CLIENT_LOG.debug('Потоки для отправки/получения сообщений успешно запущены.')
+        CLIENT_LOG.debug('Поток для отправки сообщений успешно запущен.')
 
     # Основной цикл клиентской программы
     while True:

@@ -66,6 +66,7 @@ def process_client_message(message, messages_list, client, clients, names):
             and message[ACTION] == PRESENCE \
             and TIME in message \
             and USER in message:
+        SERVER_LOG.debug('Получено приветственное сообщение.')
         # Проверка регистрации клиента
         if message[USER][ACCOUNT_NAME] not in names.keys():
             names[message[USER][ACCOUNT_NAME]] = client
@@ -82,8 +83,9 @@ def process_client_message(message, messages_list, client, clients, names):
     elif ACTION in message \
             and message[ACTION] == MESSAGE \
             and TIME in message \
-            and MESSAGE_TEXT in message:
-        messages_list.append((message[ACCOUNT_NAME], message[MESSAGE_TEXT]))
+            and DESTINATION in message:
+        SERVER_LOG.debug('Получено текстовое сообщение.')
+        messages_list.append(message)
         SERVER_LOG.debug('Сообщение добавлено в список сообщений')
         return
 
@@ -91,6 +93,7 @@ def process_client_message(message, messages_list, client, clients, names):
     elif ACTION in message \
             and message[ACTION] == LEAVE_MESSAGE \
             and ACCOUNT_NAME in message:
+        SERVER_LOG.debug('Получено сообщение о выходе клиента.')
         clients.remove(names[message[ACCOUNT_NAME]])
         names[message[ACCOUNT_NAME]].close()
         del names[message[ACCOUNT_NAME]]
