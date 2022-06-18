@@ -46,6 +46,7 @@ def send_response(sock, message, sender):
     :param - sock: socket
     :param - message: dict
     :param - sender: str
+    :return None
     """
     log_aim = choose_log(sender)
     if not isinstance(message, dict):
@@ -74,6 +75,7 @@ def get_response(client, sender):
     """
 
     log_aim = choose_log(sender)
+    log_aim.debug(f'Ожидается сообщение от {sender}')
     encoded_response = client.recv(PACKAGE_SIZE)
     if not isinstance(encoded_response, bytes):
         log_aim.error('Ошибка обработки данных в функции get_response')
@@ -85,7 +87,7 @@ def get_response(client, sender):
     response = json.loads(json_response)
     if not isinstance(response, dict):
         raise DictionaryNotReceived
-    log_aim.info('Получены новые данные.')
+    log_aim.info(f'Получены новые данные от {sender}.')
     return response
 
 

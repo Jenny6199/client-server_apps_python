@@ -1,5 +1,6 @@
 """Клиентская часть программы."""
 
+from ast import Pass
 import sys
 from socket import *
 import json
@@ -17,6 +18,37 @@ from decorators.log_deco import debug_log
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
+
+
+def print_help():
+    """Функция выводящяя справку по использованию"""
+    print('Поддерживаемые команды:')
+    print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
+    print('help - вывести подсказки по командам')
+    print('exit - выход из программы')
+
+
+def user_interactive(sock, client_name):
+    """
+    Функция для взаимодействия с пользователем.
+    Реализует запрос команд в цикле, обеспечивает
+    минимально необходимый функционал.
+    """
+    print_help()
+    while True:
+        command = input('Введите команду: ')
+        if command == 'message':
+            create_new_message(sock, client_name)
+        elif command == 'help':
+            print_help()
+        elif command == 'exit':
+            send_response(sock, create_exit_message, sender='client')
+            print('Завершение работы клиента')
+            CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
+            time.sleep(0.5)
+            break
+        else:
+            print('Ошибка ввода! Введите команду из предложенных.')
 
 
 @debug_log
@@ -201,8 +233,8 @@ def mainloop():
         client_name = input('Введите имя пользователя: ')
 
     CLIENT_LOG.info(f'Запущен клиент с параметрами: '
-                    f'адрес сервера - {server_address},'
-                    f'порт - {server_port},'
+                    f'адрес сервера - {server_address}, '
+                    f'порт - {server_port}, '
                     f'имя пользователя - {client_name}.')
 
     # Титульное сообщение
@@ -237,6 +269,7 @@ def mainloop():
 
         # Поток запуска процесса приема сообщений
         receiver = threading.Thread(
+            name='receiver_thread',
             target=message_from_server,
             args=(transport, client_name)
         )
@@ -246,7 +279,8 @@ def mainloop():
 
         # Поток запуска процесса отправки сообщений
         transmitter = threading.Thread(
-            target=create_new_message,
+            name='transmitter_thread',
+            target=user_interactive,
             args=(transport, client_name)
         )
         transmitter.daemon = True
