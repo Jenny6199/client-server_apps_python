@@ -23,10 +23,10 @@ client_log = logging.getLogger('client')
 
 # Форматтеры
 STREAM_FORMATTER = logging.Formatter(
-    '%(asctime)-25s %(levelname)-8s %(filename)5s %(message)5s'
+    '%(asctime)-25s %(levelname)-8s %(filename)-15s %(message)5s'
     )
 RECORD_FORMATTER = logging.Formatter(
-    '%(asctime)-25s %(levelname)-8s %(filename)5s %(message)5s'
+    '%(asctime)-25s %(levelname)-8s %(filename)-15s %(message)5s'
     )
 
 # Обработчики

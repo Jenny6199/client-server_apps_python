@@ -59,6 +59,7 @@ def send_response(sock, message, sender):
         raise JsonEncodeError
     sock.send(encoded_message)
     log_aim.info('Сообщение отправлено')
+    return
 
 
 @debug_log
@@ -71,6 +72,7 @@ def get_response(client, sender):
 
     :return response: dict - json-data.
     """
+
     log_aim = choose_log(sender)
     encoded_response = client.recv(PACKAGE_SIZE)
     if not isinstance(encoded_response, bytes):

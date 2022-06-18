@@ -121,7 +121,7 @@ def process_message(message, names, listen_socks):
     if message[DESTINATION] in names \
             and names[message[DESTINATION]] in listen_socks:
         send_response(names[message[DESTINATION]], message, sender='server')
-        SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]}'
+        SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]} '
                         f'пользователю {message[SENDER]}')
     elif message[DESTINATION] in names \
             and names[message[DESTINATION]] not in listen_socks:
@@ -178,7 +178,7 @@ def main():
             if clients:
                 res_data_list, send_data_list, err_data_list = select.select(clients, clients, [], 0)
         except OSError:
-            pass
+            print('error')
 
         # Проверяем наличие входящих сообщений
         if res_data_list:
@@ -191,7 +191,8 @@ def main():
                         clients,
                         names
                     )
-                except:
+                except Exception as err:
+                    print(err)
                     SERVER_LOG.info(
                         f'Клиент {client_with_message.getpeername()} отключился от сервера')
                     clients.remove(client_with_message)

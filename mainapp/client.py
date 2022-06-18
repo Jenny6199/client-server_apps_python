@@ -93,19 +93,23 @@ def message_from_server(sock, username):
                     and DESTINATION in message \
                     and MESSAGE_TEXT in message \
                     and message[DESTINATION] == username:
-                print(f'\033[104m Получено новое сообщение: \n'
-                      f'    от {message[SENDER]}: {message[MESSAGE_TEXT]} \033[0m')
+                print(f'Получено новое сообщение:'
+                      f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]}')
                 CLIENT_LOG.info(f'Получено сообщение от пользователя:'
                                 f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+                continue
             else:
-                CLIENT_LOG.error(f'\033[091m Получено некорректное сообщение от сервера:'
-                                 f'{message} \033[0m')
+                CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
+                                 f'{message}')
         except MessageHasNoResponse:
             CLIENT_LOG.error('Получено некорректное сообщение.')
         except (OSError, ConnectionError, ConnectionAbortedError,
                 ConnectionResetError, json.JSONDecodeError):
-            CLIENT_LOG.critical('\033[031m Соединение с сервером потеряно. \033[0m')
-            break
+            CLIENT_LOG.critical('Соединение с сервером потеряно.')
+            sys.exit(1)
+        except Exception:
+            print('Что-то пошло не так :(')
+            sys.exit(1)
 
 
 @debug_log
@@ -196,10 +200,10 @@ def mainloop():
     if not client_name:
         client_name = input('Введите имя пользователя: ')
 
-    CLIENT_LOG.info(f'Запущен клиент с параметрами: \n'
-                    f'- адрес сервера: {server_address}, \n'
-                    f'- порт: {server_port}, \n'
-                    f'- имя пользователя: {client_name}.')
+    CLIENT_LOG.info(f'Запущен клиент с параметрами: '
+                    f'адрес сервера - {server_address},'
+                    f'порт - {server_port},'
+                    f'имя пользователя - {client_name}.')
 
     # Титульное сообщение
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
@@ -238,7 +242,7 @@ def mainloop():
         )
         receiver.daemon = True
         receiver.start()
-        CLIENT_LOG.debug('Поток для получения сообщений успешно запущен.')
+        CLIENT_LOG.debug(f'Поток для получения сообщений  для клиента {client_name} успешно запущен.')
 
         # Поток запуска процесса отправки сообщений
         transmitter = threading.Thread(
@@ -247,14 +251,16 @@ def mainloop():
         )
         transmitter.daemon = True
         transmitter.start()
-        CLIENT_LOG.debug('Поток для отправки сообщений успешно запущен.')
+        CLIENT_LOG.debug(f'Поток для отправки сообщений для клиента {client_name} успешно запущен.')
 
     # Основной цикл клиентской программы
     while True:
         time.sleep(1)
         if receiver.is_alive and transmitter.is_alive:
             continue
-        break
+        else:
+            print('Exit')
+            sys.exit(0)
 
 
 if __name__ == '__main__':
