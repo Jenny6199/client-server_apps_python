@@ -1488,3 +1488,266 @@ hello world!
 2022-06-19 00:21:29,705   ERROR    utils.py        Невозможно обработать сообщение <function debug_log.<locals>.wrap at 0x0000000002C0D940>
 2022-06-19 00:23:55,406   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55550), raddr=('127.0.0.1', 7777)>, <function debug_log.<locals>.wrap at 0x0000000002C0C940>), {'sender': 'client'}
 2022-06-19 00:23:55,406   ERROR    utils.py        Невозможно обработать сообщение <function debug_log.<locals>.wrap at 0x0000000002C0C940>
+2022-06-19 00:30:21,043   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:30:21,043   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-06-19 00:30:21,043   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim',), {}
+2022-06-19 00:30:21,043   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-06-19 00:30:21,043   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:30:21 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-06-19 00:30:21,043   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:30:21,043   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:30:21,043   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:30:21,546   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:30:21,546   DEBUG    log_deco.py     Вызов функции exam_server_message. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:30:21,546   INFO     client.py       Установлено соединение с сервером. Получен ответ: {'response': 200}
+2022-06-19 00:30:21,546   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim успешно запущен.
+2022-06-19 00:30:21,546   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim успешно запущен.
+2022-06-19 00:30:21,546   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:30:21,546   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:30:21,546   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:30:32,362   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:30:49,515   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587849.5150316, 'mess_text': 'Our programm is worked!'}
+2022-06-19 00:30:49,515   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587849.5150316, 'mess_text': 'Our programm is worked!'}), {'sender': 'client'}
+2022-06-19 00:30:49,515   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:30:49,515   INFO     client.py       Успешно отправлено сообщение пользователю Nick.
+2022-06-19 00:31:04,386   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:31:04,386   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Nick.
+2022-06-19 00:31:04,386   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Nick',), {}
+2022-06-19 00:31:04,386   DEBUG    client.py       Сформировано presence сообщение для пользователя Nick.
+2022-06-19 00:31:04,386   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:31:04 2022', 'user': {'account_name': 'Nick'}}), {'sender': 'client'}
+2022-06-19 00:31:04,386   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:31:04,386   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:31:04,386   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:31:04,897   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:31:04,897   DEBUG    log_deco.py     Вызов функции exam_server_message. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:31:04,897   INFO     client.py       Установлено соединение с сервером. Получен ответ: {'response': 200}
+2022-06-19 00:31:04,897   DEBUG    client.py       Поток для получения сообщений  для клиента Nick успешно запущен.
+2022-06-19 00:31:04,897   DEBUG    client.py       Поток для отправки сообщений для клиента Nick успешно запущен.
+2022-06-19 00:31:04,897   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:31:04,897   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:31:04,897   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:31:11,641   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:31:27,947   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587887.947583, 'mess_text': 'Our programm is worked!'}
+2022-06-19 00:31:27,947   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587887.947583, 'mess_text': 'Our programm is worked!'}), {'sender': 'client'}
+2022-06-19 00:31:27,947   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:31:27,947   INFO     client.py       Успешно отправлено сообщение пользователю Nick.
+2022-06-19 00:31:28,103   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:31:28,103   INFO     client.py       Получено сообщение от пользователя:Maxim: Our programm is worked!
+2022-06-19 00:31:28,103   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:31:28,103   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:31:44,296   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:31:59,177   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Nick', 'to': 'Maxim', 'time': 1655587919.1770265, 'mess_text': 'Yabadabadooo!'}
+2022-06-19 00:31:59,177   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Nick', 'to': 'Maxim', 'time': 1655587919.1770265, 'mess_text': 'Yabadabadooo!'}), {'sender': 'client'}
+2022-06-19 00:31:59,177   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:31:59,177   INFO     client.py       Успешно отправлено сообщение пользователю Maxim.
+2022-06-19 00:31:59,293   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:31:59,294   INFO     client.py       Получено сообщение от пользователя:Nick: Yabadabadooo!
+2022-06-19 00:31:59,295   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:31:59,295   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:32:45,052   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:32:57,236   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587977.236249, 'mess_text': 'Nick, das ist good!'}
+2022-06-19 00:32:57,236   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655587977.236249, 'mess_text': 'Nick, das ist good!'}), {'sender': 'client'}
+2022-06-19 00:32:57,236   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:32:57,236   INFO     client.py       Успешно отправлено сообщение пользователю Nick.
+2022-06-19 00:32:57,296   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:32:57,297   INFO     client.py       Получено сообщение от пользователя:Maxim: Nick, das ist good!
+2022-06-19 00:32:57,297   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55608), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:32:57,297   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:33:34,967   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55600), raddr=('127.0.0.1', 7777)>, <function debug_log.<locals>.wrap at 0x0000000002C0C940>), {'sender': 'client'}
+2022-06-19 00:33:34,967   ERROR    utils.py        Невозможно обработать сообщение <function debug_log.<locals>.wrap at 0x0000000002C0C940>
+2022-06-19 00:35:51,030   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 00:36:30,504   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:36:30,504   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-06-19 00:36:30,520   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim',), {}
+2022-06-19 00:36:30,520   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-06-19 00:36:30,520   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:36:30 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-06-19 00:36:30,520   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:36:30,520   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:36:30,520   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:36:30,520   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:36:30,520   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:36:30,520   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:36:30,520   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:36:30,520   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim успешно запущен.
+2022-06-19 00:36:30,520   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim успешно запущен.
+2022-06-19 00:36:30,521   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:36:30,521   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:36:30,521   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:36:34,367   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:36:34,367   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Nick.
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Nick',), {}
+2022-06-19 00:36:34,382   DEBUG    client.py       Сформировано presence сообщение для пользователя Nick.
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:36:34 2022', 'user': {'account_name': 'Nick'}}), {'sender': 'client'}
+2022-06-19 00:36:34,382   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:36:34,382   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:36:34,382   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:36:34,382   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:36:34,382   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:36:34,382   DEBUG    client.py       Поток для получения сообщений  для клиента Nick успешно запущен.
+2022-06-19 00:36:34,382   DEBUG    client.py       Поток для отправки сообщений для клиента Nick успешно запущен.
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:36:34,382   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:36:34,382   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:36:39,476   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:36:48,525   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655588208.5256207, 'mess_text': 'BLUR!'}
+2022-06-19 00:36:48,525   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Maxim', 'to': 'Nick', 'time': 1655588208.5256207, 'mess_text': 'BLUR!'}), {'sender': 'client'}
+2022-06-19 00:36:48,525   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:36:48,525   INFO     client.py       Успешно отправлено сообщение пользователю Nick.
+2022-06-19 00:36:48,996   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:36:48,996   INFO     client.py       Получено сообщение от пользователя:Maxim: BLUR!
+2022-06-19 00:36:48,996   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:36:48,996   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:36:51,925   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55646), raddr=('127.0.0.1', 7777)>, <function debug_log.<locals>.wrap at 0x0000000002C0D940>), {'sender': 'client'}
+2022-06-19 00:36:51,925   ERROR    utils.py        Невозможно обработать сообщение <function debug_log.<locals>.wrap at 0x0000000002C0D940>
+2022-06-19 00:52:08,112   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 00:52:08,113   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 00:52:24,381   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:52:24,381   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-06-19 00:52:24,381   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim',), {}
+2022-06-19 00:52:24,381   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-06-19 00:52:24,381   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55735), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:52:24 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-06-19 00:52:24,381   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:52:24,381   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55735), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:52:24,381   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:52:24,910   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:52:24,910   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:52:24,910   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:52:24,910   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:52:24,910   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim успешно запущен.
+2022-06-19 00:52:24,910   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55735), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:52:24,910   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55735), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:52:24,910   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:52:24,926   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim успешно запущен.
+2022-06-19 00:52:48,321   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55648), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:52:59,627   INFO     client.py       Работа завершена по команде пользователя.
+2022-06-19 00:53:13,358   DEBUG    log_deco.py     Вызов функции create_exit_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: ('Maxim',), {}
+2022-06-19 00:53:13,358   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55735), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1655589193.3589752, 'account_name': 'Maxim'}), {'sender': 'client'}
+2022-06-19 00:53:13,358   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:53:13,358   DEBUG    client.py       Завершение работы клиента по команде пользователя
+2022-06-19 00:53:13,721   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 00:53:59,043   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:53:59,043   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-06-19 00:53:59,043   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim',), {}
+2022-06-19 00:53:59,043   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-06-19 00:53:59,043   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55742), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:53:59 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-06-19 00:53:59,043   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:53:59,043   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55742), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:53:59,043   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:53:59,549   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:53:59,549   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:53:59,549   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:53:59,549   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:53:59,549   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim успешно запущен.
+2022-06-19 00:53:59,549   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim успешно запущен.
+2022-06-19 00:53:59,549   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55742), raddr=('127.0.0.1', 7777)>, 'Maxim'), {}
+2022-06-19 00:53:59,549   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55742), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:53:59,549   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:54:03,185   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:54:03,187   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Nick.
+2022-06-19 00:54:03,191   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Nick',), {}
+2022-06-19 00:54:03,191   DEBUG    client.py       Сформировано presence сообщение для пользователя Nick.
+2022-06-19 00:54:03,191   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:54:03 2022', 'user': {'account_name': 'Nick'}}), {'sender': 'client'}
+2022-06-19 00:54:03,192   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:54:03,192   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:54:03,193   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:54:03,198   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:54:03,198   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:54:03,198   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:54:03,213   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:54:03,229   DEBUG    client.py       Поток для получения сообщений  для клиента Nick успешно запущен.
+2022-06-19 00:54:03,229   DEBUG    client.py       Поток для отправки сообщений для клиента Nick успешно запущен.
+2022-06-19 00:54:03,229   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:54:03,229   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:54:03,229   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:54:07,685   DEBUG    log_deco.py     Вызов функции create_new_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>, 'Nick'), {}
+2022-06-19 00:54:14,643   DEBUG    client.py       Сформирован словарь сообщения: {'action': 'message', 'sender': 'Nick', 'to': 'Maxim', 'time': 1655589254.6439414, 'mess_text': 'H!'}
+2022-06-19 00:54:14,643   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>, {'action': 'message', 'sender': 'Nick', 'to': 'Maxim', 'time': 1655589254.6439414, 'mess_text': 'H!'}), {'sender': 'client'}
+2022-06-19 00:54:14,643   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:54:14,643   INFO     client.py       Успешно отправлено сообщение пользователю Maxim.
+2022-06-19 00:54:14,919   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:54:14,919   INFO     client.py       Получено сообщение от пользователя:Nick: H!
+2022-06-19 00:54:14,919   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55742), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:54:14,919   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:54:24,097   DEBUG    log_deco.py     Вызов функции create_exit_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: ('Nick',), {}
+2022-06-19 00:54:24,097   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55744), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1655589264.0977442, 'account_name': 'Nick'}), {'sender': 'client'}
+2022-06-19 00:54:24,097   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:54:24,097   DEBUG    client.py       Завершение работы клиента по команде пользователя
+2022-06-19 00:54:24,480   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 00:58:35,567   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:58:35,567   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-06-19 00:58:35,567   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim',), {}
+2022-06-19 00:58:35,567   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-06-19 00:58:35,567   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53692), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:58:35 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-06-19 00:58:35,567   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:58:35,567   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53692), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:58:35,582   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:58:36,073   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:58:36,073   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 400, 'error': 'Пользователь с таким именем уже существует'},), {}
+2022-06-19 00:58:36,073   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 400, 'error': 'Пользователь с таким именем уже существует'}
+2022-06-19 00:58:36,073   ERROR    client.py       При установке соединения сервер вернул ошибку: 400: Пользователь с таким именем уже существует
+2022-06-19 00:58:41,522   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:58:41,522   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim_2.
+2022-06-19 00:58:41,522   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim_2',), {}
+2022-06-19 00:58:41,522   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim_2.
+2022-06-19 00:58:41,522   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53696), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:58:41 2022', 'user': {'account_name': 'Maxim_2'}}), {'sender': 'client'}
+2022-06-19 00:58:41,522   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:58:41,522   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53696), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:58:41,522   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:58:42,037   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:58:42,037   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:58:42,037   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:58:42,037   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:58:42,037   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim_2 успешно запущен.
+2022-06-19 00:58:42,037   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim_2 успешно запущен.
+2022-06-19 00:58:42,037   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53696), raddr=('127.0.0.1', 7777)>, 'Maxim_2'), {}
+2022-06-19 00:58:42,037   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53696), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:58:42,037   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:58:46,793   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 00:58:46,793   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Nick_2.
+2022-06-19 00:58:46,809   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Nick_2',), {}
+2022-06-19 00:58:46,809   DEBUG    client.py       Сформировано presence сообщение для пользователя Nick_2.
+2022-06-19 00:58:46,809   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53697), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 00:58:46 2022', 'user': {'account_name': 'Nick_2'}}), {'sender': 'client'}
+2022-06-19 00:58:46,809   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:58:46,809   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53697), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:58:46,809   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:58:47,317   INFO     utils.py        Получены новые данные от client.
+2022-06-19 00:58:47,317   DEBUG    log_deco.py     Вызов функции process_response_ans. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 00:58:47,317   DEBUG    client.py       Разбор приветственного сообщения от сервера: {'response': 200}
+2022-06-19 00:58:47,317   INFO     client.py       Установлено соединение с сервером. Получен ответ: 200:OK
+2022-06-19 00:58:47,317   DEBUG    client.py       Поток для получения сообщений  для клиента Nick_2 успешно запущен.
+2022-06-19 00:58:47,317   DEBUG    client.py       Поток для отправки сообщений для клиента Nick_2 успешно запущен.
+2022-06-19 00:58:47,317   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53697), raddr=('127.0.0.1', 7777)>, 'Nick_2'), {}
+2022-06-19 00:58:47,317   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53697), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 00:58:47,317   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 00:58:51,894   DEBUG    log_deco.py     Вызов функции create_exit_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: ('Nick_2',), {}
+2022-06-19 00:58:51,894   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53697), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1655589531.894556, 'account_name': 'Nick_2'}), {'sender': 'client'}
+2022-06-19 00:58:51,894   INFO     utils.py        Сообщение отправлено
+2022-06-19 00:58:51,894   DEBUG    client.py       Завершение работы клиента по команде пользователя
+2022-06-19 00:58:52,347   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 01:06:06,569   CRITICAL client.py       Соединение с сервером потеряно.
+2022-06-19 01:07:50,169   DEBUG    log_deco.py     Вызов функции create_exit_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: ('Maxim_2',), {}
+2022-06-19 01:07:50,169   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53696), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1655590070.169354, 'account_name': 'Maxim_2'}), {'sender': 'client'}
+2022-06-19 01:07:50,169   INFO     utils.py        Сообщение отправлено
+2022-06-19 01:07:50,169   DEBUG    client.py       Завершение работы клиента по команде пользователя
+2022-06-19 01:07:59,995   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции mainloop(). Параметры: (), {}
+2022-06-19 01:07:59,995   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim_2.
+2022-06-19 01:07:59,995   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции mainloop(). Параметры: ('Maxim_2',), {}
+2022-06-19 01:07:59,995   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim_2.
+2022-06-19 01:07:59,995   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53746), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Sun Jun 19 01:07:59 2022', 'user': {'account_name': 'Maxim_2'}}), {'sender': 'client'}
+2022-06-19 01:07:59,995   INFO     utils.py        Сообщение отправлено
+2022-06-19 01:07:59,995   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции mainloop(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53746), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 01:07:59,995   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 01:08:00,497   INFO     utils.py        Получены новые данные от client.
+2022-06-19 01:08:00,497   DEBUG    log_deco.py     Вызов функции exam_server_message. Из модуля __main__. Из из функции mainloop(). Параметры: ({'response': 200},), {}
+2022-06-19 01:08:00,497   INFO     client.py       Установлено соединение с сервером. Получен ответ: {'response': 200}
+2022-06-19 01:08:00,497   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim_2 успешно запущен.
+2022-06-19 01:08:00,497   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim_2 успешно запущен.
+2022-06-19 01:08:00,497   DEBUG    log_deco.py     Вызов функции message_from_server. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53746), raddr=('127.0.0.1', 7777)>, 'Maxim_2'), {}
+2022-06-19 01:08:00,497   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53746), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-06-19 01:08:00,497   DEBUG    utils.py        Ожидается сообщение от client
+2022-06-19 01:08:03,571   DEBUG    log_deco.py     Вызов функции create_exit_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: ('Maxim_2',), {}
+2022-06-19 01:08:03,571   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=204, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 53746), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1655590083.571572, 'account_name': 'Maxim_2'}), {'sender': 'client'}
+2022-06-19 01:08:03,571   INFO     utils.py        Сообщение отправлено
+2022-06-19 01:08:03,571   DEBUG    client.py       Завершение работы клиента по команде пользователя
+2022-06-19 01:08:04,016   CRITICAL client.py       Соединение с сервером потеряно.

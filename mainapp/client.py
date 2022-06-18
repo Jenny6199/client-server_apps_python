@@ -42,24 +42,24 @@ def user_interactive(sock, client_name):
         elif command == 'help':
             print_help()
         elif command == 'exit':
-            send_response(sock, create_exit_message, sender='client')
+            send_response(sock, create_exit_message(client_name), sender='client')
             print('Завершение работы клиента')
             CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
             time.sleep(0.5)
-            break
+            sys.exit(0)
         else:
             print('Ошибка ввода! Введите команду из предложенных.')
 
 
 @debug_log
-def create_exit_message(account_name):
+def create_exit_message(account):
     """
     Функция генерирует сообщение при отключении клиента.
     """
     return {
         ACTION: LEAVE_MESSAGE,
         TIME: time.time(),
-        ACCOUNT_NAME: account_name
+        ACCOUNT_NAME: account
     }
 
 
@@ -79,24 +79,6 @@ def create_presence_message(account_name='Guest'):
     }
     CLIENT_LOG.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}.')
     return out
-
-
-@debug_log
-def exam_server_message(message):
-    """
-    Осуществляет парсинг сообщения от сервера
-    :param message - json словарь с данными.
-    :return:
-    """
-    if RESPONSE not in message:
-        CLIENT_LOG.warning(f'Получены ошибочные данные: {message}')
-        raise MessageHasNoResponse
-    if message[RESPONSE] == 200:
-        return message
-    elif message[RESPONSE] == 403:
-        raise ConnectionError
-    else:
-        return f'400: {message[ERROR]}'
 
 
 @debug_log
@@ -187,6 +169,24 @@ def create_new_message(sock, account_name='Guest'):
 
 
 @debug_log
+def exam_server_message(message):
+    """
+    Осуществляет парсинг сообщения от сервера
+    :param message - json словарь с данными.
+    :return:
+    """
+    if RESPONSE not in message:
+        CLIENT_LOG.warning(f'Получены ошибочные данные: {message}')
+        raise MessageHasNoResponse
+    if message[RESPONSE] == 200:
+        return message
+    elif message[RESPONSE] == 403:
+        raise ConnectionError
+    else:
+        return f'400: {message[ERROR]}'
+
+
+@debug_log
 def process_response_ans(message):
     """
     Обработчик ответа сервера на сообщение о присутствии.
@@ -248,7 +248,7 @@ def mainloop():
         transport = socket(AF_INET, SOCK_STREAM)
         transport.connect((server_address, server_port))
         send_response(transport, create_presence_message(client_name), sender='client')
-        answer = process_response_ans(get_response(transport, sender='client'))
+        answer = exam_server_message(get_response(transport, sender='client'))
         CLIENT_LOG.info(f'Установлено соединение с сервером. Получен ответ: {answer}')
     except ServerError as err:
         CLIENT_LOG.error(f'При установке соединения сервер вернул ошибку: {err.text}')

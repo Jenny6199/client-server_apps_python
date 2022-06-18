@@ -97,7 +97,7 @@ def process_client_message(message, messages_list, client, clients, names):
         clients.remove(names[message[ACCOUNT_NAME]])
         names[message[ACCOUNT_NAME]].close()
         del names[message[ACCOUNT_NAME]]
-        SERVER_LOG.debug(f'Клиент {ACCOUNT_NAME} завершил работу.')
+        SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
         return
 
     # Получено некорректное сообщение
