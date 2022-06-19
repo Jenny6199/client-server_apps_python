@@ -46,9 +46,11 @@ def user_interactive(sock, client_name):
             print('Завершение работы клиента')
             CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
             time.sleep(0.5)
-            sys.exit(0)
+            break
         else:
-            print('Ошибка ввода! Введите команду из предложенных.')
+            print('Команда не распознана. Следующее действие?' 
+                  '(help - список доступных комманд).')
+    sys.exit(0)
 
 
 @debug_log
@@ -107,8 +109,10 @@ def message_from_server(sock, username):
                     and DESTINATION in message \
                     and MESSAGE_TEXT in message \
                     and message[DESTINATION] == username:
-                print(f'Получено новое сообщение:'
-                      f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]}')
+                print(f'\n! Получено новое сообщение:'
+                      f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]} \n'
+                      f'Введите команду: ')
+
                 CLIENT_LOG.info(f'Получено сообщение от пользователя:'
                                 f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
                 continue
@@ -122,7 +126,7 @@ def message_from_server(sock, username):
             CLIENT_LOG.critical('Соединение с сервером потеряно.')
             sys.exit(1)
         except Exception:
-            print('Что-то пошло не так :(')
+            print('Что-то пошло не так :( попробуйте перезапустить клиент')
             sys.exit(1)
 
 
@@ -295,6 +299,7 @@ def mainloop():
         else:
             print('Exit')
             sys.exit(0)
+        break
 
 
 if __name__ == '__main__':
