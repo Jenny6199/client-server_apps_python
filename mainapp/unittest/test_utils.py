@@ -13,6 +13,7 @@ sys.path.append(os.path.join(os.getcwd(), '..'))
 
 from common.utils import send_response, get_response, get_port_and_address_for_use
 from common.variables import DEFAULT_IP, ENCODING_METHOD, RESPONSE, ERROR, PORT_LISTEN
+from common.errors import DictionaryNotReceived
 
 
 right_message = {
@@ -72,7 +73,7 @@ class TestSendResponse(unittest.TestCase):
     def test_send_response_right_message(self):
         """Тестирование функции с корректным сообщением"""
         test_socket = TestSocket(right_message)
-        send_response(test_socket, right_message)
+        send_response(test_socket, right_message, sender='client')
         self.assertEqual(
             test_socket.encoded_message, 
             test_socket.received_message
@@ -81,8 +82,8 @@ class TestSendResponse(unittest.TestCase):
     def test_send_response_with_empty_message(self):
         """Тестирование функции с некорректным (пустым) сообщением"""
         test_socket = TestSocket(right_message)
-        with self.assertRaises(TypeError):
-            send_response(test_socket, '')
+        with self.assertRaises(DictionaryNotReceived):
+            send_response(test_socket, '', sender='client')
 
 
 class TestGetResponse(unittest.TestCase):
@@ -100,7 +101,7 @@ class TestGetResponse(unittest.TestCase):
         Тестирование функции get_response с корректным сообщением
         """
         test_socket = TestSocket(response_ok)
-        self.assertEqual(get_response(test_socket), response_ok)
+        self.assertEqual(get_response(test_socket, sender='client'), response_ok)
 
     
     def test_get_response_wrong_message(self):
@@ -108,7 +109,7 @@ class TestGetResponse(unittest.TestCase):
         Тестирование функции get_response c ошибочным сообщением
         """
         test_soket = TestSocket(response_error)
-        self.assertEqual(get_response(test_soket), response_error)
+        self.assertEqual(get_response(test_soket, sender='client'), response_error)
 
 
 class TestGetPortAndAddressForUse(unittest.TestCase):
