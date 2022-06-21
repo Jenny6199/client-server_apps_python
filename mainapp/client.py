@@ -88,11 +88,11 @@ def create_presence_message(account_name='Guest'):
     return out
 
 
-@debug_log
-def get_descriptive_output(message):
-    """Обеспечивает аккуратный вывод данных на дисплей"""
-    for key, value in message.items():
-        print(f'{key}: {value}')
+# @debug_log  Более не используется
+# def get_descriptive_output(message):
+#     """Обеспечивает аккуратный вывод данных на дисплей"""
+#     for key, value in message.items():
+#         print(f'{key}: {value}')
 
 
 @debug_log
@@ -117,7 +117,6 @@ def message_from_server(sock, username):
                 print(f'\n! Получено новое сообщение:'
                       f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]} \n'
                       f'Введите команду: ')
-
                 CLIENT_LOG.info(f'Получено сообщение от пользователя:'
                                 f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
                 continue
@@ -130,8 +129,9 @@ def message_from_server(sock, username):
                 ConnectionResetError, json.JSONDecodeError):
             CLIENT_LOG.critical('Соединение с сервером потеряно.')
             sys.exit(1)
-        except Exception:
+        except Exception as err:
             print('Что-то пошло не так :( попробуйте перезапустить клиент')
+            CLIENT_LOG.error(f'Неожиданная ошибка: {err}')
             sys.exit(1)
 
 
