@@ -60,6 +60,8 @@ def user_interactive(sock, client_name):
 def create_exit_message(account):
     """
     Функция генерирует сообщение при отключении клиента.
+    :param - account str - имя пользователя в системе.
+    :return - dict - словарь для передачи серверу сигнала о выходе клиента.
     """
     return {
         ACTION: LEAVE_MESSAGE,
