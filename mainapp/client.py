@@ -33,6 +33,9 @@ def user_interactive(sock, client_name):
     Функция для взаимодействия с пользователем.
     Реализует запрос команд в цикле, обеспечивает
     минимально необходимый функционал.
+    :param - sock - socket
+    :param - client_name - str
+    :return - None 
     """
     print_help()
     while True:
@@ -48,8 +51,8 @@ def user_interactive(sock, client_name):
             time.sleep(0.5)
             break
         else:
-            print('Команда не распознана. Следующее действие?' 
-                  '(help - список доступных комманд).')
+            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз' 
+                  '(help - посмотреть список доступных комманд).')
     sys.exit(0)
 
 
