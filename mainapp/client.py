@@ -182,7 +182,8 @@ def exam_server_message(message):
     """
     Осуществляет парсинг сообщения от сервера
     :param message - json словарь с данными.
-    :return:
+    :return:  - возвращает корректное сообщение от сервера или 
+                генерирует исключение.
     """
     if RESPONSE not in message:
         CLIENT_LOG.warning(f'Получены ошибочные данные: {message}')
@@ -200,6 +201,8 @@ def process_response_ans(message):
     """
     Обработчик ответа сервера на сообщение о присутствии.
     Возвращает 200 или генерирует сообщение об ошибке.
+    :param - message - dict
+    :return '200:OK' or raise
     """
     CLIENT_LOG.debug(f'Разбор приветственного сообщения от сервера: {message}')
     if RESPONSE in message:
@@ -207,7 +210,7 @@ def process_response_ans(message):
             return '200:OK'
         elif message[RESPONSE] == 400:
             raise ServerError(f'400: {message[ERROR]}')
-        raise ReqFieldMissingError(RESPONSE)
+    raise ReqFieldMissingError(RESPONSE)
 
 
 @debug_log
