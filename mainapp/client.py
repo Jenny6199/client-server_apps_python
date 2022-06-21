@@ -8,6 +8,7 @@ import time
 import logging
 import argparse
 import threading
+from art import tprint
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
@@ -250,9 +251,9 @@ def mainloop():
                     f'имя пользователя - {client_name}.')
 
     # Титульное сообщение
-    print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
+    print(f'\033[033mПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
           f'КЛИЕНТ. \n'
-          f'ПОЛЬЗОВАТЕЛЬ: {client_name}'
+          f'ПОЛЬЗОВАТЕЛЬ: {client_name}\033[0m'
           )
 
     # Инициализация работы сокета
@@ -311,4 +312,5 @@ def mainloop():
 
 
 if __name__ == '__main__':
+    tprint('GeekBrains')
     mainloop()
