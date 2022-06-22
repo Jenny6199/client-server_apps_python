@@ -1,4 +1,12 @@
-"""Клиентская часть программы."""
+"""
+Консольный мессенджер
+Клиентская часть программы. v 0.1.0
+Программа выполнена в рамках учебного курса
+'Клиент-серверные приложения. Python', Geekbrains.
+Преподаватель: Илья Барбылев.
+Автор: Максим Сапунов, Jenny6199@yandex.ru
+Москва, 2022
+"""
 
 import art
 import sys
@@ -52,7 +60,7 @@ def user_interactive(sock, client_name):
             time.sleep(0.5)
             break
         else:
-            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз' 
+            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. ' 
                   '(help - посмотреть список доступных комманд).')
     sys.exit(0)
 
@@ -87,13 +95,6 @@ def create_presence_message(account_name='Guest'):
     }
     CLIENT_LOG.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}.')
     return out
-
-
-# @debug_log  Более не используется
-# def get_descriptive_output(message):
-#     """Обеспечивает аккуратный вывод данных на дисплей"""
-#     for key, value in message.items():
-#         print(f'{key}: {value}')
 
 
 @debug_log
