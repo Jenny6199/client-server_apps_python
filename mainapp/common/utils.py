@@ -112,13 +112,10 @@ def get_port_and_address_for_use(sender):
         parser.add_argument('-a')
         args = parser.parse_args()
         addr_listen, port_listen = args.a, args.p
-        message_port = f'Используется заданный порт: {port_listen}'
-        message_addr = f'Используется заданный адрес: {addr_listen}'
 
         # Порт не указан в параметрах
         if port_listen is None:
             port_listen = PORT_LISTEN
-            message_port = f'default_port: {port_listen}'
         if int(port_listen) < 1024 or int(port_listen) > 65535:
             raise PortNumberError
 
@@ -126,13 +123,10 @@ def get_port_and_address_for_use(sender):
         if addr_listen is None:
             if sender == 'server':
                 addr_listen = ADDR_LISTEN
-                message_addr = 'Listen IP-addresses: default'
             else:
                 addr_listen = DEFAULT_IP
-                message_addr = f'IP-address: {addr_listen}'
 
     except PortNumberError:
         log_aim.error(f'Номер порта должен быть указан в диапазоне от 1024 до 65535. Указано - {port_listen}')
         sys.exit(1)
-    print(message_addr, message_port, sep='\n')
     return addr_listen, int(port_listen)

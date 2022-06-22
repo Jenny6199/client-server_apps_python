@@ -1,6 +1,6 @@
 """Клиентская часть программы."""
 
-from ast import Pass
+import art
 import sys
 from socket import *
 import json
@@ -235,6 +235,20 @@ def arg_parser():
     return server_address, server_port, client_name
 
 
+def banner(client_name):
+    """
+    Выводит на экран приветственное сообщение при запуске клиента.
+    :param str - имя клиента
+    :return - None
+    """
+    art.tprint('...Hello world...', font='doom')
+    print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
+          f'КЛИЕНТ. v 0.1.0 (06.2022) \n'
+          f'Пользователь - {client_name}. \n'
+          f'Связь с разработчиком - Jenny6199@yandex.ru \n' 
+    )
+
+
 def mainloop():
     """Агрегация работы функций и запуск программы-клиента"""
 
@@ -249,12 +263,8 @@ def mainloop():
                     f'адрес сервера - {server_address}, '
                     f'порт - {server_port}, '
                     f'имя пользователя - {client_name}.')
-
-    # Титульное сообщение
-    print(f'\033[033mПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. v 0.1.0 \n'
-          f'КЛИЕНТ. \n'
-          f'ПОЛЬЗОВАТЕЛЬ: {client_name}\033[0m'
-          )
+    # Заставка
+    banner(client_name)
 
     # Инициализация работы сокета
     try:
@@ -312,5 +322,4 @@ def mainloop():
 
 
 if __name__ == '__main__':
-    tprint('GeekBrains')
     mainloop()

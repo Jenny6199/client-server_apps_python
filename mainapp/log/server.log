@@ -209,3 +209,132 @@
 2022-06-21 23:00:40,929   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'exit', 'time': 1655841640.5755978, 'account_name': 'Maksim'}
 2022-06-21 23:00:40,929   DEBUG    server.py       Получено сообщение о выходе клиента.
 2022-06-21 23:00:40,929   DEBUG    server.py       Клиент Maksim завершил работу.
+2022-06-22 07:59:58,216   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 07:59:58,229   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 07:59:58,230   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:01:01,555   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:01:01,558   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:01:01,559   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:01:34,492   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:01:34,499   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:01:34,501   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:03:00,146   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:03:00,151   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:03:00,151   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:03:17,773   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:03:17,775   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:03:17,776   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:03:42,783   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:03:42,786   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:03:42,786   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:03:58,930   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:03:58,933   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:03:58,933   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:04:35,111   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:04:35,117   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:04:35,117   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:05:09,557   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:05:09,560   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:05:09,561   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:05:28,902   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:05:28,909   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:05:28,909   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:05:46,554   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:05:46,557   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:05:46,557   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:06:03,241   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:06:03,245   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:06:03,245   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:06:18,034   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:06:18,038   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:06:18,039   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:06:41,552   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:06:41,555   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:06:41,555   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:16:36,625   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:16:36,633   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:16:36,633   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:33:59,621   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:33:59,628   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:33:59,629   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:37:20,515   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:37:20,519   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:37:20,519   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:37:35,452   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:37:35,455   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:37:35,456   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:45:07,838   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:45:07,841   INFO     server.py       Сервер запущен. IP-адрес:  порт: 7777.
+2022-06-22 08:45:07,841   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 08:53:19,512   DEBUG    log_deco.py     Вызов функции get_port_and_address_for_use. Из модуля common.utils. Из из функции main(). Параметры: (), {'sender': 'server'}
+2022-06-22 08:53:19,515   INFO     server.py       Сервер запущен и слушает порт: 7777.
+2022-06-22 08:53:19,515   INFO     server.py       Сервер ожидает входящие сообщения.
+2022-06-22 09:00:48,636   INFO     server.py       Новое подключение: ('127.0.0.1', 50256)
+2022-06-22 09:00:48,636   INFO     server.py       Установлено новое соединение с клиентом ('127.0.0.1', 50256)
+2022-06-22 09:00:49,137   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>,), {'sender': 'server'}
+2022-06-22 09:00:49,138   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:00:49,138   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:00:49,139   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'presence', 'time': 'Wed Jun 22 09:00:48 2022', 'user': {'account_name': 'Max'}}, [], <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>], {}), {}
+2022-06-22 09:00:49,139   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'presence', 'time': 'Wed Jun 22 09:00:48 2022', 'user': {'account_name': 'Max'}}
+2022-06-22 09:00:49,139   DEBUG    server.py       Получено приветственное сообщение.
+2022-06-22 09:00:49,140   DEBUG    server.py       Ответ клиенту - 200:OK
+2022-06-22 09:00:49,140   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, {'response': 200}), {'sender': 'server'}
+2022-06-22 09:00:49,141   INFO     utils.py        Сообщение отправлено
+2022-06-22 09:01:21,849   INFO     server.py       Новое подключение: ('127.0.0.1', 50260)
+2022-06-22 09:01:21,849   INFO     server.py       Установлено новое соединение с клиентом ('127.0.0.1', 50260)
+2022-06-22 09:01:22,351   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>,), {'sender': 'server'}
+2022-06-22 09:01:22,351   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:01:22,352   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:01:22,353   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'presence', 'time': 'Wed Jun 22 09:01:21 2022', 'user': {'account_name': 'Alex'}}, [], <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>}), {}
+2022-06-22 09:01:22,354   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'presence', 'time': 'Wed Jun 22 09:01:21 2022', 'user': {'account_name': 'Alex'}}
+2022-06-22 09:01:22,354   DEBUG    server.py       Получено приветственное сообщение.
+2022-06-22 09:01:22,355   DEBUG    server.py       Ответ клиенту - 200:OK
+2022-06-22 09:01:22,359   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, {'response': 200}), {'sender': 'server'}
+2022-06-22 09:01:22,362   INFO     utils.py        Сообщение отправлено
+2022-06-22 09:01:45,891   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>,), {'sender': 'server'}
+2022-06-22 09:01:45,891   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:01:45,892   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:01:45,893   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877705.8265965, 'mess_text': 'Привет Макс!'}, [], <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}), {}
+2022-06-22 09:01:45,894   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877705.8265965, 'mess_text': 'Привет Макс!'}
+2022-06-22 09:01:45,894   DEBUG    server.py       Получено текстовое сообщение.
+2022-06-22 09:01:45,894   DEBUG    server.py       Сообщение добавлено в список сообщений
+2022-06-22 09:01:45,895   DEBUG    log_deco.py     Вызов функции process_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877705.8265965, 'mess_text': 'Привет Макс!'}, {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>]), {}
+2022-06-22 09:01:45,896   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, {'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877705.8265965, 'mess_text': 'Привет Макс!'}), {'sender': 'server'}
+2022-06-22 09:01:45,897   INFO     utils.py        Сообщение отправлено
+2022-06-22 09:01:45,898   INFO     server.py       Отправлено сообщение от Max пользователю Alex
+2022-06-22 09:02:23,942   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>,), {'sender': 'server'}
+2022-06-22 09:02:23,942   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:02:23,943   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:02:23,944   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877743.670413, 'mess_text': 'Сервер работает?'}, [], <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}), {}
+2022-06-22 09:02:23,945   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877743.670413, 'mess_text': 'Сервер работает?'}
+2022-06-22 09:02:23,945   DEBUG    server.py       Получено текстовое сообщение.
+2022-06-22 09:02:23,946   DEBUG    server.py       Сообщение добавлено в список сообщений
+2022-06-22 09:02:23,947   DEBUG    log_deco.py     Вызов функции process_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877743.670413, 'mess_text': 'Сервер работает?'}, {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>]), {}
+2022-06-22 09:02:23,948   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, {'action': 'message', 'sender': 'Alex', 'to': 'Max', 'time': 1655877743.670413, 'mess_text': 'Сервер работает?'}), {'sender': 'server'}
+2022-06-22 09:02:23,951   INFO     utils.py        Сообщение отправлено
+2022-06-22 09:02:23,952   INFO     server.py       Отправлено сообщение от Max пользователю Alex
+2022-06-22 09:02:44,476   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>,), {'sender': 'server'}
+2022-06-22 09:02:44,477   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:02:44,478   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:02:44,479   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Max', 'to': 'Alex', 'time': 1655877764.362724, 'mess_text': 'Да, все хорошо!'}, [], <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}), {}
+2022-06-22 09:02:44,480   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'message', 'sender': 'Max', 'to': 'Alex', 'time': 1655877764.362724, 'mess_text': 'Да, все хорошо!'}
+2022-06-22 09:02:44,480   DEBUG    server.py       Получено текстовое сообщение.
+2022-06-22 09:02:44,481   DEBUG    server.py       Сообщение добавлено в список сообщений
+2022-06-22 09:02:44,482   DEBUG    log_deco.py     Вызов функции process_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'message', 'sender': 'Max', 'to': 'Alex', 'time': 1655877764.362724, 'mess_text': 'Да, все хорошо!'}, {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>]), {}
+2022-06-22 09:02:44,483   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, {'action': 'message', 'sender': 'Max', 'to': 'Alex', 'time': 1655877764.362724, 'mess_text': 'Да, все хорошо!'}), {'sender': 'server'}
+2022-06-22 09:02:44,487   INFO     utils.py        Сообщение отправлено
+2022-06-22 09:02:44,488   INFO     server.py       Отправлено сообщение от Alex пользователю Max
+2022-06-22 09:02:53,498   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>,), {'sender': 'server'}
+2022-06-22 09:02:53,498   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:02:53,499   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:02:53,500   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'exit', 'time': 1655877773.458975, 'account_name': 'Max'}, [], <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, [<socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Max': <socket.socket fd=6, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50256)>, 'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}), {}
+2022-06-22 09:02:53,500   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'exit', 'time': 1655877773.458975, 'account_name': 'Max'}
+2022-06-22 09:02:53,501   DEBUG    server.py       Получено сообщение о выходе клиента.
+2022-06-22 09:02:53,501   DEBUG    server.py       Клиент Max завершил работу.
+2022-06-22 09:02:57,506   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>,), {'sender': 'server'}
+2022-06-22 09:02:57,507   DEBUG    utils.py        Ожидается сообщение от server
+2022-06-22 09:02:57,508   INFO     utils.py        Получены новые данные от server.
+2022-06-22 09:02:57,510   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции main(). Параметры: ({'action': 'exit', 'time': 1655877777.4008055, 'account_name': 'Alex'}, [], <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>, [<socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>], {'Alex': <socket.socket fd=7, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50260)>}), {}
+2022-06-22 09:02:57,511   DEBUG    server.py       Разбор сообщения от клиента: {'action': 'exit', 'time': 1655877777.4008055, 'account_name': 'Alex'}
+2022-06-22 09:02:57,511   DEBUG    server.py       Получено сообщение о выходе клиента.
+2022-06-22 09:02:57,512   DEBUG    server.py       Клиент Alex завершил работу.

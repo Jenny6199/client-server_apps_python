@@ -1,9 +1,15 @@
-"""Серверная часть программы."""
+"""
+Консольный мессенджер
+Серверная часть программы. v 0.1.0
+Программа выполнена в рамках учебного курса
+'Клиент-серверные приложения. Python', Geekbrains.
+Автор: Максим Сапунов, Jenny6199@yandex.ru
+Москва, 2022
+"""
 
-import json
-import sys
 import select
 import time
+import art
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response, \
     get_port_and_address_for_use
@@ -12,43 +18,16 @@ from common.variables import CONNECTION_LIMIT, \
     RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400
 import logging
-import log.server_log_config
 from decorators.log_deco import debug_log
 
 # Инициализация журнала логирования сервера.
-# Имя регистратора должно соответствовать имени в server_log_config.py
 SERVER_LOG = logging.getLogger('server')
-
-
-@debug_log
-def prepare_response(message):  # Больше не нужна?
-    """
-    Подготавливает ответное сообщение
-    :param message: dict - сообщение c данными от клиента.
-    :return: response: dict - ответное сообщение
-    """
-    if ACTION in message \
-            and message[ACTION] == PRESENCE \
-            and TIME in message \
-            and USER in message \
-            and message[USER][ACCOUNT_NAME] in ALLOWED_USERS:
-        SERVER_LOG.debug('Сообщение от клиента корректное')
-        return {
-            RESPONSE: 200,
-            'time': time.ctime(),
-            'text': 'Hello client!'
-        }
-    SERVER_LOG.debug(f'Получено ошибочное сообщение от клиента {message}')
-    return {
-        RESPONSE: 400,
-        ERROR: 'Bad Request'
-    }
 
 
 @debug_log
 def process_client_message(message, messages_list, client, clients, names):
     """
-    Обработчик сообщений полученных от клиента
+    Функция обработчик сообщений полученных от клиента
     На вход принимает словарь - проверяет соответствие форме,
     отправляет ответ клиенту при получении приветственного сообщения или ошибке
     добавляет сообщение в список сообщений
@@ -133,10 +112,24 @@ def process_message(message, names, listen_socks):
         )
 
 
+def banner():
+    """
+    Выводит на экран приветственное сообщение при запуске сервера
+    """
+    art.tprint('...Hello world...', font='doom')
+    print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
+          'СЕРВЕР. v 0.1.0 (06.2022) \n'
+          'Связь с разработчиком - Jenny6199@yandex.ru \n' 
+    )
+
+
 def main():
     """
     Агрегация работы функций и запуск программы-сервера.
     """
+    # Заставка
+    banner()
+
     # Анализ параметров коммандной строки
     option = get_port_and_address_for_use(sender='server')
 
