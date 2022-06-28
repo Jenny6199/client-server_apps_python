@@ -28,6 +28,7 @@ ALLOWED_USERS = [
 
 # Прочие ключи
 PRESENCE = 'presence'
+WHOS_HERE = 'show_online_users'
 RESPONSE = 'response'
 LEAVE_MESSAGE = 'exit'
 ERROR = 'error'

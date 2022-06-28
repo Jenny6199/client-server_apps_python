@@ -17,12 +17,24 @@ from common.utils import get_response, send_response, \
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
-    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400
+    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
 import logging
 from decorators.log_deco import debug_log
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
+
+
+def show_active_users(clients_list=[]):
+    """
+    Формирует ответное сообщение со списком активных пользователей
+    """
+    SERVER_LOG.debug(f'Готовим список активных пользователей " {clients_list}".')
+    out = {
+        ACTION: WHOS_HERE,
+        MESSAGE_TEXT: clients_list
+    }
+    return out
 
 
 @debug_log
@@ -57,6 +69,27 @@ def process_client_message(message, messages_list, client, clients, names):
             response[ERROR] = 'Пользователь с таким именем уже существует'
             SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
         send_response(client, response, sender='server')
+        return
+
+    # Получен запрос об активных участниках
+    elif ACTION in message \
+            and message[ACTION] == WHOS_HERE \
+            and TIME in message \
+            and USER in message:
+        SERVER_LOG.debug(
+            f'Получен запрос от {message[USER]} о пользователях on-line'
+            )
+        user_list = ', '.join(names.keys())
+        response = show_active_users(user_list)
+        try:
+            send_response(client, response, sender='server')
+            SERVER_LOG.debug(f'Ответное сообщение со списком активных '
+                    f'пользователей успешно отправлено клиенту '
+                    f'{message[USER]}')
+        except Exception as exc:
+            SERVER_LOG.error(
+                'Не удалось отправить ответное сообщение клиенту'
+                )
         return
 
     # Получено текстовое сообщение.
@@ -95,7 +128,7 @@ def process_message(message, names, listen_socks):
     Возвращает None.
     :param message: dict - message
     :param names: list - clients' list
-    :param liste_socks: list - sockets' list
+    :param listen_socks: list - sockets' list
     :return: None
     """
     if message[DESTINATION] in names \

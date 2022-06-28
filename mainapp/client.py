@@ -8,6 +8,7 @@
 Москва, 2022
 """
 
+from zipapp import create_archive
 import art
 import sys
 from socket import *
@@ -20,7 +21,7 @@ from art import tprint
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE
+    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
 
@@ -33,6 +34,7 @@ def print_help():
     """Функция выводящяя справку по использованию"""
     print('Поддерживаемые команды:')
     print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
+    print('show users online - показать список активных пользователей.')
     print('help - вывести подсказки по командам')
     print('exit - выход из программы')
 
@@ -53,6 +55,9 @@ def user_interactive(sock, client_name):
             create_new_message(sock, client_name)
         elif command == 'help':
             print_help()
+        elif command == 'show users online':
+            send_response(sock, create_whos_online_message(client_name), sender='client')
+            CLIENT_LOG.debug('Запрос списка пользователей')
         elif command == 'exit':
             send_response(sock, create_exit_message(client_name), sender='client')
             print('Завершение работы клиента')
@@ -98,6 +103,18 @@ def create_presence_message(account_name='Guest'):
 
 
 @debug_log
+def create_whos_online_message(account_name='Guest'):
+    out = {
+        ACTION: WHOS_HERE, 
+        TIME: time.ctime(),
+        USER: {
+            ACCOUNT_NAME: account_name
+        }
+    }
+    return out
+
+
+@debug_log
 def message_from_server(sock, username):
     """
     Функция обработчик сообщений полученных от других пользователей.
@@ -116,11 +133,18 @@ def message_from_server(sock, username):
                     and DESTINATION in message \
                     and MESSAGE_TEXT in message \
                     and message[DESTINATION] == username:
-                print(f'\n! Получено новое сообщение:'
+                print(f'\n[!] Получено новое сообщение '
                       f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]} \n'
                       f'Введите команду: ')
-                CLIENT_LOG.info(f'Получено сообщение от пользователя:'
+                CLIENT_LOG.info(f'Получено сообщение от пользователя '
                                 f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+                continue
+            elif ACTION in message \
+                    and message[ACTION] == WHOS_HERE:
+                print(f'\n[*] Ответ сервера: в чате доступны клиенты: '
+                      f'{message[MESSAGE_TEXT]} \n'
+                      f'Введите команду: ')
+                CLIENT_LOG.info(f'Сервер вернул список клиентов {message[MESSAGE_TEXT]}')
                 continue
             else:
                 CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
