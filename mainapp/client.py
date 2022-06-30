@@ -8,7 +8,6 @@
 Москва, 2022
 """
 
-from zipapp import create_archive
 import art
 import sys
 from socket import *
@@ -17,7 +16,6 @@ import time
 import logging
 import argparse
 import threading
-from art import tprint
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
@@ -56,7 +54,7 @@ def user_interactive(sock, client_name):
         elif command == 'help':
             print_help()
         elif command == 'show users online':
-            send_response(sock, create_whos_online_message(client_name), sender='client')
+            send_response(sock, create_who_is_online_message(client_name), sender='client')
             CLIENT_LOG.debug('Запрос списка пользователей')
         elif command == 'exit':
             send_response(sock, create_exit_message(client_name), sender='client')
@@ -103,7 +101,7 @@ def create_presence_message(account_name='Guest'):
 
 
 @debug_log
-def create_whos_online_message(account_name='Guest'):
+def create_who_is_online_message(account_name='Guest'):
     out = {
         ACTION: WHOS_HERE, 
         TIME: time.ctime(),
@@ -263,15 +261,14 @@ def arg_parser():
 def banner(client_name):
     """
     Выводит на экран приветственное сообщение при запуске клиента.
-    :param str - имя клиента
+    :param client_name - имя клиента
     :return - None
     """
     art.tprint('...Hello world...', font='doom')
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
           f'КЛИЕНТ. v 0.1.0 (06.2022) \n'
           f'Пользователь - {client_name}. \n'
-          f'Связь с разработчиком - Jenny6199@yandex.ru \n' 
-    )
+          f'Связь с разработчиком - Jenny6199@yandex.ru \n')
 
 
 def mainloop():
@@ -343,7 +340,6 @@ def mainloop():
         else:
             print('Exit')
             sys.exit(0)
-        break
 
 
 if __name__ == '__main__':
