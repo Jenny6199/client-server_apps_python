@@ -7,16 +7,14 @@
 Автор: Максим Сапунов, Jenny6199@yandex.ru
 Москва, 2022
 """
-
 import select
-import time
 import art
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response, \
     get_port_and_address_for_use
 from common.variables import CONNECTION_LIMIT, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
+    RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
 import logging
 from decorators.log_deco import debug_log
@@ -25,10 +23,12 @@ from decorators.log_deco import debug_log
 SERVER_LOG = logging.getLogger('server')
 
 
-def show_active_users(clients_list=[]):
+def show_active_users(clients_list):
     """
     Формирует ответное сообщение со списком активных пользователей
     """
+    if clients_list == '':
+        clients_list += 'Сейчас в чате нет активных пользователей.'
     SERVER_LOG.debug(f'Готовим список активных пользователей " {clients_list}".')
     out = {
         ACTION: WHOS_HERE,
@@ -84,11 +84,12 @@ def process_client_message(message, messages_list, client, clients, names):
         try:
             send_response(client, response, sender='server')
             SERVER_LOG.debug(f'Ответное сообщение со списком активных '
-                    f'пользователей успешно отправлено клиенту '
-                    f'{message[USER]}')
-        except Exception as exc:
+                             f'пользователей успешно отправлено клиенту '
+                             f'{message[USER]}')
+        except (ValueError, ConnectionError) as err:
             SERVER_LOG.error(
-                'Не удалось отправить ответное сообщение клиенту'
+                f'Не удалось отправить ответное сообщение клиенту. '
+                f'Сообщение об ошибке: {err}.'
                 )
         return
 
@@ -153,8 +154,7 @@ def banner():
     art.tprint('...Hello world...', font='doom')
     print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
           'СЕРВЕР. v 0.1.0 (06.2022) \n'
-          'Связь с разработчиком - Jenny6199@yandex.ru \n' 
-    )
+          'Связь с разработчиком - Jenny6199@yandex.ru \n')
 
 
 def main():
@@ -191,7 +191,7 @@ def main():
         try:
             client, client_address = transport.accept()
             SERVER_LOG.info(f'Новое подключение: {client_address}')
-        except OSError as err:
+        except OSError:
             pass
         else:
             SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
@@ -227,8 +227,9 @@ def main():
         for mail in messages:
             try:
                 process_message(mail, names, send_data_list)
-            except Exception:
-                SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
+            except (ValueError, ConnectionError) as err:
+                SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.'
+                                f'Сообщение об ошибке: {err}')
                 clients.remove(names[mail[DESTINATION]])
                 del names[mail[DESTINATION]]
         messages.clear()
