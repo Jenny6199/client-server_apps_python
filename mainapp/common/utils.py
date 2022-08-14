@@ -9,7 +9,6 @@ from .variables import PACKAGE_SIZE, ENCODING_METHOD, \
 from .errors import DictionaryNotReceived, SenderIndicationError, \
     NonBytesMessage, JsonEncodeError, NonStrData, PortNumberError
 # Обеспечиваем доступность пути к корню проекта
-import sys
 import os
 
 sys.path.append(os.path.join(os.getcwd(), '..'))

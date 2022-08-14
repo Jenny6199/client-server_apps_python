@@ -1,31 +1,55 @@
-"""
-Консольный мессенджер
-Серверная часть программы. v 0.1.0
-Программа выполнена в рамках учебного курса
-'Клиент-серверные приложения. Python', Geekbrains.
-Преподаватель: Илья Барбылев.
-Автор: Максим Сапунов, Jenny6199@yandex.ru
-Москва, 2022
-"""
+# Консольный мессенджер
+# Серверная часть программы. v 0.1.0
+# Программа выполнена в рамках учебных курсов
+# "Клиент-серверные приложения. Python",
+# "Базы данных и PyQt", Geekbrains
+# Преподаватель: Илья Барбылев.
+# Автор: Максим Сапунов, Jenny6199@yandex.ru
+# Москва, 2022
 
+import argparse
+import sys
 import select
-import time
 import art
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response, \
     get_port_and_address_for_use
-from common.variables import CONNECTION_LIMIT, \
+from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, ALLOWED_USERS, MESSAGE, MESSAGE_TEXT, \
+    RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
 import logging
 from decorators.log_deco import debug_log
+from metaclasses.server_metaclass import ServerChecker
+from descriptors.port_descr import Port
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
 
 
-def show_active_users(clients_list=[]):
+def arg_parser():
+    """command line parser"""
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
+    parser.add_argument('-a', default='', nargs='?')
+    namespace = parser.parse_args(sys.argv[1:])
+    listen_address = namespace.a
+    listen_port = namespace.p
+    return listen_address, listen_port
+
+
+def banner():
+    """
+    Выводит на экран приветственное сообщение при запуске сервера
+    """
+    art.tprint('...Hello world...', font='doom')
+    print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
+          'СЕРВЕР. v 0.1.0 (06.2022) \n'
+          'Связь с разработчиком - Jenny6199@yandex.ru \n'
+          )
+
+
+def show_active_users(clients_list):
     """
     Формирует ответное сообщение со списком активных пользователей
     """
@@ -37,201 +61,272 @@ def show_active_users(clients_list=[]):
     return out
 
 
-@debug_log
-def process_client_message(message, messages_list, client, clients, names):
-    """
-    Функция обработчик сообщений полученных от клиента
-    На вход принимает словарь - проверяет соответствие форме,
-    отправляет ответ клиенту при получении приветственного сообщения или ошибке
-    добавляет сообщение в список сообщений
-    возвращает None
-    :param message: data from client
-    :param messages_list: list of data
-    :param client: object of client
-    :param clients: list of clients
-    :param names: clients account_name's list.
-    """
-    SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
+class Server(metaclass=ServerChecker):
+    port = Port()
 
-    # Получено приветственное сообщение.
-    if ACTION in message \
-            and message[ACTION] == PRESENCE \
-            and TIME in message \
-            and USER in message:
-        SERVER_LOG.debug('Получено приветственное сообщение.')
-        # Проверка регистрации клиента
-        if message[USER][ACCOUNT_NAME] not in names.keys():
-            names[message[USER][ACCOUNT_NAME]] = client
-            response = RSP_200
-            SERVER_LOG.debug('Ответ клиенту - 200:OK')
-        else:
-            response = RSP_400
-            response[ERROR] = 'Пользователь с таким именем уже существует'
-            SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
-        send_response(client, response, sender='server')
-        return
+    def __init__(self, listen_address, listen_port):
+        self.addr = listen_address
+        self.port = listen_port
+        self.clients = []
+        self.messages = []
+        self.names = dict()
+        self.sock = None
 
-    # Получен запрос об активных участниках
-    elif ACTION in message \
-            and message[ACTION] == WHOS_HERE \
-            and TIME in message \
-            and USER in message:
-        SERVER_LOG.debug(
-            f'Получен запрос от {message[USER]} о пользователях on-line'
+    def init_socket(self):
+        try:
+            transport = socket(AF_INET, SOCK_STREAM)
+            transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+            transport.bind((self.addr, self.port))
+            transport.settimeout(0.5)
+
+            self.sock = transport
+            self.sock.listen(CONNECTION_LIMIT)
+
+            SERVER_LOG.info(
+                f'Запущен сервер, порт для подключений {self.port}'
+                f'Адрес для входящих подключений {self.addr}'
+                f'Если адрес не указан, принимаются соединения с любых адресов.'
+                f'Сервер ожидает входящие сообщения.'
             )
-        user_list = ', '.join(names.keys())
-        response = show_active_users(user_list)
-        try:
-            send_response(client, response, sender='server')
-            SERVER_LOG.debug(f'Ответное сообщение со списком активных '
-                    f'пользователей успешно отправлено клиенту '
-                    f'{message[USER]}')
-        except Exception as exc:
-            SERVER_LOG.error(
-                'Не удалось отправить ответное сообщение клиенту'
-                )
-        return
+        except Exception as e:
+            SERVER_LOG.critical(f'Не удалось инициализировать сокет! {e}')
 
-    # Получено текстовое сообщение.
-    elif ACTION in message \
-            and message[ACTION] == MESSAGE \
-            and TIME in message \
-            and DESTINATION in message:
-        SERVER_LOG.debug('Получено текстовое сообщение.')
-        messages_list.append(message)
-        SERVER_LOG.debug('Сообщение добавлено в список сообщений')
-        return
+    def main_loop(self):
+        self.init_socket()
 
-    # Получено сообщение о выходе клиента.
-    elif ACTION in message \
-            and message[ACTION] == LEAVE_MESSAGE \
-            and ACCOUNT_NAME in message:
-        SERVER_LOG.debug('Получено сообщение о выходе клиента.')
-        clients.remove(names[message[ACCOUNT_NAME]])
-        names[message[ACCOUNT_NAME]].close()
-        del names[message[ACCOUNT_NAME]]
-        SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
-        return
-
-    # Получено некорректное сообщение
-    else:
-        send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
-        SERVER_LOG.debug('Ответ клиенту - 400:Bad Request')
-        return
-
-
-@debug_log
-def process_message(message, names, listen_socks):
-    """
-    Функция для отправки сообщения конкретному клиенту
-    Принимает словарь с сообщением, список пользователей, список сокетов.
-    Возвращает None.
-    :param message: dict - message
-    :param names: list - clients' list
-    :param listen_socks: list - sockets' list
-    :return: None
-    """
-    if message[DESTINATION] in names \
-            and names[message[DESTINATION]] in listen_socks:
-        send_response(names[message[DESTINATION]], message, sender='server')
-        SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]} '
-                        f'пользователю {message[SENDER]}')
-    elif message[DESTINATION] in names \
-            and names[message[DESTINATION]] not in listen_socks:
-        raise ConnectionError
-    else:
-        SERVER_LOG.error(
-            f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
-            f'Сообщение не было отправлено.'
-        )
-
-
-def banner():
-    """
-    Выводит на экран приветственное сообщение при запуске сервера
-    """
-    art.tprint('...Hello world...', font='doom')
-    print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          'СЕРВЕР. v 0.1.0 (06.2022) \n'
-          'Связь с разработчиком - Jenny6199@yandex.ru \n' 
-    )
-
-
-def main():
-    """
-    Агрегация работы функций и запуск программы-сервера.
-    """
-    # Заставка
-    banner()
-
-    # Анализ параметров коммандной строки
-    option = get_port_and_address_for_use(sender='server')
-
-    # Инициализация сокета
-    transport = socket(AF_INET, SOCK_STREAM)
-    transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-    transport.bind(option)
-    transport.settimeout(0.5)
-    SERVER_LOG.info(f'Сервер запущен и слушает порт: {option[1]}.')
-
-    # Создаем списки клиентов и очередь сообщений
-    clients = []
-    messages = []
-
-    #  Словарь для хранения имен пользователей и соответствующих сокетов
-    names = {}
-
-    # Режим ожидания входящих сообщений
-    SERVER_LOG.info('Сервер ожидает входящие сообщения.')
-    transport.listen(CONNECTION_LIMIT)
-
-    # Основной цикл серверной части программы.
-    while True:
-        # Устанавливаем обход блокирующего accept через таймаут и исключение
-        try:
-            client, client_address = transport.accept()
-            SERVER_LOG.info(f'Новое подключение: {client_address}')
-        except OSError as err:
-            pass
-        else:
-            SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
-            clients.append(client)
+        while True:
+            try:
+                client, client_address = self.sock.accept()
+            except OSError:
+                pass
+            else:
+                SERVER_LOG.info(f'Новое подключение: {client_address}')
+                self.clients.append(client)
 
         # Создаем списки для Select
         res_data_list, send_data_list, err_data_list = [], [], []
 
-        # Проверяем наличие клиентов ожидающих ответ сервера
+        # Проверка ожидающих клиентов
         try:
-            if clients:
-                res_data_list, send_data_list, err_data_list = select.select(clients, clients, [], 0)
+            if self.clients:
+                res_data_list, send_data_list, err_data_list = select.select(self.clients, self.clients, [], 0)
         except OSError:
-            print('error')
+            SERVER_LOG.debug('Исключение при проверке ожидающих клиентов')
 
-        # Проверяем наличие входящих сообщений
+        # Принимаем сообщения, обрабатываем исключения
         if res_data_list:
-            for client_with_message in res_data_list:
+            for client_with_message in recv_data_lst:
                 try:
-                    process_client_message(
+                    self.process_client_message(
                         get_response(client_with_message, sender='server'),
                         messages,
                         client_with_message,
                         clients,
                         names
                     )
-                except Exception as err:
-                    print(err)
+                except Exception:
                     SERVER_LOG.info(
                         f'Клиент {client_with_message.getpeername()} отключился от сервера')
-                    clients.remove(client_with_message)
+                    self.clients.remove(client_with_message)
 
-        for mail in messages:
+        # Обрабатываем сообщения
+        for mail in self.messages:
             try:
-                process_message(mail, names, send_data_list)
+                self.process_message(mail, names, send_data_list)
             except Exception:
                 SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
-                clients.remove(names[mail[DESTINATION]])
+                self.clients.remove(names[mail[DESTINATION]])
                 del names[mail[DESTINATION]]
-        messages.clear()
+        self.messages.clear()
+
+    @debug_log
+    def process_client_message(self, message, messages_list, client, clients, names):
+        """
+        Функция обработчик сообщений полученных от клиента
+        На вход принимает словарь - проверяет соответствие форме,
+        отправляет ответ клиенту при получении приветственного сообщения или ошибке
+        добавляет сообщение в список сообщений
+        возвращает None
+        :param message: data from client
+        :param messages_list: list of data
+        :param client: object of client
+        :param clients: list of clients
+        :param names: clients account_name's list.
+        """
+        SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
+
+        # Получено приветственное сообщение.
+        if ACTION in message \
+                and message[ACTION] == PRESENCE \
+                and TIME in message \
+                and USER in message:
+            SERVER_LOG.debug('Получено приветственное сообщение.')
+            # Проверка регистрации клиента
+            if message[USER][ACCOUNT_NAME] not in names.keys():
+                names[message[USER][ACCOUNT_NAME]] = client
+                response = RSP_200
+                SERVER_LOG.debug('Ответ клиенту - 200:OK')
+            else:
+                response = RSP_400
+                response[ERROR] = 'Пользователь с таким именем уже существует'
+                SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
+            send_response(client, response, sender='server')
+            return
+
+        # Получен запрос об активных участниках
+        elif ACTION in message \
+                and message[ACTION] == WHOS_HERE \
+                and TIME in message \
+                and USER in message:
+            SERVER_LOG.debug(
+                f'Получен запрос от {message[USER]} о пользователях on-line'
+                )
+            user_list = ', '.join(names.keys())
+            response = show_active_users(user_list)
+            try:
+                send_response(client, response, sender='server')
+                SERVER_LOG.debug(f'Ответное сообщение со списком активных '
+                                 f'пользователей успешно отправлено клиенту '
+                                 f'{message[USER]}')
+            except Exception as exc:
+                SERVER_LOG.error(
+                    f'Не удалось отправить ответное сообщение клиенту: {exc}'
+                )
+            return
+
+        # Получено текстовое сообщение.
+        elif ACTION in message \
+                and message[ACTION] == MESSAGE \
+                and TIME in message \
+                and DESTINATION in message:
+            SERVER_LOG.debug('Получено текстовое сообщение.')
+            messages_list.append(message)
+            SERVER_LOG.debug('Сообщение добавлено в список сообщений')
+            return
+
+        # Получено сообщение о выходе клиента.
+        elif ACTION in message \
+                and message[ACTION] == LEAVE_MESSAGE \
+                and ACCOUNT_NAME in message:
+            SERVER_LOG.debug('Получено сообщение о выходе клиента.')
+            clients.remove(names[message[ACCOUNT_NAME]])
+            names[message[ACCOUNT_NAME]].close()
+            del names[message[ACCOUNT_NAME]]
+            SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
+            return
+
+        # Получено некорректное сообщение
+        else:
+            send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
+            SERVER_LOG.debug('Ответ клиенту - 400:Bad Request')
+            return
+
+    @debug_log
+    def process_message(self, message, names, listen_socks):
+        """
+        Функция для отправки сообщения конкретному клиенту
+        Принимает словарь с сообщением, список пользователей, список сокетов.
+        Возвращает None.
+        :param message: dict - message
+        :param names: list - clients' list
+        :param listen_socks: list - sockets' list
+        :return: None
+        """
+        if message[DESTINATION] in names \
+                and names[message[DESTINATION]] in listen_socks:
+            send_response(names[message[DESTINATION]], message, sender='server')
+            SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]} '
+                            f'пользователю {message[SENDER]}')
+        elif message[DESTINATION] in names \
+                and names[message[DESTINATION]] not in listen_socks:
+            raise ConnectionError
+        else:
+            SERVER_LOG.error(
+                f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
+                f'Сообщение не было отправлено.'
+            )
+
+    def main_old(self):
+        """
+        Агрегация работы функций и запуск программы-сервера.
+        """
+        # Заставка
+        banner()
+
+        # Анализ параметров коммандной строки
+        option = get_port_and_address_for_use(sender='server')
+
+        # Инициализация сокета
+        transport = socket(AF_INET, SOCK_STREAM)
+        transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+        transport.bind(option)
+        transport.settimeout(0.5)
+        SERVER_LOG.info(f'Сервер запущен и слушает порт: {option[1]}.')
+
+        # Создаем списки клиентов и очередь сообщений
+        clients = []
+        messages = []
+
+        #  Словарь для хранения имен пользователей и соответствующих сокетов
+        names = {}
+
+        # Режим ожидания входящих сообщений
+        SERVER_LOG.info('Сервер ожидает входящие сообщения.')
+        transport.listen(CONNECTION_LIMIT)
+
+        # Основной цикл серверной части программы.
+        while True:
+            # Устанавливаем обход блокирующего accept через таймаут и исключение
+            try:
+                client, client_address = transport.accept()
+                SERVER_LOG.info(f'Новое подключение: {client_address}')
+            except OSError:
+                pass
+            else:
+                SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
+                clients.append(client)
+
+            # Создаем списки для Select
+            res_data_list, send_data_list, err_data_list = [], [], []
+
+            # Проверяем наличие клиентов ожидающих ответ сервера
+            try:
+                if clients:
+                    res_data_list, send_data_list, err_data_list = select.select(clients, clients, [], 0)
+            except OSError:
+                print('error')
+
+            # Проверяем наличие входящих сообщений
+            if res_data_list:
+                for client_with_message in res_data_list:
+                    try:
+                        self.process_client_message(
+                            get_response(client_with_message, sender='server'),
+                            messages,
+                            client_with_message,
+                            clients,
+                            names
+                        )
+                    except Exception as err:
+                        print(err)
+                        SERVER_LOG.info(
+                            f'Клиент {client_with_message.getpeername()} отключился от сервера')
+                        clients.remove(client_with_message)
+
+            for mail in messages:
+                try:
+                    self.process_message(mail, names, send_data_list)
+                except Exception:
+                    SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
+                    clients.remove(names[mail[DESTINATION]])
+                    del names[mail[DESTINATION]]
+            messages.clear()
+
+
+def main():
+    listen_address, listen_port = arg_parser()
+    server = Server(listen_address, listen_port)
+    server.main_loop()
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import dis
-from pprint import pprint
+# from pprint import pprint
 
 
 class ServerChecker(type):
@@ -26,19 +26,19 @@ class ServerChecker(type):
                         if i.argval not in attrs:
                             attrs.append(i.argval)
 
-        # Show creating lists:
-        print(20*'-', 'methods', 20*'-')
-        pprint(methods)
-        print(20*'-', 'methods_2', 20*'-')
-        pprint(methods_2)
-        print(20*'-', 'attrs', 20*'-')
-        pprint(attrs)
-        print(50*'-')
+        # Show creating lists (for education and debug):
+        # print(20*'-', 'methods', 20*'-')
+        # pprint(methods)
+        # print(20*'-', 'methods_2', 20*'-')
+        # pprint(methods_2)
+        # print(20*'-', 'attrs', 20*'-')
+        # pprint(attrs)
+        # print(50*'-')
 
         # Check server problem
         if 'connect' in methods:
             raise TypeError('Использование метода connect - запрещено!')
-        if not ('SOCK_STREAM' in attrs and 'AF_INET' in attrs):
+        if not ('SOCK_STREAM' in methods and 'AF_INET' in methods):
             raise TypeError('Ошибка в настройках сокета!')
 
         # Call parent init (type)
