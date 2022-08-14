@@ -8,7 +8,6 @@
 Москва, 2022
 """
 
-from zipapp import create_archive
 import art
 import sys
 from socket import *
@@ -17,17 +16,179 @@ import time
 import logging
 import argparse
 import threading
-from art import tprint
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
+from metaclasses.client_metaclass import ClientChecker
+from descriptors.port_descr import Port
 
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
+
+
+class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
+    def __init__(self, account_name, sock):
+        self.account_name = account_name
+        self.sock = sock
+        super().__init__()
+
+    @debug_log
+    def create_exit_message(self):
+        """
+        Функция генерирует сообщение при отключении клиента.
+        :param - account str - имя пользователя в системе.
+        :return - dict - словарь для передачи серверу сигнала о выходе клиента.
+        """
+        return {
+            ACTION: LEAVE_MESSAGE,
+            TIME: time.time(),
+            ACCOUNT_NAME: self.account_name
+        }
+
+    @debug_log
+    def create_new_message(self):
+        """
+        Функция запрашивает у пользователя данные (получатель сообщения и
+        текст сообщения), формирует словарь-сообщение и отправляет сообщение
+        на сервер.
+        Добавлена возможность выхода из программы по запросу пользователя.
+        :return None
+        """
+        # Блок ввода данных
+        recipient = input('Укажите получателя сообщения: ')
+        print('Введите текст сообщения или quit! для выхода из программы')
+        message = input('Текст сообщения: ')
+
+        # Возможность выхода из программы по запросу пользователя
+        if message == 'quit!':
+            self.sock.close()
+            CLIENT_LOG.info(f'Работа завершена по команде пользователя.')
+            sys.exit(0)
+
+        # Формирование словаря для отправки
+        message_dict = {
+            ACTION: MESSAGE,
+            SENDER: self.account_name,
+            DESTINATION: recipient,
+            TIME: time.time(),
+            MESSAGE_TEXT: message
+        }
+        CLIENT_LOG.debug(f'Сформирован словарь сообщения: {message_dict}')
+
+        # Блок отправки сообщения на сервер.
+        try:
+            send_response(self.sock, message_dict, sender='client')
+            CLIENT_LOG.info(f'Успешно отправлено сообщение пользователю {recipient}.')
+        except Exception as exc:
+            print(exc)
+            CLIENT_LOG.critical('Соединение с сервером разорвано')
+            sys.exit(1)
+
+    @debug_log
+    def create_whos_online_message(self):
+        out = {
+            ACTION: WHOS_HERE,
+            TIME: time.ctime(),
+            USER: {
+                ACCOUNT_NAME: self.account_name
+            }
+        }
+        return out
+
+    def print_help(self):
+        """Функция выводящяя справку по использованию"""
+        print('Поддерживаемые команды:')
+        print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
+        print('show users online - показать список активных пользователей.')
+        print('help - вывести подсказки по командам')
+        print('exit - выход из программы')
+
+    def user_interactive(self):
+        """
+        Функция для взаимодействия с пользователем.
+        Реализует запрос команд в цикле, обеспечивает
+        минимально необходимый функционал.
+        :param - sock - socket
+        :param - client_name - str
+        :return - None
+        """
+        self.print_help()
+        while True:
+            command = input('Введите команду: ')
+            if command == 'message':
+                self.create_new_message()
+                CLIENT_LOG.debug('Запрос на ввод нового сообщения')
+            elif command == 'help':
+                self.print_help()
+                CLIENT_LOG.debug('Запрос помощи')
+            elif command == 'show users online':
+                send_response(self.sock, create_whos_online_message(self.account_name), sender='client')
+                CLIENT_LOG.debug('Запрос списка пользователей')
+            elif command == 'exit':
+                send_response(self.sock, self.create_exit_message(), sender='client')
+                print('Завершение работы клиента')
+                CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
+                time.sleep(0.5)
+                break
+            else:
+                print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. '
+                      '(help - посмотреть список доступных комманд).')
+        sys.exit(0)
+
+
+class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
+    def __init__(self, account_name, sock):
+        self.account_name = account_name
+        self.sock = sock
+        super().__init__()
+
+    @debug_log
+    def message_from_server(self):
+        """
+        Функция обработчик сообщений полученных от других пользователей.
+        При получении корректных данных выводит сообщение на дисплей
+        или генерирует исключение и прерывает работу клиента.
+        :return None
+        """
+        while True:
+            try:
+                message = get_response(self.sock, sender='client')
+                if ACTION in message \
+                        and message[ACTION] == MESSAGE \
+                        and SENDER in message \
+                        and DESTINATION in message \
+                        and MESSAGE_TEXT in message \
+                        and message[DESTINATION] == self.account_name:
+                    print(f'\n[!] Получено новое сообщение '
+                          f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]} \n'
+                          f'Введите команду: ')
+                    CLIENT_LOG.info(f'Получено сообщение от пользователя '
+                                    f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+                    continue
+                elif ACTION in message \
+                        and message[ACTION] == WHOS_HERE:
+                    print(f'\n[*] Ответ сервера: в чате доступны клиенты: '
+                          f'{message[MESSAGE_TEXT]} \n'
+                          f'Введите команду: ')
+                    CLIENT_LOG.info(f'Сервер вернул список клиентов {message[MESSAGE_TEXT]}')
+                    continue
+                else:
+                    CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
+                                     f'{message}')
+            except MessageHasNoResponse:
+                CLIENT_LOG.error('Получено некорректное сообщение.')
+            except (OSError, ConnectionError, ConnectionAbortedError,
+                    ConnectionResetError, json.JSONDecodeError):
+                CLIENT_LOG.critical('Соединение с сервером потеряно.')
+                sys.exit(1)
+            except Exception as err:
+                print('Что-то пошло не так :( попробуйте перезапустить клиент')
+                CLIENT_LOG.error(f'Неожиданная ошибка: {err}')
+                sys.exit(1)
 
 
 def print_help():
@@ -65,7 +226,7 @@ def user_interactive(sock, client_name):
             time.sleep(0.5)
             break
         else:
-            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. ' 
+            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. '
                   '(help - посмотреть список доступных комманд).')
     sys.exit(0)
 
@@ -105,7 +266,7 @@ def create_presence_message(account_name='Guest'):
 @debug_log
 def create_whos_online_message(account_name='Guest'):
     out = {
-        ACTION: WHOS_HERE, 
+        ACTION: WHOS_HERE,
         TIME: time.ctime(),
         USER: {
             ACCOUNT_NAME: account_name
@@ -263,15 +424,15 @@ def arg_parser():
 def banner(client_name):
     """
     Выводит на экран приветственное сообщение при запуске клиента.
-    :param str - имя клиента
+    :param client_name :str - имя клиента
     :return - None
     """
     art.tprint('...Hello world...', font='doom')
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
           f'КЛИЕНТ. v 0.1.0 (06.2022) \n'
           f'Пользователь - {client_name}. \n'
-          f'Связь с разработчиком - Jenny6199@yandex.ru \n' 
-    )
+          f'Связь с разработчиком - Jenny6199@yandex.ru \n'
+          )
 
 
 def mainloop():

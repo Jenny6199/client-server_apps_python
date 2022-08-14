@@ -16,7 +16,7 @@ class ClientChecker(type):
                             methods.append(i.argval)
         for command in ('accept', 'listen', 'socket'):
             if command in methods:
-                raise TypeError('Класс использует запреденные методы!')
+                raise TypeError('Класс использует запрещенные методы!')
         if 'get_response' in methods or 'send_response' in methods:
             pass
         else:
