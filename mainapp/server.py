@@ -83,9 +83,9 @@ class Server(metaclass=ServerChecker):
             self.sock.listen(CONNECTION_LIMIT)
 
             SERVER_LOG.info(
-                f'Запущен сервер, порт для подключений {self.port}'
-                f'Адрес для входящих подключений {self.addr}'
-                f'Если адрес не указан, принимаются соединения с любых адресов.'
+                f'Запущен сервер, порт для подключений {self.port}. '
+                f'Адрес для входящих подключений {self.addr}. '
+                f'Если адрес не указан, принимаются соединения с любых адресов. '
                 f'Сервер ожидает входящие сообщения.'
             )
         except Exception as e:
@@ -93,7 +93,7 @@ class Server(metaclass=ServerChecker):
 
     def main_loop(self):
         self.init_socket()
-
+        banner()
         while True:
             try:
                 client, client_address = self.sock.accept()
@@ -103,41 +103,42 @@ class Server(metaclass=ServerChecker):
                 SERVER_LOG.info(f'Новое подключение: {client_address}')
                 self.clients.append(client)
 
-        # Создаем списки для Select
-        res_data_list, send_data_list, err_data_list = [], [], []
+            # Создаем списки для Select
+            res_data_list, send_data_list, err_data_list = [], [], []
 
-        # Проверка ожидающих клиентов
-        try:
-            if self.clients:
-                res_data_list, send_data_list, err_data_list = select.select(self.clients, self.clients, [], 0)
-        except OSError:
-            SERVER_LOG.debug('Исключение при проверке ожидающих клиентов')
-
-        # Принимаем сообщения, обрабатываем исключения
-        if res_data_list:
-            for client_with_message in recv_data_lst:
-                try:
-                    self.process_client_message(
-                        get_response(client_with_message, sender='server'),
-                        messages,
-                        client_with_message,
-                        clients,
-                        names
-                    )
-                except Exception:
-                    SERVER_LOG.info(
-                        f'Клиент {client_with_message.getpeername()} отключился от сервера')
-                    self.clients.remove(client_with_message)
-
-        # Обрабатываем сообщения
-        for mail in self.messages:
+            # Проверка ожидающих клиентов
             try:
-                self.process_message(mail, names, send_data_list)
-            except Exception:
-                SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
-                self.clients.remove(names[mail[DESTINATION]])
-                del names[mail[DESTINATION]]
-        self.messages.clear()
+                if self.clients:
+                    res_data_list, send_data_list, err_data_list = select.select(self.clients, self.clients, [], 0)
+            except OSError:
+                SERVER_LOG.debug('Исключение при проверке ожидающих клиентов')
+                pass
+
+            # Принимаем сообщения, обрабатываем исключения
+            if res_data_list:
+                for client_with_message in res_data_list:
+                    try:
+                        self.process_client_message(
+                            get_response(client_with_message, sender='server'),
+                            self.messages,
+                            client_with_message,
+                            self.clients,
+                            self.names
+                            )
+                    except Exception:
+                        SERVER_LOG.info(
+                            f'Клиент {client_with_message.getpeername()} отключился от сервера')
+                        self.clients.remove(client_with_message)
+
+            # Обрабатываем сообщения
+            for mail in self.messages:
+                try:
+                    self.process_message(mail, self.names, send_data_list)
+                except Exception:
+                    SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
+                    self.clients.remove(self.names[mail[DESTINATION]])
+                    del self.names[mail[DESTINATION]]
+            self.messages.clear()
 
     @debug_log
     def process_client_message(self, message, messages_list, client, clients, names):

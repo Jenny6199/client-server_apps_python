@@ -1,4 +1,4 @@
-"""
+﻿"""
 Консольный мессенджер
 Клиентская часть программы. v 0.1.0
 Программа выполнена в рамках учебного курса
@@ -23,11 +23,20 @@ from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
 from metaclasses.client_metaclass import ClientChecker
-from descriptors.port_descr import Port
+
 
 # Инициализация журнала логирования сервера.
 # Имя регистратора должно соответствовать имени в client_log_config.py
 CLIENT_LOG = logging.getLogger('client')
+
+
+def print_help():
+    """Функция выводящяя справку по использованию"""
+    print('Поддерживаемые команды:')
+    print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
+    print('show users online - показать список активных пользователей.')
+    print('help - вывести подсказки по командам')
+    print('exit - выход из программы')
 
 
 class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
@@ -40,7 +49,6 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
     def create_exit_message(self):
         """
         Функция генерирует сообщение при отключении клиента.
-        :param - account str - имя пользователя в системе.
         :return - dict - словарь для передачи серверу сигнала о выходе клиента.
         """
         return {
@@ -99,15 +107,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         }
         return out
 
-    def print_help(self):
-        """Функция выводящяя справку по использованию"""
-        print('Поддерживаемые команды:')
-        print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
-        print('show users online - показать список активных пользователей.')
-        print('help - вывести подсказки по командам')
-        print('exit - выход из программы')
-
-    def user_interactive(self):
+    def user_interactive(self, *args, **kwargs):
         """
         Функция для взаимодействия с пользователем.
         Реализует запрос команд в цикле, обеспечивает
@@ -116,38 +116,43 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         :param - client_name - str
         :return - None
         """
-        self.print_help()
+        print_help()
         while True:
             command = input('Введите команду: ')
+
             if command == 'message':
                 self.create_new_message()
                 CLIENT_LOG.debug('Запрос на ввод нового сообщения')
+
             elif command == 'help':
-                self.print_help()
+                print_help()
                 CLIENT_LOG.debug('Запрос помощи')
+
             elif command == 'show users online':
-                send_response(self.sock, create_whos_online_message(self.account_name), sender='client')
+                send_response(self.sock, self.create_whos_online_message(), sender='client')
                 CLIENT_LOG.debug('Запрос списка пользователей')
+
             elif command == 'exit':
                 send_response(self.sock, self.create_exit_message(), sender='client')
                 print('Завершение работы клиента')
                 CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
                 time.sleep(0.5)
                 break
+
             else:
                 print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. '
                       '(help - посмотреть список доступных комманд).')
         sys.exit(0)
 
 
-class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
+class ClientReadMessage(threading.Thread):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
         super().__init__()
 
     @debug_log
-    def message_from_server(self):
+    def message_from_server(self, *args, **kwargs):
         """
         Функция обработчик сообщений полученных от других пользователей.
         При получении корректных данных выводит сообщение на дисплей
@@ -184,65 +189,11 @@ class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
             except (OSError, ConnectionError, ConnectionAbortedError,
                     ConnectionResetError, json.JSONDecodeError):
                 CLIENT_LOG.critical('Соединение с сервером потеряно.')
-                sys.exit(1)
+                break
             except Exception as err:
                 print('Что-то пошло не так :( попробуйте перезапустить клиент')
                 CLIENT_LOG.error(f'Неожиданная ошибка: {err}')
-                sys.exit(1)
-
-
-def print_help():
-    """Функция выводящяя справку по использованию"""
-    print('Поддерживаемые команды:')
-    print('message - отправить сообщение. Кому и текст будет запрошены отдельно.')
-    print('show users online - показать список активных пользователей.')
-    print('help - вывести подсказки по командам')
-    print('exit - выход из программы')
-
-
-def user_interactive(sock, client_name):
-    """
-    Функция для взаимодействия с пользователем.
-    Реализует запрос команд в цикле, обеспечивает
-    минимально необходимый функционал.
-    :param - sock - socket
-    :param - client_name - str
-    :return - None 
-    """
-    print_help()
-    while True:
-        command = input('Введите команду: ')
-        if command == 'message':
-            create_new_message(sock, client_name)
-        elif command == 'help':
-            print_help()
-        elif command == 'show users online':
-            send_response(sock, create_whos_online_message(client_name), sender='client')
-            CLIENT_LOG.debug('Запрос списка пользователей')
-        elif command == 'exit':
-            send_response(sock, create_exit_message(client_name), sender='client')
-            print('Завершение работы клиента')
-            CLIENT_LOG.debug('Завершение работы клиента по команде пользователя')
-            time.sleep(0.5)
-            break
-        else:
-            print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. '
-                  '(help - посмотреть список доступных комманд).')
-    sys.exit(0)
-
-
-@debug_log
-def create_exit_message(account):
-    """
-    Функция генерирует сообщение при отключении клиента.
-    :param - account str - имя пользователя в системе.
-    :return - dict - словарь для передачи серверу сигнала о выходе клиента.
-    """
-    return {
-        ACTION: LEAVE_MESSAGE,
-        TIME: time.time(),
-        ACCOUNT_NAME: account
-    }
+                break
 
 
 @debug_log
@@ -261,107 +212,6 @@ def create_presence_message(account_name='Guest'):
     }
     CLIENT_LOG.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}.')
     return out
-
-
-@debug_log
-def create_whos_online_message(account_name='Guest'):
-    out = {
-        ACTION: WHOS_HERE,
-        TIME: time.ctime(),
-        USER: {
-            ACCOUNT_NAME: account_name
-        }
-    }
-    return out
-
-
-@debug_log
-def message_from_server(sock, username):
-    """
-    Функция обработчик сообщений полученных от других пользователей.
-    При получении корректных данных выводит сообщение на дисплей
-    или генерирует исключение и прерывает работу клиента.
-    :param sock: dict - сокет
-    :param username: str - имя пользователя
-    :return None
-    """
-    while True:
-        try:
-            message = get_response(sock, sender='client')
-            if ACTION in message \
-                    and message[ACTION] == MESSAGE \
-                    and SENDER in message \
-                    and DESTINATION in message \
-                    and MESSAGE_TEXT in message \
-                    and message[DESTINATION] == username:
-                print(f'\n[!] Получено новое сообщение '
-                      f'от {message[SENDER]}: \n - {message[MESSAGE_TEXT]} \n'
-                      f'Введите команду: ')
-                CLIENT_LOG.info(f'Получено сообщение от пользователя '
-                                f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
-                continue
-            elif ACTION in message \
-                    and message[ACTION] == WHOS_HERE:
-                print(f'\n[*] Ответ сервера: в чате доступны клиенты: '
-                      f'{message[MESSAGE_TEXT]} \n'
-                      f'Введите команду: ')
-                CLIENT_LOG.info(f'Сервер вернул список клиентов {message[MESSAGE_TEXT]}')
-                continue
-            else:
-                CLIENT_LOG.error(f'Получено некорректное сообщение от сервера:'
-                                 f'{message}')
-        except MessageHasNoResponse:
-            CLIENT_LOG.error('Получено некорректное сообщение.')
-        except (OSError, ConnectionError, ConnectionAbortedError,
-                ConnectionResetError, json.JSONDecodeError):
-            CLIENT_LOG.critical('Соединение с сервером потеряно.')
-            sys.exit(1)
-        except Exception as err:
-            print('Что-то пошло не так :( попробуйте перезапустить клиент')
-            CLIENT_LOG.error(f'Неожиданная ошибка: {err}')
-            sys.exit(1)
-
-
-@debug_log
-def create_new_message(sock, account_name='Guest'):
-    """
-    Функция запрашивает у пользователя данные (получатель сообщения и
-    текст сообщения), формирует словарь-сообщение и отправляет сообщение
-    на сервер.
-    Добавлена возможность выхода из программы по запросу пользователя.
-    :param sock: dict - сокет
-    :param account_name: str - имя пользователя
-    :return None
-    """
-    # Блок ввода данных
-    recipient = input('Укажите получателя сообщения: ')
-    print('Введите текст сообщения или quit! для выхода из программы')
-    message = input('Текст сообщения: ')
-
-    # Возможность выхода из программы по запросу пользователя
-    if message == 'quit!':
-        sock.close()
-        CLIENT_LOG.info(f'Работа завершена по команде пользователя.')
-        sys.exit(0)
-
-    # Формирование словаря для отправки
-    message_dict = {
-        ACTION: MESSAGE,
-        SENDER: account_name,
-        DESTINATION: recipient,
-        TIME: time.time(),
-        MESSAGE_TEXT: message
-    }
-    CLIENT_LOG.debug(f'Сформирован словарь сообщения: {message_dict}')
-
-    # Блок отправки сообщения на сервер.
-    try:
-        send_response(sock, message_dict, sender='client')
-        CLIENT_LOG.info(f'Успешно отправлено сообщение пользователю {recipient}.')
-    except Exception as exc:
-        print(exc)
-        CLIENT_LOG.critical('Соединение с сервером разорвано')
-        sys.exit(1)
 
 
 @debug_log
@@ -435,7 +285,7 @@ def banner(client_name):
           )
 
 
-def mainloop():
+def main():
     """Агрегация работы функций и запуск программы-клиента"""
 
     # Загрузка параметров коммандной строки
@@ -479,7 +329,7 @@ def mainloop():
         # Поток запуска процесса приема сообщений
         receiver = threading.Thread(
             name='receiver_thread',
-            target=message_from_server,
+            target=ClientReadMessage.message_from_server,
             args=(transport, client_name)
         )
         receiver.daemon = True
@@ -489,9 +339,9 @@ def mainloop():
         # Поток запуска процесса отправки сообщений
         transmitter = threading.Thread(
             name='transmitter_thread',
-            target=user_interactive,
+            target=ClientSendMessage.user_interactive,
             args=(transport, client_name)
-        )
+            )
         transmitter.daemon = True
         transmitter.start()
         CLIENT_LOG.debug(f'Поток для отправки сообщений для клиента {client_name} успешно запущен.')
@@ -501,11 +351,8 @@ def mainloop():
         time.sleep(1)
         if receiver.is_alive and transmitter.is_alive:
             continue
-        else:
-            print('Exit')
-            sys.exit(0)
         break
 
 
 if __name__ == '__main__':
-    mainloop()
+    main()
