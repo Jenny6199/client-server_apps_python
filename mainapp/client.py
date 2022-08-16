@@ -107,7 +107,6 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         }
         return out
 
-    # def user_interactive(self):
     def run(self):
         """
         Функция для взаимодействия с пользователем.
@@ -143,6 +142,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
             else:
                 print(f'Введена неизвестная команда "{command}". Попробуйте еще раз. '
                       '(help - посмотреть список доступных комманд).')
+        self.sock.close()
         sys.exit(0)
 
 
