@@ -257,13 +257,13 @@ def process_response_ans(message):
 def arg_parser():
     """Парсер аргументов коммандной строки"""
     parser = argparse.ArgumentParser()
-    parser.add_argument('addr', default=DEFAULT_IP, nargs='?')
-    parser.add_argument('port', default=PORT_LISTEN, type=int, nargs='?')
-    parser.add_argument('-n', '--name', default=None, nargs='?')
+    parser.add_argument('-a', default=DEFAULT_IP, nargs='?')
+    parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
+    parser.add_argument('-n', default=None, nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
-    server_address = namespace.addr
-    server_port = namespace.port
-    client_name = namespace.name
+    server_address = namespace.a
+    server_port = namespace.p
+    client_name = namespace.n
 
     # Проверка доступности порта
     if not 1023 < server_port < 65536:

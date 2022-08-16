@@ -1,7 +1,6 @@
 # Консольный мессенджер
-# Серверная часть программы. v 0.1.0
-# Программа выполнена в рамках учебных курсов
-# "Клиент-серверные приложения. Python",
+# Серверная часть программы. v 0.2.0
+# Продолжение работы над проектом на курсе
 # "Базы данных и PyQt", Geekbrains
 # Преподаватель: Илья Барбылев.
 # Автор: Максим Сапунов, Jenny6199@yandex.ru
@@ -12,8 +11,7 @@ import sys
 import select
 import art
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
-from common.utils import get_response, send_response, \
-    get_port_and_address_for_use
+from common.utils import get_response, send_response
 from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
@@ -65,6 +63,7 @@ class Server(metaclass=ServerChecker):
     port = Port()
 
     def __init__(self, listen_address, listen_port):
+        """Конструктор класса Server"""
         self.addr = listen_address
         self.port = listen_port
         self.clients = []
@@ -73,6 +72,7 @@ class Server(metaclass=ServerChecker):
         self.sock = None
 
     def init_socket(self):
+        """Функция для инициализации сокета"""
         try:
             transport = socket(AF_INET, SOCK_STREAM)
             transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
@@ -92,8 +92,9 @@ class Server(metaclass=ServerChecker):
             SERVER_LOG.critical(f'Не удалось инициализировать сокет! {e}')
 
     def main_loop(self):
-        self.init_socket()
+        """Функция осуществляет запуск и  поддерживает основной цикл работы сервера"""
         banner()
+        self.init_socket()
         while True:
             try:
                 client, client_address = self.sock.accept()
@@ -125,7 +126,7 @@ class Server(metaclass=ServerChecker):
                             self.clients,
                             self.names
                             )
-                    except Exception:
+                    except TimeoutError:
                         SERVER_LOG.info(
                             f'Клиент {client_with_message.getpeername()} отключился от сервера')
                         self.clients.remove(client_with_message)
@@ -134,7 +135,7 @@ class Server(metaclass=ServerChecker):
             for mail in self.messages:
                 try:
                     self.process_message(mail, self.names, send_data_list)
-                except Exception:
+                except ConnectionError:
                     SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
                     self.clients.remove(self.names[mail[DESTINATION]])
                     del self.names[mail[DESTINATION]]
@@ -246,82 +247,6 @@ class Server(metaclass=ServerChecker):
                 f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
                 f'Сообщение не было отправлено.'
             )
-
-    def main_old(self):
-        """
-        Агрегация работы функций и запуск программы-сервера.
-        """
-        # Заставка
-        banner()
-
-        # Анализ параметров коммандной строки
-        option = get_port_and_address_for_use(sender='server')
-
-        # Инициализация сокета
-        transport = socket(AF_INET, SOCK_STREAM)
-        transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-        transport.bind(option)
-        transport.settimeout(0.5)
-        SERVER_LOG.info(f'Сервер запущен и слушает порт: {option[1]}.')
-
-        # Создаем списки клиентов и очередь сообщений
-        clients = []
-        messages = []
-
-        #  Словарь для хранения имен пользователей и соответствующих сокетов
-        names = {}
-
-        # Режим ожидания входящих сообщений
-        SERVER_LOG.info('Сервер ожидает входящие сообщения.')
-        transport.listen(CONNECTION_LIMIT)
-
-        # Основной цикл серверной части программы.
-        while True:
-            # Устанавливаем обход блокирующего accept через таймаут и исключение
-            try:
-                client, client_address = transport.accept()
-                SERVER_LOG.info(f'Новое подключение: {client_address}')
-            except OSError:
-                pass
-            else:
-                SERVER_LOG.info(f'Установлено новое соединение с клиентом {client_address}')
-                clients.append(client)
-
-            # Создаем списки для Select
-            res_data_list, send_data_list, err_data_list = [], [], []
-
-            # Проверяем наличие клиентов ожидающих ответ сервера
-            try:
-                if clients:
-                    res_data_list, send_data_list, err_data_list = select.select(clients, clients, [], 0)
-            except OSError:
-                print('error')
-
-            # Проверяем наличие входящих сообщений
-            if res_data_list:
-                for client_with_message in res_data_list:
-                    try:
-                        self.process_client_message(
-                            get_response(client_with_message, sender='server'),
-                            messages,
-                            client_with_message,
-                            clients,
-                            names
-                        )
-                    except Exception as err:
-                        print(err)
-                        SERVER_LOG.info(
-                            f'Клиент {client_with_message.getpeername()} отключился от сервера')
-                        clients.remove(client_with_message)
-
-            for mail in messages:
-                try:
-                    self.process_message(mail, names, send_data_list)
-                except Exception:
-                    SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
-                    clients.remove(names[mail[DESTINATION]])
-                    del names[mail[DESTINATION]]
-            messages.clear()
 
 
 def main():

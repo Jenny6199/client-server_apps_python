@@ -1,5 +1,4 @@
 import dis
-# from pprint import pprint
 
 
 class ServerChecker(type):
@@ -15,7 +14,6 @@ class ServerChecker(type):
                 pass
             else:
                 for i in ret:
-                    # print(i)
                     if i.opname == 'LOAD_GLOBAL':
                         if i.argval not in methods:
                             methods.append(i.argval)
@@ -25,16 +23,6 @@ class ServerChecker(type):
                     elif i.opname == 'LOAD_ATTR':
                         if i.argval not in attrs:
                             attrs.append(i.argval)
-
-        # Show creating lists (for education and debug):
-        # print(20*'-', 'methods', 20*'-')
-        # pprint(methods)
-        # print(20*'-', 'methods_2', 20*'-')
-        # pprint(methods_2)
-        # print(20*'-', 'attrs', 20*'-')
-        # pprint(attrs)
-        # print(50*'-')
-
         # Check server problem
         if 'connect' in methods:
             raise TypeError('Использование метода connect - запрещено!')
