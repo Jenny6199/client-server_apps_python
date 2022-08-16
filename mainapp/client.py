@@ -45,7 +45,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         self.sock = sock
         super().__init__()
 
-    @debug_log
+    # @debug_log
     def create_exit_message(self):
         """
         Функция генерирует сообщение при отключении клиента.
@@ -57,7 +57,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
             ACCOUNT_NAME: self.account_name
         }
 
-    @debug_log
+    # @debug_log
     def create_new_message(self):
         """
         Функция запрашивает у пользователя данные (получатель сообщения и
@@ -96,7 +96,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
             CLIENT_LOG.critical('Соединение с сервером разорвано')
             sys.exit(1)
 
-    @debug_log
+    # @debug_log
     def create_whos_online_message(self):
         out = {
             ACTION: WHOS_HERE,
@@ -107,7 +107,8 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         }
         return out
 
-    def user_interactive(self, *args, **kwargs):
+    # def user_interactive(self):
+    def run(self):
         """
         Функция для взаимодействия с пользователем.
         Реализует запрос команд в цикле, обеспечивает
@@ -145,14 +146,15 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         sys.exit(0)
 
 
-class ClientReadMessage(threading.Thread):
+class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
         super().__init__()
 
-    @debug_log
-    def message_from_server(self, *args, **kwargs):
+    # @debug_log
+    # def message_from_server(self, *args, **kwargs):
+    def run(self):
         """
         Функция обработчик сообщений полученных от других пользователей.
         При получении корректных данных выводит сообщение на дисплей
@@ -162,6 +164,7 @@ class ClientReadMessage(threading.Thread):
         while True:
             try:
                 message = get_response(self.sock, sender='client')
+                print(message)
                 if ACTION in message \
                         and message[ACTION] == MESSAGE \
                         and SENDER in message \
@@ -295,12 +298,13 @@ def main():
     if not client_name:
         client_name = input('Введите имя пользователя: ')
 
+    # Заставка
+    banner(client_name)
+
     CLIENT_LOG.info(f'Запущен клиент с параметрами: '
                     f'адрес сервера - {server_address}, '
                     f'порт - {server_port}, '
                     f'имя пользователя - {client_name}.')
-    # Заставка
-    banner(client_name)
 
     # Инициализация работы сокета
     try:
@@ -327,21 +331,23 @@ def main():
     else:
 
         # Поток запуска процесса приема сообщений
-        receiver = threading.Thread(
-            name='receiver_thread',
-            target=ClientReadMessage.message_from_server,
-            args=(transport, client_name)
-        )
+        # receiver = threading.Thread(
+        #     name='receiver_thread',
+        #     target=ClientReadMessage.message_from_server,
+        #     args=(transport, client_name)
+        # )
+        receiver = ClientReadMessage(client_name, transport)
         receiver.daemon = True
         receiver.start()
         CLIENT_LOG.debug(f'Поток для получения сообщений  для клиента {client_name} успешно запущен.')
 
         # Поток запуска процесса отправки сообщений
-        transmitter = threading.Thread(
-            name='transmitter_thread',
-            target=ClientSendMessage.user_interactive,
-            args=(transport, client_name)
-            )
+        # transmitter = threading.Thread(
+        #     name='transmitter_thread',
+        #     target=ClientSendMessage.user_interactive,
+        #     args=(transport, client_name)
+        #     )
+        transmitter = ClientSendMessage(client_name, transport)
         transmitter.daemon = True
         transmitter.start()
         CLIENT_LOG.debug(f'Поток для отправки сообщений для клиента {client_name} успешно запущен.')
