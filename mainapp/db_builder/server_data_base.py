@@ -68,14 +68,20 @@ class ServerDB:
                                    Column('ip', String)
                                    )
 
-        self.metadata.create_all(self.database_engine)    # Создание таблиц
+        # Cоздание таблиц
+        self.metadata.create_all(self.database_engine)
+
+        # Связывание таблиц БД с классами Python с помощью mapper
         mapper(self.AllUsers, users_table)
         mapper(self.ActiveUsers, active_users_table)
         mapper(self.UsersHistory, user_login_history)
 
+        # Cоздание сессии
         session = sessionmaker(bind=self.database_engine)
         self.session = session()
         self.session.query(self.ActiveUsers).delete()
+
+        # initial commit
         self.session.commit()
 
     def user_login(self, username, ip_address, port):
