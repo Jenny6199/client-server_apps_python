@@ -10,6 +10,9 @@ import argparse
 import sys
 import select
 import art
+from os import path
+import threading
+from common.errors import IncorrectDataRecivedError
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response
 from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
@@ -20,6 +23,7 @@ import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerChecker
 from descriptors.port_descr import Port
+from db_builder.server_data_base import ServerDB
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
@@ -42,7 +46,7 @@ def banner():
     """
     art.tprint('...Hello world...', font='doom')
     print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          'СЕРВЕР. v 0.2.0 (08.2022) \n'
+          'СЕРВЕР. v 0.2.1 (08.2022) \n'
           'Связь с разработчиком - Jenny6199@yandex.ru \n'
           )
 
@@ -59,7 +63,7 @@ def show_active_users(clients_list):
     return out
 
 
-class Server(metaclass=ServerChecker):
+class Server(threading.Thread, metaclass=ServerChecker):
     port = Port()
 
     def __init__(self, listen_address, listen_port):
@@ -70,6 +74,8 @@ class Server(metaclass=ServerChecker):
         self.messages = []
         self.names = dict()
         self.sock = None
+        # Thread
+        super().__init__()
 
     def init_socket(self):
         """Функция для инициализации сокета"""
@@ -91,7 +97,7 @@ class Server(metaclass=ServerChecker):
         except Exception as e:
             SERVER_LOG.critical(f'Не удалось инициализировать сокет! {e}')
 
-    def main_loop(self):
+    def run(self):
         """Функция осуществляет запуск и  поддерживает основной цикл работы сервера"""
         banner()
         self.init_socket()
@@ -249,10 +255,46 @@ class Server(metaclass=ServerChecker):
             )
 
 
+def print_help():
+    print('Поддерживаемые комманды:')
+    print('users - список известных пользователей')
+    print('connected - список подключённых пользователей')
+    print('loghist - история входов пользователя')
+    print('exit - завершение работы сервера.')
+    print('help - вывод справки по поддерживаемым командам')
+
+
 def main():
+    # Загрузка параметров коммандной строки
     listen_address, listen_port = arg_parser()
+
+    # Создание базы данных
+    database = ServerDB()
+
+    # Создается экземпляр класса сервера и запускается в потоке
     server = Server(listen_address, listen_port)
-    server.main_loop()
+    server.daemon = True
+    server.start()
+
+    while True:
+        command = input('Введите команду: ')
+        if command == 'help':
+            print_help()
+        elif command == 'exit':
+            break
+        elif command == 'users':
+            for user in sorted(database.users_list()):
+                print(f'Пользователь {user[0]}, последний вход: {user[1]}')
+        elif command == 'connected':
+            for user in sorted(database.active_users_list()):
+                print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
+        elif command == 'loghist':
+            name = input('Введите имя пользователя для просмотра истории. '
+                         'Для вывода всей истории, просто нажмите Enter: ')
+            for user in sorted(database.login_history(name)):
+                print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
+        else:
+            print('Команда не распознана.')
 
 
 if __name__ == '__main__':
