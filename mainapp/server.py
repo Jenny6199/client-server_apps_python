@@ -19,7 +19,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
-from descriptors.port_descr import Port
+from descriptors.port_descr import PortDescriptor
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
@@ -60,7 +60,7 @@ def show_active_users(clients_list):
 
 
 class Server(metaclass=ServerVerifier):
-    port = Port()
+    port = PortDescriptor()
 
     def __init__(self, listen_address, listen_port):
         """Конструктор класса Server"""

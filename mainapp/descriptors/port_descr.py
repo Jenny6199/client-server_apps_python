@@ -5,7 +5,11 @@ from logging import getLogger
 logger = getLogger('server')
 
 
-class Port:
+class PortDescriptor:
+    """
+    Класс-дескриптор контролирующий значение номера порта
+    в заданном диапазоне.
+    """
     def __set__(self, instance, value=7777):
         if not 1023 < value < 65536:
             logger.critical(f'Задан недопустимый номер порта {value}. '
