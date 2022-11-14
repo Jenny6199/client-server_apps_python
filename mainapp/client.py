@@ -22,7 +22,7 @@ from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
-from metaclasses.client_metaclass import ClientChecker
+from metaclasses.client_metaclass import ClientVerifier
 
 
 # Инициализация журнала логирования сервера.
@@ -39,7 +39,7 @@ def print_help():
     print('exit - выход из программы')
 
 
-class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
+class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
@@ -146,7 +146,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         sys.exit(0)
 
 
-class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
+class ClientReadMessage(threading.Thread, metaclass=ClientVerifier):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock

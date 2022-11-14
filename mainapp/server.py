@@ -18,7 +18,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
 import logging
 from decorators.log_deco import debug_log
-from metaclasses.server_metaclass import ServerChecker
+from metaclasses.server_metaclass import ServerVerifier
 from descriptors.port_descr import Port
 
 # Инициализация журнала логирования сервера.
@@ -59,7 +59,7 @@ def show_active_users(clients_list):
     return out
 
 
-class Server(metaclass=ServerChecker):
+class Server(metaclass=ServerVerifier):
     port = Port()
 
     def __init__(self, listen_address, listen_port):

@@ -1,7 +1,7 @@
 import dis
 
 
-class ServerChecker(type):
+class ServerVerifier(type):
     """
     Класс осуществляет проверку серверной части программы
     на предмет наличия блокирующих методов.
