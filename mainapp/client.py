@@ -282,7 +282,7 @@ def banner(client_name):
     """
     art.tprint('...Hello world...', font='doom')
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          f'КЛИЕНТ. v 0.1.0 (06.2022) \n'
+          f'КЛИЕНТ. v 0.2.0 (11.2022) \n'
           f'Пользователь - {client_name}. \n'
           f'Связь с разработчиком - Jenny6199@yandex.ru \n'
           )
