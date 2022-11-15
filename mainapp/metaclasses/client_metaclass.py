@@ -1,7 +1,11 @@
 import dis
 
 
-class ClientChecker(type):
+class ClientVerifier(type):
+    """
+    Класс осуществляет проверку клиентской части программы
+    при инициализации на предмет наличия блокирующих методов.
+    """
     def __init__(cls, clsname, bases, clsdict):
         methods = []
         for func in clsdict:

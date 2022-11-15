@@ -1,7 +1,11 @@
 import dis
 
 
-class ServerChecker(type):
+class ServerVerifier(type):
+    """
+    Класс осуществляет проверку серверной части программы
+    на предмет наличия блокирующих методов.
+    """
     def __init__(cls, clsname, bases, clsdict):
         methods = []
         methods_2 = []

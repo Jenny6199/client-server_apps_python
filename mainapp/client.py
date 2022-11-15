@@ -1,9 +1,9 @@
 ﻿"""
 Консольный мессенджер
-Клиентская часть программы. v 0.1.0
+Клиентская часть программы. v 0.2.0
 Программа выполнена в рамках учебного курса
 'Клиент-серверные приложения. Python', Geekbrains.
-Преподаватель: Илья Барбылев.
+Преподаватель: Сергей Акопович Акопян
 Автор: Максим Сапунов, Jenny6199@yandex.ru
 Москва, 2022
 """
@@ -22,7 +22,7 @@ from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
-from metaclasses.client_metaclass import ClientChecker
+from metaclasses.client_metaclass import ClientVerifier
 
 
 # Инициализация журнала логирования сервера.
@@ -39,7 +39,7 @@ def print_help():
     print('exit - выход из программы')
 
 
-class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
+class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
@@ -146,7 +146,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientChecker):
         sys.exit(0)
 
 
-class ClientReadMessage(threading.Thread, metaclass=ClientChecker):
+class ClientReadMessage(threading.Thread, metaclass=ClientVerifier):
     def __init__(self, account_name, sock):
         self.account_name = account_name
         self.sock = sock
@@ -282,7 +282,7 @@ def banner(client_name):
     """
     art.tprint('...Hello world...', font='doom')
     print(f'ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          f'КЛИЕНТ. v 0.1.0 (06.2022) \n'
+          f'КЛИЕНТ. v 0.2.0 (11.2022) \n'
           f'Пользователь - {client_name}. \n'
           f'Связь с разработчиком - Jenny6199@yandex.ru \n'
           )

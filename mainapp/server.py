@@ -2,7 +2,7 @@
 # Серверная часть программы. v 0.2.0
 # Продолжение работы над проектом на курсе
 # "Базы данных и PyQt", Geekbrains
-# Преподаватель: Илья Барбылев.
+# Преподаватель: Сергей Акопович Акопян
 # Автор: Максим Сапунов, Jenny6199@yandex.ru
 # Москва, 2022
 
@@ -21,8 +21,8 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
 import logging
 from decorators.log_deco import debug_log
-from metaclasses.server_metaclass import ServerChecker
-from descriptors.port_descr import Port
+from metaclasses.server_metaclass import ServerVerifier
+from descriptors.port_descr import PortDescriptor
 from db_builder.server_data_base import ServerDB
 
 # Инициализация журнала логирования сервера.
@@ -46,7 +46,7 @@ def banner():
     """
     art.tprint('...Hello world...', font='doom')
     print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          'СЕРВЕР. v 0.2.1 (08.2022) \n'
+          'СЕРВЕР. v 0.2.0 (11.2022) \n'
           'Связь с разработчиком - Jenny6199@yandex.ru \n'
           )
 
@@ -63,8 +63,8 @@ def show_active_users(clients_list):
     return out
 
 
-class Server(threading.Thread, metaclass=ServerChecker):
-    port = Port()
+class Server(metaclass=ServerVerifier):
+    port = PortDescriptor()
 
     def __init__(self, listen_address, listen_port):
         """Конструктор класса Server"""
