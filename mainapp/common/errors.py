@@ -80,3 +80,8 @@ class ReqFieldMissingError(Exception):
 
     def __str__(self):
         return f'В принятом словаре отсутствует обязательное поле {self.missing_field}.'
+
+
+class IncorrectDataRecivedError(Exception):
+    def __str__(self):
+        return 'Получено некорректное сообщение от удаленного компьютера'
