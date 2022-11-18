@@ -104,10 +104,40 @@ class ServerDB:
     def users_list(self):
         """
         Функция возвращает список пользователей.
-        :return: query
+        :return: list of tuples - all users.
+        """
+        query = self.session.query(
+            self.AllUsers.login,
+            self.AllUsers.last_login
+        )
+        return query.all()
+
+    def active_users_list(self):
+        """
+        Функция возвращает список активных пользователей.
+        :return: list of tuples - active users.
+        """
+        query = self.session.query(
+            self.AllUsers.login,
+            self.ActiveUsers.ip_addres,
+            self.AllUsers.port,
+            self.ActiveUsers.login_time
+        ).join(self.AllUsers)
+        return query.all()
+
+    def login_history(self, username=None):
+        """
+        Функция возвращает историю входа. Если указано имя пользователя
+        производится фильтрация по конкретному пользователю.
+        :param username: str
+        :return: list of tuples - login history
         """
         query = self.session.query(
             self.AllUsers.name,
-            self.AllUsers.last_login
-        )
+            self.UsersHistory.date_time,
+            self.UsersHistory.ip,
+            self.UsersHistory.port
+            ).join(self.AllUsers)
+        if username:
+            query = query.filter(self.AllUsers.name == username)
         return query.all()
