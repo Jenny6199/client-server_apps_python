@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine, Table, Column, Integer, String,\
     MetaData, ForeignKey, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-from ..common.variables import SERVER_DB
-from uuid import uuid4
+# from ..common.variables import SERVER_DB
+# from uuid import uuid4
 from _datetime import datetime
+from pprint import pprint
+
+SERVER_DB = 'sqlite:///server_base.db3'
 
 
 class ServerDB:
@@ -11,8 +14,8 @@ class ServerDB:
 
     class AllUsers:
         """Таблица для хранения всех пользователей"""
-        def __init__(self, login):
-            self.login = login
+        def __init__(self, username):
+            self.name = username
             self.id = None
             self.last_login = datetime.now()
 
@@ -25,7 +28,7 @@ class ServerDB:
             self.login_time = login_time
             self.id = None
 
-    class UserHistory:
+    class UsersHistory:
         """Таблица для хранения истории входов"""
         def __init__(self, name, date, ip_address, port):
             self.id = None
@@ -45,13 +48,13 @@ class ServerDB:
 
         # Таблица пользователей
         users_table = Table('Users', self.metadata,
-                            Column('id', uuid4(), primary_key=True),
+                            Column('id', Integer, primary_key=True),
                             Column('name', String, unique=True),
                             Column('last_login', DateTime)
                             )
         # Таблица активных пользователей
         active_users_table = Table('Active_users', self.metadata,
-                                   Column('id', uuid4(), primary_key=True),
+                                   Column('id', Integer, primary_key=True),
                                    Column('user', ForeignKey('Users.id'), unique=True),
                                    Column('ip_address', String),
                                    Column('port', Integer),
@@ -62,7 +65,8 @@ class ServerDB:
                                    Column('id', Integer, primary_key=True),
                                    Column('name', ForeignKey('Users.id')),
                                    Column('date_time', DateTime),
-                                   Column('ip', String)
+                                   Column('ip', String),
+                                   Column('port', String)
                                    )
 
         # Создание таблиц
@@ -96,6 +100,11 @@ class ServerDB:
             user = self.AllUsers(username)
             self.session.add(user)
             self.session.commit()
+        new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.now())
+        self.session.add(new_active_user)
+        history = self.UsersHistory(user.id, datetime.now(), ip_address, port)
+        self.session.add(history)
+        self.session.commit()
 
     def user_logout(self, username):
         """
@@ -112,7 +121,7 @@ class ServerDB:
         :return: list of tuples - all users.
         """
         query = self.session.query(
-            self.AllUsers.login,
+            self.AllUsers.name,
             self.AllUsers.last_login
         )
         return query.all()
@@ -123,9 +132,9 @@ class ServerDB:
         :return: list of tuples - active users.
         """
         query = self.session.query(
-            self.AllUsers.login,
-            self.ActiveUsers.ip_addres,
-            self.AllUsers.port,
+            self.AllUsers.name,
+            self.ActiveUsers.ip_address,
+            self.ActiveUsers.port,
             self.ActiveUsers.login_time
         ).join(self.AllUsers)
         return query.all()
@@ -146,3 +155,23 @@ class ServerDB:
         if username:
             query = query.filter(self.AllUsers.name == username)
         return query.all()
+
+
+if __name__ == '__main__':
+    # создание базы
+    test_DB = ServerDB()
+    print('подключение тестовых пользователей')
+    test_DB.user_login('user_1', '174.16.2.28', 7777)
+    test_DB.user_login('user_2', '174.16.2.30', 7171)
+    print('проверка функции active_users_list')
+    pprint(test_DB.active_users_list())
+
+    print('проверка функции user_logout')
+    test_DB.user_logout('user_1')
+    print(test_DB.active_users_list())
+
+    print('проверка функции login_history')
+    pprint(test_DB.login_history('user_1'))
+
+    print('проверка функции history_login')
+    pprint(test_DB.users_list())
