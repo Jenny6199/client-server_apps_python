@@ -1654,3 +1654,50 @@
 2022-11-14 12:58:08,516   INFO     utils.py        Сообщение отправлено
 2022-11-14 12:58:08,516   DEBUG    client.py       Завершение работы клиента по команде пользователя
 2022-11-14 12:58:08,687   CRITICAL client.py       Соединение с сервером потеряно.
+2022-11-18 19:18:00,425   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2022-11-18 19:18:00,435   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Jenny6199.
+2022-11-18 19:18:00,436   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции main(). Параметры: ('Jenny6199',), {}
+2022-11-18 19:18:00,436   DEBUG    client.py       Сформировано presence сообщение для пользователя Jenny6199.
+2022-11-18 19:18:00,437   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 35170), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Fri Nov 18 19:18:00 2022', 'user': {'account_name': 'Jenny6199'}}), {'sender': 'client'}
+2022-11-18 19:18:00,437   INFO     utils.py        Сообщение отправлено
+2022-11-18 19:18:00,438   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 35170), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-11-18 19:18:00,438   DEBUG    utils.py        Ожидается сообщение от client
+2022-11-18 19:18:00,949   INFO     utils.py        Получены новые данные от client.
+2022-11-18 19:18:00,950   DEBUG    log_deco.py     Вызов функции exam_server_message. Из модуля __main__. Из из функции main(). Параметры: ({'response': 200},), {}
+2022-11-18 19:18:00,950   INFO     client.py       Установлено соединение с сервером. Получен ответ: {'response': 200}
+2022-11-18 19:18:00,951   DEBUG    client.py       Поток для получения сообщений  для клиента Jenny6199 успешно запущен.
+2022-11-18 19:18:00,952   DEBUG    client.py       Поток для отправки сообщений для клиента Jenny6199 успешно запущен.
+2022-11-18 19:18:00,956   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 35170), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-11-18 19:18:00,957   DEBUG    utils.py        Ожидается сообщение от client
+2022-11-18 19:19:25,850   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2022-11-18 19:19:25,864   INFO     client.py       Запущен клиент с параметрами: адрес сервера - 127.0.0.1, порт - 7777, имя пользователя - Maxim.
+2022-11-18 19:19:25,866   DEBUG    log_deco.py     Вызов функции create_presence_message. Из модуля __main__. Из из функции main(). Параметры: ('Maxim',), {}
+2022-11-18 19:19:25,866   DEBUG    client.py       Сформировано presence сообщение для пользователя Maxim.
+2022-11-18 19:19:25,867   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 'Fri Nov 18 19:19:25 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-11-18 19:19:25,867   INFO     utils.py        Сообщение отправлено
+2022-11-18 19:19:25,868   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции main(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-11-18 19:19:25,868   DEBUG    utils.py        Ожидается сообщение от client
+2022-11-18 19:19:26,373   INFO     utils.py        Получены новые данные от client.
+2022-11-18 19:19:26,373   DEBUG    log_deco.py     Вызов функции exam_server_message. Из модуля __main__. Из из функции main(). Параметры: ({'response': 200},), {}
+2022-11-18 19:19:26,373   INFO     client.py       Установлено соединение с сервером. Получен ответ: {'response': 200}
+2022-11-18 19:19:26,374   DEBUG    client.py       Поток для получения сообщений  для клиента Maxim успешно запущен.
+2022-11-18 19:19:26,376   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-11-18 19:19:26,377   DEBUG    utils.py        Ожидается сообщение от client
+2022-11-18 19:19:26,383   DEBUG    client.py       Поток для отправки сообщений для клиента Maxim успешно запущен.
+2022-11-18 19:19:32,905   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>, {'action': 'show_online_users', 'time': 'Fri Nov 18 19:19:32 2022', 'user': {'account_name': 'Maxim'}}), {'sender': 'client'}
+2022-11-18 19:19:32,906   INFO     utils.py        Сообщение отправлено
+2022-11-18 19:19:32,906   DEBUG    client.py       Запрос списка пользователей
+2022-11-18 19:19:33,391   INFO     utils.py        Получены новые данные от client.
+2022-11-18 19:19:33,391   INFO     client.py       Сервер вернул список клиентов Jenny6199, Maxim
+2022-11-18 19:19:33,392   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-11-18 19:19:33,392   DEBUG    utils.py        Ожидается сообщение от client
+2022-11-18 19:21:29,128   CRITICAL client.py       Соединение с сервером потеряно.
+2022-11-18 19:21:29,128   CRITICAL client.py       Соединение с сервером потеряно.
+2022-11-18 19:21:38,122   DEBUG    client.py       Запрос помощи
+2022-11-18 19:21:44,368   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 35170), raddr=('127.0.0.1', 7777)>, {'action': 'show_online_users', 'time': 'Fri Nov 18 19:21:44 2022', 'user': {'account_name': 'Jenny6199'}}), {'sender': 'client'}
+2022-11-18 19:21:44,368   INFO     utils.py        Сообщение отправлено
+2022-11-18 19:21:44,369   DEBUG    client.py       Запрос списка пользователей
+2022-11-18 19:21:48,231   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 35170)>, {'action': 'exit', 'time': 1668788508.2305994, 'account_name': 'Jenny6199'}), {'sender': 'client'}
+2022-11-18 19:22:11,701   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=5, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 46810), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1668788531.7007618, 'account_name': 'Maxim'}), {'sender': 'client'}
+2022-11-18 19:22:11,702   INFO     utils.py        Сообщение отправлено
+2022-11-18 19:22:11,702   DEBUG    client.py       Завершение работы клиента по команде пользователя
