@@ -10,9 +10,9 @@ import argparse
 import sys
 import select
 import art
-from os import path
+# from os import path
 import threading
-from common.errors import IncorrectDataRecivedError
+# from common.errors import IncorrectDataRecivedError
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response
 from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
@@ -295,7 +295,6 @@ def main():
                 print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
         else:
             print('Команда не распознана.')
-
 
 
 if __name__ == '__main__':
