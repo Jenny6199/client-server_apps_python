@@ -8,6 +8,7 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 """
 
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import qApp
 
 
 class UiServerMainWindowForm(object):
@@ -70,27 +71,32 @@ class UiServerMainWindowForm(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
 
         # Buttons
-        # 1
-        self.pushButton = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
-        self.pushButton.setObjectName("pushButton")
-        self.horizontalLayout_3.addWidget(self.pushButton)
-        # 2
-        self.pushButton_2 = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.horizontalLayout_3.addWidget(self.pushButton_2)
+        # 1 Exit
+        self.button_exit = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
+        self.button_exit.setObjectName("button_exit")
+        self.horizontalLayout_3.addWidget(self.button_exit)
+        self.button_exit.clicked.connect(qApp.quit)
 
-        # 3
-        self.pushButton_3 = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.horizontalLayout_3.addWidget(self.pushButton_3)
+        # 2 Refresh
+        self.button_refresh = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
+        self.button_refresh.setObjectName("button_refresh")
+        self.horizontalLayout_3.addWidget(self.button_refresh)
 
-        # 4
-        self.pushButton_4 = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.horizontalLayout_3.addWidget(self.pushButton_4)
+        # 3 Log
+        self.button_log = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
+        self.button_log.setObjectName("button_log")
+        self.horizontalLayout_3.addWidget(self.button_log)
+
+        # 4 Settings
+        self.button_settings = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
+        self.button_settings.setObjectName("button_settings")
+        self.horizontalLayout_3.addWidget(self.button_settings)
+
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
+        # Изменяем названия ярлыков и надписей
         self.retranslateUi(ServerMainWindow)
+
         QtCore.QMetaObject.connectSlotsByName(ServerMainWindow)
 
     def retranslateUi(self, ServerMainWindow):
@@ -100,7 +106,7 @@ class UiServerMainWindowForm(object):
         _translate = QtCore.QCoreApplication.translate
         ServerMainWindow.setWindowTitle(_translate("ServerMainWindow", "Мессенджер 0.2.0. Сервер"))
         self.label.setText(_translate("ServerMainWindow", "Активные пользователи"))
-        self.pushButton.setText(_translate("ServerMainWindow", "Выход"))
-        self.pushButton_2.setText(_translate("ServerMainWindow", "Обновить"))
-        self.pushButton_3.setText(_translate("ServerMainWindow", "Лог"))
-        self.pushButton_4.setText(_translate("ServerMainWindow", "Настройки"))
+        self.button_exit.setText(_translate("ServerMainWindow", "Выход"))
+        self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
+        self.button_log.setText(_translate("ServerMainWindow", "Лог"))
+        self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
