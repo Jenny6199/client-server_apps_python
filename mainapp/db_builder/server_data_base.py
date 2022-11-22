@@ -37,6 +37,9 @@ class ServerDB:
             self.ip = ip_address
             self.port = port
 
+    class UsersContacts:
+        pass
+
     def __init__(self):
         """Создание движка базы данных"""
         self.database_engine = create_engine(
@@ -155,6 +158,25 @@ class ServerDB:
         if username:
             query = query.filter(self.AllUsers.name == username)
         return query.all()
+
+    def add_user_contact(self, user, contact):
+        """
+        Добавление контактов для пользователя.
+        :param - user
+        :param - contact
+        :return - None or session.commit()
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=user).first()
+        contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
+        if not contact \
+                or \
+                self.session.query(self.UsersContacts).\
+                filter_by(user=user.id, contact=contact.id).\
+                count():
+            return
+        contact_row = self.UsersContacts(user.id, contact.id)
+        self.session.add(contact_row)
+        self.session.commit()
 
 
 if __name__ == '__main__':
