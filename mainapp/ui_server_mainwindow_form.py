@@ -9,6 +9,7 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import qApp
+# from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
 
 
 class UiServerMainWindowForm(object):
@@ -91,6 +92,7 @@ class UiServerMainWindowForm(object):
         self.button_settings = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_settings.setObjectName("button_settings")
         self.horizontalLayout_3.addWidget(self.button_settings)
+        # self.button_settings.clicked.connect(ServerWindowSettingsForm())
 
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
