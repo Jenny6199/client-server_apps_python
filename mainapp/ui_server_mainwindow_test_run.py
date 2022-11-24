@@ -2,7 +2,7 @@
 
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from ui_server_mainwindow_form import UiServerMainWindowForm
+from mainapp.ui_forms.ui_server_mainwindow_form import UiServerMainWindowForm
 
 
 class ServerWindowMain(QMainWindow):
