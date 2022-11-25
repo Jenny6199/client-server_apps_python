@@ -134,3 +134,25 @@ def create_main_table(database):
         time.setEditable(False)
         table_list.appendRow([user, ip, port, time])
     return table_list
+
+
+def create_stat_table(database):
+    list_history = database.message_history()
+    list_table = QStandardItemModel()
+    list_table.setHorizontalHeaderLabels(
+        ['Имя клиента',
+         'Последний вход',
+         'Отправлено сообщений' 
+         'Получено сообщений'])
+    for row in list_history:
+        user, last_seen, sent, recvd = row
+        user = QStandardItem(user)
+        last_seen = QStandardItem(str(last_seen.replace(microseconds=0)))
+        sent = QStandardItem(str(sent))
+        recvd = QStandardItem(str(recvd))
+        user.setEditable(False)
+        last_seen.setEditable(False)
+        sent.setEditable(False)
+        recvd.setEditable(False)
+        list_table.appendRow([user, last_seen, sent, recvd])
+    retrurn list_table
