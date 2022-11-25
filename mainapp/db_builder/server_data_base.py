@@ -47,7 +47,11 @@ class ServerDB:
             self.contact = contact
 
     class UserHistory:
-        pass
+        def __init__(self, user):
+            self.id = None
+            self.user = user
+            self.sent = 0
+            self.accepted = 0
 
     def __init__(self):
         """Создание движка базы данных"""
