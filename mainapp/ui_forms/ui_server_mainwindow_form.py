@@ -10,6 +10,8 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import qApp
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
+# from PyQt5.QtCore import Qt
 # from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
 
 
@@ -27,12 +29,12 @@ class UiServerMainWindowForm(object):
         ServerMainWindow.setObjectName("ServerMainWindow")
         ServerMainWindow.resize(635, 602)
         # CentralWidget
-        self.centralwidget = QtWidgets.QWidget(ServerMainWindow)
+        self.centralwidget = QWidget(ServerMainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.centralwidget.show()
 
         # VerticalWidget
-        self.verticalWidget = QtWidgets.QWidget(self.centralwidget)
+        self.verticalWidget = QWidget(self.centralwidget)
         self.verticalWidget.setGeometry(QtCore.QRect(10, 70, 611, 271))
         self.verticalWidget.setObjectName("verticalWidget")
 
@@ -42,9 +44,9 @@ class UiServerMainWindowForm(object):
         self.verticalLayout.setObjectName("verticalLayout")
 
         # Line 1
-        self.line = QtWidgets.QFrame(self.verticalWidget)
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line = QFrame(self.verticalWidget)
+        self.line.setFrameShape(QFrame.HLine)
+        self.line.setFrameShadow(QFrame.Sunken)
         self.line.setObjectName("line")
 
         # VerticalLayout_2
@@ -52,20 +54,21 @@ class UiServerMainWindowForm(object):
         self.label = QtWidgets.QLabel(self.verticalWidget)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
-        self.tableView = QtWidgets.QTableView(self.verticalWidget)
+
+        self.tableView = QTableView(self.verticalWidget)
         self.tableView.setEnabled(True)
         self.tableView.setObjectName("tableView")
         self.verticalLayout.addWidget(self.tableView)
 
         # Line_2
-        self.line_2 = QtWidgets.QFrame(self.centralwidget)
+        self.line_2 = QFrame(self.centralwidget)
         self.line_2.setGeometry(QtCore.QRect(10, 340, 611, 16))
-        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
         self.line_2.setObjectName("line_2")
 
         # HorizontalLayout
-        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
+        self.horizontalLayoutWidget_3 = QWidget(self.centralwidget)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(10, 10, 611, 51))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
@@ -117,7 +120,7 @@ class UiServerMainWindowForm(object):
 
 def create_main_table(database):
     user_list = database.active_users_list()
-    table_list = QStandartItemMode()
+    table_list = QStandardItemModel()
     table_list.setHorizontalHeaderLabels(['Имя клиента', 'Адрес', 'Порт', 'Время подключения'])
     for row in user_list:
         user, ip, port, time = row
