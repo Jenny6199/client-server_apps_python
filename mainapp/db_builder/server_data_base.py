@@ -221,6 +221,18 @@ class ServerDB:
             join(self.AllUsers, self.UsersContacts == self.AllUsers.id)
         return [contact[1] for contact in query.all()]
 
+    def message_history(self):
+        """
+        Функция возвращает статистику соообщений
+        """
+        query = self.session.query(
+            self.AllUsers.name,
+            self.AllUsers.last_login,
+            self.UserHistory.sent,
+            self.UserHistory.accepted
+        ).join(self.AllUsers)
+        return query.all()
+
 
 if __name__ == '__main__':
     # создание базы
