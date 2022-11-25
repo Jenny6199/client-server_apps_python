@@ -19,7 +19,8 @@ import threading
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE, CONTACT_LIST
+    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE, \
+    CONTACT_LIST, ADD_CONTACT, DEL_CONTACT
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
 from metaclasses.client_metaclass import ClientVerifier
@@ -117,6 +118,33 @@ class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
             USER: {
                 ACCOUNT_NAME: self.account_name
             }
+        }
+        return out
+    def add_contact(self, contact):
+        """
+        Фукнция формирует запрос на добавление контакта
+        """
+        out = {
+            ACTION: ADD_CONTACT
+            TIME: time.ctime(),
+            USER: {
+                ACCOUNT_NAME: self.account_name,
+            },
+            'user_login': contact
+        }
+        return out
+
+    def del_contact(self, contact):
+        """
+        Фукнция формирует запрос на удаление контакта
+        """
+        out = {
+            ACTION: ADD_CONTACT
+            TIME: time.ctime(),
+            USER: {
+                ACCOUNT_NAME: self.account_name,
+            },
+            'user_login': contact
         }
         return out
 
