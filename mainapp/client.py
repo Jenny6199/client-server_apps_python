@@ -19,7 +19,7 @@ import threading
 from common.utils import get_response, send_response
 from common.variables import ACTION, DESTINATION, PRESENCE, TIME, USER, \
     ACCOUNT_NAME, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE
+    SENDER, DEFAULT_IP, PORT_LISTEN, LEAVE_MESSAGE, WHOS_HERE, CONTACT_LIST
 from common.errors import MessageHasNoResponse, ServerError, ReqFieldMissingError
 from decorators.log_deco import debug_log
 from metaclasses.client_metaclass import ClientVerifier
@@ -100,6 +100,19 @@ class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
     def create_whos_online_message(self):
         out = {
             ACTION: WHOS_HERE,
+            TIME: time.ctime(),
+            USER: {
+                ACCOUNT_NAME: self.account_name
+            }
+        }
+        return out
+
+    def get_contact_list(self):
+        """
+        Фукнция формирует запрос на получение списка контактов
+        """
+        out = {
+            ACTION: CONTACT_LIST,
             TIME: time.ctime(),
             USER: {
                 ACCOUNT_NAME: self.account_name

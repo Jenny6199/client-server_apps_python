@@ -36,6 +36,8 @@ MESSAGE = 'message'
 MESSAGE_TEXT = 'mess_text'
 SENDER = 'sender'
 CONTACT_LIST = 'get_contact_list'
+ADD_CONTACT = 'add_contact'
+DEL_CONTACT = 'del_contact'
 
 
 # Уровень реагирования обработчиков
