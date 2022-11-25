@@ -145,6 +145,10 @@ class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
                 send_response(self.sock, self.create_whos_online_message(), sender='client')
                 CLIENT_LOG.debug('Запрос списка пользователей')
 
+            elif command == 'get contact list':
+                send_response(self.sock, self.get_contact_list(), sender='client')
+                CLIENT_LOG.debug('Запрос списка контактов')
+
             elif command == 'exit':
                 send_response(self.sock, self.create_exit_message(), sender='client')
                 print('Завершение работы клиента')

@@ -18,7 +18,7 @@ from common.utils import get_response, send_response
 from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE
+    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE, CONTACT_LIST
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
