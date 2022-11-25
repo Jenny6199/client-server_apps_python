@@ -63,6 +63,19 @@ def show_active_users(clients_list):
     return out
 
 
+def send_contact_list(user):
+    """
+    Формирует ответное сообщение со списком контактов для пользователя
+    """
+    SERVER_LOG.debug(f'Готовим список контактов для пользователя')
+    out = {
+        RESPONSE: "202",
+        ACTION: CONTACT_LIST,
+        MESSAGE_TEXT: ServerDB.get_contacts(username=user)
+    }
+    return out
+
+
 class Server(threading.Thread, metaclass=ServerVerifier):
     port = PortDescriptor()
 
@@ -179,6 +192,25 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 response[ERROR] = 'Пользователь с таким именем уже существует'
                 SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
             send_response(client, response, sender='server')
+            return
+
+        # Получен запрос о получении списка контактов
+        elif ACTION in message \
+                and message[ACTION] == 'get_contacts' \
+                and TIME in message \
+                and USER in message:
+            SERVER_LOG.debug(
+                f'Получен запрос от {message[USER]} на получение списка контактов'
+            )
+            response = send_contact_list(message[USER])
+            try:
+                send_response(client, response, sender='server')
+                SERVER_LOG.debug(f'Ответное сообщение со списком контактов'
+                                 f'отправлено клиенту {message[USER]}')
+            except Exception as exc:
+                SERVER_LOG.error(
+                    f'Ошибка отправки списка контактов клиенту {message[USER]}: {exc}'
+                )
             return
 
         # Получен запрос об активных участниках

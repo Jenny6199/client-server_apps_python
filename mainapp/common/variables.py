@@ -35,6 +35,7 @@ ERROR = 'error'
 MESSAGE = 'message'
 MESSAGE_TEXT = 'mess_text'
 SENDER = 'sender'
+CONTACT_LIST = 'get_contact_list'
 
 
 # Уровень реагирования обработчиков

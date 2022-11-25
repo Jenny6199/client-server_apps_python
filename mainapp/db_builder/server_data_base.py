@@ -210,6 +210,17 @@ class ServerDB:
         self.session.add(contact_row)
         self.session.commit()
 
+    def get_contacts(self, username):
+        """
+        Функция запрашивает список контактов для пользователя
+        :param - username
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=username).one()
+        query = self.session.query(self.UsersContacts, self.AllUsers.name).\
+            filter_by(user=user.id).\
+            join(self.AllUsers, self.UsersContacts == self.AllUsers.id)
+        return [contact[1] for contact in query.all()]
+
 
 if __name__ == '__main__':
     # создание базы
