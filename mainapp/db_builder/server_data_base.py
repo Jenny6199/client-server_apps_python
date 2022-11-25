@@ -47,6 +47,9 @@ class ServerDB:
             self.contact = contact
 
     class UserHistory:
+        """
+        Отображение таблицы истории
+        """
         def __init__(self, user):
             self.id = None
             self.user = user
@@ -84,6 +87,20 @@ class ServerDB:
                                    Column('ip', String),
                                    Column('port', String)
                                    )
+        # Таблица контактов пользователя
+        users_contact = Table('User_contact', self.metadata,
+                              Column('id', Integer, primary_key=True),
+                              Column('user', ForeignKey('Users.id')),
+                              Column('contact', ForeignKey('Users.id'))
+                              )
+
+        # Таблица истории пользователя
+        user_history = Table('User_history', self.metadata,
+                             Column('id', Integer, primary_key=True),
+                             Column('user', ForeignKey('Users.id')),
+                             Column('send', Integer),
+                             Column('accepted', Integer)
+                             )
 
         # Создание таблиц
         self.metadata.create_all(self.database_engine)
@@ -91,6 +108,8 @@ class ServerDB:
         mapper(self.AllUsers, users_table)
         mapper(self.ActiveUsers, active_users_table)
         mapper(self.LoginHistory, user_login_history)
+        mapper(self.UsersContacts, users_contact)
+        mapper(self.UserHistory, user_history)
 
         # Создание сессии
         session = sessionmaker(bind=self.database_engine)
