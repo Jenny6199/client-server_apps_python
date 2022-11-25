@@ -28,7 +28,7 @@ class ServerDB:
             self.login_time = login_time
             self.id = None
 
-    class UsersHistory:
+    class LoginHistory:
         """Таблица для хранения истории входов"""
         def __init__(self, name, date, ip_address, port):
             self.id = None
@@ -38,6 +38,15 @@ class ServerDB:
             self.port = port
 
     class UsersContacts:
+        """
+        Отображение таблицы контактов пользователя
+        """
+        def __init__(self, user, contact):
+            self.id = None
+            self.user = user
+            self.contact = contact
+
+    class UserHistory:
         pass
 
     def __init__(self):
@@ -77,7 +86,7 @@ class ServerDB:
         # Связывание таблиц БД с классами Python с помощью mapper
         mapper(self.AllUsers, users_table)
         mapper(self.ActiveUsers, active_users_table)
-        mapper(self.UsersHistory, user_login_history)
+        mapper(self.LoginHistory, user_login_history)
 
         # Создание сессии
         session = sessionmaker(bind=self.database_engine)
@@ -105,7 +114,7 @@ class ServerDB:
             self.session.commit()
         new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.now())
         self.session.add(new_active_user)
-        history = self.UsersHistory(user.id, datetime.now(), ip_address, port)
+        history = self.LoginHistory(user.id, datetime.now(), ip_address, port)
         self.session.add(history)
         self.session.commit()
 
@@ -151,9 +160,9 @@ class ServerDB:
         """
         query = self.session.query(
             self.AllUsers.name,
-            self.UsersHistory.date_time,
-            self.UsersHistory.ip,
-            self.UsersHistory.port
+            self.LoginHistory.date_time,
+            self.LoginHistory.ip,
+            self.LoginHistory.port
             ).join(self.AllUsers)
         if username:
             query = query.filter(self.AllUsers.name == username)
