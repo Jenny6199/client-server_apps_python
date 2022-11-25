@@ -9,6 +9,7 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import qApp
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 # from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
 
 
@@ -112,3 +113,21 @@ class UiServerMainWindowForm(object):
         self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
+
+
+def create_main_table(database):
+    user_list = database.active_users_list()
+    table_list = QStandartItemMode()
+    table_list.setHorizontalHeaderLabels(['Имя клиента', 'Адрес', 'Порт', 'Время подключения'])
+    for row in user_list:
+        user, ip, port, time = row
+        user = QStandardItem(user)
+        user.setEditable(False)
+        ip = QStandardItem(ip)
+        ip.setEditable(False)
+        port = QStandardItem(port)
+        port.setEditable(False)
+        time = QStandardItem(str(time.replace(microseconds=0)))
+        time.setEditable(False)
+        table_list.appendRow([user, ip, port, time])
+    return table_list
