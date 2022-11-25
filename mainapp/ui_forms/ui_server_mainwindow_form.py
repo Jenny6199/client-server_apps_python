@@ -155,4 +155,4 @@ def create_stat_table(database):
         sent.setEditable(False)
         recvd.setEditable(False)
         list_table.appendRow([user, last_seen, sent, recvd])
-    retrurn list_table
+    return list_table
