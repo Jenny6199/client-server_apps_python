@@ -120,12 +120,13 @@ class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
             }
         }
         return out
+
     def add_contact(self, contact):
         """
         Фукнция формирует запрос на добавление контакта
         """
         out = {
-            ACTION: ADD_CONTACT
+            ACTION: ADD_CONTACT,
             TIME: time.ctime(),
             USER: {
                 ACCOUNT_NAME: self.account_name,
@@ -139,7 +140,7 @@ class ClientSendMessage(threading.Thread, metaclass=ClientVerifier):
         Фукнция формирует запрос на удаление контакта
         """
         out = {
-            ACTION: ADD_CONTACT
+            ACTION: DEL_CONTACT,
             TIME: time.ctime(),
             USER: {
                 ACCOUNT_NAME: self.account_name,
@@ -371,27 +372,24 @@ def main():
         CLIENT_LOG.critical(f'Не удалось подключиться к серверу: {server_address}:{server_port}'
                             f'Конечный компьютер отверг запрос на подключение.')
         sys.exit(1)
+    except ConnectionError:
+        CLIENT_LOG.error(f'Не удалось подключиться к удаленному серверу: {server_address}:{server_port}'
+                         f'Сервер не доступен.')
+        print('\n-- Удаленный сервер не доступен! --\n'
+              '-- Попробуйте подключиться позднее. --\n'
+              '-- Клиент завершает работу. --')
+        sys.exit(1)
 
     # После успешного подключения формируем потоки
     else:
 
         # Поток запуска процесса приема сообщений
-        # receiver = threading.Thread(
-        #     name='receiver_thread',
-        #     target=ClientReadMessage.message_from_server,
-        #     args=(transport, client_name)
-        # )
         receiver = ClientReadMessage(client_name, transport)
         receiver.daemon = True
         receiver.start()
         CLIENT_LOG.debug(f'Поток для получения сообщений  для клиента {client_name} успешно запущен.')
 
         # Поток запуска процесса отправки сообщений
-        # transmitter = threading.Thread(
-        #     name='transmitter_thread',
-        #     target=ClientSendMessage.user_interactive,
-        #     args=(transport, client_name)
-        #     )
         transmitter = ClientSendMessage(client_name, transport)
         transmitter.daemon = True
         transmitter.start()
