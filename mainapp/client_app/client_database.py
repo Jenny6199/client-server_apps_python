@@ -92,16 +92,26 @@ class ClientDatabase:
         self.session.commit()
 
     def get_contacts(self):
+        """Осуществляет запрос списка контактов"""
         return [contact[0] for contact in self.session.query(self.Contacts.name).all()]
 
-    def check_contact(self):
-        pass
+    def check_contact(self, contact):
+        """Проверяет наличие контакта в списке контактов"""
+        if self.session.query(self.Contacts).filter_by(name=contact).count():
+            return True
+        else:  # count = 0
+            return False
 
     def add_contact(self, contact):
-        pass
+        """Осуществляет добавление контакта в список контактов"""
+        if not self.session.query(self.Contacts).filter_by(name=contact).count():
+            contact_row = self.Contacts(contact)
+            self.session.add(contact_row)
+            self.session.commit()
 
     def del_contact(self, contact):
-        pass
+        """Осуществляет удаление контакта из списка контактов"""
+        self.session.query(self.Contacts).filter_by(name=contact).delete()
 
     def get_users(self):
         pass
