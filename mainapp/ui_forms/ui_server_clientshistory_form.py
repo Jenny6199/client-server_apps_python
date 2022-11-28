@@ -52,10 +52,10 @@ class ServerWindowHistory(QDialog):
         super(ServerWindowHistory, self).__init__()
         self.ui = UiServerClientHistoryForm()
         self.ui.setupUi(self)
+        self.show()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = ServerWindowHistory()
-    window.show()
     sys.exit(app.exec_())

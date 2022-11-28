@@ -8,11 +8,20 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 """
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import qApp
+from PyQt5.QtWidgets import qApp, QMainWindow, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
+import sys
 # from PyQt5.QtCore import Qt
 # from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
+
+class ServerWindowMain(QMainWindow):
+    """Start main window for server part of messenger"""
+    def __init__(self):
+        super(ServerWindowMain, self).__init__()
+        self.ui = UiServerMainWindowForm()
+        self.ui.setupUi(self)
+        self.show()
 
 
 class UiServerMainWindowForm(object):
@@ -156,3 +165,25 @@ def create_stat_table(database):
         recvd.setEditable(False)
         list_table.appendRow([user, last_seen, sent, recvd])
     return list_table
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    application = ServerWindowMain()
+    test_user_list = QStandardItemModel(application)
+    test_user_list.setHorizontalHeaderItem(0, QStandardItem('Имя клиента'))
+    test_user_list.setHorizontalHeaderItem(1, QStandardItem('IP-адрес'))
+    test_user_list.setHorizontalHeaderItem(2, QStandardItem('Порт'))
+    test_user_list.setHorizontalHeaderItem(3, QStandardItem('Время подключения'))
+    test_user_list.appendRow([QStandardItem('test_user_1'),
+                              QStandardItem('192.155.14.22'),
+                              QStandardItem('7221'),
+                              QStandardItem('22:14:38'),
+                              ])
+    test_user_list.appendRow([QStandardItem('test_user_2'),
+                              QStandardItem('192.155.14.23'),
+                              QStandardItem('7221'),
+                              QStandardItem('22:14:39'),
+                              ])
+    application.ui.tableView.setModel(test_user_list)
+    sys.exit(app.exec_())

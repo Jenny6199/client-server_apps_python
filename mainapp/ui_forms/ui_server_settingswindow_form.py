@@ -1,7 +1,16 @@
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtWidgets import QDialog, QApplication
+import sys
+
+class ServerSettingsWindow(QDialog):
+    def __init__(self):
+        super(ServerSettingsWindow, self).__init__()
+        self.ui = UiServerSettingsForm()
+        self.ui.setupUi(self)
+        self.show()
 
 
-class Ui_Server_settings(object):
+class UiServerSettingsForm(object):
 
     def setupUi(self, Server_settings):
         """
@@ -124,3 +133,9 @@ class Ui_Server_settings(object):
         global dialog
         dialog = QFileDialog(self)
         pass
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = ServerSettingsWindow()
+    sys.exit(app.exec_())
