@@ -11,12 +11,18 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import qApp, QMainWindow, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
+from PyQt5.QtCore import pyqtSignal
 import sys
+from mainapp.ui_forms.ui_server_settingswindow_form import ServerSettingsWindow
+
+
 # from PyQt5.QtCore import Qt
 # from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
 
+
 class ServerWindowMain(QMainWindow):
     """Start main window for server part of messenger"""
+
     def __init__(self):
         super(ServerWindowMain, self).__init__()
         self.ui = UiServerMainWindowForm()
@@ -27,12 +33,12 @@ class ServerWindowMain(QMainWindow):
 class UiServerMainWindowForm(object):
     """
     Class contents form for server part of messenger.
-    Created by QtDisigner.
+    Created by QtDesigner.
     """
     def setupUi(self, ServerMainWindow):
         """
         Base filling of main window form.
-        Created automaticaly by QtDisigner and then edited and
+        Created automaticaly by QtDesigner and then edited and
         commented.
         """
         ServerMainWindow.setObjectName("ServerMainWindow")
@@ -57,13 +63,14 @@ class UiServerMainWindowForm(object):
         self.line.setFrameShape(QFrame.HLine)
         self.line.setFrameShadow(QFrame.Sunken)
         self.line.setObjectName("line")
-
-        # VerticalLayout_2
         self.verticalLayout.addWidget(self.line)
-        self.label = QtWidgets.QLabel(self.verticalWidget)
+
+        # Label
+        self.label = QLabel(self.verticalWidget)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
 
+        # Table
         self.tableView = QTableView(self.verticalWidget)
         self.tableView.setEnabled(True)
         self.tableView.setObjectName("tableView")
@@ -95,17 +102,19 @@ class UiServerMainWindowForm(object):
         self.button_refresh = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_refresh.setObjectName("button_refresh")
         self.horizontalLayout_3.addWidget(self.button_refresh)
+        self.button_refresh.clicked.connect(call_refresh)
 
         # 3 Log
         self.button_log = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_log.setObjectName("button_log")
         self.horizontalLayout_3.addWidget(self.button_log)
+        self.button_log.clicked.connect(call_log)
 
         # 4 Settings
         self.button_settings = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_settings.setObjectName("button_settings")
         self.horizontalLayout_3.addWidget(self.button_settings)
-        # self.button_settings.clicked.connect(ServerWindowSettingsForm())
+        self.button_settings.clicked.connect(call_settings)
 
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
@@ -125,6 +134,21 @@ class UiServerMainWindowForm(object):
         self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
+
+
+def call_settings():
+    """Функция обработчик нажатия клавиши настроек сервера"""
+    print('Нажата клавиша вызова окна настроек сервера')
+
+
+def call_log():
+    """Функция обработчик нажатия клавиши истории пользователей"""
+    print('Нажата клавиша вызова окна истории пользователей')
+
+
+def call_refresh():
+    """Функция обработчик нажатия клавиши обновления данных"""
+    print('Нажата клавиша обновления данных')
 
 
 def create_main_table(database):
@@ -151,7 +175,7 @@ def create_stat_table(database):
     list_table.setHorizontalHeaderLabels(
         ['Имя клиента',
          'Последний вход',
-         'Отправлено сообщений' 
+         'Отправлено сообщений'
          'Получено сообщений'])
     for row in list_history:
         user, last_seen, sent, recvd = row
