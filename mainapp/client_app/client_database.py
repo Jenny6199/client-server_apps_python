@@ -2,8 +2,6 @@ from sqlalchemy import create_engine, Table, Column, Integer, String,\
     Text, MetaData, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
 from os.path import dirname, realpath, join
-import sys
-from mainapp.common.variables import *
 from datetime import datetime
 
 
@@ -92,38 +90,116 @@ class ClientDatabase:
         self.session.commit()
 
     def get_contacts(self):
-        """Осуществляет запрос списка контактов"""
+        """
+        Осуществляет запрос списка контактов
+        :return - list(Contacts.name)
+        """
         return [contact[0] for contact in self.session.query(self.Contacts.name).all()]
 
     def check_contact(self, contact):
-        """Проверяет наличие контакта в списке контактов"""
+        """
+        Проверяет наличие контакта в списке контактов
+        :param - contact
+        :return - True if contact in Contacts.name else False
+        """
         if self.session.query(self.Contacts).filter_by(name=contact).count():
             return True
         else:  # count = 0
             return False
 
     def add_contact(self, contact):
-        """Осуществляет добавление контакта в список контактов"""
+        """
+        Осуществляет добавление контакта в список контактов
+        :param - contact
+        :return - None
+        """
         if not self.session.query(self.Contacts).filter_by(name=contact).count():
             contact_row = self.Contacts(contact)
             self.session.add(contact_row)
             self.session.commit()
 
     def del_contact(self, contact):
-        """Осуществляет удаление контакта из списка контактов"""
+        """
+        Осуществляет удаление контакта из списка контактов
+        :param - contact
+        :return - None
+        """
         self.session.query(self.Contacts).filter_by(name=contact).delete()
 
     def get_users(self):
-        pass
+        """
+        Осуществляет запрос списка известных пользователей
+        :return - list(KnownUsers.username)
+        """
+        return [user[0] for user in self.session.query(self.KnownUsers.username).all()]
 
-    def add_user(self, user):
-        pass
+    def add_user(self, users_list):
+        """
+        Осуществляет добавление в список известных пользователей
+        :param - user_list
+        :return - None
+        """
+        self.session.query(self.KnownUsers).delete()
+        for user in users_list:
+            row = self.KnownUsers(user)
+            self.session.add(row)
+        self.session.commit()
 
-    def check_user(self):
+    def check_user(self, user):
+        """
+        Проверяет наличие пользователя в списке известных пользователей
+        :param - user
+        :return - True if user in KnownUsers, else False.
+        """
+        if self.session.query(self.KnownUsers).filter_by(username=user).count():
+            return True
+        else:
+            return False
         pass
 
     def save_message(self, contact, direction, message):
-        pass
+        """
+        Осуществляет сохранение сообщений в истории сообщений
+        :param - contact
+        :param - direction
+        :param - message (str)
+        :return - None
+        """
+        row = self.MessageHistory(contact, direction, message)
+        self.session.add(row)
+        self.session.commit()
 
-    def get_history(self):
-        pass
+    def get_history(self, contact):
+        """
+        Осуществляет запрос истории сообщений
+        :param - contact
+        :return - list[(contact, direction, message, date),]
+        """
+        query = self.session.query(self.MessageHistory).filter_by(contact=contact)
+        return [(row.contact,
+                row.direction,
+                row.message,
+                row.date) for row in query.all()
+                ]
+
+
+if __name__ == "__main__":
+    # Тестовый запуск клиентской базы данных
+    test_client_db = ClientDatabase('test_1')
+    # Тест функции добавления контактов
+    for test_user in ['test_2', 'test_3', 'test_4', 'test_5']:
+        test_client_db.add_contact(test_user)
+    # Добавляем существующий
+    test_client_db.add_contact('test_4')
+    # Тест функции добавления пользователей
+    test_client_db.add_user(['test_1', 'test_2', 'test_3', 'test_4', 'test_5'])
+    # Тест функции save_message
+    test_client_db.save_message('test_4', 'in', 'Test message!')
+    print(test_client_db.get_contacts())
+    print(test_client_db.get_users())
+    print(test_client_db.check_user('test_2'))
+    # Тест функции del_contact
+    test_client_db.del_contact('test_3')
+    print(test_client_db.get_contacts())
+    # Тесты пройдены
+    print('Success!')
