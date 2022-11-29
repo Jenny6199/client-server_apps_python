@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 
 # Form implementation generated from reading ui file 'client_mainwindow.ui'
 #
@@ -9,9 +10,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
-class Ui_MainWindow(object):
+
+class ClientWindowMain(QMainWindow):
+    """Start main window for server part of messenger"""
+
+    def __init__(self):
+        super(ClientWindowMain, self).__init__()
+        self.ui = UiClientMainWindowForm()
+        self.ui.setupUi(self)
+        self.show()
+
+
+class UiClientMainWindowForm(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(557, 539)
@@ -70,3 +83,9 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(_translate("MainWindow", "Удалить контакт"))
         self.menuExit.setTitle(_translate("MainWindow", "Файл"))
         self.menuRefresh.setTitle(_translate("MainWindow", "Контакты"))
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    application = ClientWindowMain()
+    sys.exit(app.exec_())
