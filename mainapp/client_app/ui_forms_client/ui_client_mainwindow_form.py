@@ -8,19 +8,65 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 """
 
 import sys
-
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QLabel, QListView
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, \
+    QWidget, QLabel, QListView, QMessageBox
+from PyQt5.QtCore import pyqtSlot, QEvent, Qt
 
 
 class ClientWindowMain(QMainWindow):
     """Start main window for server part of messenger"""
 
-    def __init__(self):
+    def __init__(self, database, transport):
         super(ClientWindowMain, self).__init__()
         self.ui = UiClientMainWindowForm()
         self.ui.setupUi(self)
+        self.database = database
+        self.transport = transport
+        # Connect
+        self.ui.pushButton_add_contact.clicked.connect(self.add_contact_window)
+        self.ui.pushButton_del_contact.clicked.connect(self.del_contact_window)
+        self.ui.pushButton_clear_form.clicked.connect(self.refresh_button)
+        self.ui.pushButton_send_message.clicked.connect(self.send_message)
+
+        # Additional atribute
+        self.contact_model = None
+        self.history_model = None
+        self.messages = QMessageBox()
+        self.current_chat = None
+        self.ui.listView_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.listView_2.setWordWrap(True)
+        self.ui.listView.doubleClicked.connect(self.select_active_user)
+        self.clients_list_update()
+        self.set_disable_input()
+
+        # Show
         self.show()
+
+    def add_contact_window(self):
+        """Обработчик нажатия кнопки  доабвить контакт"""
+        print("Button add contact was pressed!")
+
+    def del_contact_window(self):
+        """Обработчик нажатия кнопки удалить контакт"""
+        print("Button del contact was pressed!")
+
+    def refresh_button(self):
+        """Обработчик нажатия кнопки обновить"""
+        print("Button del refresh was pressed!")
+
+    def send_message(self):
+        """Обработчик нажатия кнопки удалить контакт"""
+        print("Button send message was pressed!")
+
+    def select_active_user(self):
+        pass
+
+    def set_disable_input(self):
+        pass
+
+    def clients_list_update(self):
+        pass
 
 
 class UiClientMainWindowForm(object):
@@ -108,5 +154,5 @@ class UiClientMainWindowForm(object):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    application = ClientWindowMain()
+    application = ClientWindowMain(database=None, transport=None)
     sys.exit(app.exec_())
