@@ -11,13 +11,11 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import qApp, QMainWindow, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
-from PyQt5.QtCore import pyqtSignal
 import sys
-from mainapp.ui_forms.ui_server_settingswindow_form import ServerSettingsWindow
 
 
 # from PyQt5.QtCore import Qt
-# from ui_forms.ui_server_settingswindow_form import ServerWindowSettingsForm
+# from ui_forms_server.ui_server_settingswindow_form import ServerWindowSettingsForm
 
 
 class ServerWindowMain(QMainWindow):
