@@ -9,7 +9,7 @@ november, 2022. GeekBrains
 import logging
 import sys
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QDialog, QLabel, QComboBox, QPushButton
 from PyQt5.QtCore import Qt
 
@@ -29,32 +29,32 @@ class UiClientAddContactDialogForm(object):
         """
         # Size of dialog window
         add_contact.setObjectName("add_contact")
-        add_contact.setFixedSize(550, 520)
+        add_contact.setFixedSize(350, 120)
         add_contact.setWindowTitle("Выбор контакта для добавления")
         add_contact.setAttribute(Qt.WA_DeleteOnClose)
         add_contact.setModal(True)
-        self.centralwidget = QDialog(add_contact)
+        self.centralwidget = QWidget(add_contact)
         self.centralwidget.setObjectName("centralwidget")
 
         # Label_1
         self.label_of_selector = QLabel(self.centralwidget)
         self.label_of_selector.setObjectName("label_of_selector")
-        self.label_of_selector.setText("Выбрать контакт для добавления: ")
+        self.label_of_selector.setText("Выбрать контакт: ")
         self.label_of_selector.setFixedSize(200, 20)
-        self.label_of_selector.move(10, 0)
+        self.label_of_selector.move(10, 10)
 
         # Selector
         self.selector = QComboBox(self.centralwidget)
         self.selector.setObjectName("selector")
         self.selector.setFixedSize(200, 20)
-        self.selector.move(10, 30)
+        self.selector.move(10, 35)
 
         # Button_1_refresh
         self.refresh_button = QPushButton(self.centralwidget)
         self.refresh_button.setObjectName("refresh_button")
-        self.refresh_button.setText("Обновить список")
+        self.refresh_button.setText("Обновить")
         self.refresh_button.setFixedSize(100, 30)
-        self.refresh_button.move(60, 60)
+        self.refresh_button.move(60, 65)
 
         # Button_2_ok
         self.ok_button = QPushButton(self.centralwidget)
@@ -80,6 +80,10 @@ class ClientAddContactWindow(QDialog):
         self.ui.setupUi(self)
         self.show()
 
+        # Connect
+        self.ui.refresh_button.clicked.connect(self.refresh_possible_contacts)
+        self.ui.ok_button.clicked.connect(self.button_add_contact)
+
     def update_possible_contacts(self):
         """
         Возвращает список контактов доступных для добавления
@@ -101,6 +105,10 @@ class ClientAddContactWindow(QDialog):
         else:
             logger.debug('Выполнено обновление списка доступных контактов')
             self.update_possible_contacts()
+
+    def button_add_contact(self):
+        """Обработчик нажатия кнопки добавить контакт"""
+        pass
 
 
 if __name__ == '__main__':
