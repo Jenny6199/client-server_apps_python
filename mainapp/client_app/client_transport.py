@@ -106,7 +106,19 @@ class ClientTransport(threading.Thread, QObject):
         pass
 
     def send_message(self, destination, message):
-        pass
+        """Обработчик отправки сообщения на сервер"""
+        message_dict = {
+            ACTION: MESSAGE,
+            SENDER: self.username,
+            DESTINATION: destination,
+            TIME: time.time(),
+            MESSAGE_TEXT: message,
+        }
+        logger.debug(f'Сформирован словать сообщения: {message_dict}')
+        with socket_lock:
+            self.send_message(self.transport, message_dict)
+            self.process_server_answer(get_message(self.transport))
+            logger.info(f'Отправлено сообщение для пользователя  {destination}')
 
     def create_presence_message(self):
         """
