@@ -69,9 +69,43 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug('Установлено соединение с сервером')
 
     def user_list_update(self):
-        pass
+        """Обеспечивает обновление таблицы известных пользователей"""
+        logger.debug(f'Запрос списка известных пользователей {self.username}')
+        request = {
+            ACTION: USERS_REQUEST,
+            TIME: time.ctime(),
+            ACCOUNT_NAME: self.username,
+        }
+        with socket_lock:
+            self.send_messsage(self.transport, request)
+            answer = self.get_message(self.transport)
+        if RESPONSE in answer and answer[RESPONSE] == 202:
+            self.database.add_users(answer[LIST_INFO])
+        else:
+            logger.error('Не удалось обновить список известных пользователей')
 
     def contact_list_update(self):
+        logger.debug(f'Запрос списка контактов для пользователя {self.name}')
+        request = {
+            ACTION: CONTACT_LIST,
+            TIME: time.ctime(),
+            USER: self.username
+        }
+        logger.debug(f'Сформирован запрос {request}')
+        with socket_lock:
+            self.send_message(self.transport, request)
+            answer = self.get_message(self.transport)
+        logger.debug(f'Получен ответ {answer}')
+        if RESPONSE in answer and answer[RESPONSE] == 202:
+            for contact in answer[LIST_INFO]:
+                self.database.add_contact(contact)
+        else:
+            logger.error('Не удалось обновить список контактов')
+
+    def get_message(self, destination):
+        pass
+
+    def send_message(self, destination, message):
         pass
 
     def create_presence_message(self):
@@ -89,4 +123,46 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}.')
         return out
 
+    def process_server_answer(self, message):
+        """
+        Обеспечивает обработку сообщения от сервера,
+        генерирует исключение при ошибке.
+        """
+        logger.debug(f'разбор сообщения от сервера: {message}')
+        if RESPONSE in message:
+            if message[RESPONSE] == 200:
+                return
+            elif message[RESPONSE] == 400:
+                raise ServerError(f'{[ERROR]}')
+            else:
+                logger.debug(f'Незвестный код подтвержения в ответе сервера: '
+                             f'{message[RESPONSE]}'
+                             )
+                # Если получили сообщение от пользователя, добавляем в базу данных
+                # и формируем сигнал о новом сообщении
+        elif ACTION in message and \
+                message[ACTION] == MESSAGE and \
+                SENDER in message and \
+                DESTINATION in message and \
+                MESSAGE_TEXT in message and \
+                message[DESTINATION] == self.username:
+            logger.debug(f'Получено сообщение от пользователя '
+                         f'{message[SENDER]}: {message[MESSAGE_TEXT]}'
+                         )
+            self.database.save_message(
+                message[SENDER], 'in', message[MESSAGE_TEXT]
+            )
+            self.new_message.emit(message[SENDER])
 
+    def add_contact(self, contact):
+        """Обеспечивает добавление нового контакта"""
+        logger.debug(f' Создание нового контакта {contact}')
+        request = {
+            ACTION: ADD_CONTACT,
+            TIME: time.ctime(),
+            USER: self.username,
+            ACCOUNT_NAME: contact,
+        }
+        with socket_lock:
+            self.send_message(self.transport, request)
+            self.process_server_answer(self.get_message(self.transport))

@@ -38,6 +38,8 @@ SENDER = 'sender'
 CONTACT_LIST = 'get_contact_list'
 ADD_CONTACT = 'add_contact'
 DEL_CONTACT = 'del_contact'
+LIST_INFO = 'data_list'
+USERS_REQUEST = 'get_users'
 
 
 # Уровень реагирования обработчиков
