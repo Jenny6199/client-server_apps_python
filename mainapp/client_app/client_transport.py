@@ -77,7 +77,7 @@ class ClientTransport(threading.Thread, QObject):
             ACCOUNT_NAME: self.username,
         }
         with socket_lock:
-            self.send_messsage(self.transport, request)
+            self.send_message(self.transport, request)
             answer = self.get_message(self.transport)
         if RESPONSE in answer and answer[RESPONSE] == 202:
             self.database.add_users(answer[LIST_INFO])
@@ -116,8 +116,8 @@ class ClientTransport(threading.Thread, QObject):
         }
         logger.debug(f'Сформирован словать сообщения: {message_dict}')
         with socket_lock:
-            self.send_message(self.transport, message_dict)
-            self.process_server_answer(get_message(self.transport))
+            send_response(self.transport, message_dict, sender='client')
+            self.process_server_answer(get_response(self.transport))
             logger.info(f'Отправлено сообщение для пользователя  {destination}')
 
     def create_presence_message(self):
@@ -167,7 +167,7 @@ class ClientTransport(threading.Thread, QObject):
             self.new_message.emit(message[SENDER])
 
     def add_contact(self, contact):
-        """Обеспечивает добавление нового контакта"""
+        """Обработчик добавления нового контакта"""
         logger.debug(f' Создание нового контакта {contact}')
         request = {
             ACTION: ADD_CONTACT,
@@ -176,5 +176,18 @@ class ClientTransport(threading.Thread, QObject):
             ACCOUNT_NAME: contact,
         }
         with socket_lock:
-            self.send_message(self.transport, request)
-            self.process_server_answer(self.get_message(self.transport))
+            send_response(self.transport, request, sender='client')
+            self.process_server_answer(get_response(self.username, sender='client'))
+
+    def remove_contact(self, contact):
+        """Обработчик удаления контакта"""
+        logger.debug(f'Удаление контакта {contact}')
+        request = {
+            ACTION: REMOVE_CONTACT,
+            TIME: time.time(),
+            USER: self.username,
+            ACCOUNT_NAME: contact
+        }
+        with socket_lock:
+            send_response(self.transport, request, sender='client')
+            self.process_server_answer(get_response(self.transport))

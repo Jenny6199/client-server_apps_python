@@ -40,6 +40,7 @@ ADD_CONTACT = 'add_contact'
 DEL_CONTACT = 'del_contact'
 LIST_INFO = 'data_list'
 USERS_REQUEST = 'get_users'
+REMOVE_CONTACT = 'remove'
 
 
 # Уровень реагирования обработчиков
