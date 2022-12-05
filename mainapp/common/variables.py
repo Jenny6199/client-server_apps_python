@@ -41,6 +41,7 @@ DEL_CONTACT = 'del_contact'
 LIST_INFO = 'data_list'
 USERS_REQUEST = 'get_users'
 REMOVE_CONTACT = 'remove'
+EXIT = 'exit'
 
 
 # Уровень реагирования обработчиков

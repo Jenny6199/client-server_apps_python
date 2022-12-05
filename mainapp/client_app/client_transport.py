@@ -1,16 +1,14 @@
-import json
-import sys
 import socket
 import threading
 import time
-import logging
+from logging import getLogger
 from PyQt5.QtCore import pyqtSignal, QObject
 
 from mainapp.common.utils import *
 from mainapp.common.variables import *
 from mainapp.common.errors import *
 
-logger = logging.getLogger('client')
+logger = getLogger('client')
 socket_lock = threading.Lock()
 
 
@@ -77,8 +75,8 @@ class ClientTransport(threading.Thread, QObject):
             ACCOUNT_NAME: self.username,
         }
         with socket_lock:
-            self.send_message(self.transport, request)
-            answer = self.get_message(self.transport)
+            send_response(self.transport, request, sender='client')
+            answer = get_response(self.transport, sender='client')
         if RESPONSE in answer and answer[RESPONSE] == 202:
             self.database.add_users(answer[LIST_INFO])
         else:
@@ -93,17 +91,14 @@ class ClientTransport(threading.Thread, QObject):
         }
         logger.debug(f'Сформирован запрос {request}')
         with socket_lock:
-            self.send_message(self.transport, request)
-            answer = self.get_message(self.transport)
+            send_response(self.transport, request, sender='client')
+            answer = get_response(self.transport, sender='client')
         logger.debug(f'Получен ответ {answer}')
         if RESPONSE in answer and answer[RESPONSE] == 202:
             for contact in answer[LIST_INFO]:
                 self.database.add_contact(contact)
         else:
             logger.error('Не удалось обновить список контактов')
-
-    def get_message(self, destination):
-        pass
 
     def send_message(self, destination, message):
         """Обработчик отправки сообщения на сервер"""
@@ -191,3 +186,19 @@ class ClientTransport(threading.Thread, QObject):
         with socket_lock:
             send_response(self.transport, request, sender='client')
             self.process_server_answer(get_response(self.transport))
+
+    def transport_shutdown(self):
+        """Обработчик закрытия сокета"""
+        self.running = False
+        message = {
+            ACTION: EXIT,
+            TIME: time.time(),
+            ACCOUNT_NAME: self.username
+        }
+        with socket_lock:
+            try:
+                send_response(self.transport, message)
+            except OSError:
+                pass
+        logger.debug('Сокет закрыт')
+        time.sleep(1)
