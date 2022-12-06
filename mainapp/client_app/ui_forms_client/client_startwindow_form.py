@@ -57,6 +57,7 @@ class ClientStartWindow(QDialog):
         super(ClientStartWindow, self).__init__()
         self.ui = UiClientStartWindowForm()
         self.ui.setupUi(self)
+        self.start_pressed = False
         self.show()
 
         # Connect
@@ -65,7 +66,9 @@ class ClientStartWindow(QDialog):
 
     def press_start_button(self):
         """Обработчик нажатия кнопки 'начать'"""
-        print('Button start was pressed!')
+        if self.ui.lineEdit.text():
+            self.start_pressed = True
+            qApp.exit()
 
 
 if __name__ == '__main__':
