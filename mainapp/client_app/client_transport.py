@@ -71,7 +71,7 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Запрос списка известных пользователей {self.username}')
         request = {
             ACTION: USERS_REQUEST,
-            TIME: time.ctime(),
+            TIME: time.time(),
             ACCOUNT_NAME: self.username,
         }
         with socket_lock:
@@ -86,7 +86,7 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Запрос списка контактов для пользователя {self.name}')
         request = {
             ACTION: CONTACT_LIST,
-            TIME: time.ctime(),
+            TIME: time.time(),
             USER: self.username
         }
         logger.debug(f'Сформирован запрос {request}')
@@ -122,7 +122,7 @@ class ClientTransport(threading.Thread, QObject):
         """
         out = {
             ACTION: PRESENCE,
-            TIME: time.ctime(),
+            TIME: time.time(),
             USER: {
                 ACCOUNT_NAME: self.username
             }
@@ -166,7 +166,7 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f' Создание нового контакта {contact}')
         request = {
             ACTION: ADD_CONTACT,
-            TIME: time.ctime(),
+            TIME: time.time(),
             USER: self.username,
             ACCOUNT_NAME: contact,
         }

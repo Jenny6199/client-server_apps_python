@@ -46,3 +46,81 @@
 2022-12-06 11:49:07,133   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
 2022-12-06 12:19:27,436   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
 2022-12-06 12:19:27,436   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 12:55:12,711   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 12:55:12,711   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:05:47,031   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:05:47,031   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:05:52,117   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1,порт для подключения - 7777,имя пользователя - Maksim.
+2022-12-06 13:05:52,117   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1,порт для подключения - 7777,имя пользователя - Maksim.
+2022-12-06 13:05:52,209   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:05:52,209   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:05:53,226   INFO     client_transport.py Попытка соединения № 2
+2022-12-06 13:05:53,226   INFO     client_transport.py Попытка соединения № 2
+2022-12-06 13:05:54,228   INFO     client_transport.py Попытка соединения № 3
+2022-12-06 13:05:54,228   INFO     client_transport.py Попытка соединения № 3
+2022-12-06 13:05:55,230   INFO     client_transport.py Попытка соединения № 4
+2022-12-06 13:05:55,230   INFO     client_transport.py Попытка соединения № 4
+2022-12-06 13:05:56,231   INFO     client_transport.py Попытка соединения № 5
+2022-12-06 13:05:56,231   INFO     client_transport.py Попытка соединения № 5
+2022-12-06 13:05:57,233   CRITICAL client_transport.py Не удалось подключиться к серверу!
+2022-12-06 13:05:57,233   CRITICAL client_transport.py Не удалось подключиться к серверу!
+2022-12-06 13:08:11,221   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:08:11,221   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:08:33,750   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - Maksim.
+2022-12-06 13:08:33,750   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - Maksim.
+2022-12-06 13:08:33,811   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:08:33,811   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:08:33,813   DEBUG    client_transport.py Установлено соединение с сервером
+2022-12-06 13:08:33,813   DEBUG    client_transport.py Установлено соединение с сервером
+2022-12-06 13:08:33,813   DEBUG    client_transport.py Запрос списка известных пользователей Maksim
+2022-12-06 13:08:33,813   DEBUG    client_transport.py Запрос списка известных пользователей Maksim
+2022-12-06 13:08:33,814   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 'Tue Dec  6 13:08:33 2022', 'account_name': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:08:33,814   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 'Tue Dec  6 13:08:33 2022', 'account_name': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:08:33,818   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:08:33,818   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:08:33,819   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:08:33,819   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:08:33,819   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:08:33,819   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:08:34,323   INFO     utils.py        Получены новые данные от client.
+2022-12-06 13:08:34,323   INFO     utils.py        Получены новые данные от client.
+2022-12-06 13:08:34,324   ERROR    client_transport.py Не удалось обновить список известных пользователей
+2022-12-06 13:08:34,324   ERROR    client_transport.py Не удалось обновить список известных пользователей
+2022-12-06 13:08:34,324   DEBUG    client_transport.py Запрос списка контактов для пользователя Thread-1
+2022-12-06 13:08:34,324   DEBUG    client_transport.py Запрос списка контактов для пользователя Thread-1
+2022-12-06 13:08:34,324   DEBUG    client_transport.py Сформирован запрос {'action': 'get_contact_list', 'time': 'Tue Dec  6 13:08:34 2022', 'user': 'Maksim'}
+2022-12-06 13:08:34,324   DEBUG    client_transport.py Сформирован запрос {'action': 'get_contact_list', 'time': 'Tue Dec  6 13:08:34 2022', 'user': 'Maksim'}
+2022-12-06 13:08:34,325   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 'Tue Dec  6 13:08:34 2022', 'user': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:08:34,325   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 'Tue Dec  6 13:08:34 2022', 'user': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:08:34,326   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:08:34,326   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:08:34,327   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:08:34,327   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 55956), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:08:34,327   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:08:34,327   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:08:34,829   INFO     utils.py        Получены новые данные от client.
+2022-12-06 13:08:34,829   INFO     utils.py        Получены новые данные от client.
+2022-12-06 13:08:34,830   DEBUG    client_transport.py Получен ответ {'response': 400, 'error': 'Bad Request'}
+2022-12-06 13:08:34,830   DEBUG    client_transport.py Получен ответ {'response': 400, 'error': 'Bad Request'}
+2022-12-06 13:08:34,831   ERROR    client_transport.py Не удалось обновить список контактов
+2022-12-06 13:08:34,831   ERROR    client_transport.py Не удалось обновить список контактов
+2022-12-06 13:14:45,406   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:14:45,406   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-06 13:14:51,140   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - Maksim.
+2022-12-06 13:14:51,140   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - Maksim.
+2022-12-06 13:14:51,243   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:14:51,243   INFO     client_transport.py Попытка соединения № 1
+2022-12-06 13:14:51,244   DEBUG    client_transport.py Установлено соединение с сервером
+2022-12-06 13:14:51,244   DEBUG    client_transport.py Установлено соединение с сервером
+2022-12-06 13:14:51,245   DEBUG    client_transport.py Запрос списка известных пользователей Maksim
+2022-12-06 13:14:51,245   DEBUG    client_transport.py Запрос списка известных пользователей Maksim
+2022-12-06 13:14:51,246   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58418), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1670321691.2454064, 'account_name': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:14:51,246   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58418), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1670321691.2454064, 'account_name': 'Maksim'}), {'sender': 'client'}
+2022-12-06 13:14:51,247   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:14:51,247   INFO     utils.py        Сообщение отправлено
+2022-12-06 13:14:51,255   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58418), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:14:51,255   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции client_name). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58418), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-06 13:14:51,255   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:14:51,255   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-06 13:14:56,261   ERROR    client_transport.py Refresh user_list and contact_list: connection timeout!
+2022-12-06 13:14:56,261   ERROR    client_transport.py Refresh user_list and contact_list: connection timeout!
