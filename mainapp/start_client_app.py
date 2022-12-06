@@ -1,5 +1,4 @@
 import logging
-from mainapp.log import client_log_config
 import argparse
 import sys
 from PyQt5.QtWidgets import QApplication
@@ -56,9 +55,9 @@ if __name__ == '__main__':
     # Database object
     database = ClientDatabase(client_name)
 
-    # Transpot object
+    # Transport object
+    transport = ClientTransport(server_port, server_address, database, client_name)
     try:
-        transport = ClientTransport(server_port, server_address, database, client_name)
         transport.setDaemon(True)
         transport.start()
     except ServerError as transport_fail:

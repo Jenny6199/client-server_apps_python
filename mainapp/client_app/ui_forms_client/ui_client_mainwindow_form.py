@@ -19,7 +19,14 @@ class ClientWindowMain(QMainWindow):
     """Start main window for server part of messenger"""
 
     def __init__(self, database, transport):
+        """
+        Конструктор класса ClientWindowMain
+        :param - database
+        :param - transport
+        """
+        # Инициализация суперкласса (QMainWindow)
         super(ClientWindowMain, self).__init__()
+        # Основные параметры
         self.ui = UiClientMainWindowForm()
         self.ui.setupUi(self)
         self.database = database
