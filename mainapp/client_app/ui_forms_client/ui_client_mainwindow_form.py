@@ -38,7 +38,7 @@ class ClientWindowMain(QMainWindow):
         self.ui.pushButton_send_message.clicked.connect(self.send_message)
 
         # Additional atribute
-        self.contact_model = None
+        self.contacts_model = None
         self.history_model = None
         self.messages = QMessageBox()
         self.current_chat = None
@@ -74,7 +74,13 @@ class ClientWindowMain(QMainWindow):
         pass
 
     def clients_list_update(self):
-        pass
+        contacts_list = self.database.get_contacts()
+        self.contacts_model = QStandardItemModel()
+        for i in sorted(contacts_list):
+            item = QStandardItem(i)
+            item.setEditable(False)
+            self.contacts_model.appendRow(item)
+        self.ui.list_users.setModel(self.contacts_model)
 
     def history_list_update(self):
         """

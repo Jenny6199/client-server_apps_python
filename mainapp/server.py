@@ -255,6 +255,11 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
             return
 
+        elif ACTION in message and MESSAGE[ACTION] == CONTACT_LIST and USER in message and self.names[message[USER]] == client:
+            response = RSP_200
+            response[LIST_INFO] = self.database.get_contacts(message[USER])
+            send_response(client, response, sender='server')
+
         # Получено некорректное сообщение
         else:
             send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
