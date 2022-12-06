@@ -23,7 +23,7 @@ import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
 from descriptors.port_descr import PortDescriptor
-from db_builder.server_data_base import ServerDB
+from mainapp.server_app.db_builder.server_data_base import ServerDB
 from PyQt5.QtWidgets import QApplication
 from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
 

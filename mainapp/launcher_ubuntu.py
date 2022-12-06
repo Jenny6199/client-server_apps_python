@@ -33,7 +33,7 @@ while True:
     if action == "q":
         break
     elif action == "s":
-        process.append(get_subprocess("server.py"))
+        process.append(get_subprocess("start_server_app.py"))
 
         for i in range(2):
             process.append(get_subprocess(f"start_client_app.py -n test{i+1}"))

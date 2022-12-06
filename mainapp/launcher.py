@@ -12,7 +12,7 @@ while True:
     if ACTION == 'q':
         break
     elif ACTION == 's':
-        PROCESSES.append(subprocess.Popen('python server.py',
+        PROCESSES.append(subprocess.Popen('python start_server_app.py',
                                           creationflags=subprocess.CREATE_NEW_CONSOLE))
         PROCESSES.append(subprocess.Popen('python client.py -n TestUser_1',
                                           creationflags=subprocess.CREATE_NEW_CONSOLE))
