@@ -69,10 +69,10 @@ class UiServerMainWindowForm(object):
         self.verticalLayout.addWidget(self.label)
 
         # Table
-        self.tableView = QTableView(self.verticalWidget)
-        self.tableView.setEnabled(True)
-        self.tableView.setObjectName("tableView")
-        self.verticalLayout.addWidget(self.tableView)
+        self.active_clients_tableView = QTableView(self.verticalWidget)
+        self.active_clients_tableView.setEnabled(True)
+        self.active_clients_tableView.setObjectName("active_clients_tableView")
+        self.verticalLayout.addWidget(self.active_clients_tableView)
 
         # Line_2
         self.line_2 = QFrame(self.centralwidget)
@@ -207,5 +207,5 @@ if __name__ == '__main__':
                               QStandardItem('7221'),
                               QStandardItem('22:14:39'),
                               ])
-    application.ui.tableView.setModel(test_user_list)
+    application.ui.active_clients_tableView.setModel(test_user_list)
     sys.exit(app.exec_())

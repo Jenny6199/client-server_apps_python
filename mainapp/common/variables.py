@@ -50,8 +50,19 @@ LOGGING_LEVEL = 'DEBUG'
 
 
 # Стандартные словари ответов:
-RSP_200 = {RESPONSE: 200}
-RSP_400 = {RESPONSE: 400}
+RSP_200 = {
+    RESPONSE: 200,
+}
+
+RSP_400 = {
+    RESPONSE: 400,
+    ERROR: None,
+}
+
+RSP_202 = {
+    RESPONSE: 202,
+    LIST_INFO: None,
+}
 
 # Переменные для базы данных
 SERVER_DB = 'sqlite:///server_base.db3'

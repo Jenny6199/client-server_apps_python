@@ -27,7 +27,7 @@ class UiServerClientHistoryForm(object):
         # Таблица с данными
         self.tableView = QtWidgets.QTableView(Dialog)
         self.tableView.setGeometry(QtCore.QRect(10, 20, 381, 321))
-        self.tableView.setObjectName("tableView")
+        self.tableView.setObjectName("active_clients_tableView")
 
         # Ярлык с информацией
         self.label = QtWidgets.QLabel(Dialog)

@@ -1,6 +1,7 @@
 import socket
 import threading
 import time
+import json
 from logging import getLogger
 from PyQt5.QtCore import pyqtSignal, QObject
 
@@ -65,6 +66,13 @@ class ClientTransport(threading.Thread, QObject):
             logger.critical('Не удалось подключиться к серверу!')
             raise ServerError('Не удалось подключиться к серверу!')
         logger.debug('Установлено соединение с сервером')
+        try:
+            with socket_lock:
+                send_response(self.transport, self.create_presence_message(), sender='client')
+                self.process_server_answer(get_response(self.transport, sender='client'))
+        except (OSError, json.JSONDecodeError):
+            logger.critical('Потеряно соединение с сервером!')
+            raise ServerError('Потеряно соединение с сервером!')
 
     def user_list_update(self):
         """Обеспечивает обновление таблицы известных пользователей"""

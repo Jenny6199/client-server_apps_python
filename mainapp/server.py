@@ -24,6 +24,8 @@ from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
 from descriptors.port_descr import PortDescriptor
 from db_builder.server_data_base import ServerDB
+from PyQt5.QtWidgets import QApplication
+from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
@@ -79,10 +81,11 @@ def send_contact_list(user):
 class Server(threading.Thread, metaclass=ServerVerifier):
     port = PortDescriptor()
 
-    def __init__(self, listen_address, listen_port):
+    def __init__(self, listen_address, listen_port, database):
         """Конструктор класса Server"""
         self.addr = listen_address
         self.port = listen_port
+        self.database = database
         self.clients = []
         self.messages = []
         self.names = dict()
@@ -113,6 +116,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
     def run(self):
         """Функция осуществляет запуск и  поддерживает основной цикл работы сервера"""
         banner()
+        global new_connection
         self.init_socket()
         while True:
             try:
@@ -140,28 +144,35 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                     try:
                         self.process_client_message(
                             get_response(client_with_message, sender='server'),
-                            self.messages,
                             client_with_message,
-                            self.clients,
-                            self.names
                             )
                     except TimeoutError:
                         SERVER_LOG.info(
                             f'Клиент {client_with_message.getpeername()} отключился от сервера')
+                        for name in self.names:
+                            if self.names[name] == client_with_message:
+                                self.database.user_logout(name)
+                                del self.names[name]
+                                break
                         self.clients.remove(client_with_message)
+                        with conflag_lock:
+                            new_connection = True
 
             # Обрабатываем сообщения
             for mail in self.messages:
                 try:
-                    self.process_message(mail, self.names, send_data_list)
+                    self.process_message(mail, send_data_list)
                 except ConnectionError:
                     SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
                     self.clients.remove(self.names[mail[DESTINATION]])
+                    self.database.user_logout(mail[DESTINATION])
                     del self.names[mail[DESTINATION]]
+                    with conflag_lock:
+                        new_connection = True
             self.messages.clear()
 
     @debug_log
-    def process_client_message(self, message, messages_list, client, clients, names):
+    def process_client_message(self, message, client):
         """
         Функция обработчик сообщений полученных от клиента
         На вход принимает словарь - проверяет соответствие форме,
@@ -169,11 +180,9 @@ class Server(threading.Thread, metaclass=ServerVerifier):
         добавляет сообщение в список сообщений
         возвращает None
         :param message: data from client
-        :param messages_list: list of data
         :param client: object of client
-        :param clients: list of clients
-        :param names: clients account_name's list.
         """
+        global new_connection
         SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
 
         # Получено приветственное сообщение.
@@ -183,8 +192,10 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 and USER in message:
             SERVER_LOG.debug('Получено приветственное сообщение.')
             # Проверка регистрации клиента
-            if message[USER][ACCOUNT_NAME] not in names.keys():
-                names[message[USER][ACCOUNT_NAME]] = client
+            if message[USER][ACCOUNT_NAME] not in self.names.keys():
+                self.names[message[USER][ACCOUNT_NAME]] = client
+                client_ip, client_port = client.getpeername()
+                self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 response = RSP_200
                 SERVER_LOG.debug('Ответ клиенту - 200:OK')
             else:
@@ -255,10 +266,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
             return
 
-        elif ACTION in message and MESSAGE[ACTION] == CONTACT_LIST and USER in message and self.names[message[USER]] == client:
-            response = RSP_200
-            response[LIST_INFO] = self.database.get_contacts(message[USER])
-            send_response(client, response, sender='server')
+        # elif ACTION in message \
+        #         and message[ACTION] == CONTACT_LIST \
+        #         and USER in message \
+        #         and self.names[message[USER]] == client:
+        #     response = RSP_202
+        #     response[LIST_INFO] = self.database.get_contacts(message[USER])
+        #     send_response(client, response, sender='server')
 
         # Получено некорректное сообщение
         else:
@@ -309,9 +323,12 @@ def main():
     database = ServerDB()
 
     # Создается экземпляр класса сервера и запускается в потоке
-    server = Server(listen_address, listen_port)
+    server = Server(listen_address, listen_port, database)
     server.daemon = True
     server.start()
+    server_app = QApplication(sys.argv)
+    main_window = ServerWindowMain()
+    main_window.statusBar().showMessage('Server is working!')
 
     while True:
         command = input('Введите команду: ')
