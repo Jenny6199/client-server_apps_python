@@ -11,7 +11,6 @@ from mainapp.client_app.client_transport import ClientTransport
 from mainapp.client_app.ui_forms_client.ui_client_mainwindow_form import ClientWindowMain
 from mainapp.client_app.ui_forms_client.client_startwindow_form import ClientStartWindow
 
-
 CLIENT_LOG = logging.getLogger('client')
 
 
@@ -26,11 +25,11 @@ def arg_parser():
     parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
     parser.add_argument('-n', default=None, nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
-    if not 1023 < namespace.p < 65536:    # Проверка доступности порта
+    if not 1023 < namespace.p < 65536:  # Проверка доступности порта
         CLIENT_LOG.critical(f'Попытка запуска клиента с неподходящим номером порта: {namespace.p}.'
                             f'Допустимы адреса с 1024 до 65535. Клиент завершает работу.')
         sys.exit(1)
-    return namespace.a, namespace.p, namespace.n    # server_address, server_port, client_name
+    return namespace.a, namespace.p, namespace.n  # server_address, server_port, client_name
 
 
 if __name__ == '__main__':
@@ -50,9 +49,9 @@ if __name__ == '__main__':
             exit(0)
 
     CLIENT_LOG.info(f'Запуск клиентского приложения с параметрами: '
-                f'адрес сервера - {server_address}, '
-                f'порт для подключения - {server_port}, '
-                f'имя пользователя - {client_name}.')
+                    f'адрес сервера - {server_address}, '
+                    f'порт для подключения - {server_port}, '
+                    f'имя пользователя - {client_name}.')
 
     # Database object
     database = ClientDatabase(client_name)
@@ -60,9 +59,18 @@ if __name__ == '__main__':
     # Transpot object
     try:
         transport = ClientTransport(server_port, server_address, database, client_name)
+        transport.setDaemon(True)
+        transport.start()
     except ServerError as transport_fail:
         print(transport_fail.text)
         exit(1)
-    transport.setDaemon(True)
-    transport.start()
+
+    # MainWindow object
+    main_window = ClientWindowMain(database, transport)
+    main_window.make_connection(transport)
+    main_window.setWindowTitle(f'GeekBrains. Сетевой чат. Клиент - {client_name}.')
+    client_app.exec_()
+
+    transport.transport_shutdown()
+    transport.join()
     print('OK!')

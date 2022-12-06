@@ -11,6 +11,7 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, \
     QWidget, QLabel, QListView, QMessageBox
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
 from PyQt5.QtCore import pyqtSlot, QEvent, Qt
 
 
@@ -34,9 +35,9 @@ class ClientWindowMain(QMainWindow):
         self.history_model = None
         self.messages = QMessageBox()
         self.current_chat = None
-        self.ui.listView_2.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.ui.listView_2.setWordWrap(True)
-        self.ui.listView.doubleClicked.connect(self.select_active_user)
+        self.ui.list_messages.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.list_messages.setWordWrap(True)
+        self.ui.list_users.doubleClicked.connect(self.select_active_user)
         self.clients_list_update()
         self.set_disable_input()
 
@@ -68,6 +69,63 @@ class ClientWindowMain(QMainWindow):
     def clients_list_update(self):
         pass
 
+    def history_list_update(self):
+        """
+        Обеспечивает обновление истории сообщений и вывод их в диалоговое окно.
+        :param - None
+        :return - None
+        """
+        # Загружаем сообщения из базы данных сортированным списком
+        history_list = sorted(self.database.get_history(self.current_chat),
+                              key=lambda item: item[3]
+                              )
+        # Если запуск первый -> создаем модель.
+        if not self.history_model:
+            self.history_model = QStandardItemModel()
+            self.ui.list_messages.setMode(self.history_model)
+        self.history_model.clear()
+        history_list_length = len(history_list)
+        start_index = 0
+        if history_list_length > 20:
+            start_index = history_list_length - 20
+        for i in range(start_index, history_list_length):
+            item = list[i]
+            # Разделяем стили оформления входящих и исходящих сообщений
+            if item[1] == 'in':
+                mess = QStandardItem(
+                    f'Входящее сообщение от {item[3].replace(microsecond=0)}:\n'
+                    f' {item[2]}'
+                )
+                mess.setEditable(False)
+                mess.setBackground(QBrush(QColor(255, 213, 213)))
+                mess.setTextAlignment(Qt.AlignLeft)
+                self.history_model.appendRow(mess)
+            else:
+                mess = QStandardItem(
+                    f'Входящее сообщение от {item[3].replace(microsecond=0)}:\n'
+                    f' {item[2]}'
+                )
+                mess.setEditable(False)
+                mess.setBackground(QBrush(QColor(204, 255, 204)))
+                mess.setTextAlignment(Qt.AlignRight)
+                self.history_model.appendRow(mess)
+        self.ui.list_messages.scrollToBottom()
+
+    @pyqtSlot()
+    def message(self, sender):
+        """Слот-обработчик приёма нового сообщения"""
+        if sender == self.current_chat:
+            self.his
+
+    def make_connection(self, transport_object):
+        transport_object.new_message.connect(self.message)
+        transport_object.connection_lost.connect(self.connection_lost)
+
+    @pyqtSlot()
+    def connection_lost(self):
+        self.messages.warning(self, 'Сбой соединения', 'Потеряно соединение с сервером!')
+        self.close()
+
 
 class UiClientMainWindowForm(object):
     def setupUi(self, MainWindow):
@@ -79,15 +137,15 @@ class UiClientMainWindowForm(object):
         self.label = QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 141, 21))
         self.label.setObjectName("label")
-        self.listView = QListView(self.centralwidget)
-        self.listView.setGeometry(QtCore.QRect(10, 40, 181, 281))
-        self.listView.setObjectName("listView")
+        self.list_users = QListView(self.centralwidget)
+        self.list_users.setGeometry(QtCore.QRect(10, 40, 181, 281))
+        self.list_users.setObjectName("list_users")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(200, 10, 231, 21))
         self.label_2.setObjectName("label_2")
-        self.listView_2 = QListView(self.centralwidget)
-        self.listView_2.setGeometry(QtCore.QRect(200, 40, 341, 281))
-        self.listView_2.setObjectName("listView_2")
+        self.list_messages = QListView(self.centralwidget)
+        self.list_messages.setGeometry(QtCore.QRect(200, 40, 341, 281))
+        self.list_messages.setObjectName("list_messages")
 
         # Ярлык информационное сообщение
         self.label_3 = QtWidgets.QLabel(self.centralwidget)

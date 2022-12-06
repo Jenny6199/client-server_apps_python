@@ -197,7 +197,7 @@ class ClientTransport(threading.Thread, QObject):
         }
         with socket_lock:
             try:
-                send_response(self.transport, message)
+                send_response(self.transport, message, sender='client')
             except OSError:
                 pass
         logger.debug('Сокет закрыт')
