@@ -25,6 +25,7 @@ from metaclasses.server_metaclass import ServerVerifier
 from descriptors.port_descr import PortDescriptor
 from mainapp.server_app.db_builder.server_data_base import ServerDB
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QTimer
 from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
 
 # Инициализация журнала логирования сервера.
@@ -315,6 +316,11 @@ def print_help():
     print('help - вывод справки по поддерживаемым командам')
 
 
+def active_users_list_update():
+    global new_connection
+    if new_connection:
+        main_window.active_clients_tableView.setModel()
+
 def main():
     # Загрузка параметров коммандной строки
     listen_address, listen_port = arg_parser()
@@ -328,7 +334,15 @@ def main():
     server.start()
     server_app = QApplication(sys.argv)
     main_window = ServerWindowMain()
-    main_window.statusBar().showMessage('Server is working!')
+    main_window.statusBar().showMessage(f'Сервер запущен, прослушивает порт {listen_port} !')
+
+    # Timer
+    timer = QTimer()
+    timer.timeout.connect(active_users_list_update)
+    timer.start(1000)
+
+
+    server_app.exec_()
 
     while True:
         command = input('Введите команду: ')
