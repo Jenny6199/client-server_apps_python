@@ -232,3 +232,32 @@
 2022-12-06 23:12:42,621   DEBUG    server.py       Ответ клиенту - 400:Bad Request
 2022-12-06 23:29:13,416   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
 2022-12-06 23:34:01,539   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 00:03:08,801   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 00:04:41,698   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 00:05:39,208   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 00:05:57,226   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 41908)
+2022-12-07 00:05:57,730   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>,), {'sender': 'server'}
+2022-12-07 00:05:57,731   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 00:05:57,731   INFO     utils.py        Получены новые данные от server.
+2022-12-07 00:05:57,732   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140021399582464)>, {'action': 'presence', 'time': 1670360757.2274542, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>), {}
+2022-12-07 00:05:57,732   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670360757.2274542, 'user': {'account_name': 'Maksim'}}
+2022-12-07 00:05:57,733   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 00:05:57,780   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 00:05:57,781   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 00:05:57,781   INFO     utils.py        Сообщение отправлено
+2022-12-07 00:05:58,283   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>,), {'sender': 'server'}
+2022-12-07 00:05:58,283   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 00:05:58,283   INFO     utils.py        Получены новые данные от server.
+2022-12-07 00:05:58,284   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140021399582464)>, {'action': 'get_users', 'time': 1670360757.7827048, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>), {}
+2022-12-07 00:05:58,284   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670360757.7827048, 'account_name': 'Maksim'}
+2022-12-07 00:05:58,285   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>, {'response': 400, 'error': 'Bad Request'}), {'sender': 'server'}
+2022-12-07 00:05:58,285   INFO     utils.py        Сообщение отправлено
+2022-12-07 00:05:58,285   DEBUG    start_server_app.py Ответ клиенту - 400:Bad Request
+2022-12-07 00:05:58,787   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>,), {'sender': 'server'}
+2022-12-07 00:05:58,787   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 00:05:58,788   INFO     utils.py        Получены новые данные от server.
+2022-12-07 00:05:58,789   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140021399582464)>, {'action': 'get_contact_list', 'time': 1670360758.2865307, 'user': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>), {}
+2022-12-07 00:05:58,789   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_contact_list', 'time': 1670360758.2865307, 'user': 'Maksim'}
+2022-12-07 00:05:58,790   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 41908)>, {'response': 400, 'error': 'Bad Request'}), {'sender': 'server'}
+2022-12-07 00:05:58,791   INFO     utils.py        Сообщение отправлено
+2022-12-07 00:05:58,791   DEBUG    start_server_app.py Ответ клиенту - 400:Bad Request

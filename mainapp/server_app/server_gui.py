@@ -30,5 +30,5 @@ def gui_create_model(database):
     return table_view
 
 
-def create_stat_model(database):
+def gui_create_stat_model(database):
     pass

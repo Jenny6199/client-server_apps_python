@@ -30,6 +30,9 @@ from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerW
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
+# Флаги
+new_connection = False
+conflag_lock = threading.Lock()
 
 
 def arg_parser():
@@ -282,23 +285,22 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             return
 
     @debug_log
-    def process_message(self, message, names, listen_socks):
+    def process_message(self, message, listen_socks):
         """
         Функция для отправки сообщения конкретному клиенту
         Принимает словарь с сообщением, список пользователей, список сокетов.
         Возвращает None.
         :param message: dict - message
-        :param names: list - clients' list
         :param listen_socks: list - sockets' list
         :return: None
         """
-        if message[DESTINATION] in names \
-                and names[message[DESTINATION]] in listen_socks:
-            send_response(names[message[DESTINATION]], message, sender='server')
+        if message[DESTINATION] in self.names \
+                and self.names[message[DESTINATION]] in listen_socks:
+            send_response(self.names[message[DESTINATION]], message, sender='server')
             SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]} '
                             f'пользователю {message[SENDER]}')
-        elif message[DESTINATION] in names \
-                and names[message[DESTINATION]] not in listen_socks:
+        elif message[DESTINATION] in self.names \
+                and self.names[message[DESTINATION]] not in listen_socks:
             raise ConnectionError
         else:
             SERVER_LOG.error(
@@ -317,9 +319,19 @@ def print_help():
 
 
 def active_users_list_update():
+    """
+    Обеспечивает обновление списка активных клиентов
+    :param - None
+    :return - None
+    """
     global new_connection
     if new_connection:
-        main_window.active_clients_tableView.setModel()
+        main_window.active_clients_tableView.setModel(gui_create_model(database))
+        main_window.active_clients_tableView.resizeColumnsToContents()
+        main_window.active_clients_tableView.resizeRowsToContents()
+        with conflag_lock:
+            new_connection = False
+
 
 def main():
     # Загрузка параметров коммандной строки
