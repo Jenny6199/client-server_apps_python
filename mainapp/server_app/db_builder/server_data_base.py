@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine, Table, Column, Integer, String,\
     MetaData, ForeignKey, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-# from ..common.variables import SERVER_DB
+from mainapp.common.variables import SERVER_DB
 # from uuid import uuid4
 from _datetime import datetime
 from pprint import pprint
 
-SERVER_DB = 'sqlite:///server_base.db3'
+# SERVER_DB = 'sqlite:///server_base.db3'
 
 
 class ServerDB:
@@ -157,7 +157,7 @@ class ServerDB:
         """
         query = self.session.query(
             self.AllUsers.name,
-            self.AllUsers.last_login
+            self.AllUsers.last_login,
         )
         return query.all()
 

@@ -75,7 +75,9 @@ class ClientTransport(threading.Thread, QObject):
             raise ServerError('Потеряно соединение с сервером!')
 
     def user_list_update(self):
-        """Обеспечивает обновление таблицы известных пользователей"""
+        """
+        Обеспечивает обновление таблицы известных пользователей
+        """
         logger.debug(f'Запрос списка известных пользователей {self.username}')
         request = {
             ACTION: USERS_REQUEST,
@@ -86,11 +88,14 @@ class ClientTransport(threading.Thread, QObject):
             send_response(self.transport, request, sender='client')
             answer = get_response(self.transport, sender='client')
         if RESPONSE in answer and answer[RESPONSE] == 202:
-            self.database.add_users(answer[LIST_INFO])
+            self.database.add_user(answer[LIST_INFO])
         else:
             logger.error('Не удалось обновить список известных пользователей')
 
     def contact_list_update(self):
+        """
+        Обеспечивает обработку запроса на обновление списка контактов
+        """
         logger.debug(f'Запрос списка контактов для пользователя {self.name}')
         request = {
             ACTION: CONTACT_LIST,
@@ -117,7 +122,7 @@ class ClientTransport(threading.Thread, QObject):
             TIME: time.time(),
             MESSAGE_TEXT: message,
         }
-        logger.debug(f'Сформирован словать сообщения: {message_dict}')
+        logger.debug(f'Сформирован словарь сообщения: {message_dict}')
         with socket_lock:
             send_response(self.transport, message_dict, sender='client')
             self.process_server_answer(get_response(self.transport))

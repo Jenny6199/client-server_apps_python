@@ -19,7 +19,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
-    WHOS_HERE, CONTACT_LIST, USERS_REQUEST
+    WHOS_HERE, CONTACT_LIST, USERS_REQUEST,LIST_INFO
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
@@ -148,10 +148,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             if res_data_list:
                 for client_with_message in res_data_list:
                     try:
-                        self.process_client_message(
-                            get_response(client_with_message, sender='server'),
-                            client_with_message,
-                            )
+                        self.process_client_message(get_response(client_with_message, sender='server'), client_with_message)
                     except TimeoutError:
                         SERVER_LOG.info(
                             f'Клиент {client_with_message.getpeername()} отключился от сервера')
@@ -217,11 +214,14 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             return
 
         # Запрос на получение списка известных пользователей
-        elif ACTION in message and message[ACTION] == USERS_REQUEST and ACCOUNT_NAME in message and self.names[message[ACCOUNT_NAME]] == client:
+        elif ACTION in message \
+                and message[ACTION] == USERS_REQUEST \
+                and ACCOUNT_NAME in message \
+                and self.names[message[ACCOUNT_NAME]] == client:
             SERVER_LOG.debug('Получен запрос на получение списка известных пользователей.')
             response = RSP_202
             response[LIST_INFO] = [user[0] for user in self.database.users_list()]
-            send_response(client, respose, sender='server')
+            send_response(client, response, sender='server')
 
         # Получен запрос о получении списка контактов
         # elif ACTION in message \
