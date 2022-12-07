@@ -594,3 +594,364 @@
 2022-12-07 12:25:35,270   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139654785697536)>, {'action': 'get_users', 'time': 1670405134.7650163, 'account_name': 'test1'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40540)>), {}
 2022-12-07 12:25:35,270   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670405134.7650163, 'account_name': 'test1'}
 2022-12-07 12:25:35,270   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 12:32:05,490   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 12:32:20,411   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 58990)
+2022-12-07 12:32:20,915   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>,), {'sender': 'server'}
+2022-12-07 12:32:20,915   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:32:20,916   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:32:20,917   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139687244105472)>, {'action': 'presence', 'time': 1670405540.4111974, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>), {}
+2022-12-07 12:32:20,917   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670405540.4111974, 'user': {'account_name': 'Maksim'}}
+2022-12-07 12:32:20,918   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 12:32:20,952   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 12:32:20,953   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 12:32:20,953   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:32:21,455   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>,), {'sender': 'server'}
+2022-12-07 12:32:21,455   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:32:21,455   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:32:21,456   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139687244105472)>, {'action': 'get_users', 'time': 1670405540.9542696, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>), {}
+2022-12-07 12:32:21,457   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670405540.9542696, 'account_name': 'Maksim'}
+2022-12-07 12:32:21,458   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 12:32:21,477   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 58990)>, {'response': 202, 'data_list': ['Maksim', 'test1']}), {'sender': 'server'}
+2022-12-07 12:32:21,501   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:35:41,529   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 12:35:52,749   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 47722)
+2022-12-07 12:35:53,253   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>,), {'sender': 'server'}
+2022-12-07 12:35:53,253   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:35:53,254   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:35:53,255   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139729474586368)>, {'action': 'presence', 'time': 1670405752.7500758, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>), {}
+2022-12-07 12:35:53,256   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670405752.7500758, 'user': {'account_name': 'Maksim'}}
+2022-12-07 12:35:53,256   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 12:35:53,288   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 12:35:53,289   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 12:35:53,293   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:35:53,795   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>,), {'sender': 'server'}
+2022-12-07 12:35:53,795   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:35:53,795   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:35:53,796   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139729474586368)>, {'action': 'get_users', 'time': 1670405753.2910724, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>), {}
+2022-12-07 12:35:53,797   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670405753.2910724, 'account_name': 'Maksim'}
+2022-12-07 12:35:53,797   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 12:35:53,805   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1']}
+2022-12-07 12:35:53,806   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 47722)>, {'response': 202, 'data_list': ['Maksim', 'test1']}), {'sender': 'server'}
+2022-12-07 12:35:53,812   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:45:32,322   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 12:45:59,889   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 43406)
+2022-12-07 12:46:00,392   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 43406)>,), {'sender': 'server'}
+2022-12-07 12:46:00,393   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:46:00,393   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:46:00,394   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140035837748992)>, {'action': 'presence', 'time': 1670406359.8903298, 'user': {'account_name': 'Ьфлышь'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 43406)>), {}
+2022-12-07 12:46:00,395   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670406359.8903298, 'user': {'account_name': 'Ьфлышь'}}
+2022-12-07 12:46:00,395   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 12:46:00,497   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 12:46:00,498   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 43406)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 12:46:00,509   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:46:01,011   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 43406)>,), {'sender': 'server'}
+2022-12-07 12:46:01,011   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:46:01,012   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:46:01,012   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140035837748992)>, {'action': 'get_users', 'time': 1670406360.5000615, 'account_name': 'Ьфлышь'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 43406)>), {}
+2022-12-07 12:46:01,013   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670406360.5000615, 'account_name': 'Ьфлышь'}
+2022-12-07 12:46:01,013   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 12:49:41,564   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 12:49:54,327   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 46718)
+2022-12-07 12:49:54,830   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>,), {'sender': 'server'}
+2022-12-07 12:49:54,831   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:49:54,831   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:49:54,832   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139843313809152)>, {'action': 'presence', 'time': 1670406594.3280976, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>), {}
+2022-12-07 12:49:54,832   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670406594.3280976, 'user': {'account_name': 'Maksim'}}
+2022-12-07 12:49:54,832   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 12:49:54,866   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 12:49:54,867   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 12:49:54,869   INFO     utils.py        Сообщение отправлено
+2022-12-07 12:49:55,370   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>,), {'sender': 'server'}
+2022-12-07 12:49:55,371   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 12:49:55,371   INFO     utils.py        Получены новые данные от server.
+2022-12-07 12:49:55,372   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139843313809152)>, {'action': 'get_users', 'time': 1670406594.8688908, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>), {}
+2022-12-07 12:49:55,373   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670406594.8688908, 'account_name': 'Maksim'}
+2022-12-07 12:49:55,373   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 12:49:55,389   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 12:49:55,399   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 46718)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 12:49:55,414   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:02:33,217   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 13:02:43,429   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 33618)
+2022-12-07 13:02:43,933   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>,), {'sender': 'server'}
+2022-12-07 13:02:43,933   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:02:43,936   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:02:43,937   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139868334114560)>, {'action': 'presence', 'time': 1670407363.4304583, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>), {}
+2022-12-07 13:02:43,937   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670407363.4304583, 'user': {'account_name': 'Maksim'}}
+2022-12-07 13:02:43,937   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 13:02:43,972   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 13:02:43,972   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 13:02:43,973   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:02:44,474   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>,), {'sender': 'server'}
+2022-12-07 13:02:44,475   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:02:44,475   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:02:44,476   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139868334114560)>, {'action': 'get_users', 'time': 1670407363.9744086, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>), {}
+2022-12-07 13:02:44,477   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670407363.9744086, 'account_name': 'Maksim'}
+2022-12-07 13:02:44,477   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 13:02:44,490   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 13:02:44,499   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 33618)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 13:02:44,509   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:10:02,704   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 13:10:13,038   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 53436)
+2022-12-07 13:10:13,542   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>,), {'sender': 'server'}
+2022-12-07 13:10:13,543   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:10:13,544   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:10:13,545   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140148344055552)>, {'action': 'presence', 'time': 1670407813.039732, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>), {}
+2022-12-07 13:10:13,545   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670407813.039732, 'user': {'account_name': 'Maksim'}}
+2022-12-07 13:10:13,546   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 13:10:13,580   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 13:10:13,582   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 13:10:13,586   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:10:14,088   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>,), {'sender': 'server'}
+2022-12-07 13:10:14,089   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:10:14,089   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:10:14,090   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140148344055552)>, {'action': 'get_users', 'time': 1670407813.5834923, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>), {}
+2022-12-07 13:10:14,090   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670407813.5834923, 'account_name': 'Maksim'}
+2022-12-07 13:10:14,091   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 13:10:14,102   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 13:10:14,103   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53436)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 13:10:14,119   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:15:16,478   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 13:15:30,850   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 32948)
+2022-12-07 13:15:31,354   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 32948)>,), {'sender': 'server'}
+2022-12-07 13:15:31,355   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:15:31,355   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:15:31,356   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140064174991104)>, {'action': 'presence', 'time': 1670408130.851026, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 32948)>), {}
+2022-12-07 13:15:31,356   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670408130.851026, 'user': {'account_name': 'Maksim'}}
+2022-12-07 13:15:31,356   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 13:15:31,404   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 13:15:31,408   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 32948)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 13:15:31,412   INFO     utils.py        Сообщение отправлено
+2022-12-07 13:15:31,914   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 32948)>,), {'sender': 'server'}
+2022-12-07 13:15:31,914   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 13:15:31,915   INFO     utils.py        Получены новые данные от server.
+2022-12-07 13:15:31,915   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140064174991104)>, {'action': 'get_users', 'time': 1670408131.4100733, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 32948)>), {}
+2022-12-07 13:15:31,916   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670408131.4100733, 'account_name': 'Maksim'}
+2022-12-07 13:15:31,916   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:20:30,632   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:20:43,585   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 48240)
+2022-12-07 14:20:44,090   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 48240)>,), {'sender': 'server'}
+2022-12-07 14:20:44,090   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:20:44,091   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:20:44,092   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140547728852736)>, {'action': 'presence', 'time': 1670412043.5860093, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 48240)>), {}
+2022-12-07 14:20:44,093   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670412043.5860093, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:20:44,093   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:20:44,126   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:20:44,127   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 48240)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:20:44,127   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:20:44,628   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 48240)>,), {'sender': 'server'}
+2022-12-07 14:20:44,629   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:20:44,629   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:20:44,630   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140547728852736)>, {'action': 'get_users', 'time': 1670412044.1284828, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 48240)>), {}
+2022-12-07 14:20:44,630   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670412044.1284828, 'account_name': 'Maksim'}
+2022-12-07 14:20:44,630   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:26:11,769   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:26:20,510   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 44186)
+2022-12-07 14:26:21,014   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44186)>,), {'sender': 'server'}
+2022-12-07 14:26:21,014   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:26:21,015   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:26:21,016   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140143560738560)>, {'action': 'presence', 'time': 1670412380.512109, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44186)>), {}
+2022-12-07 14:26:21,016   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670412380.512109, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:26:21,017   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:26:21,052   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:26:21,053   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44186)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:26:21,054   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:26:21,555   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44186)>,), {'sender': 'server'}
+2022-12-07 14:26:21,556   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:26:21,565   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:26:21,565   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140143560738560)>, {'action': 'get_users', 'time': 1670412381.054884, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44186)>), {}
+2022-12-07 14:26:21,566   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670412381.054884, 'account_name': 'Maksim'}
+2022-12-07 14:26:21,566   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:27:31,547   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:27:47,849   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 50882)
+2022-12-07 14:27:48,353   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50882)>,), {'sender': 'server'}
+2022-12-07 14:27:48,354   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:27:48,354   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:27:48,355   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140435628390144)>, {'action': 'presence', 'time': 1670412467.8495443, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50882)>), {}
+2022-12-07 14:27:48,356   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670412467.8495443, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:27:48,356   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:27:48,405   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:27:48,405   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50882)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:27:48,406   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:27:48,915   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50882)>,), {'sender': 'server'}
+2022-12-07 14:27:48,916   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:27:48,916   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:27:48,916   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140435628390144)>, {'action': 'get_users', 'time': 1670412468.407329, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50882)>), {}
+2022-12-07 14:27:48,917   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670412468.407329, 'account_name': 'Maksim'}
+2022-12-07 14:27:48,917   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:28:36,057   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:28:45,672   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 51944)
+2022-12-07 14:28:46,175   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51944)>,), {'sender': 'server'}
+2022-12-07 14:28:46,175   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:28:46,175   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:28:46,176   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140701453817600)>, {'action': 'presence', 'time': 1670412525.673102, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51944)>), {}
+2022-12-07 14:28:46,176   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670412525.673102, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:28:46,176   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:28:46,210   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:28:46,211   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51944)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:28:46,211   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:28:46,714   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51944)>,), {'sender': 'server'}
+2022-12-07 14:28:46,714   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:28:46,714   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:28:46,715   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140701453817600)>, {'action': 'get_users', 'time': 1670412526.2123706, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 51944)>), {}
+2022-12-07 14:28:46,717   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670412526.2123706, 'account_name': 'Maksim'}
+2022-12-07 14:28:46,717   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:38:59,100   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:39:08,479   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 53834)
+2022-12-07 14:39:08,984   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53834)>,), {'sender': 'server'}
+2022-12-07 14:39:08,985   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:39:08,985   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:39:08,986   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140475646666496)>, {'action': 'presence', 'time': 1670413148.4804165, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53834)>), {}
+2022-12-07 14:39:08,987   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670413148.4804165, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:39:08,987   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:39:09,021   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:39:09,022   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53834)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:39:09,022   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:39:09,524   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53834)>,), {'sender': 'server'}
+2022-12-07 14:39:09,525   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:39:09,525   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:39:09,526   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140475646666496)>, {'action': 'get_users', 'time': 1670413149.0236537, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 53834)>), {}
+2022-12-07 14:39:09,526   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670413149.0236537, 'account_name': 'Maksim'}
+2022-12-07 14:39:09,528   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:41:55,088   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:42:12,443   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 55680)
+2022-12-07 14:42:12,946   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55680)>,), {'sender': 'server'}
+2022-12-07 14:42:12,947   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:42:12,947   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:42:12,948   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140290787723008)>, {'action': 'presence', 'time': 1670413332.4436986, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55680)>), {}
+2022-12-07 14:42:12,949   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670413332.4436986, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:42:12,949   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:42:13,000   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:42:13,001   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55680)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:42:13,001   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:42:13,503   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55680)>,), {'sender': 'server'}
+2022-12-07 14:42:13,504   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:42:13,504   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:42:13,505   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140290787723008)>, {'action': 'get_users', 'time': 1670413333.0052958, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 55680)>), {}
+2022-12-07 14:42:13,505   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670413333.0052958, 'account_name': 'Maksim'}
+2022-12-07 14:42:13,506   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 14:44:13,328   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:44:23,994   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 40834)
+2022-12-07 14:44:23,997   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40834)>,), {'sender': 'server'}
+2022-12-07 14:44:23,997   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:44:23,998   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:44:23,998   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140434218252032)>, {'action': 'presence', 'time': 1670413463.9895535, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40834)>), {}
+2022-12-07 14:44:23,999   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670413463.9895535, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:44:23,999   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:44:24,072   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:44:24,073   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40834)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:44:24,074   INFO     utils.py        Сообщение отправлено
+2022-12-07 14:47:09,767   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40834)>,), {'sender': 'server'}
+2022-12-07 14:47:09,767   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:47:09,768   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:47:09,769   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140434218252032)>, {'action': 'exit', 'time': 1670413629.5498538, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 40834)>), {}
+2022-12-07 14:47:09,769   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'exit', 'time': 1670413629.5498538, 'account_name': 'Maksim'}
+2022-12-07 14:47:09,769   DEBUG    start_server_app.py Получено сообщение о выходе клиента.
+2022-12-07 14:59:40,304   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 14:59:53,837   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 57542)
+2022-12-07 14:59:54,340   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57542)>,), {'sender': 'server'}
+2022-12-07 14:59:54,341   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 14:59:54,341   INFO     utils.py        Получены новые данные от server.
+2022-12-07 14:59:54,345   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140608427276032)>, {'action': 'presence', 'time': 1670414393.838181, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57542)>), {}
+2022-12-07 14:59:54,345   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670414393.838181, 'user': {'account_name': 'Maksim'}}
+2022-12-07 14:59:54,346   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 14:59:54,389   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 14:59:54,389   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57542)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 14:59:54,390   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:01:27,006   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57542)>,), {'sender': 'server'}
+2022-12-07 15:01:27,006   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:01:27,007   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:01:27,008   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140608427276032)>, {'action': 'exit', 'time': 1670414486.598563, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 57542)>), {}
+2022-12-07 15:01:27,008   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'exit', 'time': 1670414486.598563, 'account_name': 'Maksim'}
+2022-12-07 15:01:27,008   DEBUG    start_server_app.py Получено сообщение о выходе клиента.
+2022-12-07 15:01:27,038   DEBUG    start_server_app.py Удаление клиента Maksim из базы данных прошло успешно.
+2022-12-07 15:01:27,039   DEBUG    start_server_app.py Процедура выхода клиента прошла штатно.
+2022-12-07 15:01:52,540   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 15:02:03,465   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 54142)
+2022-12-07 15:02:03,969   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>,), {'sender': 'server'}
+2022-12-07 15:02:03,969   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:02:03,970   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:02:03,970   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139978817935104)>, {'action': 'presence', 'time': 1670414523.4668565, 'user': {'account_name': 'Maksim'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>), {}
+2022-12-07 15:02:03,971   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670414523.4668565, 'user': {'account_name': 'Maksim'}}
+2022-12-07 15:02:03,971   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 15:02:04,013   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 15:02:04,013   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 15:02:04,014   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:02:04,516   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>,), {'sender': 'server'}
+2022-12-07 15:02:04,516   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:02:04,517   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:02:04,517   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139978817935104)>, {'action': 'get_users', 'time': 1670414524.0152247, 'account_name': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>), {}
+2022-12-07 15:02:04,518   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670414524.0152247, 'account_name': 'Maksim'}
+2022-12-07 15:02:04,518   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 15:02:04,530   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 15:02:04,536   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 15:02:04,538   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:02:05,052   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>,), {'sender': 'server'}
+2022-12-07 15:02:05,052   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:02:05,053   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:02:05,053   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 139978817935104)>, {'action': 'get_contact_list', 'time': 1670414524.5709956, 'user': 'Maksim'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 54142)>), {}
+2022-12-07 15:02:05,054   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_contact_list', 'time': 1670414524.5709956, 'user': 'Maksim'}
+2022-12-07 15:05:05,694   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 15:05:33,690   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 15:05:36,282   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 44274)
+2022-12-07 15:05:36,785   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>,), {'sender': 'server'}
+2022-12-07 15:05:36,785   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:05:36,786   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:05:36,787   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140627775829760)>, {'action': 'presence', 'time': 1670414736.2821143, 'user': {'account_name': 'test1'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>), {}
+2022-12-07 15:05:36,787   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670414736.2821143, 'user': {'account_name': 'test1'}}
+2022-12-07 15:05:36,787   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 15:05:36,867   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 15:05:36,868   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 15:05:36,869   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:05:37,370   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>,), {'sender': 'server'}
+2022-12-07 15:05:37,370   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:05:37,370   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:05:37,371   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140627775829760)>, {'action': 'get_users', 'time': 1670414736.869775, 'account_name': 'test1'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>), {}
+2022-12-07 15:05:37,371   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670414736.869775, 'account_name': 'test1'}
+2022-12-07 15:05:37,371   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 15:05:37,375   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 15:05:37,377   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 15:05:37,378   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:05:37,879   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>,), {'sender': 'server'}
+2022-12-07 15:05:37,880   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:05:37,880   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:05:37,881   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140627775829760)>, {'action': 'get_contact_list', 'time': 1670414737.4026752, 'user': 'test1'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 44274)>), {}
+2022-12-07 15:05:37,881   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_contact_list', 'time': 1670414737.4026752, 'user': 'test1'}
+2022-12-07 15:07:01,788   INFO     start_server_app.py Запущен сервер, порт для подключений 7777. Адрес для входящих подключений . Если адрес не указан, принимаются соединения с любых адресов. Сервер ожидает входящие сообщения.
+2022-12-07 15:07:04,703   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 49884)
+2022-12-07 15:07:04,706   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>,), {'sender': 'server'}
+2022-12-07 15:07:04,706   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:07:04,707   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:07:04,707   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140715420784384)>, {'action': 'presence', 'time': 1670414824.7007668, 'user': {'account_name': 'test1'}}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>), {}
+2022-12-07 15:07:04,708   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670414824.7007668, 'user': {'account_name': 'test1'}}
+2022-12-07 15:07:04,708   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 15:07:04,758   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 15:07:04,759   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 15:07:04,764   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:07:05,266   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>,), {'sender': 'server'}
+2022-12-07 15:07:05,266   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:07:05,267   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:07:05,268   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140715420784384)>, {'action': 'get_users', 'time': 1670414824.763045, 'account_name': 'test1'}, <socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>), {}
+2022-12-07 15:07:05,268   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670414824.763045, 'account_name': 'test1'}
+2022-12-07 15:07:05,269   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 15:07:05,284   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}
+2022-12-07 15:07:05,287   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=24, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49884)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь']}), {'sender': 'server'}
+2022-12-07 15:07:05,304   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:07:06,804   INFO     start_server_app.py Новое подключение: ('127.0.0.1', 49898)
+2022-12-07 15:07:06,805   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>,), {'sender': 'server'}
+2022-12-07 15:07:06,805   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:07:06,806   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:07:06,807   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140715420784384)>, {'action': 'presence', 'time': 1670414826.8020267, 'user': {'account_name': 'test2'}}, <socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>), {}
+2022-12-07 15:07:06,807   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'presence', 'time': 1670414826.8020267, 'user': {'account_name': 'test2'}}
+2022-12-07 15:07:06,807   DEBUG    start_server_app.py Получено приветственное сообщение.
+2022-12-07 15:07:06,836   DEBUG    start_server_app.py Ответ клиенту - 200:OK
+2022-12-07 15:07:06,837   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>, {'response': 200}), {'sender': 'server'}
+2022-12-07 15:07:06,838   INFO     utils.py        Сообщение отправлено
+2022-12-07 15:07:07,339   DEBUG    log_deco.py     Вызов функции get_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>,), {'sender': 'server'}
+2022-12-07 15:07:07,339   DEBUG    utils.py        Ожидается сообщение от server
+2022-12-07 15:07:07,340   INFO     utils.py        Получены новые данные от server.
+2022-12-07 15:07:07,341   DEBUG    log_deco.py     Вызов функции process_client_message. Из модуля __main__. Из из функции self._bootstrap_inner(). Параметры: (<Server(Thread-1, started daemon 140715420784384)>, {'action': 'get_users', 'time': 1670414826.8391962, 'account_name': 'test2'}, <socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>), {}
+2022-12-07 15:07:07,341   DEBUG    start_server_app.py Разбор сообщения от клиента: {'action': 'get_users', 'time': 1670414826.8391962, 'account_name': 'test2'}
+2022-12-07 15:07:07,342   DEBUG    start_server_app.py Получен запрос на получение списка известных пользователей.
+2022-12-07 15:07:07,345   DEBUG    start_server_app.py Подготовлен ответ со списком известных пользователей - {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь', 'test2']}
+2022-12-07 15:07:07,346   DEBUG    log_deco.py     Вызов функции send_response. Из модуля common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=26, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 49898)>, {'response': 202, 'data_list': ['Maksim', 'test1', 'Ьфлышь', 'test2']}), {'sender': 'server'}
+2022-12-07 15:07:07,347   INFO     utils.py        Сообщение отправлено

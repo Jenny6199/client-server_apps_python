@@ -61,7 +61,8 @@ class ServerDB:
         self.database_engine = create_engine(
             SERVER_DB,  # Путь к БД, сохранен в отдельной переменной
             echo=False,  # Индикация SQL-запросов
-            pool_recycle=3600  # Переустановка соединения каждый час
+            pool_recycle=3600,  # Переустановка соединения каждый час
+            connect_args={'check_same_thread': False},
         )
         self.metadata = MetaData()  # Объект метадата
 

@@ -3,6 +3,9 @@ from sqlalchemy import create_engine, Table, Column, Integer, String,\
 from sqlalchemy.orm import mapper, sessionmaker
 from os.path import dirname, realpath, join
 from datetime import datetime
+from logging import getLogger
+
+CLIENT_LOG = getLogger('client')
 
 
 class ClientDatabase:
@@ -113,6 +116,7 @@ class ClientDatabase:
         :param - contact
         :return - None
         """
+        CLIENT_LOG.debug(f'Запущена функция add_contact c параметрами {contact}.')
         if not self.session.query(self.Contacts).filter_by(name=contact).count():
             contact_row = self.Contacts(contact)
             self.session.add(contact_row)

@@ -34,8 +34,9 @@ class ClientTransport(threading.Thread, QObject):
         self.connection_init(port, ip_address)
         # Обновление списков пользователей и контактов
         try:
+            pass
             self.user_list_update()
-            self.contact_list_update()
+            # self.contact_list_update()
         except OSError as err:
             if err.errno:
                 logger.critical(f'Соединение с сервером потеряно.')
@@ -96,7 +97,7 @@ class ClientTransport(threading.Thread, QObject):
         """
         Обеспечивает обработку запроса на обновление списка контактов
         """
-        logger.debug(f'Запрос списка контактов для пользователя {self.name}')
+        logger.debug(f'Запрос списка контактов для пользователя {self.username}')
         request = {
             ACTION: CONTACT_LIST,
             TIME: time.time(),
@@ -105,6 +106,7 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Сформирован запрос {request}')
         with socket_lock:
             send_response(self.transport, request, sender='client')
+            print(self.transport)
             answer = get_response(self.transport, sender='client')
         logger.debug(f'Получен ответ {answer}')
         if RESPONSE in answer and answer[RESPONSE] == 202:
