@@ -65,4 +65,4 @@ RSP_202 = {
 }
 
 # Переменные для базы данных
-SERVER_DB = 'sqlite:///server_base.db3'
+SERVER_DB = 'sqlite:///mainapp//server_app//server_base.db3'

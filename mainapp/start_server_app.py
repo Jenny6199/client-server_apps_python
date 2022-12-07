@@ -18,7 +18,8 @@ from common.utils import get_response, send_response
 from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, WHOS_HERE, CONTACT_LIST
+    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
+    WHOS_HERE, CONTACT_LIST, USERS_REQUEST
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
@@ -27,6 +28,7 @@ from mainapp.server_app.db_builder.server_data_base import ServerDB
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QTimer
 from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
+from mainapp.server_app.server_gui import gui_create_model, gui_create_stat_model
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
@@ -202,52 +204,64 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
                 response = RSP_200
                 SERVER_LOG.debug('Ответ клиенту - 200:OK')
+                send_response(client, response, sender='server')
+                with conflag_lock:
+                    new_connection = True
             else:
                 response = RSP_400
                 response[ERROR] = 'Пользователь с таким именем уже существует'
                 SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
-            send_response(client, response, sender='server')
+                send_response(client, response, sender='server')
+                self.clients.remove(client)
+                client.close()
             return
+
+        # Запрос на получение списка известных пользователей
+        elif ACTION in message and message[ACTION] == USERS_REQUEST and ACCOUNT_NAME in message and self.names[message[ACCOUNT_NAME]] == client:
+            SERVER_LOG.debug('Получен запрос на получение списка известных пользователей.')
+            response = RSP_202
+            response[LIST_INFO] = [user[0] for user in self.database.users_list()]
+            send_response(client, respose, sender='server')
 
         # Получен запрос о получении списка контактов
-        elif ACTION in message \
-                and message[ACTION] == 'get_contacts' \
-                and TIME in message \
-                and USER in message:
-            SERVER_LOG.debug(
-                f'Получен запрос от {message[USER]} на получение списка контактов'
-            )
-            response = send_contact_list(message[USER])
-            try:
-                send_response(client, response, sender='server')
-                SERVER_LOG.debug(f'Ответное сообщение со списком контактов'
-                                 f'отправлено клиенту {message[USER]}')
-            except Exception as exc:
-                SERVER_LOG.error(
-                    f'Ошибка отправки списка контактов клиенту {message[USER]}: {exc}'
-                )
-            return
+        # elif ACTION in message \
+        #         and message[ACTION] == 'get_contacts' \
+        #         and TIME in message \
+        #         and USER in message:
+        #     SERVER_LOG.debug(
+        #         f'Получен запрос от {message[USER]} на получение списка контактов'
+        #     )
+        #     response = send_contact_list(message[USER])
+        #     try:
+        #         send_response(client, response, sender='server')
+        #         SERVER_LOG.debug(f'Ответное сообщение со списком контактов'
+        #                          f'отправлено клиенту {message[USER]}')
+        #     except Exception as exc:
+        #         SERVER_LOG.error(
+        #             f'Ошибка отправки списка контактов клиенту {message[USER]}: {exc}'
+        #         )
+        #     return
 
         # Получен запрос об активных участниках
-        elif ACTION in message \
-                and message[ACTION] == WHOS_HERE \
-                and TIME in message \
-                and USER in message:
-            SERVER_LOG.debug(
-                f'Получен запрос от {message[USER]} о пользователях on-line'
-                )
-            user_list = ', '.join(names.keys())
-            response = show_active_users(user_list)
-            try:
-                send_response(client, response, sender='server')
-                SERVER_LOG.debug(f'Ответное сообщение со списком активных '
-                                 f'пользователей успешно отправлено клиенту '
-                                 f'{message[USER]}')
-            except Exception as exc:
-                SERVER_LOG.error(
-                    f'Не удалось отправить ответное сообщение клиенту: {exc}'
-                )
-            return
+        # elif ACTION in message \
+        #         and message[ACTION] == WHOS_HERE \
+        #         and TIME in message \
+        #         and USER in message:
+        #     SERVER_LOG.debug(
+        #         f'Получен запрос от {message[USER]} о пользователях on-line'
+        #         )
+        #     user_list = ', '.join(names.keys())
+        #     response = show_active_users(user_list)
+        #     try:
+        #         send_response(client, response, sender='server')
+        #         SERVER_LOG.debug(f'Ответное сообщение со списком активных '
+        #                          f'пользователей успешно отправлено клиенту '
+        #                          f'{message[USER]}')
+        #     except Exception as exc:
+        #         SERVER_LOG.error(
+        #             f'Не удалось отправить ответное сообщение клиенту: {exc}'
+        #         )
+        #     return
 
         # Получено текстовое сообщение.
         elif ACTION in message \
@@ -262,13 +276,19 @@ class Server(threading.Thread, metaclass=ServerVerifier):
         # Получено сообщение о выходе клиента.
         elif ACTION in message \
                 and message[ACTION] == LEAVE_MESSAGE \
-                and ACCOUNT_NAME in message:
+                and ACCOUNT_NAME in message \
+                and self.names[message[ACCOUNT_NAME]] == client:
             SERVER_LOG.debug('Получено сообщение о выходе клиента.')
-            clients.remove(names[message[ACCOUNT_NAME]])
-            names[message[ACCOUNT_NAME]].close()
-            del names[message[ACCOUNT_NAME]]
-            SERVER_LOG.debug(f'Клиент {message[ACCOUNT_NAME]} завершил работу.')
+            self.database.user_logout(message[ACCOUNT_NAME])
+            SERVER_LOG.debug(f'Удаление клиента {message[ACCOUNT_NAME]} из базы данных прошло успешно.')
+            self.clients.remove(self.names[message[ACCOUNT_NAME]])
+            self.names[message[ACCOUNT_NAME]].close()
+            del self.names[message[ACCOUNT_NAME]]
+            with conflag_lock:
+                new_connection = True
+            SERVER_LOG.debug('Процедура выхода клиента прошла штатно.')
             return
+
 
         # elif ACTION in message \
         #         and message[ACTION] == CONTACT_LIST \
@@ -318,22 +338,26 @@ def print_help():
     print('help - вывод справки по поддерживаемым командам')
 
 
-def active_users_list_update():
-    """
-    Обеспечивает обновление списка активных клиентов
-    :param - None
-    :return - None
-    """
-    global new_connection
-    if new_connection:
-        main_window.active_clients_tableView.setModel(gui_create_model(database))
-        main_window.active_clients_tableView.resizeColumnsToContents()
-        main_window.active_clients_tableView.resizeRowsToContents()
-        with conflag_lock:
-            new_connection = False
+
 
 
 def main():
+    """Инициализация работы сервера. Содержит вспомогательные функции"""
+
+    def active_users_list_update():
+        """
+        Обеспечивает обновление списка активных клиентов
+        :param - None
+        :return - None
+        """
+        global new_connection
+        if new_connection:
+            main_window.ui.active_clients_tableView.setModel(gui_create_model(database))
+            main_window.ui.active_clients_tableView.resizeColumnsToContents()
+            main_window.ui.active_clients_tableView.resizeRowsToContents()
+            with conflag_lock:
+                new_connection = False
+
     # Загрузка параметров коммандной строки
     listen_address, listen_port = arg_parser()
 
