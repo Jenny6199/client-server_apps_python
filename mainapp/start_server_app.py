@@ -242,7 +242,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 and USER in message \
                 and self.names[message[USER]] == client:
             SERVER_LOG.debug(f'Получен запрос на добавление контакта {message[ACCOUNT_NAME]} в список {client}')
-            self.database.add_contact(message[USER], message[ACCOUNT_NAME])
+            self.database.add_user_contact(message[USER], message[ACCOUNT_NAME])
             SERVER_LOG.debug(f'Добавление контакта в базу данных произведено успешно')
             send_response(client, RSP_200)
 
