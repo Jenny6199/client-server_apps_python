@@ -36,7 +36,7 @@ class ClientTransport(threading.Thread, QObject):
         try:
             pass
             self.user_list_update()
-            # self.contact_list_update()
+            self.contact_list_update()
         except OSError as err:
             if err.errno:
                 logger.critical(f'Соединение с сервером потеряно.')
@@ -110,8 +110,12 @@ class ClientTransport(threading.Thread, QObject):
             answer = get_response(self.transport, sender='client')
         logger.debug(f'Получен ответ {answer}')
         if RESPONSE in answer and answer[RESPONSE] == 202:
-            for contact in answer[LIST_INFO]:
-                self.database.add_contact(contact)
+            try:
+                for contact in answer[LIST_INFO]:
+                    self.database.add_contact(contact)
+            except ERROR as e:
+                print('Не удалось добавить контакты в базу данных')
+                print(e)
         else:
             logger.error('Не удалось обновить список контактов')
 

@@ -19,7 +19,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
-    WHOS_HERE, CONTACT_LIST, USERS_REQUEST,LIST_INFO
+    WHOS_HERE, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST,LIST_INFO
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
@@ -220,8 +220,6 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 and self.names[message[ACCOUNT_NAME]] == client:
             SERVER_LOG.debug('Получен запрос на получение списка известных пользователей.')
             response = RSP_202
-            print('!!!')
-            print(self.database.users_list())
             response[LIST_INFO] = [user[0] for user in self.database.users_list()]
             SERVER_LOG.debug(f'Подготовлен ответ со списком известных пользователей - {response}')
             send_response(client, response, sender='server')
@@ -231,48 +229,22 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 and message[ACTION] == CONTACT_LIST \
                 and USER in message \
                 and self.names[message[USER]] == client:
+            SERVER_LOG.debug('Получен запрос на получение списка контактов')
             response = RSP_202
             response[LIST_INFO] = self.database.get_contacts(message[USER])
+            SERVER_LOG.debug(f'Подготовлен ответ со списком контактов {response}')
             send_response(client, response, sender='server')
-        # Получен запрос о получении списка контактов
-        # elif ACTION in message \
-        #         and message[ACTION] == 'get_contacts' \
-        #         and TIME in message \
-        #         and USER in message:
-        #     SERVER_LOG.debug(
-        #         f'Получен запрос от {message[USER]} на получение списка контактов'
-        #     )
-        #     response = send_contact_list(message[USER])
-        #     try:
-        #         send_response(client, response, sender='server')
-        #         SERVER_LOG.debug(f'Ответное сообщение со списком контактов'
-        #                          f'отправлено клиенту {message[USER]}')
-        #     except Exception as exc:
-        #         SERVER_LOG.error(
-        #             f'Ошибка отправки списка контактов клиенту {message[USER]}: {exc}'
-        #         )
-        #     return
 
-        # Получен запрос об активных участниках
-        # elif ACTION in message \
-        #         and message[ACTION] == WHOS_HERE \
-        #         and TIME in message \
-        #         and USER in message:
-        #     SERVER_LOG.debug(
-        #         f'Получен запрос от {message[USER]} о пользователях on-line'
-        #         )
-        #     user_list = ', '.join(names.keys())
-        #     response = show_active_users(user_list)
-        #     try:
-        #         send_response(client, response, sender='server')
-        #         SERVER_LOG.debug(f'Ответное сообщение со списком активных '
-        #                          f'пользователей успешно отправлено клиенту '
-        #                          f'{message[USER]}')
-        #     except Exception as exc:
-        #         SERVER_LOG.error(
-        #             f'Не удалось отправить ответное сообщение клиенту: {exc}'
-        #         )
-        #     return
+        # Получен запрос на добавление контакта
+        elif ACTION in message \
+                and message[ACTION] == ADD_CONTACT \
+                and ACCOUNT_NAME in message \
+                and USER in message \
+                and self.names[message[USER]] == client:
+            SERVER_LOG.debug(f'Получен запрос на добавление контакта {message[ACCOUNT_NAME]} в список {client}')
+            self.database.add_contact(message[USER], message[ACCOUNT_NAME])
+            SERVER_LOG.debug(f'Добавление контакта в базу данных произведено успешно')
+            send_response(client, RSP_200)
 
         # Получено текстовое сообщение.
         elif ACTION in message \
@@ -331,13 +303,13 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             )
 
 
-def print_help():
-    print('Поддерживаемые комманды:')
-    print('users - список известных пользователей')
-    print('connected - список подключённых пользователей')
-    print('loghist - история входов пользователя')
-    print('exit - завершение работы сервера.')
-    print('help - вывод справки по поддерживаемым командам')
+# def print_help():
+#     print('Поддерживаемые комманды:')
+#     print('users - список известных пользователей')
+#     print('connected - список подключённых пользователей')
+#     print('loghist - история входов пользователя')
+#     print('exit - завершение работы сервера.')
+#     print('help - вывод справки по поддерживаемым командам')
 
 
 

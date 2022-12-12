@@ -217,9 +217,10 @@ class ServerDB:
         :param - username
         """
         user = self.session.query(self.AllUsers).filter_by(name=username).one()
-        query = self.session.query(self.UsersContacts, self.AllUsers.name).\
+        query = self.session.query(
+            self.UsersContacts, self.AllUsers.name).\
             filter_by(user=user.id).\
-            join(self.AllUsers, self.UsersContacts == self.AllUsers.id)
+            join(self.AllUsers, self.UsersContacts.contact == self.AllUsers.id)
         return [contact[1] for contact in query.all()]
 
     def message_history(self):
