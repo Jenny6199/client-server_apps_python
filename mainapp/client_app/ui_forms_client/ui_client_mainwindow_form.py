@@ -13,6 +13,10 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, \
     QWidget, QLabel, QListView, QMessageBox
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
 from PyQt5.QtCore import pyqtSlot, QEvent, Qt
+from mainapp.client_app.client_transport import ClientTransport
+from mainapp.client_app.client_database import ClientDatabase
+from mainapp.client_app.ui_forms_client.ui_client_addcontactwindow_form import ClientAddContactWindow
+
 
 
 class ClientWindowMain(QMainWindow):
@@ -52,8 +56,11 @@ class ClientWindowMain(QMainWindow):
         self.show()
 
     def add_contact_window(self):
-        """Обработчик нажатия кнопки  доабвить контакт"""
+        """Обработчик нажатия кнопки  добавить контакт"""
         print("Button add contact was pressed!")
+        add_contact_window = ClientAddContactWindow(database=self.database, transport=self.transport)
+        add_contact_window.show()
+        print("def add_contact_window was complite!")
 
     def del_contact_window(self):
         """Обработчик нажатия кнопки удалить контакт"""
@@ -128,7 +135,7 @@ class ClientWindowMain(QMainWindow):
     def message(self, sender):
         """Слот-обработчик приёма нового сообщения"""
         if sender == self.current_chat:
-            self.his
+            pass
 
     def make_connection(self, transport_object):
         transport_object.new_message.connect(self.message)
