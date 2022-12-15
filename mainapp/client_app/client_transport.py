@@ -2,6 +2,9 @@ import socket
 import threading
 import time
 import json
+import hashlib
+import hmac
+import binascii
 from logging import getLogger
 from PyQt5.QtCore import pyqtSignal, QObject
 
@@ -23,37 +26,49 @@ class ClientTransport(threading.Thread, QObject):
     message_205 = pyqtSignal()
     connection_lost = pyqtSignal()
 
-    def __init__(self, port, ip_address, database, username):
+    def __init__(self, port, ip_address, database, username, passwd, keys):
         """constructor of class ClientTransport"""
         # super init
         threading.Thread.__init__(self)
         QObject.__init__(self)
 
+        # База данных клиента
         self.database = database
+        # Имя пользователя
         self.username = username
+        # Пароль
+        self.password = passwd
+        # Ключи доступа
+        self.keys = keys
+        # Сокет
         self.transport = None
+        # Соединение
         self.connection_init(port, ip_address)
-        # Обновление списков пользователей и контактов
+        # Обновление списков известных пользователей и список контактов
         try:
-            pass
             self.user_list_update()
             self.contact_list_update()
         except OSError as err:
             if err.errno:
                 logger.critical(f'Соединение с сервером потеряно.')
+                logger.error('Не удалось обновить список известных пользователей и список контактов')
                 raise ServerError(f'Соединение с сервером потеряно.')
-            logger.error('Refresh user_list and contact_list: connection timeout!')
+            logger.error('Не удалось обновить список известных пользователей и список контактов')
         except json.JSONDecodeError:
             logger.critical('Потеряно соединение с сервером.')
+            logger.error('Не удалось обновить список известных пользователей и список контактов')
             raise ServerError('Потеряно соединение с сервером.')
-        # Transport running flag
+        # Если все прошло успешно поднимаем флаг запуска транспорта
         self.running = True
 
     def connection_init(self, port, ip_address):
         """Функция инициализации соединения с сервером"""
+        # Инициализация сокета
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.transport.settimeout(5)
         flag_connected = False
+        # Попытки соединения с сервером, в случае успеха поднимает flag_connected,
+        # в противном случае вызываем исключение.
         for i in range(5):
             logger.info(f'Попытка соединения № {i+1}')
             try:
@@ -65,9 +80,14 @@ class ClientTransport(threading.Thread, QObject):
                 break
             time.sleep(1)
         if not flag_connected:
-            logger.critical('Не удалось подключиться к серверу!')
+            logger.critical('Не удалось подключиться к серверу! flag_connected=False')
             raise ServerError('Не удалось подключиться к серверу!')
-        logger.debug('Установлено соединение с сервером')
+        logger.debug('Установлено соединение с сервером.')
+
+        # Процедура авторизации
+        passwd_bytes = self.password.encode('utf-8')
+
+        # Отправка приветственного сообщения на сервер
         try:
             with socket_lock:
                 send_response(self.transport, self.create_presence_message(), sender='client')
@@ -132,7 +152,7 @@ class ClientTransport(threading.Thread, QObject):
         logger.debug(f'Сформирован словарь сообщения: {message_dict}')
         with socket_lock:
             send_response(self.transport, message_dict, sender='client')
-            self.process_server_answer(get_response(self.transport))
+            self.process_server_answer(get_response(self.transport, sender='client'))
             logger.info(f'Отправлено сообщение для пользователя  {destination}')
 
     def create_presence_message(self):
