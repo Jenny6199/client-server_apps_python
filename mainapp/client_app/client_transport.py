@@ -20,6 +20,7 @@ class ClientTransport(threading.Thread, QObject):
     """
     # Signals
     new_message = pyqtSignal(str)
+    message_205 = pyqtSignal()
     connection_lost = pyqtSignal()
 
     def __init__(self, port, ip_address, database, username):
