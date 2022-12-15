@@ -7,8 +7,7 @@ november, 2022. GeekBrains
 """
 
 from PyQt5.QtCore import QRect, QSize, QMetaObject, QCoreApplication
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtWidgets import QDialog, QLabel, QPushButton, QLineEdit, qApp
+from PyQt5.QtWidgets import QApplication, QDialog, QLabel, QPushButton, QLineEdit, qApp
 import sys
 
 
