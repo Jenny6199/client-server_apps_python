@@ -8,7 +8,7 @@ from mainapp.decorators.log_deco import debug_log
 from mainapp.client_app.client_database import ClientDatabase
 from mainapp.client_app.client_transport import ClientTransport
 from mainapp.client_app.ui_forms_client.ui_client_mainwindow_form import ClientWindowMain
-from mainapp.client_app.ui_forms_client.client_startwindow_form import ClientStartWindow
+from mainapp.client_app.ui_forms_client.ui_client_startwindow_form import ClientStartWindow
 
 CLIENT_LOG = logging.getLogger('client')
 
