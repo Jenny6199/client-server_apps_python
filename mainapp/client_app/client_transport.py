@@ -70,7 +70,7 @@ class ClientTransport(threading.Thread, QObject):
         # Попытки соединения с сервером, в случае успеха поднимает flag_connected,
         # в противном случае вызываем исключение.
         for i in range(5):
-            logger.info(f'Попытка соединения № {i+1}')
+            logger.info(f'Попытка соединения № {i + 1}')
             try:
                 self.transport.connect((ip_address, port))
             except(OSError, ConnectionRefusedError):
@@ -83,18 +83,39 @@ class ClientTransport(threading.Thread, QObject):
             logger.critical('Не удалось подключиться к серверу! flag_connected=False')
             raise ServerError('Не удалось подключиться к серверу!')
         logger.debug('Установлено соединение с сервером.')
-
         # Процедура авторизации
         passwd_bytes = self.password.encode('utf-8')
+        salt = self.username.lower().encode('utf-8')
+        passwd_hash = hashlib.pbkdf2_hmac('sha512', passwd_bytes, salt, 5000)
+        passwd_hash_string = binascii.hexlify(passwd_hash)
+        logger.debug(f'Успешно создан хэш пароля {passwd_hash_string}.')
+
+        # Получение публичного ключа.
+        public_key = self.keys.publickey().export_key().decode('ascii')
 
         # Отправка приветственного сообщения на сервер
         try:
             with socket_lock:
-                send_response(self.transport, self.create_presence_message(), sender='client')
-                self.process_server_answer(get_response(self.transport, sender='client'))
+                send_response(self.transport, self.create_presence_message(public_key), sender='client')
+                server_answer = get_response(self.transport, sender='client')
+                logger.debug(f'Ответ сервера на приветственное сообщение - {server_answer}.')
+                # Обработка ответа сервера:
+                if RESPONSE in server_answer:
+                    if server_answer[RESPONSE] == 400:
+                        raise ServerError(server_answer[ERROR])
+                    elif server_answer[RESPONSE] == 511:
+                        # Данный ответ получает при штатном запуске авторизации клиента на сервере
+                        data = server_answer[DATA]
+                        hash = hmac.new(passwd_hash_string, data.encode('utf-8'), 'MD5')
+                        digest = hash.digest()
+                        report = RESPONSE_511
+                        report[DATA] = binascii.b2a_base64(digest).decode('ascii')
+                        send_response(self.transport, report, sender='client')
+                        self.process_server_answer(get_response(self.transport, sender='client'))
         except (OSError, json.JSONDecodeError):
-            logger.critical('Потеряно соединение с сервером!')
-            raise ServerError('Потеряно соединение с сервером!')
+            logger.critical('Потеряно соединение с сервером! '
+                            'Не обработано приветственное сообщение')
+            raise ServerError('Разрыв соединения в процессе авторизации!')
 
     def user_list_update(self):
         """
@@ -155,7 +176,7 @@ class ClientTransport(threading.Thread, QObject):
             self.process_server_answer(get_response(self.transport, sender='client'))
             logger.info(f'Отправлено сообщение для пользователя  {destination}')
 
-    def create_presence_message(self):
+    def create_presence_message(self, public_key):
         """
         Формирует приветственное сообщение от клиента
         :return: out: dict - message for server
@@ -164,10 +185,13 @@ class ClientTransport(threading.Thread, QObject):
             ACTION: PRESENCE,
             TIME: time.time(),
             USER: {
-                ACCOUNT_NAME: self.username
+                ACCOUNT_NAME: self.username,
+                PUBLIC_KEY: public_key
             }
         }
-        logger.debug(f'Сформировано {PRESENCE} сообщение для пользователя {self.username}.')
+        logger.debug(f'Сформировано {PRESENCE} сообщение '
+                     f'для пользователя {self.username}. '
+                     f'Pubkey = {public_key}')
         return out
 
     def process_server_answer(self, message):
@@ -185,8 +209,8 @@ class ClientTransport(threading.Thread, QObject):
                 logger.debug(f'Незвестный код подтвержения в ответе сервера: '
                              f'{message[RESPONSE]}'
                              )
-                # Если получили сообщение от пользователя, добавляем в базу данных
-                # и формируем сигнал о новом сообщении
+        # Если получили сообщение от пользователя, добавляем в базу данных
+        # и формируем сигнал о новом сообщении
         elif ACTION in message and \
                 message[ACTION] == MESSAGE and \
                 SENDER in message and \

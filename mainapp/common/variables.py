@@ -28,6 +28,7 @@ ALLOWED_USERS = [
 
 # Прочие ключи
 PRESENCE = 'presence'
+PUBLIC_KEY = 'public_key'
 WHOS_HERE = 'show_online_users'
 RESPONSE = 'response'
 LEAVE_MESSAGE = 'exit'
@@ -42,6 +43,7 @@ LIST_INFO = 'data_list'
 USERS_REQUEST = 'get_users'
 REMOVE_CONTACT = 'remove'
 EXIT = 'exit'
+DATA = 'bin'
 
 
 # Уровень реагирования обработчиков
@@ -62,6 +64,17 @@ RSP_400 = {
 RSP_202 = {
     RESPONSE: 202,
     LIST_INFO: None,
+}
+
+# 205
+RESPONSE_205 = {
+    RESPONSE: 205
+}
+
+# 511
+RESPONSE_511 = {
+    RESPONSE: 511,
+    DATA: None
 }
 
 # Переменные для базы данных
