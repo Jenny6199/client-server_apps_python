@@ -1,7 +1,6 @@
 import socket
 import threading
 import time
-import json
 import hashlib
 import hmac
 import binascii
@@ -278,7 +277,7 @@ class ClientTransport(threading.Thread, QObject):
         """
         Обработчик удаления контакта
         :param - contact (username)
-        :return - Nonw
+        :return - None
         """
         logger.debug(f'Удаление контакта {contact}')
         request = {
@@ -297,7 +296,7 @@ class ClientTransport(threading.Thread, QObject):
         message = {
             ACTION: EXIT,
             TIME: time.time(),
-            ACCOUNT_NAME: self.username
+            ACCOUNT_NAME: self.username,
         }
         with socket_lock:
             try:
@@ -306,3 +305,35 @@ class ClientTransport(threading.Thread, QObject):
                 pass
         logger.debug('Сокет закрыт')
         time.sleep(1)
+
+    def run(self):
+        """
+        Основной цикл транспорта
+        :return: None
+        """
+        logger.debug('Запуск клиентского транспорта.')
+        while self.running:
+            time.sleep(1)
+            message = None
+            with socket_lock:
+                try:
+                    self.transport.settimeout(0.5)
+                    message = get_response(self.transport, sender='client')
+                except OSError as err:
+                    if err.errno:
+                        logger.critical('Соединение с сервером потеряно.')
+                        self.running = False
+                        self.connection_lost.emit()
+                except (ConnectionError,
+                        ConnectionAbortedError,
+                        ConnectionResetError,
+                        json.JSONDecodeError,
+                        TypeError,
+                        ):
+                    self.running = False
+                    self.connection_lost.emit()
+                finally:
+                    self.transport.settimeout(5)
+            if message:
+                logger.debug(f'Получено сообщение от сервера: {message}.')
+                self.process_server_answer(message)
