@@ -119,17 +119,20 @@ class ClientTransport(threading.Thread, QObject):
 
     def user_list_update(self):
         """
-        Обеспечивает обновление таблицы известных пользователей
+        Запрашивает с сервера обновление списка известных пользователей
         """
-        logger.debug(f'Запрос списка известных пользователей {self.username}')
         request = {
             ACTION: USERS_REQUEST,
             TIME: time.time(),
             ACCOUNT_NAME: self.username,
         }
-        with socket_lock:
-            send_response(self.transport, request, sender='client')
-            answer = get_response(self.transport, sender='client')
+        logger.debug(f'Сформирован запрос к серверу на обновление списка известных пользователей')
+        try:
+            with socket_lock:
+                send_response(self.transport, request, sender='client')
+                answer = get_response(self.transport, sender='client')
+        except ERROR as e:
+            logger.error(f'не удалось обновить список известных пользователей - {e}')
         if RESPONSE in answer and answer[RESPONSE] == 202:
             self.database.add_user(answer[LIST_INFO])
         else:
