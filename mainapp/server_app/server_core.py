@@ -75,7 +75,7 @@ class MessageProcessor(threading.Thread):
             # серверную версию ключа
             hash = hmac.new(self.database.get_hash(message[USER][ACCOUNT_NAME]), random_str, 'MD5')
             digest = hash.digest()
-            logger.debug(f'Auth message = {message_auth}')
+            SERVER_LOG.debug(f'Auth message = {message_auth}')
             try:
                 # Обмен с клиентом
                 send_response(sock, message_auth, sender='server')
@@ -92,7 +92,7 @@ class MessageProcessor(threading.Thread):
                 self.names[message[USER][ACCOUNT_NAME]] = sock
                 client_ip, client_port = sock.getpeername()
                 try:
-                    send_response(sock, RESPONSE_200, sender='server')
+                    send_response(sock, RSP_200, sender='server')
                 except OSError:
                     self.remove_client(message[USER][ACCOUNT_NAME])
                 # добавляем пользователя в список активных и если у него изменился открытый ключ
@@ -103,7 +103,7 @@ class MessageProcessor(threading.Thread):
                     client_port,
                     message[USER][PUBLIC_KEY])
             else:
-                response = RESPONSE_400
+                response = RSP_400
                 response[ERROR] = 'Неверный пароль.'
                 try:
                     send_response(sock, response, sender='server')
@@ -117,7 +117,7 @@ class MessageProcessor(threading.Thread):
         Метод обработчик клиента с которым прервана связь.
         Ищет клиента и удаляет его из списков и базы:
         '''
-        logger.info(f'Клиент {client.getpeername()} отключился от сервера.')
+        SERVER_LOG.info(f'Клиент {client.getpeername()} отключился от сервера.')
         for name in self.names:
             if self.names[name] == client:
                 self.database.user_logout(name)
@@ -150,7 +150,7 @@ class MessageProcessor(threading.Thread):
                 f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
 
-    @login_required
+    @debug_log
     def process_client_message(self, message, client):
         """
         Метод отбработчик поступающих сообщений.
@@ -184,7 +184,7 @@ class MessageProcessor(threading.Thread):
                 except OSError:
                     self.remove_client(client)
             else:
-                response = RESPONSE_400
+                response = RSP_400
                 response[ERROR] = 'Пользователь не зарегистрирован на сервере.'
                 try:
                     send_response(client, response, sender='server')
@@ -201,7 +201,7 @@ class MessageProcessor(threading.Thread):
 
         # 4. Запрос обновления контакт-листа
         elif ACTION in message \
-                and message[ACTION] == GET_CONTACTS \
+                and message[ACTION] == CONTACT_LIST \
                 and USER in message and \
                 self.names[message[USER]] == client:
             response = RSP_200
@@ -231,7 +231,7 @@ class MessageProcessor(threading.Thread):
                 and self.names[message[USER]] == client:
             self.database.remove_contact(message[USER], message[ACCOUNT_NAME])
             try:
-                send_response(client, RSP200, sender='server')
+                send_response(client, RSP_200, sender='server')
             except OSError:
                 self.remove_client(client)
 
@@ -306,7 +306,7 @@ class MessageProcessor(threading.Thread):
                     recv_data_lst, self.listen_sockets, self.error_sockets = select.select(
                         self.clients, self.clients, [], 0)
             except OSError as err:
-                logger.error(f'Ошибка работы с сокетами: {err.errno}')
+                SERVER_LOG.error(f'Ошибка работы с сокетами: {err.errno}')
 
             # принимаем сообщения и если ошибка, исключаем клиента.
             if recv_data_lst:
@@ -329,4 +329,4 @@ class MessageProcessor(threading.Thread):
 
         # Начинаем слушать сокет.
         self.sock = transport
-        self.sock.listen(MAX_CONNECTIONS)
+        self.sock.listen(CONNECTION_LIMIT)
