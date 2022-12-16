@@ -7,11 +7,13 @@
 # Москва, 2022
 
 import argparse
+import configparser
 import sys
 import select
 import art
 import os
 import threading
+import configparser
 # from common.errors import IncorrectDataRecivedError
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 from common.utils import get_response, send_response
@@ -47,305 +49,75 @@ def arg_parser():
     listen_address = namespace.a
     listen_port = namespace.p
     gui_flag = namespace.no_gui
-    SERVER_LOG.('Обработка аргументов коммандной строки прошла успешно.')
+    SERVER_LOG.info('Обработка аргументов коммандной строки прошла успешно.')
     return listen_address, listen_port, gui_flag
 
-
-def banner():
+@debug_log
+def config_load():
     """
-    Выводит на экран приветственное сообщение при запуске сервера
+    функция обеспечивает обработку конфигурационного файла
+    для сервера.
     """
-    art.tprint('...Hello world...', font='doom')
-    print('ПРОГРАММА ОБМЕНА СООБЩЕНИЯМИ В КОНСОЛИ. \n'
-          'СЕРВЕР. v 0.2.0 (11.2022) \n'
-          'Связь с разработчиком - Jenny6199@yandex.ru \n'
-          )
+    config = configparser.ConfigParser()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    config.read(f"{dir_path}/server_app/{'server.ini'}")
+    if 'SETTINGS' in config:
+        return config
+    else:
+        config.add_section('SETTINGS')
+        config.set('SETTINGS', 'Default_port', str(DEFAULT_PORT))
+        config.set('SETTINGS', 'Listen_Address', '')
+        config.set('SETTINGS', 'Database_path', '')
+        config.set('SETTINGS', 'Database_file', 'server_database.db3')
+        return config
 
-
-def show_active_users(clients_list):
-    """
-    Формирует ответное сообщение со списком активных пользователей
-    """
-    SERVER_LOG.debug(f'Готовим список активных пользователей " {clients_list}".')
-    out = {
-        ACTION: WHOS_HERE,
-        MESSAGE_TEXT: clients_list
-    }
-    return out
-
-
-def send_contact_list(user):
-    """
-    Формирует ответное сообщение со списком контактов для пользователя
-    """
-    SERVER_LOG.debug(f'Готовим список контактов для пользователя')
-    out = {
-        RESPONSE: "202",
-        ACTION: CONTACT_LIST,
-        MESSAGE_TEXT: ServerDB.get_contacts(username=user)
-    }
-    return out
-
-
-class Server(threading.Thread, metaclass=ServerVerifier):
-    port = PortDescriptor()
-
-    def __init__(self, listen_address, listen_port, database):
-        """Конструктор класса Server"""
-        self.addr = listen_address
-        self.port = listen_port
-        self.database = database
-        self.clients = []
-        self.messages = []
-        self.names = dict()
-        self.sock = None
-        # Thread
-        super().__init__()
-
-    def init_socket(self):
-        """Функция для инициализации сокета"""
-        try:
-            transport = socket(AF_INET, SOCK_STREAM)
-            transport.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-            transport.bind((self.addr, self.port))
-            transport.settimeout(0.5)
-
-            self.sock = transport
-            self.sock.listen(CONNECTION_LIMIT)
-
-            SERVER_LOG.info(
-                f'Запущен сервер, порт для подключений {self.port}. '
-                f'Адрес для входящих подключений {self.addr}. '
-                f'Если адрес не указан, принимаются соединения с любых адресов. '
-                f'Сервер ожидает входящие сообщения.'
-            )
-        except Exception as e:
-            SERVER_LOG.critical(f'Не удалось инициализировать сокет! {e}')
-
-    def run(self):
-        """Функция осуществляет запуск и  поддерживает основной цикл работы сервера"""
-        banner()
-        global new_connection
-        self.init_socket()
-        while True:
-            try:
-                client, client_address = self.sock.accept()
-            except OSError:
-                pass
-            else:
-                SERVER_LOG.info(f'Новое подключение: {client_address}')
-                self.clients.append(client)
-
-            # Создаем списки для Select
-            res_data_list, send_data_list, err_data_list = [], [], []
-
-            # Проверка ожидающих клиентов
-            try:
-                if self.clients:
-                    res_data_list, send_data_list, err_data_list = select.select(self.clients, self.clients, [], 0)
-            except OSError:
-                SERVER_LOG.debug('Исключение при проверке ожидающих клиентов')
-                pass
-
-            # Принимаем сообщения, обрабатываем исключения
-            if res_data_list:
-                for client_with_message in res_data_list:
-                    try:
-                        self.process_client_message(
-                            get_response(client_with_message, sender='server'),
-                            client_with_message)
-                    except TimeoutError:
-                        SERVER_LOG.info(
-                            f'Клиент {client_with_message.getpeername()} отключился от сервера')
-                        for name in self.names:
-                            if self.names[name] == client_with_message:
-                                self.database.user_logout(name)
-                                del self.names[name]
-                                break
-                        self.clients.remove(client_with_message)
-                        with conflag_lock:
-                            new_connection = True
-
-            # Обрабатываем сообщения
-            for mail in self.messages:
-                try:
-                    self.process_message(mail, send_data_list)
-                except ConnectionError:
-                    SERVER_LOG.info(f'Не удалось отправить сообщение клиенту {mail[DESTINATION]}.')
-                    self.clients.remove(self.names[mail[DESTINATION]])
-                    self.database.user_logout(mail[DESTINATION])
-                    del self.names[mail[DESTINATION]]
-                    with conflag_lock:
-                        new_connection = True
-            self.messages.clear()
-
-    @debug_log
-    def process_client_message(self, message, client):
-        """
-        Функция обработчик сообщений полученных от клиента
-        На вход принимает словарь - проверяет соответствие форме,
-        отправляет ответ клиенту при получении приветственного сообщения или ошибке
-        добавляет сообщение в список сообщений
-        возвращает None
-        :param message: data from client
-        :param client: object of client
-        """
-        global new_connection
-        SERVER_LOG.debug(f'Разбор сообщения от клиента: {message}')
-
-        # Получено приветственное сообщение.
-        if ACTION in message \
-                and message[ACTION] == PRESENCE \
-                and TIME in message \
-                and USER in message:
-            SERVER_LOG.debug('Получено приветственное сообщение.')
-            # Проверка регистрации клиента
-            if message[USER][ACCOUNT_NAME] not in self.names.keys():
-                self.names[message[USER][ACCOUNT_NAME]] = client
-                client_ip, client_port = client.getpeername()
-                self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
-                response = RSP_200
-                SERVER_LOG.debug('Ответ клиенту - 200:OK')
-                send_response(client, response, sender='server')
-                with conflag_lock:
-                    new_connection = True
-            else:
-                response = RSP_400
-                response[ERROR] = 'Пользователь с таким именем уже существует'
-                SERVER_LOG.debug('Ответ клиенту - 400: пользователь уже существует')
-                send_response(client, response, sender='server')
-                self.clients.remove(client)
-                client.close()
-            return
-
-        # Запрос на получение списка известных пользователей
-        elif ACTION in message \
-                and message[ACTION] == USERS_REQUEST \
-                and ACCOUNT_NAME in message \
-                and self.names[message[ACCOUNT_NAME]] == client:
-            SERVER_LOG.debug('Получен запрос на получение списка известных пользователей.')
-            response = RSP_202
-            response[LIST_INFO] = [user[0] for user in self.database.users_list()]
-            SERVER_LOG.debug(f'Подготовлен ответ со списком известных пользователей - {response}')
-            send_response(client, response, sender='server')
-
-        # Получен запрос на получение списка контактов
-        elif ACTION in message \
-                and message[ACTION] == CONTACT_LIST \
-                and USER in message \
-                and self.names[message[USER]] == client:
-            SERVER_LOG.debug('Получен запрос на получение списка контактов')
-            response = RSP_202
-            response[LIST_INFO] = self.database.get_contacts(message[USER])
-            SERVER_LOG.debug(f'Подготовлен ответ со списком контактов {response}')
-            send_response(client, response, sender='server')
-
-        # Получен запрос на добавление контакта
-        elif ACTION in message \
-                and message[ACTION] == ADD_CONTACT \
-                and ACCOUNT_NAME in message \
-                and USER in message \
-                and self.names[message[USER]] == client:
-            SERVER_LOG.debug(f'Получен запрос на добавление контакта {message[ACCOUNT_NAME]} в список {client}')
-            self.database.add_user_contact(message[USER], message[ACCOUNT_NAME])
-            SERVER_LOG.debug(f'Добавление контакта в базу данных произведено успешно')
-            send_response(client, RSP_200)
-
-        # Получено текстовое сообщение.
-        elif ACTION in message \
-                and message[ACTION] == MESSAGE \
-                and TIME in message \
-                and DESTINATION in message:
-            SERVER_LOG.debug('Получено текстовое сообщение.')
-            # messages_list.append(message)
-            SERVER_LOG.debug('Сообщение добавлено в список сообщений')
-            return
-
-        # Получено сообщение о выходе клиента.
-        elif ACTION in message \
-                and message[ACTION] == LEAVE_MESSAGE \
-                and ACCOUNT_NAME in message \
-                and self.names[message[ACCOUNT_NAME]] == client:
-            SERVER_LOG.debug('Получено сообщение о выходе клиента.')
-            self.database.user_logout(message[ACCOUNT_NAME])
-            SERVER_LOG.debug(f'Удаление клиента {message[ACCOUNT_NAME]} из базы данных прошло успешно.')
-            self.clients.remove(self.names[message[ACCOUNT_NAME]])
-            self.names[message[ACCOUNT_NAME]].close()
-            del self.names[message[ACCOUNT_NAME]]
-            with conflag_lock:
-                new_connection = True
-            SERVER_LOG.debug('Процедура выхода клиента прошла штатно.')
-            return
-
-        # Получено некорректное сообщение
-        else:
-            send_response(client, {RESPONSE: 400, ERROR: 'Bad Request'}, sender='server')
-            SERVER_LOG.debug('Ответ клиенту - 400:Bad Request')
-            return
-
-    @debug_log
-    def process_message(self, message, listen_socks):
-        """
-        Функция для отправки сообщения конкретному клиенту
-        Принимает словарь с сообщением, список пользователей, список сокетов.
-        Возвращает None.
-        :param message: dict - message
-        :param listen_socks: list - sockets' list
-        :return: None
-        """
-        if message[DESTINATION] in self.names \
-                and self.names[message[DESTINATION]] in listen_socks:
-            send_response(self.names[message[DESTINATION]], message, sender='server')
-            SERVER_LOG.info(f'Отправлено сообщение от {message[DESTINATION]} '
-                            f'пользователю {message[SENDER]}')
-        elif message[DESTINATION] in self.names \
-                and self.names[message[DESTINATION]] not in listen_socks:
-            raise ConnectionError
-        else:
-            SERVER_LOG.error(
-                f'!!! {message[DESTINATION]} - данный клиент не зарегистрирован. '
-                f'Сообщение не было отправлено.'
-            )
-
-
+@log
 def main():
-    """Инициализация работы сервера. Содержит вспомогательные функции"""
+    """Основной цикл работы сервера"""
+    # Загрузка файла конфигурации сервера
+    config = config_load()
 
-    def active_users_list_update():
-        """
-        Обеспечивает обновление списка активных клиентов
-        :param - None
-        :return - None
-        """
-        global new_connection
-        if new_connection:
-            main_window.ui.active_clients_tableView.setModel(gui_create_model(database))
-            main_window.ui.active_clients_tableView.resizeColumnsToContents()
-            main_window.ui.active_clients_tableView.resizeRowsToContents()
-            with conflag_lock:
-                new_connection = False
+    # Загрузка параметров командной строки, если нет параметров, то задаём
+    # значения по умоланию.
+    listen_address, listen_port, gui_flag = arg_parser(
+        config['SETTINGS']['Default_port'], config['SETTINGS']['Listen_Address'])
 
-    # Загрузка параметров коммандной строки
-    listen_address, listen_port = arg_parser()
+    # Инициализация базы данных
+    database = ServerStorage(
+        os.path.join(
+            config['SETTINGS']['Database_path'],
+            config['SETTINGS']['Database_file']))
 
-    # Создание базы данных
-    database = ServerDB()
-
-    # Создается экземпляр класса сервера и запускается в потоке
-    server = Server(listen_address, listen_port, database)
+    # Создание экземпляра класса - сервера и его запуск:
+    server = MessageProcessor(listen_address, listen_port, database)
     server.daemon = True
     server.start()
-    server_app = QApplication(sys.argv)
-    main_window = ServerWindowMain()
-    main_window.statusBar().showMessage(f'Сервер запущен, прослушивает порт {listen_port} !')
 
-    # Timer
-    timer = QTimer()
-    timer.timeout.connect(active_users_list_update)
-    timer.start(1000)
+    # Если  указан параметр без GUI то запускаем простенький обработчик
+    # консольного ввода
+    if gui_flag:
+        while True:
+            command = input('Введите exit для завершения работы сервера.')
+            if command == 'exit':
+                # Если выход, то завршаем основной цикл сервера.
+                server.running = False
+                server.join()
+                break
 
-    server_app.exec_()
+    # Если не указан запуск без GUI, то запускаем GUI:
+    else:
+        # Создаём графическое окуружение для сервера:
+        server_app = QApplication(sys.argv)
+        server_app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
+        main_window = MainWindow(database, server, config)
+
+        # Запускаем GUI
+        server_app.exec_()
+
+        # По закрытию окон останавливаем обработчик сообщений
+        server.running = False
 
 
 if __name__ == '__main__':
     main()
+
