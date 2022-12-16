@@ -106,8 +106,8 @@ class ClientTransport(threading.Thread, QObject):
                     elif server_answer[RESPONSE] == 511:
                         # Данный ответ получает при штатном запуске авторизации клиента на сервере
                         data = server_answer[DATA]
-                        hash = hmac.new(passwd_hash_string, data.encode('utf-8'), 'MD5')
-                        digest = hash.digest()
+                        hash_data = hmac.new(passwd_hash_string, data.encode('utf-8'), 'MD5')
+                        digest = hash_data.digest()
                         report = RESPONSE_511
                         report[DATA] = binascii.b2a_base64(digest).decode('ascii')
                         send_response(self.transport, report, sender='client')
@@ -258,7 +258,11 @@ class ClientTransport(threading.Thread, QObject):
             self.new_message.emit(message)
 
     def add_contact(self, contact):
-        """Обработчик добавления нового контакта"""
+        """
+        Обработчик добавления нового контакта
+        :param - contact (username)
+        :return - None
+        """
         logger.debug(f' Создание нового контакта {contact}')
         request = {
             ACTION: ADD_CONTACT,
@@ -271,7 +275,11 @@ class ClientTransport(threading.Thread, QObject):
             self.process_server_answer(get_response(self.username, sender='client'))
 
     def remove_contact(self, contact):
-        """Обработчик удаления контакта"""
+        """
+        Обработчик удаления контакта
+        :param - contact (username)
+        :return - Nonw
+        """
         logger.debug(f'Удаление контакта {contact}')
         request = {
             ACTION: REMOVE_CONTACT,
