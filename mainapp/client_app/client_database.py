@@ -44,7 +44,7 @@ class ClientDatabase:
         """Конструктор класса ClientDatabase"""
         # Обозначение пути к файлу базы данных и его название
         db_path = dirname(realpath(__file__))
-        db_name = f'database_client_{name}'
+        db_name = f'database_client_{name}.db3'
 
         # 1.Создание движка базы данных
         self.database_engine = create_engine(
@@ -129,6 +129,13 @@ class ClientDatabase:
         :return - None
         """
         self.session.query(self.Contacts).filter_by(name=contact).delete()
+
+    def contacts_clear(self):
+        """
+        Метод осуществляет удаление списка контактов в базе данных клиента
+        :return: None
+        """
+        self.session.query(self.Contacts).delete()
 
     def get_users(self):
         """
