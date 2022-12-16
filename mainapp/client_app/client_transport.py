@@ -200,15 +200,21 @@ class ClientTransport(threading.Thread, QObject):
         генерирует исключение при ошибке.
         """
         logger.debug(f'разбор сообщения от сервера: {message}')
+
+        # Если в сообщении подтверждение какого-либо запроса.
         if RESPONSE in message:
             if message[RESPONSE] == 200:
                 return
             elif message[RESPONSE] == 400:
                 raise ServerError(f'{[ERROR]}')
+            elif message[RESPONSE] == 205:
+                self.user_list_update()
+                self.contact_list_update()
+                self.message_205.emit()
             else:
                 logger.debug(f'Незвестный код подтвержения в ответе сервера: '
-                             f'{message[RESPONSE]}'
-                             )
+                             f'{message[RESPONSE]}')
+
         # Если получили сообщение от пользователя, добавляем в базу данных
         # и формируем сигнал о новом сообщении
         elif ACTION in message and \
@@ -218,12 +224,9 @@ class ClientTransport(threading.Thread, QObject):
                 MESSAGE_TEXT in message and \
                 message[DESTINATION] == self.username:
             logger.debug(f'Получено сообщение от пользователя '
-                         f'{message[SENDER]}: {message[MESSAGE_TEXT]}'
-                         )
-            self.database.save_message(
-                message[SENDER], 'in', message[MESSAGE_TEXT]
-            )
-            self.new_message.emit(message[SENDER])
+                         f'{message[SENDER]}: {message[MESSAGE_TEXT]}')
+            self.database.save_message(message[SENDER], 'in', message[MESSAGE_TEXT])
+            self.new_message.emit(message)
 
     def add_contact(self, contact):
         """Обработчик добавления нового контакта"""
