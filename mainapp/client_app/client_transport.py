@@ -137,20 +137,22 @@ class ClientTransport(threading.Thread, QObject):
 
     def contact_list_update(self):
         """
-        Обеспечивает обработку запроса на обновление списка контактов
+        Запрашивает список контактов с сервера и добавляет в базу данных клиента.
         """
-        logger.debug(f'Запрос списка контактов для пользователя {self.username}')
         request = {
             ACTION: CONTACT_LIST,
             TIME: time.time(),
             USER: self.username
         }
-        logger.debug(f'Сформирован запрос {request}')
-        with socket_lock:
-            send_response(self.transport, request, sender='client')
-            print(self.transport)
-            answer = get_response(self.transport, sender='client')
-        logger.debug(f'Получен ответ {answer}')
+        logger.debug(f'Сформирован запрос к серверу на получение списка контактов {self.username}: - {request}')
+        try:
+            with socket_lock:
+                send_response(self.transport, request, sender='client')
+                answer = get_response(self.transport, sender='client')
+            logger.debug(f'Получен ответ {answer}')
+        except ERROR as e:
+            print('Ошибка при обновлении списка контактов')
+            logger.warning(f'Не удалось обновить список контактов. {e}')
         if RESPONSE in answer and answer[RESPONSE] == 202:
             try:
                 for contact in answer[LIST_INFO]:
