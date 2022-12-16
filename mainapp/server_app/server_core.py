@@ -6,12 +6,11 @@ import json
 import hmac
 import binascii
 import os
-from mainapp.metaclasses.server_metaclass import ServerVerifier
-from mainapp.descriptors.port_descr import PortDescriptor
+# from mainapp.metaclasses.server_metaclass import ServerVerifier
+# from mainapp.descriptors.port_descr import PortDescriptor
 from mainapp.common.variables import *
 from mainapp.common.utils import send_response, get_response
 from mainapp.decorators.log_deco import debug_log
-
 
 SERVER_LOG = logging.getLogger('server')
 
@@ -73,8 +72,8 @@ class MessageProcessor(threading.Thread):
             message_auth[DATA] = random_str.decode('ascii')
             # Создаём хэш пароля и связки с рандомной строкой, сохраняем
             # серверную версию ключа
-            hash = hmac.new(self.database.get_hash(message[USER][ACCOUNT_NAME]), random_str, 'MD5')
-            digest = hash.digest()
+            passwd_hash = hmac.new(self.database.get_hash(message[USER][ACCOUNT_NAME]), random_str, 'MD5')
+            digest = passwd_hash.digest()
             SERVER_LOG.debug(f'Auth message = {message_auth}')
             try:
                 # Обмен с клиентом
@@ -113,10 +112,10 @@ class MessageProcessor(threading.Thread):
                 sock.close()
 
     def remove_client(self, client):
-        '''
+        """
         Метод обработчик клиента с которым прервана связь.
         Ищет клиента и удаляет его из списков и базы:
-        '''
+        """
         SERVER_LOG.info(f'Клиент {client.getpeername()} отключился от сервера.')
         for name in self.names:
             if self.names[name] == client:
@@ -149,7 +148,6 @@ class MessageProcessor(threading.Thread):
             SERVER_LOG.error(
                 f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
 
-
     @debug_log
     def process_client_message(self, message, client):
         """
@@ -162,9 +160,9 @@ class MessageProcessor(threading.Thread):
 
         # 1. Получено приветственное сообщение.
         if ACTION in message \
-            and message[ACTION] == PRESENCE \
-            and TIME in message \
-            and USER in message:
+                and message[ACTION] == PRESENCE \
+                and TIME in message \
+                and USER in message:
             self.autorize_user(message, client)
 
         # 2. Получено текстовое сообщение.
@@ -319,9 +317,13 @@ class MessageProcessor(threading.Thread):
                         self.remove_client(client_with_message)
 
     def init_socket(self):
-        '''Метод инициализатор сокета.'''
+        """
+        Метод инициализатор сокета.
+        """
         SERVER_LOG.info(
-            f'Запущен сервер, порт для подключений: {self.port} , адрес с которого принимаются подключения: {self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
+            f'Запущен сервер, порт для подключений: '
+            f'{self.port} , адрес с которого принимаются подключения: '
+            f'{self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
         # Готовим сокет
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.bind((self.addr, self.port))
@@ -330,3 +332,14 @@ class MessageProcessor(threading.Thread):
         # Начинаем слушать сокет.
         self.sock = transport
         self.sock.listen(CONNECTION_LIMIT)
+
+    def service_update_lists(self):
+        """
+        Метод реализующий отправки сервисного сообщения 205 клиентам.
+        :return:
+        """
+        for client in self.names:
+            try:
+                send_response(self.names[client], RESPONSE_205, sender='server')
+            except OSError:
+                self.remove_client(self.names[client])
