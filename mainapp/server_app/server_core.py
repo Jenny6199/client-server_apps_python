@@ -151,10 +151,13 @@ class MessageProcessor(threading.Thread):
     @debug_log
     def process_client_message(self, message, client):
         """
-        Метод отбработчик поступающих сообщений.
-        :param message:
-        :param client:
-        :return:
+        Функция обработчик сообщений полученных от клиента
+        На вход принимает словарь - проверяет соответствие форме,
+        отправляет ответ клиенту при получении приветственного сообщения или ошибке
+        добавляет сообщение в список сообщений
+        возвращает None
+        :param message: data from client
+        :param client: object of client
         """
         SERVER_LOG.debug(f'Разбор сообщения от клиента : {message}')
 

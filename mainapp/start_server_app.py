@@ -19,7 +19,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
-    WHOS_HERE, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST,LIST_INFO
+    WHOS_HERE, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST, LIST_INFO
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
@@ -148,7 +148,9 @@ class Server(threading.Thread, metaclass=ServerVerifier):
             if res_data_list:
                 for client_with_message in res_data_list:
                     try:
-                        self.process_client_message(get_response(client_with_message, sender='server'), client_with_message)
+                        self.process_client_message(
+                            get_response(client_with_message, sender='server'),
+                            client_with_message)
                     except TimeoutError:
                         SERVER_LOG.info(
                             f'Клиент {client_with_message.getpeername()} отключился от сервера')
@@ -252,7 +254,7 @@ class Server(threading.Thread, metaclass=ServerVerifier):
                 and TIME in message \
                 and DESTINATION in message:
             SERVER_LOG.debug('Получено текстовое сообщение.')
-            messages_list.append(message)
+            # messages_list.append(message)
             SERVER_LOG.debug('Сообщение добавлено в список сообщений')
             return
 
@@ -339,28 +341,7 @@ def main():
     timer.timeout.connect(active_users_list_update)
     timer.start(1000)
 
-
     server_app.exec_()
-
-    # while True:
-    #     command = input('Введите команду: ')
-    #     if command == 'help':
-    #         print_help()
-    #     elif command == 'exit':
-    #         break
-    #     elif command == 'users':
-    #         for user in sorted(database.users_list()):
-    #             print(f'Пользователь {user[0]}, последний вход: {user[1]}')
-    #     elif command == 'connected':
-    #         for user in sorted(database.active_users_list()):
-    #             print(f'Пользователь {user[0]}, подключен: {user[1]}:{user[2]}, время установки соединения: {user[3]}')
-    #     elif command == 'loghist':
-    #         name = input('Введите имя пользователя для просмотра истории. '
-    #                      'Для вывода всей истории, просто нажмите Enter: ')
-    #         for user in sorted(database.login_history(name)):
-    #             print(f'Пользователь: {user[0]} время входа: {user[1]}. Вход с: {user[2]}:{user[3]}')
-    #     else:
-    #         print('Команда не распознана.')
 
 
 if __name__ == '__main__':
