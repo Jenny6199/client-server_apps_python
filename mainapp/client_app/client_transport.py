@@ -166,6 +166,30 @@ class ClientTransport(threading.Thread, QObject):
         else:
             logger.error('Не удалось обновить список контактов')
 
+    def key_request(self, user):
+        """
+        Запрашивает с сервера публичный ключ пользователя.
+        :param user: user - имя пользователя для запроса
+        :return: None
+        """
+        logger.debug(f'Вызов функции key_request. Запрос публичного ключа пользователя {user}.')
+        request = {
+            ACTION: PUBLIC_KEY_REQUEST,
+            TIME: time.time(),
+            ACCOUNT_NAME: user,
+        }
+        try:
+            with socket_lock:
+                send_response(self.transport, request)
+                answer = get_response(self.transport, sender='client')
+                logger.info(f' Получен ответ от сервера {answer}')
+        except ERROR as e:
+            logger.error(f'Не удалось получить публичный ключ - {e}.')
+        if RESPONSE in answer and answer[RESPONSE] == 511:
+            return answer[DATA]
+        else:
+            logger.error('Ключ собеседника не получен.')
+
     def send_message(self, destination, message):
         """Обработчик отправки сообщения на сервер"""
         message_dict = {

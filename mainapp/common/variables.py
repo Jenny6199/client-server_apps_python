@@ -44,6 +44,7 @@ USERS_REQUEST = 'get_users'
 REMOVE_CONTACT = 'remove'
 EXIT = 'exit'
 DATA = 'bin'
+PUBLIC_KEY_REQUEST = 'get_public_key'
 
 
 # Уровень реагирования обработчиков
