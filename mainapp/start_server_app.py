@@ -27,6 +27,7 @@ from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
 from descriptors.port_descr import PortDescriptor
 from mainapp.server_app.db_builder.server_data_base import ServerDB
+from mainapp.server_app.server_core import MessageProcessor
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QTimer
 from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
@@ -39,7 +40,7 @@ new_connection = False
 conflag_lock = threading.Lock()
 
 
-def arg_parser():
+def arg_parser(default_port, default_addres):
     """command line parser"""
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
@@ -71,7 +72,7 @@ def config_load():
         config.set('SETTINGS', 'Database_file', 'server_database.db3')
         return config
 
-@log
+@debug_log
 def main():
     """Основной цикл работы сервера"""
     # Загрузка файла конфигурации сервера
@@ -80,10 +81,12 @@ def main():
     # Загрузка параметров командной строки, если нет параметров, то задаём
     # значения по умоланию.
     listen_address, listen_port, gui_flag = arg_parser(
-        config['SETTINGS']['Default_port'], config['SETTINGS']['Listen_Address'])
+        config['SETTINGS']['Default_port'],
+        config['SETTINGS']['Listen_Address'],
+    )
 
     # Инициализация базы данных
-    database = ServerStorage(
+    database = ServerDB(
         os.path.join(
             config['SETTINGS']['Database_path'],
             config['SETTINGS']['Database_file']))
@@ -103,21 +106,16 @@ def main():
                 server.running = False
                 server.join()
                 break
-
-    # Если не указан запуск без GUI, то запускаем GUI:
     else:
         # Создаём графическое окуружение для сервера:
         server_app = QApplication(sys.argv)
         server_app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
         main_window = MainWindow(database, server, config)
-
-        # Запускаем GUI
+        main_window = ServerWindowMain(database, server, config)
         server_app.exec_()
-
-        # По закрытию окон останавливаем обработчик сообщений
         server.running = False
+
 
 
 if __name__ == '__main__':
     main()
-

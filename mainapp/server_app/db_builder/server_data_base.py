@@ -56,12 +56,12 @@ class ServerDB:
             self.sent = 0
             self.accepted = 0
 
-    def __init__(self):
+    def __init__(self, path):
         """Создание движка базы данных"""
         self.database_engine = create_engine(
-            SERVER_DB,  # Путь к БД, сохранен в отдельной переменной
+            f'sqlite:///{path}',  # Путь к БД,
             echo=False,  # Индикация SQL-запросов
-            pool_recycle=3600,  # Переустановка соединения каждый час
+            pool_recycle=7200,  # Переустановка соединения каждый час
             connect_args={'check_same_thread': False},
         )
         self.metadata = MetaData()  # Объект метадата

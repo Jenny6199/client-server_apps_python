@@ -14,17 +14,16 @@ from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
 import sys
 
 
-# from PyQt5.QtCore import Qt
-# from ui_forms_server.ui_server_settingswindow_form import ServerWindowSettingsForm
-
-
 class ServerWindowMain(QMainWindow):
     """Start main window for server part of messenger"""
 
-    def __init__(self):
+    def __init__(self, database, server, config):
         super(ServerWindowMain, self).__init__()
         self.ui = UiServerMainWindowForm()
         self.ui.setupUi(self)
+        self.database = database
+        self.server = server
+        self.config = config
         self.show()
 
 
