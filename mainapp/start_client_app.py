@@ -22,15 +22,21 @@ def arg_parser():
     Ожидаются параметры "-a" - ip-address, "-p" - port, "-n" - client_name
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('-a', default=DEFAULT_IP, nargs='?')
-    parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
-    parser.add_argument('-n', default=None, nargs='?')
+    parser.add_argument('-address', default=DEFAULT_IP, nargs='?')
+    parser.add_argument('-port', default=PORT_LISTEN, type=int, nargs='?')
+    parser.add_argument('-n', '--name', default=None, nargs='?')
+    parser.add_argument('-p', '--password', default='', nargs='?')
     namespace = parser.parse_args(sys.argv[1:])
+    server_address = namespace.addr
+    server_port = namespace.port
+    client_name = namespace.name
+    client_passwd = namespace.password
+
     if not 1023 < namespace.p < 65536:  # Проверка доступности порта
         CLIENT_LOG.critical(f'Попытка запуска клиента с неподходящим номером порта: {namespace.p}.'
                             f'Допустимы адреса с 1024 до 65535. Клиент завершает работу.')
         sys.exit(1)
-    return namespace.a, namespace.p, namespace.n  # server_address, server_port, client_name
+    return server_address, server_port, client_name, client_passwd
 
 
 if __name__ == '__main__':
