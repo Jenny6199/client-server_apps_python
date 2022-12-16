@@ -1,8 +1,8 @@
 # Консольный мессенджер
-# Серверная часть программы. v 0.2.0
+# Серверная часть программы. v 0.2.2
 # Продолжение работы над проектом на курсе
 # "Базы данных и PyQt", Geekbrains
-# Преподаватель: Сергей Акопович Акопян
+# Преподаватели: Сергей Акопович Акопян, Барбылев Илья.
 # Автор: Максим Сапунов, Jenny6199@yandex.ru
 # Москва, 2022
 
@@ -10,7 +10,7 @@ import argparse
 import sys
 import select
 import art
-# from os import path
+import os
 import threading
 # from common.errors import IncorrectDataRecivedError
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
@@ -42,10 +42,13 @@ def arg_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
     parser.add_argument('-a', default='', nargs='?')
+    parser.add_argument('--no_gui', action='store_true')
     namespace = parser.parse_args(sys.argv[1:])
     listen_address = namespace.a
     listen_port = namespace.p
-    return listen_address, listen_port
+    gui_flag = namespace.no_gui
+    SERVER_LOG.('Обработка аргументов коммандной строки прошла успешно.')
+    return listen_address, listen_port, gui_flag
 
 
 def banner():
