@@ -36,10 +36,12 @@ class MessageProcessor(threading.Thread):
 
     def autorize_user(self, message, sock):
         """
-        Метод реализующий авторизцию пользователей.
+        Метод авторизации пользователей на сервере
+        :param - message сообщение
+        :param - sock сокет
         """
-        # Если имя пользователя занято --> 400
-        SERVER_LOG.debug(f'Start auth process for {message[USER]}')
+        SERVER_LOG.debug(f'Запущен процесс авторизации для пользователя {message[USER]}')
+        # Если имя пользователя занято
         if message[USER][ACCOUNT_NAME] in self.names.keys():
             response = RSP_400
             response[ERROR] = 'Имя пользователя уже занято.'
@@ -68,13 +70,15 @@ class MessageProcessor(threading.Thread):
             message_auth = RESPONSE_511
             # Набор байтов в hex представлении
             random_str = binascii.hexlify(os.urandom(64))
-            # В словарь байты нельзя, декодируем (json.dumps -> TypeError)
+            # Добавляем данные в сообщение после декодирования
             message_auth[DATA] = random_str.decode('ascii')
-            # Создаём хэш пароля и связки с рандомной строкой, сохраняем
-            # серверную версию ключа
-            passwd_hash = hmac.new(self.database.get_hash(message[USER][ACCOUNT_NAME]), random_str, 'MD5')
+            # Хэш пароля состоит из имени польззователя и рандомной строки
+            passwd_hash = hmac.new(
+                self.database.get_hash(message[USER][ACCOUNT_NAME]),
+                random_str,
+                'MD5')
             digest = passwd_hash.digest()
-            SERVER_LOG.debug(f'Auth message = {message_auth}')
+            SERVER_LOG.debug(f'Сообщение авторизации = {message_auth}')
             try:
                 # Обмен с клиентом
                 send_response(sock, message_auth, sender='server')
@@ -288,16 +292,17 @@ class MessageProcessor(threading.Thread):
 
         # Основной цикл программы сервера
         while self.running:
-            # Ждём подключения, если таймаут вышел, ловим исключение.
+            # Ожидаем подключение
             try:
                 client, client_address = self.sock.accept()
-            except OSError:
+            # Генерируем исключение по TimeOut
+            except (OSError, TimeoutError):
                 pass
             else:
-                SERVER_LOG.info(f'Установлено новое соедение -  {client_address}')
+                SERVER_LOG.info(f'Установлено новое соединение -  {client_address}')
                 client.settimeout(5)
                 self.clients.append(client)
-
+            # Создаем списки для обработки данных
             recv_data_lst = []
             send_data_lst = []
             err_lst = []
@@ -308,15 +313,14 @@ class MessageProcessor(threading.Thread):
                         self.clients, self.clients, [], 0)
             except OSError as err:
                 SERVER_LOG.error(f'Ошибка работы с сокетами: {err.errno}')
-
-            # принимаем сообщения и если ошибка, исключаем клиента.
+            # Принимаем сообщения и если возникает ошибка, клиент будет исключен.
             if recv_data_lst:
                 for client_with_message in recv_data_lst:
                     try:
                         self.process_client_message(
                             get_response(client_with_message, sender='server'), client_with_message)
                     except (OSError, json.JSONDecodeError, TypeError) as err:
-                        SERVER_LOG.debug(f'Getting data from client exception.', exc_info=err)
+                        SERVER_LOG.debug(f'Ошибка обработки данных на стороне клиента.', exc_info=err)
                         self.remove_client(client_with_message)
 
     def init_socket(self):
@@ -324,22 +328,21 @@ class MessageProcessor(threading.Thread):
         Метод инициализатор сокета.
         """
         SERVER_LOG.info(
-            f'Запущен сервер, порт для подключений: '
-            f'{self.port} , адрес с которого принимаются подключения: '
-            f'{self.addr}. Если адрес не указан, принимаются соединения с любых адресов.')
-        # Готовим сокет
+            f'Запущен сервер, порт для подключений: {self.port}.'
+            f'Адрес с которого принимаются подключения: {self.addr}. '
+            f'Если адрес не указан, принимаются соединения с любых адресов.')
+        # Настройки сокета
         transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         transport.bind((self.addr, self.port))
         transport.settimeout(0.5)
-
-        # Начинаем слушать сокет.
+        # Старт сокета
         self.sock = transport
         self.sock.listen(CONNECTION_LIMIT)
 
     def service_update_lists(self):
         """
-        Метод реализующий отправки сервисного сообщения 205 клиентам.
-        :return:
+        Метод реализующий отправку сервисного сообщения RSP_205 клиентам.
+        :return: None
         """
         for client in self.names:
             try:

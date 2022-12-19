@@ -251,6 +251,14 @@ class ServerDB:
         else:
             return False
 
+    def get_hash(self, name):
+        """
+        Метод для получения из базы данных хэша пароля пользователя
+        :param - str - name, username
+        :return - str - user password's hash
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=name).first()
+        return user.passwd_hash
 
 if __name__ == '__main__':
     # создание базы
