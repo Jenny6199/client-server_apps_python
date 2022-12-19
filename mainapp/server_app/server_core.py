@@ -62,10 +62,9 @@ class MessageProcessor(threading.Thread):
                 pass
             self.clients.remove(sock)
             sock.close()
+        # Если имя пользователя доступно проводим процедуру авторизации
         else:
-            SERVER_LOG.debug('Correct username, starting passwd check.')
-            # Иначе отвечаем 511 и проводим процедуру авторизации
-            # Словарь - заготовка
+            SERVER_LOG.debug('Имя пользователя доступно. Начата процедура проверки пароля.')
             message_auth = RESPONSE_511
             # Набор байтов в hex представлении
             random_str = binascii.hexlify(os.urandom(64))

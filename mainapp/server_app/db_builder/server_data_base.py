@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Table, Column, Integer, String,\
-    MetaData, ForeignKey, DateTime
+    Text, MetaData, ForeignKey, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
 from mainapp.common.variables import SERVER_DB
 # from uuid import uuid4
@@ -14,10 +14,12 @@ class ServerDB:
 
     class AllUsers:
         """Таблица для хранения всех пользователей"""
-        def __init__(self, username):
+        def __init__(self, username, passwd_hash):
             self.name = username
             self.id = None
             self.last_login = datetime.now()
+            self.passwd_hash = passwd_hash
+            self.pubkey = None
 
     class ActiveUsers:
         """Таблица для активных пользователей"""
@@ -70,7 +72,9 @@ class ServerDB:
         users_table = Table('Users', self.metadata,
                             Column('id', Integer, primary_key=True),
                             Column('name', String, unique=True),
-                            Column('last_login', DateTime)
+                            Column('last_login', DateTime),
+                            Column('passwd_hash', String),
+                            Column('pubkey', Text)
                             )
         # Таблица активных пользователей
         active_users_table = Table('Active_users', self.metadata,
