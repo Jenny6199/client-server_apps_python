@@ -118,8 +118,10 @@ class MessageProcessor(threading.Thread):
 
     def remove_client(self, client):
         """
-        Метод обработчик клиента с которым прервана связь.
-        Ищет клиента и удаляет его из списков и базы:
+        Метод для удаления клиента из словаря известных имен на сервере
+        и в таблице известных пользователей в БД
+        при потери с ним связи.
+        :param - client - str имя клиента.
         """
         SERVER_LOG.info(f'Клиент {client.getpeername()} отключился от сервера.')
         for name in self.names:
@@ -145,13 +147,16 @@ class MessageProcessor(threading.Thread):
                                 f'{message[SENDER]}.')
             except OSError:
                 self.remove_client(message[DESTINATION])
-        elif message[DESTINATION] in self.names and self.names[message[DESTINATION]] not in self.listen_sockets:
+        elif message[DESTINATION] in self.names \
+                and self.names[message[DESTINATION]] not in self.listen_sockets:
             SERVER_LOG.error(
-                f'Связь с клиентом {message[DESTINATION]} была потеряна. Соединение закрыто, доставка невозможна.')
+                f'Связь с клиентом {message[DESTINATION]} была потеряна. '
+                f'Соединение закрыто, доставка невозможна.')
             self.remove_client(self.names[message[DESTINATION]])
         else:
             SERVER_LOG.error(
-                f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, отправка сообщения невозможна.')
+                f'Пользователь {message[DESTINATION]} не зарегистрирован '
+                f'на сервере, отправка сообщения невозможна.')
 
     @debug_log
     def process_client_message(self, message, client):
