@@ -82,29 +82,30 @@ class MessageProcessor(threading.Thread):
             try:
                 # Обмен с клиентом
                 send_response(sock, message_auth, sender='server')
-                ans = get_response(sock, sender='server')
+                client_answer = get_response(sock, sender='server')
             except OSError as err:
-                SERVER_LOG.debug('Error in auth, data:', exc_info=err)
+                SERVER_LOG.debug(f'Ошибка авторизации, сведения:\n{err}.\nСокет закрыт.')
                 sock.close()
                 return
-            client_digest = binascii.a2b_base64(ans[DATA])
-            # Если ответ клиента корректный, то сохраняем его в список
-            # пользователей.
-            if RESPONSE in ans and ans[RESPONSE] == 511 and hmac.compare_digest(
-                    digest, client_digest):
+            client_digest = binascii.a2b_base64(client_answer[DATA])
+            # Проверяем совпадение переданного ключа и ключа в БД
+            if RESPONSE in client_answer \
+                    and client_answer[RESPONSE] == 511 \
+                    and hmac.compare_digest(digest, client_digest):
+                # Добавляем сокет пользователя в словарь авторизованных пользователей
                 self.names[message[USER][ACCOUNT_NAME]] = sock
                 client_ip, client_port = sock.getpeername()
                 try:
                     send_response(sock, RSP_200, sender='server')
                 except OSError:
                     self.remove_client(message[USER][ACCOUNT_NAME])
-                # добавляем пользователя в список активных и если у него изменился открытый ключ
-                # сохраняем новый
+                # Сохраняем данные пользователя в таблицу активных пользователей в БД
                 self.database.user_login(
                     message[USER][ACCOUNT_NAME],
                     client_ip,
                     client_port,
                     message[USER][PUBLIC_KEY])
+            # Если от пользователя получен ответ отличный от RPS_511
             else:
                 response = RSP_400
                 response[ERROR] = 'Неверный пароль.'
