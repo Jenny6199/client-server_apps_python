@@ -64,8 +64,7 @@ class ServerDB:
             f'sqlite:///{path}',  # Путь к БД,
             echo=False,  # Индикация SQL-запросов
             pool_recycle=7200,  # Переустановка соединения каждый час
-            connect_args={'check_same_thread': False},
-        )
+            connect_args={'check_same_thread': False})
         self.metadata = MetaData()  # Объект метадата
 
         # Таблица пользователей
@@ -74,7 +73,7 @@ class ServerDB:
                             Column('name', String, unique=True),
                             Column('last_login', DateTime),
                             Column('passwd_hash', String),
-                            Column('pubkey', Text)
+                            Column('pubkey', Text),
                             )
         # Таблица активных пользователей
         active_users_table = Table('Active_users', self.metadata,
@@ -82,7 +81,7 @@ class ServerDB:
                                    Column('user', ForeignKey('Users.id'), unique=True),
                                    Column('ip_address', String),
                                    Column('port', Integer),
-                                   Column('login_time', DateTime)
+                                   Column('login_time', DateTime),
                                    )
         # Таблица истории входа
         user_login_history = Table('Login_history', self.metadata,
@@ -90,13 +89,13 @@ class ServerDB:
                                    Column('name', ForeignKey('Users.id')),
                                    Column('date_time', DateTime),
                                    Column('ip', String),
-                                   Column('port', String)
+                                   Column('port', String),
                                    )
         # Таблица контактов пользователя
         users_contact = Table('User_contact', self.metadata,
                               Column('id', Integer, primary_key=True),
                               Column('user', ForeignKey('Users.id')),
-                              Column('contact', ForeignKey('Users.id'))
+                              Column('contact', ForeignKey('Users.id')),
                               )
 
         # Таблица истории пользователя
@@ -104,7 +103,7 @@ class ServerDB:
                              Column('id', Integer, primary_key=True),
                              Column('user', ForeignKey('Users.id')),
                              Column('send', Integer),
-                             Column('accepted', Integer)
+                             Column('accepted', Integer),
                              )
 
         # Создание таблиц
@@ -124,18 +123,24 @@ class ServerDB:
         # initial commit
         self.session.commit()
 
-    def user_login(self, username, ip_address, port):
+    def user_login(self, username, ip_address, port, key):
         """
         Функция вносит изменения в базу данных при входе пользователя
-        :param username - str
-        :param ip_address - str
-        :param port - int
+        Обновляет открытый ключ пользователя при его изменении.
+        :param username - str имя пользователя
+        :param ip_address - str ip-адресс пользователя
+        :param port - int номер порта
+        :param key - str публичный ключ пользователя
         """
-        print(username, ip_address, port)
+        # Проверяем что пользователь имеется в таблице пользователей
         rez = self.session.query(self.AllUsers).filter_by(name=username)
+        # Если пользователь в таблице имеется обновляем время входа и ключ
         if rez.count():
             user = rez.first()
             user.last_login = datetime.now()
+            if user.pubkey != key:
+                user.pubkey = key
+        # Если пользователя нет в таблице вызывается исключение
         else:
             user = self.AllUsers(username)
             self.session.add(user)
