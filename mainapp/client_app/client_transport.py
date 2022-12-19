@@ -219,7 +219,7 @@ class ClientTransport(threading.Thread, QObject):
         }
         logger.debug(f'Сформировано {PRESENCE} сообщение '
                      f'для пользователя {self.username}. '
-                     f'Pubkey = {public_key}')
+                     f'Pubkey \n{public_key}\n')
         return out
 
     def process_server_answer(self, message):

@@ -6,23 +6,31 @@ educated DB_and_PyQt course lesson 5 by GeekBrains,
 Moscow, November 2022.
 Maksim_Sapunov, Jenny6199@yandex.ru
 """
-
+# internal libraries import
 import sys
+import json
+import logging
+import base64
+
+# internal modules import
+from mainapp.client_app.client_transport import ClientTransport
+from mainapp.client_app.client_database import ClientDatabase
+from mainapp.client_app.ui_forms_client.ui_client_addcontactwindow_form import ClientAddContactWindow
+
+# external libraries import
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, \
     QWidget, QLabel, QListView, QMessageBox
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
 from PyQt5.QtCore import pyqtSlot, QEvent, Qt
-from mainapp.client_app.client_transport import ClientTransport
-from mainapp.client_app.client_database import ClientDatabase
-from mainapp.client_app.ui_forms_client.ui_client_addcontactwindow_form import ClientAddContactWindow
-
+from Cryptodome.Cipher import PKCS1_OAEP
+from Cryptodome.PublicKey import RSA
 
 
 class ClientWindowMain(QMainWindow):
     """Start main window for server part of messenger"""
 
-    def __init__(self, database, transport):
+    def __init__(self, database, transport, keys):
         """
         Конструктор класса ClientWindowMain
         :param - database
@@ -31,10 +39,11 @@ class ClientWindowMain(QMainWindow):
         # Инициализация суперкласса (QMainWindow)
         super(ClientWindowMain, self).__init__()
         # Основные параметры
-        self.ui = UiClientMainWindowForm()
-        self.ui.setupUi(self)
         self.database = database
         self.transport = transport
+        self.ui = UiClientMainWindowForm()
+        self.ui.setupUi(self)
+        self.decrypter = PKCS1_OAEP.new(keys)
         # Connect
         self.ui.pushButton_add_contact.clicked.connect(self.add_contact_window)
         self.ui.pushButton_del_contact.clicked.connect(self.del_contact_window)
@@ -232,5 +241,5 @@ class UiClientMainWindowForm(object):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    application = ClientWindowMain(database=None, transport=None)
+    application = ClientWindowMain(database=None, transport=None, keys=None)
     sys.exit(app.exec_())

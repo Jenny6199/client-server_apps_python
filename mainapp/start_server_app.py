@@ -111,8 +111,6 @@ def main():
     else:
         # Создаём графическое окуружение для сервера:
         server_app = QApplication(sys.argv)
-        server_app.setAttribute(Qt.AA_DisableWindowContextHelpButton)
-        main_window = MainWindow(database, server, config)
         main_window = ServerWindowMain(database, server, config)
         server_app.exec_()
         server.running = False
