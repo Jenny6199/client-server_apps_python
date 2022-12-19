@@ -7,7 +7,7 @@ import hmac
 import binascii
 import os
 # from mainapp.metaclasses.server_metaclass import ServerVerifier
-# from mainapp.descriptors.port_descr import PortDescriptor
+from mainapp.descriptors.port_descr import PortDescriptor
 from mainapp.common.variables import *
 from mainapp.common.utils import send_response, get_response
 from mainapp.decorators.log_deco import debug_log
@@ -20,6 +20,7 @@ class MessageProcessor(threading.Thread):
     Основной класс сервера. Обеспечивает прием и обработку поступающих
     сообщений. Запускается в отдельном потоке.
     """
+    port = PortDescriptor()
 
     def __init__(self, listen_address, listen_port, database):
         self.addr = listen_address
@@ -37,13 +38,13 @@ class MessageProcessor(threading.Thread):
         """
         Метод реализующий авторизцию пользователей.
         """
-        # Если имя пользователя занять --> 400
+        # Если имя пользователя занято --> 400
         SERVER_LOG.debug(f'Start auth process for {message[USER]}')
         if message[USER][ACCOUNT_NAME] in self.names.keys():
             response = RSP_400
             response[ERROR] = 'Имя пользователя уже занято.'
             try:
-                SERVER_LOG.debug(f'Username busy, sending {response}')
+                SERVER_LOG.debug(f'Имя пользователя занято, {response}')
                 send_response(sock, response, sender='server')
             except OSError:
                 SERVER_LOG.debug('OS Error')

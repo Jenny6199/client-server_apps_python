@@ -21,7 +21,7 @@ from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
     ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
     RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
     SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
-    WHOS_HERE, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST, LIST_INFO
+    PORT_LISTEN, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST, LIST_INFO
 import logging
 from decorators.log_deco import debug_log
 from metaclasses.server_metaclass import ServerVerifier
@@ -53,6 +53,7 @@ def arg_parser(default_port, default_addres):
     SERVER_LOG.info('Обработка аргументов коммандной строки прошла успешно.')
     return listen_address, listen_port, gui_flag
 
+
 @debug_log
 def config_load():
     """
@@ -66,11 +67,12 @@ def config_load():
         return config
     else:
         config.add_section('SETTINGS')
-        config.set('SETTINGS', 'Default_port', str(DEFAULT_PORT))
+        config.set('SETTINGS', 'Default_port', str(PORT_LISTEN))
         config.set('SETTINGS', 'Listen_Address', '')
         config.set('SETTINGS', 'Database_path', '')
         config.set('SETTINGS', 'Database_file', 'server_database.db3')
         return config
+
 
 @debug_log
 def main():

@@ -235,6 +235,13 @@ class ServerDB:
         ).join(self.AllUsers)
         return query.all()
 
+    def check_user(self, name):
+        """Метод проверяющий существование пользователя."""
+        if self.session.query(self.AllUsers).filter_by(name=name).count():
+            return True
+        else:
+            return False
+
 
 if __name__ == '__main__':
     # создание базы
