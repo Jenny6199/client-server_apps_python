@@ -1,12 +1,9 @@
 from sqlalchemy import create_engine, Table, Column, Integer, String,\
     Text, MetaData, ForeignKey, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
-from mainapp.common.variables import SERVER_DB
-# from uuid import uuid4
+from mainapp.common.variables import SERVER_DB_PATH
 from _datetime import datetime
 from pprint import pprint
-
-# SERVER_DB = 'sqlite:///server_base.db3'
 
 
 class ServerDB:
@@ -58,10 +55,10 @@ class ServerDB:
             self.sent = 0
             self.accepted = 0
 
-    def __init__(self, path):
+    def __init__(self):
         """Создание движка базы данных"""
         self.database_engine = create_engine(
-            f'sqlite:///{path}',  # Путь к БД,
+            SERVER_DB_PATH,  # Путь к БД,
             echo=False,  # Индикация SQL-запросов
             pool_recycle=7200,  # Переустановка соединения каждый час
             connect_args={'check_same_thread': False})
@@ -142,13 +139,29 @@ class ServerDB:
                 user.pubkey = key
         # Если пользователя нет в таблице вызывается исключение
         else:
-            user = self.AllUsers(username)
-            self.session.add(user)
-            self.session.commit()
+            raise ValueError('Пользователь не зарегистрирован.')
+        # Создание записи в таблице активных пользователей.
         new_active_user = self.ActiveUsers(user.id, ip_address, port, datetime.now())
         self.session.add(new_active_user)
+        # Создание записи в таблице истории входа
         history = self.LoginHistory(user.id, datetime.now(), ip_address, port)
         self.session.add(history)
+        # Коммит
+        self.session.commit()
+
+    def add_user(self, name, passwd_hash):
+        """
+        Метод получает имя пользователя и хэш пароля, добавляет запись в таблицу UserHistory БД
+        :param name: str - имя пользователя
+        :param passwd_hash: str - хэш пароля
+        :return: None
+        """
+        user_row = self.AllUsers(name, passwd_hash)
+        self.session.add(user_row)
+        self.session.commit()
+
+        history_row = self.UserHistory(user_row.id)
+        self.session.add(history_row)
         self.session.commit()
 
     def user_logout(self, username):
@@ -269,29 +282,29 @@ class ServerDB:
         # ID отправителя
         sender_id = self.session.query(self.AllUsers).filter_by(name=sender)
         # ID получателя
-        recipient_id = self.session.query(self.AllUsers).filter_by(name= recipient)
+        recipient_id = self.session.query(self.AllUsers).filter_by(name=recipient)
         # Увеличиваем счетчики
         sender_row = self.session.query(self.UserHistory).filter_by(user=sender_id).first()
         sender_row.sent += 1
         recipient_row = self.session.query(self.UserHistory).filter_by(user=recipient_id).first()
         recipient_row.accepted += 1
 
-
-if __name__ == '__main__':
-    # создание базы
-    test_DB = ServerDB()
-    print('подключение тестовых пользователей')
-    test_DB.user_login('user_1', '174.16.2.28', 7777)
-    test_DB.user_login('user_2', '174.16.2.30', 7171)
-    print('проверка функции active_users_list')
-    pprint(test_DB.active_users_list())
-
-    print('проверка функции user_logout')
-    test_DB.user_logout('user_1')
-    print(test_DB.active_users_list())
-
-    print('проверка функции login_history')
-    pprint(test_DB.login_history('user_1'))
-
-    print('проверка функции history_login')
-    pprint(test_DB.users_list())
+#  Отладка
+# if __name__ == '__main__':
+#     # создание базы
+#     test_DB = ServerDB()
+#     print('подключение тестовых пользователей')
+#     test_DB.user_login('user_1', '174.16.2.28', 7777)
+#     test_DB.user_login('user_2', '174.16.2.30', 7171)
+#     print('проверка функции active_users_list')
+#     pprint(test_DB.active_users_list())
+#
+#     print('проверка функции user_logout')
+#     test_DB.user_logout('user_1')
+#     print(test_DB.active_users_list())
+#
+#     print('проверка функции login_history')
+#     pprint(test_DB.login_history('user_1'))
+#
+#     print('проверка функции history_login')
+#     pprint(test_DB.users_list())
