@@ -5,6 +5,7 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+import sys
 
 project = 'Easy Messenger'
 copyright = '2022, Maksim Sapunov'
@@ -26,3 +27,5 @@ language = 'ru'
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+
+sys.path.insert(0, '/home/jenny6199/PycharmProjects/client-server_apps_python/mainapp')

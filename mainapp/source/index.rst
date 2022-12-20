@@ -3,17 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Easy Messenger's documentation!
-==========================================
+Документация приложения "Easy messenger"
+========================================
 
 .. toctree::
    :maxdepth: 2
+
+.. automodule:: server_core
+
+.. autoclass:: MessageProcessor
+    :members:
+
    :caption: Содержание:
 
    example
 
-Indices and tables
-==================
+Информация для быстрого поиска
+==============================
 
 * :ref:`genindex`
 * :ref:`modindex`
