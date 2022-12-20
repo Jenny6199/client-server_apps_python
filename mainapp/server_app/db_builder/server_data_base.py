@@ -260,6 +260,23 @@ class ServerDB:
         user = self.session.query(self.AllUsers).filter_by(name=name).first()
         return user.passwd_hash
 
+    def process_message(self, sender, recipient):
+        """
+        Метод записывает в таблицу статистики факт передачи сообщения.
+        :param: sender - str отправитель сообщения
+        :param: recipient - str получатель сообщения
+        """
+        # ID отправителя
+        sender_id = self.session.query(self.AllUsers).filter_by(name=sender)
+        # ID получателя
+        recipient_id = self.session.query(self.AllUsers).filter_by(name= recipient)
+        # Увеличиваем счетчики
+        sender_row = self.session.query(self.UserHistory).filter_by(user=sender_id).first()
+        sender_row.sent += 1
+        recipient_row = self.session.query(self.UserHistory).filter_by(user=recipient_id).first()
+        recipient_row.accepted += 1
+
+
 if __name__ == '__main__':
     # создание базы
     test_DB = ServerDB()
