@@ -8,14 +8,13 @@
 
 .. toctree::
    :maxdepth: 2
+   :caption: Содержание:
 
-.. automodule:: server_core
-
-.. autoclass:: MessageProcessor
-     :members:
+   sphinx-apidoc/modules
+   example
 
 Информация для быстрого поиска
-==============================
+------------------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

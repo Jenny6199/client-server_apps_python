@@ -113,6 +113,12 @@ class UiServerMainWindowForm(object):
         self.horizontalLayout_3.addWidget(self.button_settings)
         self.button_settings.clicked.connect(call_settings)
 
+        # 5 SignUp new user
+        self.New_user = QtWidgets.QPushButton(self.centralwidget)
+        self.New_user.setGeometry(QtCore.QRect(20, 360, 181, 41))
+        self.New_user.setMouseTracking(False)
+        self.New_user.setObjectName("New_user")
+
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
         # Изменяем названия ярлыков и надписей
@@ -131,6 +137,7 @@ class UiServerMainWindowForm(object):
         self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
+        self.New_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
 
 
 def call_settings():

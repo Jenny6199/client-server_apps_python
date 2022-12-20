@@ -1,3 +1,10 @@
+"""
+This modul was created for
+Easy Messenger app
+december 2022,  Moscow
+@author: Maksim Sapunov
+"""
+
 from sqlalchemy import create_engine, Table, Column, Integer, String,\
     Text, MetaData, ForeignKey, DateTime
 from sqlalchemy.orm import mapper, sessionmaker
