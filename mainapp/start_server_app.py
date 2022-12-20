@@ -7,31 +7,17 @@
 # Москва, 2022
 
 import argparse
-import configparser
 import sys
-import select
-import art
 import os
 import threading
 import configparser
-# from common.errors import IncorrectDataRecivedError
-from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
-from common.utils import get_response, send_response
-from common.variables import CONNECTION_LIMIT, PORT_LISTEN, \
-    ACTION, ACCOUNT_NAME, USER, TIME, PRESENCE, \
-    RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    SENDER, LEAVE_MESSAGE, DESTINATION, RSP_200, RSP_400, RSP_202, \
-    PORT_LISTEN, CONTACT_LIST, ADD_CONTACT, USERS_REQUEST, LIST_INFO
+from common.variables import PORT_LISTEN
 import logging
 from decorators.log_deco import debug_log
-from metaclasses.server_metaclass import ServerVerifier
-from descriptors.port_descr import PortDescriptor
 from mainapp.server_app.db_builder.server_data_base import ServerDB
 from mainapp.server_app.server_core import MessageProcessor
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QTimer
 from mainapp.server_app.ui_forms_server.ui_server_mainwindow_form import ServerWindowMain
-from mainapp.server_app.server_gui import gui_create_model, gui_create_stat_model
 
 # Инициализация журнала логирования сервера.
 SERVER_LOG = logging.getLogger('server')
@@ -40,11 +26,16 @@ new_connection = False
 conflag_lock = threading.Lock()
 
 
-def arg_parser(default_port, default_addres):
-    """command line parser"""
+def arg_parser(default_port=PORT_LISTEN, default_address=''):
+    """
+    Парсер аргументов коммандной строки.
+    :param default_port: порт по умолчанию
+    :param default_address:  ip-адресс по умолчанию
+    :return:
+    """
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', default=PORT_LISTEN, type=int, nargs='?')
-    parser.add_argument('-a', default='', nargs='?')
+    parser.add_argument('-p', default=default_port, type=int, nargs='?')
+    parser.add_argument('-a', default=default_address, nargs='?')
     parser.add_argument('--no_gui', action='store_true')
     namespace = parser.parse_args(sys.argv[1:])
     listen_address = namespace.a
@@ -88,10 +79,7 @@ def main():
     )
 
     # Инициализация базы данных
-    database = ServerDB(
-        os.path.join(
-            config['SETTINGS']['Database_path'],
-            config['SETTINGS']['Database_file']))
+    database = ServerDB()
 
     # Создание экземпляра класса - сервера и его запуск:
     server = MessageProcessor(listen_address, listen_port, database)
@@ -114,7 +102,6 @@ def main():
         main_window = ServerWindowMain(database, server, config)
         server_app.exec_()
         server.running = False
-
 
 
 if __name__ == '__main__':
