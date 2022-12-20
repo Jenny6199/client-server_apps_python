@@ -10,7 +10,7 @@ Welcome to Easy Messenger's documentation!
    :maxdepth: 2
    :caption: Содержание:
 
-    example
+   example
 
 Indices and tables
 ==================
