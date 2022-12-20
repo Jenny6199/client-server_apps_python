@@ -164,6 +164,38 @@ class ServerDB:
         self.session.add(history_row)
         self.session.commit()
 
+    def remove_user(self, name):
+        """
+        Метод получает имя пользователя и удаляет запись из всех таблиц в БД
+        :param name:
+        :return:
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=name).first()
+        self.session.query(self.ActiveUsers).filter_by(user=user.id).delete()
+        self.session.query(self.LoginHistory).filter_by(user=user.id).delete()
+        self.session.query(self.UsersContacts).filter_by(user=user.id).delete()
+        self.session.query(self.UserHistory).filter_by(user=user.id).delete()
+        self.session.query(self.AllUsers).filter_by(name=name).delete()
+        self.session.commit()
+
+    def get_hash(self, name):
+        """
+        Метод для получения из базы данных хэша пароля пользователя
+        :param - str - name, username
+        :return - str - user password's hash
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=name).first()
+        return user.passwd_hash
+
+    def get_pubkey(self, name):
+        """
+        Метод получает имя пользователя, запрашивает из БД публичный ключ пользователя и возвращает его.
+        :param name: str - имя пользователя
+        :return: str - публичный ключ пользователя
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=name).first()
+        return user.pubkey
+
     def user_logout(self, username):
         """
         Функция вносит изменения в базу данных при выходе пользователя.
@@ -264,14 +296,7 @@ class ServerDB:
         else:
             return False
 
-    def get_hash(self, name):
-        """
-        Метод для получения из базы данных хэша пароля пользователя
-        :param - str - name, username
-        :return - str - user password's hash
-        """
-        user = self.session.query(self.AllUsers).filter_by(name=name).first()
-        return user.passwd_hash
+
 
     def process_message(self, sender, recipient):
         """
