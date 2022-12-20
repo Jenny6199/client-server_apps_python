@@ -9,7 +9,7 @@ from mainapp.decorators.log_deco import debug_log
 from mainapp.client_app.client_database import ClientDatabase
 from mainapp.client_app.client_transport import ClientTransport
 from mainapp.client_app.ui_forms_client.ui_client_mainwindow_form import ClientWindowMain
-from mainapp.client_app.ui_forms_client.ui_client_startwindow_form import ClientStartWindow
+# from mainapp.client_app.ui_forms_client.ui_client_startwindow_form import ClientStartWindow
 from mainapp.client_app.ui_forms_client.ui_client_authwindow import ClientAuthWindow
 from Cryptodome.PublicKey import RSA
 
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # При отсутствии имени пользователя при запуске приложения
     # откроется стартовое диалоговое окно.
     if not client_name:
-        start_dialog = ClientStartWindow()
+        start_dialog = ClientAuthWindow()
         client_app.exec_()
         if start_dialog.start_pressed:
             client_name = start_dialog.ui.lineEdit.text()
