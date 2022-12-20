@@ -3,7 +3,6 @@ from sqlalchemy import create_engine, Table, Column, Integer, String,\
 from sqlalchemy.orm import mapper, sessionmaker
 from mainapp.common.variables import SERVER_DB_PATH
 from _datetime import datetime
-from pprint import pprint
 
 
 class ServerDB:
@@ -196,6 +195,13 @@ class ServerDB:
         user = self.session.query(self.AllUsers).filter_by(name=name).first()
         return user.pubkey
 
+    def check_user(self, name):
+        """Метод проверяющий существование пользователя."""
+        if self.session.query(self.AllUsers).filter_by(name=name).count():
+            return True
+        else:
+            return False
+
     def user_logout(self, username):
         """
         Функция вносит изменения в базу данных при выходе пользователя.
@@ -203,6 +209,58 @@ class ServerDB:
         """
         user = self.session.query(self.AllUsers).filter_by(name=username).first()
         self.session.query(self.ActiveUsers).filter_by(user=user.id).delete()
+        self.session.commit()
+
+    def process_message(self, sender, recipient):
+        """
+        Метод записывает в таблицу статистики факт передачи сообщения.
+        :param: sender - str отправитель сообщения
+        :param: recipient - str получатель сообщения
+        """
+        # ID отправителя
+        sender_id = self.session.query(self.AllUsers).filter_by(name=sender)
+        # ID получателя
+        recipient_id = self.session.query(self.AllUsers).filter_by(name=recipient)
+        # Увеличиваем счетчики
+        sender_row = self.session.query(self.UserHistory).filter_by(user=sender_id).first()
+        sender_row.sent += 1
+        recipient_row = self.session.query(self.UserHistory).filter_by(user=recipient_id).first()
+        recipient_row.accepted += 1
+
+    def add_user_contact(self, user, contact):
+        """
+        Метод осуществляет добавление контактов для пользователя.
+        :param - user str - имя пользователя
+        :param - contact str - контакт для добавления
+        :return - None
+        """
+        user = self.session.query(self.AllUsers).filter_by(name=user).first()
+        contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
+        if not contact \
+                or \
+                self.session.query(self.UsersContacts).\
+                filter_by(user=user.id, contact=contact.id).\
+                count():
+            return
+        contact_row = self.UsersContacts(user.id, contact.id)
+        self.session.add(contact_row)
+        self.session.commit()
+
+    def remove_user_contact(self, user, contact):
+        """
+        Метод осуществляет удаление контактов для пользователя.
+        :param user:
+        :param contact:
+        :return:
+        """
+        user_row = self.session.query(self.AllUsers).filter_by(name=user).first()
+        contact_row = self.session.query(self.AllUsers).filter_by(name=contact).first()
+        if not contact_row:
+            return
+        self.session.query(self.UsersContacts).filter(
+            self.UsersContacts.user == user_row.id,
+            self.UsersContacts.contact == contact_row.id
+        ).delete()
         self.session.commit()
 
     def users_list(self):
@@ -246,25 +304,6 @@ class ServerDB:
             query = query.filter(self.AllUsers.name == username)
         return query.all()
 
-    def add_user_contact(self, user, contact):
-        """
-        Добавление контактов для пользователя.
-        :param - user
-        :param - contact
-        :return - None or session.commit()
-        """
-        user = self.session.query(self.AllUsers).filter_by(name=user).first()
-        contact = self.session.query(self.AllUsers).filter_by(name=contact).first()
-        if not contact \
-                or \
-                self.session.query(self.UsersContacts).\
-                filter_by(user=user.id, contact=contact.id).\
-                count():
-            return
-        contact_row = self.UsersContacts(user.id, contact.id)
-        self.session.add(contact_row)
-        self.session.commit()
-
     def get_contacts(self, username):
         """
         Функция запрашивает список контактов для пользователя
@@ -288,48 +327,3 @@ class ServerDB:
             self.UserHistory.accepted
         ).join(self.AllUsers)
         return query.all()
-
-    def check_user(self, name):
-        """Метод проверяющий существование пользователя."""
-        if self.session.query(self.AllUsers).filter_by(name=name).count():
-            return True
-        else:
-            return False
-
-
-
-    def process_message(self, sender, recipient):
-        """
-        Метод записывает в таблицу статистики факт передачи сообщения.
-        :param: sender - str отправитель сообщения
-        :param: recipient - str получатель сообщения
-        """
-        # ID отправителя
-        sender_id = self.session.query(self.AllUsers).filter_by(name=sender)
-        # ID получателя
-        recipient_id = self.session.query(self.AllUsers).filter_by(name=recipient)
-        # Увеличиваем счетчики
-        sender_row = self.session.query(self.UserHistory).filter_by(user=sender_id).first()
-        sender_row.sent += 1
-        recipient_row = self.session.query(self.UserHistory).filter_by(user=recipient_id).first()
-        recipient_row.accepted += 1
-
-#  Отладка
-# if __name__ == '__main__':
-#     # создание базы
-#     test_DB = ServerDB()
-#     print('подключение тестовых пользователей')
-#     test_DB.user_login('user_1', '174.16.2.28', 7777)
-#     test_DB.user_login('user_2', '174.16.2.30', 7171)
-#     print('проверка функции active_users_list')
-#     pprint(test_DB.active_users_list())
-#
-#     print('проверка функции user_logout')
-#     test_DB.user_logout('user_1')
-#     print(test_DB.active_users_list())
-#
-#     print('проверка функции login_history')
-#     pprint(test_DB.login_history('user_1'))
-#
-#     print('проверка функции history_login')
-#     pprint(test_DB.users_list())
