@@ -190,12 +190,12 @@ class UiClientMainWindowForm(object):
         # Button 1 Добавить контакт
         self.pushButton_add_contact = QPushButton(self.centralwidget)
         self.pushButton_add_contact.setGeometry(QtCore.QRect(18, 360, 171, 25))
-        self.pushButton_add_contact.setObjectName("pushButton")
+        self.pushButton_add_contact.setObjectName("register_button")
 
         # Button 2 Удалить контакт
         self.pushButton_del_contact = QPushButton(self.centralwidget)
         self.pushButton_del_contact.setGeometry(QtCore.QRect(18, 390, 171, 25))
-        self.pushButton_del_contact.setObjectName("pushButton_2")
+        self.pushButton_del_contact.setObjectName("cancel_button")
 
         # Button 3 Очистить
         self.pushButton_clear_form = QPushButton(self.centralwidget)
