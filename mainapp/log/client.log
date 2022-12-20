@@ -27,3 +27,30 @@ BwIDAQAB
 2022-12-19 23:32:23,843   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=23, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 43726), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
 2022-12-19 23:32:23,844   DEBUG    utils.py        Ожидается сообщение от client
 2022-12-19 23:32:28,847   CRITICAL client_transport.py Потеряно соединение с сервером! Не обработано приветственное сообщение
+2022-12-20 17:47:32,694   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-20 17:47:32,714   INFO     start_client_app.py Получены аргументы из функции arg_parser - 127.0.0.1, 7777 None + пароль
+2022-12-20 17:50:42,599   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-20 17:50:42,622   INFO     start_client_app.py Получены аргументы из функции arg_parser - 127.0.0.1, 7777 None + пароль
+2022-12-20 17:50:54,499   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - Maksim.
+2022-12-20 17:50:55,020   INFO     start_client_app.py Ключи загружены успешно
+2022-12-20 17:50:55,250   INFO     client_transport.py Попытка соединения № 1
+2022-12-20 17:50:55,252   DEBUG    client_transport.py Установлено соединение с сервером.
+2022-12-20 17:50:55,282   DEBUG    client_transport.py Успешно создан хэш пароля b'3469c80ada8acbb511e5968c57f8685e6ba6579d5012187bdc148fd7f5142de642c070af4538ae8a85d067d3ee324cdbd45ad11058597f1f596d5f1c0f30ecd6'.
+2022-12-20 17:50:55,285   DEBUG    client_transport.py Сформировано presence сообщение для пользователя Maksim. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9JuFEgpZCepfGBRNB3Bm
+lTVhzvYLJWD/EbIvgXA+fwOOfyQfY/RIPBZrMu4p1uvxAleuZV5QNEZ65KfsLRT0
+ojT/HWwXKjln1puXh4ywh6SeVKIq0V+j+miK2jBZKiCdPT3ktJ4e5UUc90gOeC1X
+vv1PilJo5u5aBzmF0KsmTkrFa4JDrqGHHh5og9FOXZtoQCZDxL86We1T0G1oeIVX
+1WbaRK7jzZ7Wm+r8iDuDPxa8J5uuVv2hCt0fFUdZqaz2qBo5PkQMI5qmKjS0yZY/
+6Gi87GD4T0new09lyZf2c1p9gfYbpRgtRLrH2HBG6tdWRXOuTJv2Dyi28cbQ2gLT
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2022-12-20 17:50:55,311   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=23, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 50998), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1671547855.285838, 'user': {'account_name': 'Maksim', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9JuFEgpZCepfGBRNB3Bm\nlTVhzvYLJWD/EbIvgXA+fwOOfyQfY/RIPBZrMu4p1uvxAleuZV5QNEZ65KfsLRT0\nojT/HWwXKjln1puXh4ywh6SeVKIq0V+j+miK2jBZKiCdPT3ktJ4e5UUc90gOeC1X\nvv1PilJo5u5aBzmF0KsmTkrFa4JDrqGHHh5og9FOXZtoQCZDxL86We1T0G1oeIVX\n1WbaRK7jzZ7Wm+r8iDuDPxa8J5uuVv2hCt0fFUdZqaz2qBo5PkQMI5qmKjS0yZY/\n6Gi87GD4T0new09lyZf2c1p9gfYbpRgtRLrH2HBG6tdWRXOuTJv2Dyi28cbQ2gLT\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2022-12-20 17:50:55,311   INFO     utils.py        Сообщение отправлено
+2022-12-20 17:50:55,312   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=23, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 50998), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2022-12-20 17:50:55,312   DEBUG    utils.py        Ожидается сообщение от client
+2022-12-20 17:51:00,327   CRITICAL client_transport.py Потеряно соединение с сервером! Не обработано приветственное сообщение
+2022-12-20 17:53:26,262   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2022-12-20 17:53:26,270   INFO     start_client_app.py Получены аргументы из функции arg_parser - 127.0.0.1, 7777 None + пароль
