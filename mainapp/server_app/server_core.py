@@ -1,3 +1,9 @@
+"""
+Module server_core.py
+created december 2022
+@author: Maksim Sapunov
+"""
+
 import threading
 import logging
 import select

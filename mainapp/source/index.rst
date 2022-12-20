@@ -12,11 +12,7 @@
 .. automodule:: server_core
 
 .. autoclass:: MessageProcessor
-    :members:
-
-   :caption: Содержание:
-
-   example
+     :members:
 
 Информация для быстрого поиска
 ==============================
