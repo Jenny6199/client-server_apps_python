@@ -8,9 +8,9 @@ Welcome to Easy Messenger's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Содержание:
 
-
+    example
 
 Indices and tables
 ==================
