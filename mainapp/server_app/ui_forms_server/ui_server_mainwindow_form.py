@@ -12,6 +12,9 @@ from PyQt5.QtWidgets import qApp, QMainWindow, QApplication
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
 import sys
+from mainapp.server_app.ui_forms_server.ui_server_clientshistory_form import ServerWindowHistory
+
+global statistic_window
 
 
 class ServerWindowMain(QMainWindow):
@@ -25,6 +28,22 @@ class ServerWindowMain(QMainWindow):
         self.server = server
         self.config = config
         self.show()
+
+        # MainWindow buttons connected
+        self.ui.button_log.clicked.connect(self.show_statistic)
+        self.ui.button_settings.clicked.connect(self.refresh_tables)
+
+    def show_statistic(self):
+        """Метод инициирует запуск окна статистики клиентов"""
+        global statistic_window
+        statistic_window = ServerWindowHistory(self.database)
+        statistic_window.show()
+
+    def refresh_tables(self):
+        """Метод инициирует обновление данных из базы данных"""
+        print('Нажата клавиша обновления данных.')
+        pass
+
 
 
 class UiServerMainWindowForm(object):
@@ -105,7 +124,6 @@ class UiServerMainWindowForm(object):
         self.button_log = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_log.setObjectName("button_log")
         self.horizontalLayout_3.addWidget(self.button_log)
-        self.button_log.clicked.connect(call_log)
 
         # 4 Settings
         self.button_settings = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
@@ -114,10 +132,10 @@ class UiServerMainWindowForm(object):
         self.button_settings.clicked.connect(call_settings)
 
         # 5 SignUp new user
-        self.New_user = QtWidgets.QPushButton(self.centralwidget)
-        self.New_user.setGeometry(QtCore.QRect(20, 360, 181, 41))
-        self.New_user.setMouseTracking(False)
-        self.New_user.setObjectName("New_user")
+        self.new_user = QtWidgets.QPushButton(self.centralwidget)
+        self.new_user.setGeometry(QtCore.QRect(20, 360, 181, 41))
+        self.new_user.setMouseTracking(False)
+        self.new_user.setObjectName("New_user")
 
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
@@ -137,17 +155,12 @@ class UiServerMainWindowForm(object):
         self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
-        self.New_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
+        self.new_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
 
 
 def call_settings():
     """Функция обработчик нажатия клавиши настроек сервера"""
     print('Нажата клавиша вызова окна настроек сервера')
-
-
-def call_log():
-    """Функция обработчик нажатия клавиши истории пользователей"""
-    print('Нажата клавиша вызова окна истории пользователей')
 
 
 def call_refresh():
