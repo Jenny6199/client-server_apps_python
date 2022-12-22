@@ -43,11 +43,13 @@ def arg_parser():
 if __name__ == '__main__':
     server_address, server_port, client_name, client_passwd = arg_parser()
     CLIENT_LOG.info(f'Получены аргументы из функции arg_parser - '
-                f'{server_address}, {server_port} {client_name} + {client_passwd}')
+                    f'адрес - {server_address}, '
+                    f'порт - {server_port}, '
+                    f'имя клиента - {client_name}, '
+                    f'пароль - {client_passwd}.')
     client_app = QApplication(sys.argv)
 
-    # При отсутствии имени пользователя при запуске приложения
-    # откроется стартовое диалоговое окно.
+    # При отсутствии имени пользователя при запуске приложения будет запущено стартовое диалоговое окно
     if not client_name:
         start_dialog = ClientAuthWindow()
         client_app.exec_()
@@ -66,16 +68,15 @@ if __name__ == '__main__':
     # Загрузка ключей
     dir_path = os.path.dirname(os.path.realpath(__file__))
     key_file = os.path.join(dir_path, f'{client_name}.shadow')
-    if not os.path.exists(key_file):    # Если файла нет создаем
+    if not os.path.exists(key_file):  # Если файла нет создаем
         keys = RSA.generate(2048, os.urandom)
         with open(key_file, 'wb') as key:
             key.write(keys.export_key())
         CLIENT_LOG.info(f'Успешно записан ключ для клиента {client_name}')
-    else:   # Если файл найден загружаем ключ
+    else:  # Если файл найден загружаем ключ
         with open(key_file, 'rb') as key:
             keys = RSA.import_key(key.read())
     CLIENT_LOG.info('Ключи загружены успешно')
-
 
     # Database object
     database = ClientDatabase(client_name)

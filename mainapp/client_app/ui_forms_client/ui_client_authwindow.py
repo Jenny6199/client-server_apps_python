@@ -9,7 +9,7 @@ december, 2022. GeekBrains
 
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QApplication, QDialog, qApp, QLabel, QPushButton, QLineEdit
+from PyQt5.QtWidgets import QApplication, QDialog, qApp, QLabel, QPushButton, QLineEdit, QMessageBox
 import sys
 
 
@@ -77,9 +77,18 @@ class ClientAuthWindow(QDialog):
         self.ui = UiClientAuthWindowForm()
         self.ui.setupUi(self)
         self.start_pressed = False
+        self.messages = QMessageBox()
         self.ui.start_push_button.clicked.connect(self.press_start_button)
         self.ui.cancel_push_button.clicked.connect(qApp.quit)
         self.show()
+
+    def check_data(self):
+        """Метод проверки ввода данных в форму"""
+        if not self.ui.name_input.text():
+            self.messages.warning('Введите имя пользователя!')
+            return
+        if not self.ui.pass_input.text():
+            self.messages.warning('Введите пароль!')
 
     def press_start_button(self):
         """Обработчик нажатия кнопки 'начать'"""
