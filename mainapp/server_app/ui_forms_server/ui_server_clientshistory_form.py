@@ -4,7 +4,7 @@ graphical presence. Build by PyQtDesigner and then
 edited by author. This work was completed during
 educated DB_and_PyQt course lesson 4 by GeekBrains,
 Moscow, November 2022.
-Maksim_Sapunov, Jenny6199@yandex.ru
+@author: Maksim_Sapunov, Jenny6199@yandex.ru
 """
 
 
@@ -14,33 +14,33 @@ from PyQt5.QtWidgets import QDialog
 
 
 class UiServerClientHistoryForm(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 500)
-        Dialog.setModal(True)
+    def setup_ui(self, dialog):
+        dialog.setObjectName("Dialog")
+        dialog.resize(400, 500)
+        dialog.setModal(True)
 
         # Кнопка закрытия окна
-        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton = QtWidgets.QPushButton(dialog)
         self.pushButton.setGeometry(QtCore.QRect(160, 460, 89, 25))
         self.pushButton.setObjectName("pushButton")
 
         # Таблица с данными
-        self.tableView = QtWidgets.QTableView(Dialog)
+        self.tableView = QtWidgets.QTableView(dialog)
         self.tableView.setGeometry(QtCore.QRect(10, 20, 381, 321))
         self.tableView.setObjectName("active_clients_tableView")
 
         # Ярлык с информацией
-        self.label = QtWidgets.QLabel(Dialog)
+        self.label = QtWidgets.QLabel(dialog)
         self.label.setGeometry(QtCore.QRect(10, 340, 251, 41))
         self.label.setObjectName("label")
 
-        self.retranslateUi(Dialog)
-        self.pushButton.clicked.connect(Dialog.close)  # type: ignore
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslate_ui(dialog)
+        self.pushButton.clicked.connect(dialog.close)  # type: ignore
+        QtCore.QMetaObject.connectSlotsByName(dialog)
 
-    def retranslateUi(self, Dialog):
+    def retranslate_ui(self, dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Статистика клиентов"))
+        dialog.setWindowTitle(_translate("Dialog", "Статистика клиентов"))
         self.pushButton.setText(_translate("Dialog", "Закрыть"))
         self.label.setText(_translate("Dialog", "Сведения о активности клиентов."))
 
@@ -52,7 +52,7 @@ class ServerWindowHistory(QDialog):
         super(ServerWindowHistory, self).__init__()
         self.database = database
         self.ui = UiServerClientHistoryForm()
-        self.ui.setupUi(self)
+        self.ui.setup_ui(self)
         self.show()
         self.create_stat_table()
 
