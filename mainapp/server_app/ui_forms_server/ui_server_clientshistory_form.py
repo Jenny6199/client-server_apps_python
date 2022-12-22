@@ -9,8 +9,8 @@ Maksim_Sapunov, Jenny6199@yandex.ru
 
 
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QApplication, QDialog
-import sys
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtWidgets import QDialog
 
 
 class UiServerClientHistoryForm(object):
@@ -35,7 +35,7 @@ class UiServerClientHistoryForm(object):
         self.label.setObjectName("label")
 
         self.retranslateUi(Dialog)
-        self.pushButton.clicked.connect(Dialog.close) # type: ignore
+        self.pushButton.clicked.connect(Dialog.close)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -48,14 +48,38 @@ class UiServerClientHistoryForm(object):
 class ServerWindowHistory(QDialog):
     """doc"""
 
-    def __init__(self):
+    def __init__(self, database):
         super(ServerWindowHistory, self).__init__()
+        self.database = database
         self.ui = UiServerClientHistoryForm()
         self.ui.setupUi(self)
         self.show()
+        self.create_stat_table()
 
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = ServerWindowHistory()
-    sys.exit(app.exec_())
+    def create_stat_table(self):
+        """Метод реализующий заполнение таблицы истории пользователей"""
+        list_history = self.database.message_history()
+        list_table = QStandardItemModel()
+        # Заголовки
+        list_table.setHorizontalHeaderLabels(
+            ['Имя клиента',
+             'Последний вход',
+             'Отправлено сообщений'
+             'Получено сообщений'])
+        # Заполняем ячейки данными из БД
+        for row in list_history:
+            user, last_seen, sent, received = row
+            user = QStandardItem(user)
+            last_seen = QStandardItem(str(last_seen.replace(microseconds=0)))
+            sent = QStandardItem(str(sent))
+            received = QStandardItem(str(received))
+            # Делаем ячейки нередактируемыми
+            user.setEditable(False)
+            last_seen.setEditable(False)
+            sent.setEditable(False)
+            received.setEditable(False)
+            list_table.appendRow([user, last_seen, sent, received])
+        # Отображаем таблицу в окне приложения
+        self.ui.tableView.setModel(list_table)
+        self.ui.tableView.resizeColumnsToContents()
+        self.ui.tableView.resizeRowsToContents()

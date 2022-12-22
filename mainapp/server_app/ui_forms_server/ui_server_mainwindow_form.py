@@ -13,8 +13,10 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
 import sys
 from mainapp.server_app.ui_forms_server.ui_server_clientshistory_form import ServerWindowHistory
+from mainapp.server_app.ui_forms_server.ui_server_add_user_form import  ServerAddUser
 
 global statistic_window
+global reg_window
 
 
 class ServerWindowMain(QMainWindow):
@@ -32,6 +34,7 @@ class ServerWindowMain(QMainWindow):
         # MainWindow buttons connected
         self.ui.button_log.clicked.connect(self.show_statistic)
         self.ui.button_settings.clicked.connect(self.refresh_tables)
+        self.ui.button_new_user.clicked.connect(self.new_user_registration)
 
     def show_statistic(self):
         """Метод инициирует запуск окна статистики клиентов"""
@@ -41,9 +44,17 @@ class ServerWindowMain(QMainWindow):
 
     def refresh_tables(self):
         """Метод инициирует обновление данных из базы данных"""
-        print('Нажата клавиша обновления данных.')
+        print(f'Запрос обновления данных. {self.server}')
         pass
 
+    def show_settings(self):
+        """Метод инициирует запуск окна настроек сервера"""
+        print(f'Вызов окна настроек сервера. {self.server}')
+
+    def new_user_registration(self):
+        global reg_window
+        reg_window = ServerAddUser(database=self.database, server=self.server)
+        reg_window.show()
 
 
 class UiServerMainWindowForm(object):
@@ -118,7 +129,6 @@ class UiServerMainWindowForm(object):
         self.button_refresh = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_refresh.setObjectName("button_refresh")
         self.horizontalLayout_3.addWidget(self.button_refresh)
-        self.button_refresh.clicked.connect(call_refresh)
 
         # 3 Log
         self.button_log = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
@@ -129,13 +139,12 @@ class UiServerMainWindowForm(object):
         self.button_settings = QtWidgets.QPushButton(self.horizontalLayoutWidget_3)
         self.button_settings.setObjectName("button_settings")
         self.horizontalLayout_3.addWidget(self.button_settings)
-        self.button_settings.clicked.connect(call_settings)
 
         # 5 SignUp new user
-        self.new_user = QtWidgets.QPushButton(self.centralwidget)
-        self.new_user.setGeometry(QtCore.QRect(20, 360, 181, 41))
-        self.new_user.setMouseTracking(False)
-        self.new_user.setObjectName("New_user")
+        self.button_new_user = QtWidgets.QPushButton(self.centralwidget)
+        self.button_new_user.setGeometry(QtCore.QRect(20, 360, 181, 41))
+        self.button_new_user.setMouseTracking(False)
+        self.button_new_user.setObjectName("New_user")
 
         ServerMainWindow.setCentralWidget(self.centralwidget)
 
@@ -155,17 +164,8 @@ class UiServerMainWindowForm(object):
         self.button_refresh.setText(_translate("ServerMainWindow", "Обновить"))
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
-        self.new_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
+        self.button_new_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
 
-
-def call_settings():
-    """Функция обработчик нажатия клавиши настроек сервера"""
-    print('Нажата клавиша вызова окна настроек сервера')
-
-
-def call_refresh():
-    """Функция обработчик нажатия клавиши обновления данных"""
-    print('Нажата клавиша обновления данных')
 
 
 def create_main_table(database):
@@ -185,27 +185,6 @@ def create_main_table(database):
         table_list.appendRow([user, ip, port, time])
     return table_list
 
-
-def create_stat_table(database):
-    list_history = database.message_history()
-    list_table = QStandardItemModel()
-    list_table.setHorizontalHeaderLabels(
-        ['Имя клиента',
-         'Последний вход',
-         'Отправлено сообщений'
-         'Получено сообщений'])
-    for row in list_history:
-        user, last_seen, sent, recvd = row
-        user = QStandardItem(user)
-        last_seen = QStandardItem(str(last_seen.replace(microseconds=0)))
-        sent = QStandardItem(str(sent))
-        recvd = QStandardItem(str(recvd))
-        user.setEditable(False)
-        last_seen.setEditable(False)
-        sent.setEditable(False)
-        recvd.setEditable(False)
-        list_table.appendRow([user, last_seen, sent, recvd])
-    return list_table
 
 
 if __name__ == '__main__':
