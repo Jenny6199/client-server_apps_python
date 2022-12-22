@@ -10,6 +10,9 @@ from sqlalchemy import create_engine, Table, Column, Integer, String,\
 from sqlalchemy.orm import mapper, sessionmaker
 from mainapp.common.variables import SERVER_DB_PATH
 from _datetime import datetime
+from logging import getLogger
+
+SERVER_LOG = getLogger('server')
 
 
 class ServerDB:
@@ -162,6 +165,7 @@ class ServerDB:
         :param passwd_hash: str - хэш пароля
         :return: None
         """
+        SERVER_LOG.debug('Запущена функция add_user from server_data_base.py')
         user_row = self.AllUsers(name, passwd_hash)
         self.session.add(user_row)
         self.session.commit()
@@ -169,6 +173,7 @@ class ServerDB:
         history_row = self.UserHistory(user_row.id)
         self.session.add(history_row)
         self.session.commit()
+        SERVER_LOG.debug('функция add_user - Успешный коммит.')
 
     def remove_user(self, name):
         """

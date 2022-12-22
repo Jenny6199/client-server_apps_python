@@ -43,7 +43,7 @@ def arg_parser():
 if __name__ == '__main__':
     server_address, server_port, client_name, client_passwd = arg_parser()
     CLIENT_LOG.info(f'Получены аргументы из функции arg_parser - '
-                f'{server_address}, {server_port} {client_name} + пароль')
+                f'{server_address}, {server_port} {client_name} + {client_passwd}')
     client_app = QApplication(sys.argv)
 
     # При отсутствии имени пользователя при запуске приложения
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         start_dialog = ClientAuthWindow()
         client_app.exec_()
         if start_dialog.start_pressed:
-            client_name = start_dialog.ui.lineEdit.text()
+            client_name = start_dialog.ui.name_input.text()
             print(client_name)
             del start_dialog
         else:

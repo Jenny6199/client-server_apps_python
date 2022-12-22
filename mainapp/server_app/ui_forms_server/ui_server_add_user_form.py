@@ -12,6 +12,9 @@ import hashlib
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
 from PyQt5.QtWidgets import QLabel, QPushButton, QLineEdit, QFrame
+from logging import getLogger
+
+SERVER_LOG = getLogger('server')
 
 
 class UiServerAddUserForm(object):
@@ -108,6 +111,7 @@ class ServerAddUser(QDialog):
 
     def save_data(self):
         """Метод проверки ввода данных и сохранения в базу данных нового пользователя."""
+        SERVER_LOG.debug('Запущена функция save_data from ui_server_add_user_form.py')
         if not self.ui.username_input.text():
             self.messages.critical(self, 'Внимание!', 'Не указано имя пользователя!')
             return
@@ -117,26 +121,30 @@ class ServerAddUser(QDialog):
         elif self.ui.password_input.text() != self.ui.confirm_password_input.text():
             self.messages.critical(self, 'Внимание!', 'Введенные пароли не совпадают')
             return
-        elif self.database.check_user(self.client_name.text()):
+        elif self.database.check_user(self.ui.username_input.text()):
             self.messages.critical(self, 'Ошибка!', 'Пользователь уже зарегистрирован!')
             return
         else:
-            password_bytes = self.ui.password_input.text().encode('utf-8')
-            salt = self.ui.username_input.text().lower().encode('utf-8')
-            password_hash = hashlib.pbkdf2_hmac(
-                'sha512',
-                password_bytes,
-                salt,
-                10000,
-            )
-            self.database.add_user(
-                self.ui.username_input.text(),
-                binascii.hexlify(password_hash),
-            )
-            self.messages.information(
-                self, 'Успех!', 'Регистрация пользователя завершена успешно!'
-            )
-            self.server.service_update_lists()
+            try:
+                SERVER_LOG.debug(f'Начат процесс авторизации пользователя {self.ui.username_input.text()}')
+                password_bytes = self.ui.password_input.text().encode('utf-8')
+                salt = self.ui.username_input.text().lower().encode('utf-8')
+                password_hash = hashlib.pbkdf2_hmac(
+                    'sha512',
+                    password_bytes,
+                    salt,
+                    10000,
+                )
+                self.database.add_user(
+                    self.ui.username_input.text(),
+                    binascii.hexlify(password_hash),
+                )
+                self.messages.information(
+                    self, 'Успех!', 'Регистрация пользователя завершена успешно!'
+                )
+                self.server.service_update_lists()
+            except (OSError, ValueError, TypeError, TimeoutError) as err:
+                SERVER_LOG.error(err)
             self.close()
 
 
