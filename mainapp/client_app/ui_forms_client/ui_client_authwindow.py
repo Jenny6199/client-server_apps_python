@@ -94,7 +94,6 @@ class ClientAuthWindow(QDialog):
         """Обработчик нажатия кнопки 'начать'"""
         if self.ui.name_input.text() and self.ui.pass_input.text():
             self.start_pressed = True
-            # print(self.ui.name_input.text(), self.ui.pass_input.text())
             qApp.exit()
 
 

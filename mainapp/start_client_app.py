@@ -42,20 +42,15 @@ def arg_parser():
 
 if __name__ == '__main__':
     server_address, server_port, client_name, client_passwd = arg_parser()
-    CLIENT_LOG.info(f'Получены аргументы из функции arg_parser - '
-                    f'адрес - {server_address}, '
-                    f'порт - {server_port}, '
-                    f'имя клиента - {client_name}, '
-                    f'пароль - {client_passwd}.')
     client_app = QApplication(sys.argv)
 
-    # При отсутствии имени пользователя при запуске приложения будет запущено стартовое диалоговое окно
-    if not client_name:
+    # При отсутствии имени пользователя или пароля при запуске приложения будет запущено стартовое диалоговое окно
+    if not client_name or not client_passwd:
         start_dialog = ClientAuthWindow()
         client_app.exec_()
         if start_dialog.start_pressed:
             client_name = start_dialog.ui.name_input.text()
-            print(client_name)
+            client_passwd = start_dialog.ui.pass_input.text()
             del start_dialog
         else:
             exit(0)
@@ -82,26 +77,22 @@ if __name__ == '__main__':
     database = ClientDatabase(client_name)
 
     # Transport object
-    transport = ClientTransport(server_port, server_address, database, client_name, client_passwd, keys)
-    CLIENT_LOG.info('Транспорт - ОК!')
     try:
+        transport = ClientTransport(server_port, server_address, database, client_name, client_passwd, keys)
+        CLIENT_LOG.info('Транспорт - ОК!')
         transport.setDaemon(True)
         transport.start()
+        # MainWindow object
+        main_window = ClientWindowMain(database, transport, keys)
+        main_window.make_connection(transport)
+        main_window.setWindowTitle(f'GeekBrains. Сетевой чат. Клиент - {client_name}.')
+        client_app.exec_()
+        transport.transport_shutdown()
+        transport.join()
+        print('Bye!')
     except ServerError as transport_fail:
         message = QMessageBox()
-        message.critical(start_dialog, 'Ошибка сервера!', transport_fail.text)
+        message.critical(title='Ошибка сервера!', text=transport_fail.text)
         exit(1)
-    transport.setDaemon(True)
-    transport.start()
 
-    del start_dialog
 
-    # MainWindow object
-    main_window = ClientWindowMain(database, transport)
-    main_window.make_connection(transport)
-    main_window.setWindowTitle(f'GeekBrains. Сетевой чат. Клиент - {client_name}.')
-    client_app.exec_()
-
-    transport.transport_shutdown()
-    transport.join()
-    print('Bye!')

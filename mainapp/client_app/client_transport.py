@@ -85,13 +85,10 @@ class ClientTransport(threading.Thread, QObject):
         # Процедура авторизации
         passwd_bytes = self.password.encode('utf-8')
         salt = self.username.lower().encode('utf-8')
-        passwd_hash = hashlib.pbkdf2_hmac('sha512', passwd_bytes, salt, 5000)
+        passwd_hash = hashlib.pbkdf2_hmac('sha512', passwd_bytes, salt, 10000)
         passwd_hash_string = binascii.hexlify(passwd_hash)
-        logger.debug(f'Успешно создан хэш пароля {passwd_hash_string}.')
-
         # Получение публичного ключа.
         public_key = self.keys.publickey().export_key().decode('ascii')
-
         # Отправка приветственного сообщения на сервер
         try:
             with socket_lock:
@@ -104,8 +101,8 @@ class ClientTransport(threading.Thread, QObject):
                         raise ServerError(server_answer[ERROR])
                     elif server_answer[RESPONSE] == 511:
                         # Данный ответ получает при штатном запуске авторизации клиента на сервере
-                        data = server_answer[DATA]
-                        hash_data = hmac.new(passwd_hash_string, data.encode('utf-8'), 'MD5')
+                        random_str_server = server_answer[DATA]
+                        hash_data = hmac.new(passwd_hash_string, random_str_server.encode('utf-8'), 'MD5')
                         digest = hash_data.digest()
                         report = RESPONSE_511
                         report[DATA] = binascii.b2a_base64(digest).decode('ascii')

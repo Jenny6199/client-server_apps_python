@@ -54,3 +54,1077 @@ BwIDAQAB
 2022-12-20 17:51:00,327   CRITICAL client_transport.py Потеряно соединение с сервером! Не обработано приветственное сообщение
 2022-12-20 17:53:26,262   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
 2022-12-20 17:53:26,270   INFO     start_client_app.py Получены аргументы из функции arg_parser - 127.0.0.1, 7777 None + пароль
+2023-02-10 09:48:31,354   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 09:48:31,369   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 09:48:46,367   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 09:48:48,419   INFO     start_client_app.py Успешно записан ключ для клиента user_1
+2023-02-10 09:48:48,419   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 09:48:49,206   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 09:48:49,206   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 09:48:49,220   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 09:48:49,220   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 09:48:49,222   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=772, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56089), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676011729.2204435, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 09:48:49,222   INFO     utils.py        Сообщение отправлено
+2023-02-10 09:48:49,223   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=772, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56089), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 09:48:49,223   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 09:48:49,774   INFO     utils.py        Получены новые данные от client.
+2023-02-10 09:48:49,774   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '08916914e2e7300d1b5b80b5af4830f4f9f2cb6025a04bd53f268a15bb9c357acd8e77e4ffce9bfd823219ce5ae6e21bcd1d5949808d1a3c163a87a9431a9f56'}.
+2023-02-10 09:48:49,775   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=772, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56089), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': '818bC/bDi1YT/8139ql80A==\n'}), {'sender': 'client'}
+2023-02-10 09:48:49,776   INFO     utils.py        Сообщение отправлено
+2023-02-10 09:48:49,777   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=772, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56089), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 09:48:49,777   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 09:48:49,780   INFO     utils.py        Получены новые данные от client.
+2023-02-10 09:48:49,780   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 09:59:02,543   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 09:59:02,543   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 09:59:10,562   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 09:59:10,685   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 09:59:10,851   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 09:59:10,862   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 09:59:10,891   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 09:59:10,899   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 09:59:10,900   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56118), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676012350.8998432, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 09:59:10,900   INFO     utils.py        Сообщение отправлено
+2023-02-10 09:59:10,901   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56118), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 09:59:10,901   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 09:59:11,373   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 09:59:11,394   INFO     utils.py        Получены новые данные от client.
+2023-02-10 09:59:11,394   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'b046c655d3125fd391e0099724e6f53a02d8328f8a44d04e7a66518f0f98772138a1fc5d5f859260d43968edaac61a7a3c2665f59ee2d8ed9201ebc57bacc452'}.
+2023-02-10 09:59:11,395   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56118), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'LUoOUXLpTLG+LxsPzYAE1A==\n'}), {'sender': 'client'}
+2023-02-10 09:59:11,395   INFO     utils.py        Сообщение отправлено
+2023-02-10 09:59:11,395   INFO     utils.py        Получены новые данные от client.
+2023-02-10 09:59:11,396   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56118), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 09:59:11,396   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 09:59:11,397   INFO     utils.py        Получены новые данные от client.
+2023-02-10 09:59:11,397   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:06:50,595   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:06:50,595   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:06:57,441   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:06:57,576   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:06:57,710   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:06:57,721   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:06:57,760   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:06:57,762   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:06:57,764   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56167), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676012817.7624433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:06:57,765   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:06:57,767   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56167), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:06:57,767   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:06:58,231   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:06:58,232   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '1aee0e852dc14a183d35e3b43e604054ea6e7ba9dfc043409b895f4df9e14eec248bf09c0567693940b5adcda8ee15068f0af9cea15b88e555eb20abc9fdca40'}.
+2023-02-10 10:06:58,233   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56167), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'DZc5Ho08BA+dihH1cymHTQ==\n'}), {'sender': 'client'}
+2023-02-10 10:06:58,233   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:06:58,234   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56167), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:06:58,234   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:06:58,243   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:06:58,243   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:06:58,245   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:06:58,245   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:21:44,145   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:21:44,145   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:21:53,058   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:21:53,181   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:21:53,304   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:21:53,315   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:21:53,351   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:21:53,353   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:21:53,355   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56253), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676013713.3530433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:21:53,356   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:21:53,357   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56253), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:21:53,358   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:21:53,837   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:21:53,838   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '27b59a14d8998af8e95db4273a5bea15dbf92d2b01a6abd3bee41d8237183e84f61f8b2e305a0a9290a92e76c3f2969d83afd06b15189c68efb356183b1d3445'}.
+2023-02-10 10:21:53,838   DEBUG    client_transport.py hash_data = <hmac.HMAC object at 0x0000000006673A90>, digest = b'\\\\ZG\x1ba\xdf`e01\x82-\xadY\xa8'
+2023-02-10 10:21:53,839   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:21:53,839   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56253), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'XFxaRxth32BlMDGCLa1ZqA==\n'}), {'sender': 'client'}
+2023-02-10 10:21:53,840   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:21:53,840   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:21:53,841   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56253), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:21:53,841   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:21:53,843   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:21:53,843   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:33:53,872   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:33:53,872   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:34:00,612   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:34:00,722   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:34:00,868   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:34:00,870   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:34:00,902   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:34:00,903   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:34:00,904   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56314), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676014440.9032433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:34:00,905   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:34:00,905   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56314), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:34:00,905   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:34:01,405   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:34:01,405   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '768745e8216cc113e79a041688534dabef9d4b103a8862786a4bbcbea0f6bce35efe2aa78214633d6dbf9e26be851bfea0550a48b3c100a5b835bae3341be046'}.
+2023-02-10 10:34:01,406   DEBUG    client_transport.py  data = 768745e8216cc113e79a041688534dabef9d4b103a8862786a4bbcbea0f6bce35efe2aa78214633d6dbf9e26be851bfea0550a48b3c100a5b835bae3341be046, hash_data = <hmac.HMAC object at 0x00000000068D2FD0>, digest = b"\x83\x9c'\x1e^p9\xf37\xc9d\xc3\x8e\x90\x8bM"
+2023-02-10 10:34:01,406   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:34:01,406   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56314), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'g5wnHl5wOfM3yWTDjpCLTQ==\n'}), {'sender': 'client'}
+2023-02-10 10:34:01,407   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:34:01,407   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56314), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:34:01,407   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:34:01,408   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:34:01,409   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:34:01,409   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:37:48,821   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:37:48,821   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:37:57,392   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:37:57,507   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:37:57,622   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:37:57,624   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:37:57,656   DEBUG    client_transport.py Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:37:57,657   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:37:57,660   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56340), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676014677.6574433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:37:57,660   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:37:57,661   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56340), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:37:57,662   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:37:58,130   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:37:58,130   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '78245180197e6a3ceebcd017949c65f329fdb278305ef79da1be5e3a153d3fe5bf2c55780b87f0f2a8f3d04c9d091e8e1b256630262aa5258efb9ef5809f652d'}.
+2023-02-10 10:37:58,130   DEBUG    client_transport.py passwd_hash_string = b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0',
+ data = 78245180197e6a3ceebcd017949c65f329fdb278305ef79da1be5e3a153d3fe5bf2c55780b87f0f2a8f3d04c9d091e8e1b256630262aa5258efb9ef5809f652d,
+ hash_data = <hmac.HMAC object at 0x0000000006D94850>,
+ digest = b'\x9ek\x00\x82uC\xf4f`\x13vJ\x96\xfa\xa6\x02'
+
+2023-02-10 10:37:58,131   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56340), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'nmsAgnVD9GZgE3ZKlvqmAg==\n'}), {'sender': 'client'}
+2023-02-10 10:37:58,131   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:37:58,131   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56340), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:37:58,132   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:37:58,132   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:37:58,132   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:37:58,133   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:37:58,134   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:48:25,345   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:48:25,345   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:48:35,287   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:48:35,407   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:48:35,550   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:48:35,561   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:48:35,582   DEBUG    client_transport.py 
+ passwd_bytes = b'', salt = b'user_1', Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:48:35,583   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:48:35,584   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56412), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676015315.5838432, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:48:35,584   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:48:35,585   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56412), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:48:35,585   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:48:36,057   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:48:36,058   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'ef1eaca8c1c09092caad208b55bc231ca2f73f647a2fdf37c824c0a503ff78eaf9c5cdd29f037b21e05b688147d8a1700df1a68a5e6ee289b03bf910e616fd2b'}.
+2023-02-10 10:48:36,058   DEBUG    client_transport.py passwd_hash_string = b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0',
+ random_str_server = ef1eaca8c1c09092caad208b55bc231ca2f73f647a2fdf37c824c0a503ff78eaf9c5cdd29f037b21e05b688147d8a1700df1a68a5e6ee289b03bf910e616fd2b,
+ hash_data = <hmac.HMAC object at 0x0000000006A66820>,
+ digest = b'\xc0\xa5\xcaB\xbd\x16\x06$\xa4\xe0\xee\x88w\xfdU\x0e'
+
+2023-02-10 10:48:36,058   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:48:36,058   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56412), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'wKXKQr0WBiSk4O6Id/1VDg==\n'}), {'sender': 'client'}
+2023-02-10 10:48:36,059   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:48:36,059   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:48:36,059   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56412), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:48:36,059   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:48:36,060   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:48:36,060   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:49:58,289   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:49:58,289   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 10:50:04,479   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 10:50:04,609   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 10:50:04,740   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 10:50:04,752   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 10:50:04,787   DEBUG    client_transport.py 
+ passwd_bytes = b'', salt = b'user_1', Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 10:50:04,792   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 10:50:04,796   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=704, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56421), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676015404.7928433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 10:50:04,796   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:50:04,796   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=704, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56421), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:50:04,797   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:50:05,257   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:50:05,257   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '415c54cb6567a389e648b6ae1330b0d97e5cf0f22bd075772992b308ae0fc37bf2e5cc4897c0966d303561df9cb78ee20bf6818c45315dea78637acea76c776a'}.
+2023-02-10 10:50:05,258   DEBUG    client_transport.py passwd_hash_string = b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0',
+ random_str_server = 415c54cb6567a389e648b6ae1330b0d97e5cf0f22bd075772992b308ae0fc37bf2e5cc4897c0966d303561df9cb78ee20bf6818c45315dea78637acea76c776a,
+ hash_data = <hmac.HMAC object at 0x00000000066B8FA0>,
+ digest = b'\xa7\xe8\x03\x84\x1b,^\x05\xf6T&\x05\x16\xd6\xcc\xc6'
+
+2023-02-10 10:50:05,259   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:50:05,260   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=704, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56421), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'p+gDhBssXgX2VCYFFtbMxg==\n'}), {'sender': 'client'}
+2023-02-10 10:50:05,261   INFO     utils.py        Сообщение отправлено
+2023-02-10 10:50:05,262   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=704, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56421), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 10:50:05,262   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 10:50:05,263   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:50:05,267   INFO     utils.py        Получены новые данные от client.
+2023-02-10 10:50:05,267   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 10:55:26,162   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 10:55:26,162   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 11:02:30,389   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:02:30,389   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 11:02:40,644   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:02:40,748   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:02:40,913   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:02:40,925   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:02:40,954   DEBUG    client_transport.py 
+ self.password = , 
+ passwd_bytes = b'', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0'.
+2023-02-10 11:02:40,955   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:02:40,957   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56488), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676016160.9550433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:02:40,958   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:02:40,959   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56488), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:02:40,959   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:02:41,428   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:02:41,429   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '37a9c21028dce9d081290a4b1c8fbebf5e223de759374f0fc94edf58fd2b86f646d7575bdd9a254d2746a2fe10711ea716d959a15c8e7ff71b6d42d1077c0ac1'}.
+2023-02-10 11:02:41,429   DEBUG    client_transport.py passwd_hash_string = b'1f130d93ab75be61f1646a8ad5218f41b079ce8f78099ff19553239fc7810c170044c0cf6fa5717d157a4ddf906c84c47f8c7fcf1ae18a360a452b04de27d6b0',
+ random_str_server = 37a9c21028dce9d081290a4b1c8fbebf5e223de759374f0fc94edf58fd2b86f646d7575bdd9a254d2746a2fe10711ea716d959a15c8e7ff71b6d42d1077c0ac1,
+ hash_data = <hmac.HMAC object at 0x0000000006553AC0>,
+ digest = b'\x13\xf8}\xe1/Zm\xe1o\xfc\x81\x18}\xfam_'
+
+2023-02-10 11:02:41,429   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:02:41,430   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56488), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'E/h94S9abeFv/IEYffptXw==\n'}), {'sender': 'client'}
+2023-02-10 11:02:41,430   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:02:41,430   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:02:41,431   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56488), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:02:41,431   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:02:41,433   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:02:41,433   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 400, 'error': 'Неверный пароль.'}
+2023-02-10 11:11:00,271   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:11:00,271   INFO     start_client_app.py Получены аргументы из функции arg_parser - адрес - 127.0.0.1, порт - 7777, имя клиента - None, пароль - .
+2023-02-10 11:11:11,337   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1,пароль - 1234.
+2023-02-10 11:11:11,466   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:11:11,574   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:11:11,585   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:11:11,611   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:11:11,612   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:11:11,613   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676016671.6126432, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:11:11,614   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:11:11,614   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:11:11,614   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:11:12,088   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:11:12,088   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '67d03ac126fa442c59ce4f0e8b359359be9fee1925603c4123ddcc0f5f066277a5a9ea000790889617235ea6a151d2258e891f4034faa7d09c76ecfd0493f2e4'}.
+2023-02-10 11:11:12,088   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = 67d03ac126fa442c59ce4f0e8b359359be9fee1925603c4123ddcc0f5f066277a5a9ea000790889617235ea6a151d2258e891f4034faa7d09c76ecfd0493f2e4,
+ hash_data = <hmac.HMAC object at 0x0000000006556A60>,
+ digest = b'\x0f\x006\x0e"\x04j\xa0t\x17\xfdp\x05\x8br\x90'
+
+2023-02-10 11:11:12,088   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:11:12,089   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'DwA2DiIEaqB0F/1wBYtykA==\n'}), {'sender': 'client'}
+2023-02-10 11:11:12,089   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:11:12,089   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:11:12,090   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:11:12,090   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:11:12,091   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:11:12,091   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200}
+2023-02-10 11:11:12,091   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:11:12,092   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676016672.0916433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:11:12,093   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:11:12,093   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:11:12,093   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:11:12,678   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:11:12,782   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676016672.7826433, 'user': 'user_1'}
+2023-02-10 11:11:12,784   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676016672.7826433, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:11:12,784   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:11:12,785   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56531), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:11:12,786   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:11:13,193   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:11:13,193   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:11:13,193   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:11:13,194   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:11:13,195   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:17:18,987   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:17:25,138   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:17:25,270   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:17:25,376   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:17:25,378   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:17:25,409   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:17:25,410   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:17:25,411   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676017045.4108434, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:17:25,411   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:17:25,412   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:17:25,412   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:17:25,896   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:17:25,897   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'f4b42f05dd311ef23ed78905a6777851fd1c729b231b3aa36b6b88935c8864b358dc191863b888d42c0e5dd50c4a82fae82d49245e3779ad1c83f03d02dda592'}.
+2023-02-10 11:17:25,897   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = f4b42f05dd311ef23ed78905a6777851fd1c729b231b3aa36b6b88935c8864b358dc191863b888d42c0e5dd50c4a82fae82d49245e3779ad1c83f03d02dda592,
+ hash_data = <hmac.HMAC object at 0x00000000066B5FA0>,
+ digest = b'-\xec\xf4\x88\xe29\x84\x7fw\xd5\xb8$\x1a\xadI\xd5'
+
+2023-02-10 11:17:25,898   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:17:25,899   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'Lez0iOI5hH931bgkGq1J1Q==\n'}), {'sender': 'client'}
+2023-02-10 11:17:25,900   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:17:25,901   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:17:25,901   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:17:25,901   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:17:25,905   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:17:25,905   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200, 'data_list': []}
+2023-02-10 11:17:25,905   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:17:25,907   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676017045.9058433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:17:25,907   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:17:25,908   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:17:25,909   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:17:26,511   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:17:26,618   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676017046.6188433, 'user': 'user_1'}
+2023-02-10 11:17:26,619   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676017046.6188433, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:17:26,620   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:17:26,621   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56563), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:17:26,622   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:17:27,024   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:17:27,025   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:17:27,025   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:17:27,025   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:17:27,027   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:17:55,542   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:18:10,865   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:18:10,990   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:18:11,105   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:18:11,106   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:18:11,134   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:18:11,135   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:18:11,137   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676017091.1358433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:18:11,137   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:11,138   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:11,138   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:11,647   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:11,647   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '95db64559898390e90655cec2358d5ee2dd2c922ffca50298234c5aaace25fb69df76212e6a1c637521bd8c5f117d6021769902a49326cba4cb903d6eea83bf9'}.
+2023-02-10 11:18:11,647   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = 95db64559898390e90655cec2358d5ee2dd2c922ffca50298234c5aaace25fb69df76212e6a1c637521bd8c5f117d6021769902a49326cba4cb903d6eea83bf9,
+ hash_data = <hmac.HMAC object at 0x0000000006E26FA0>,
+ digest = b'\xa8E\t\x0e\xeb\xf7R|X\xd3\x9d\xfb\xd7\x02\xfd\xa8'
+
+2023-02-10 11:18:11,648   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'qEUJDuv3UnxY05371wL9qA==\n'}), {'sender': 'client'}
+2023-02-10 11:18:11,648   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:11,649   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:11,649   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:11,696   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:11,696   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:11,700   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:11,701   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200, 'data_list': []}
+2023-02-10 11:18:11,701   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:18:11,702   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676017091.7018433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:18:11,702   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:11,702   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:11,703   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:12,327   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:12,424   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676017092.4248433, 'user': 'user_1'}
+2023-02-10 11:18:12,425   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676017092.4248433, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:18:12,425   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:12,426   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56568), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:12,426   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:12,836   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:12,836   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:18:12,836   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:18:12,836   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:18:12,837   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:18:41,335   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:18:49,708   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:18:49,842   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:18:50,080   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:18:50,089   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:18:50,104   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:18:50,104   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:18:50,105   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676017130.1048434, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:18:50,106   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:50,106   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:50,106   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:50,609   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:50,613   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:50,614   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '2d5bb787d5c739c1da7bba8b6b65b221f8c51a7b4f174787724f6ef89c2a3aec00099c3a77a5a19e5ebad2e067b43c531548dbedfb10dd697992cae33031b3a1'}.
+2023-02-10 11:18:50,614   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = 2d5bb787d5c739c1da7bba8b6b65b221f8c51a7b4f174787724f6ef89c2a3aec00099c3a77a5a19e5ebad2e067b43c531548dbedfb10dd697992cae33031b3a1,
+ hash_data = <hmac.HMAC object at 0x0000000006A5AAC0>,
+ digest = b'\xbbJ\xb4cy\xbb\x7f\xb3\x0f\xb9#a\xe2\x0b+\xac'
+
+2023-02-10 11:18:50,615   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'u0q0Y3m7f7MPuSNh4gsrrA==\n'}), {'sender': 'client'}
+2023-02-10 11:18:50,616   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:50,616   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:50,616   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:50,617   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:50,617   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:50,618   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200, 'data_list': []}
+2023-02-10 11:18:50,618   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:18:50,619   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676017130.6188433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:18:50,619   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:50,620   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:50,620   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:51,278   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:51,396   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676017131.3968432, 'user': 'user_1'}
+2023-02-10 11:18:51,399   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676017131.3968432, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:18:51,399   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:18:51,400   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56570), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:18:51,400   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:18:51,785   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:18:51,785   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:18:51,785   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:18:51,785   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:18:51,786   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:21:25,194   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:21:31,512   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:21:31,648   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:21:31,765   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:21:31,766   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:21:31,797   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:21:31,798   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:21:31,799   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676017291.798643, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:21:31,799   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:21:31,800   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:21:31,800   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:21:32,274   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:21:32,274   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'd1fc296b4bb0c7959a0846273e4f41a0b2039fbae867e98094d2739f1180f3f286b4ba344ecab74a49598a96e46e992ea63047464a6827349ffa993984f60613'}.
+2023-02-10 11:21:32,274   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = d1fc296b4bb0c7959a0846273e4f41a0b2039fbae867e98094d2739f1180f3f286b4ba344ecab74a49598a96e46e992ea63047464a6827349ffa993984f60613,
+ hash_data = <hmac.HMAC object at 0x00000000068A6FA0>,
+ digest = b'\xa1\x0f*\x08f\xd6\x06\xbc\xf9\xef\x08\xbaC\x1a\xb5R'
+
+2023-02-10 11:21:32,274   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:21:32,274   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'oQ8qCGbWBrz57wi6Qxq1Ug==\n'}), {'sender': 'client'}
+2023-02-10 11:21:32,275   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:21:32,275   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:21:32,275   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:21:32,275   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:21:32,276   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:21:32,276   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200, 'data_list': []}
+2023-02-10 11:21:32,276   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:21:32,276   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676017292.2766433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:21:32,277   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:21:32,277   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:21:32,277   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:21:32,878   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:21:32,961   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676017292.9616432, 'user': 'user_1'}
+2023-02-10 11:21:32,962   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676017292.9616432, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:21:32,963   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:21:32,964   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56596), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:21:32,964   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:21:33,390   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:21:33,390   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:21:33,390   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:21:33,391   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:21:33,392   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:22:29,133   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:22:36,836   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:22:36,957   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:22:37,085   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:22:37,086   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:22:37,125   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:22:37,126   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:22:37,129   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676017357.1260433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:22:37,130   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:22:37,131   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:37,131   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:37,647   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:22:37,647   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'dac406008d43373b6746103404a94eb16d49bea58f411a791ac3743f170f575b71c84ff538f7f6aa71b3627d6b880f6507c4aa82d6288f7bbf3cf8aedcddf4f7'}.
+2023-02-10 11:22:37,647   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = dac406008d43373b6746103404a94eb16d49bea58f411a791ac3743f170f575b71c84ff538f7f6aa71b3627d6b880f6507c4aa82d6288f7bbf3cf8aedcddf4f7,
+ hash_data = <hmac.HMAC object at 0x0000000006757FD0>,
+ digest = b'E\xda]\xb3\xa0\xc2\x1e\x84\xb6\x8b\x12\x0b\xf0\x9f\x95\xfe'
+
+2023-02-10 11:22:37,648   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'Rdpds6DCHoS2ixIL8J+V/g==\n'}), {'sender': 'client'}
+2023-02-10 11:22:37,649   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:22:37,649   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:37,650   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:37,651   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:37,651   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:22:37,653   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:22:37,653   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200, 'data_list': []}
+2023-02-10 11:22:37,653   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:22:37,654   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676017357.6530433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:22:37,654   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:22:37,655   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:37,655   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:38,395   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:22:38,492   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676017358.4920433, 'user': 'user_1'}
+2023-02-10 11:22:38,493   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676017358.4920433, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:22:38,493   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:22:38,494   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:38,494   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:38,939   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:22:38,940   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:22:38,940   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:22:38,940   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:22:38,975   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:22:40,013   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:40,013   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:41,542   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:41,542   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:43,071   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:43,071   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:44,599   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:44,599   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:46,128   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:46,128   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:47,657   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:47,657   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:49,186   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:49,186   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:50,715   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:50,715   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:52,243   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:52,243   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:53,772   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:53,772   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:55,301   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:55,301   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:22:56,034   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции transport.transport_shutdown(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1676017376.0346432, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:22:56,050   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:22:56,050   DEBUG    client_transport.py Сокет закрыт
+2023-02-10 11:22:56,861   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56600), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:22:56,861   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:27:53,587   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:28:18,069   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:31:53,598   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:32:20,675   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2023-02-10 11:33:13,037   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:33:57,283   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:34:05,523   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:34:05,638   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:34:05,771   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:34:05,772   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:34:05,810   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:34:05,811   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:34:05,814   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676018045.8116434, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:34:05,814   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:34:05,815   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:05,815   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:06,305   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:34:06,305   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '3eab679df49506f1d6003d122a0f6ee89725aff8acb5e59d642c417962ceef8dace613b87fea6b28fe37b7aa6aab4e05975c1376233c16ff7813bb19ff7ae6d0'}.
+2023-02-10 11:34:06,305   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = 3eab679df49506f1d6003d122a0f6ee89725aff8acb5e59d642c417962ceef8dace613b87fea6b28fe37b7aa6aab4e05975c1376233c16ff7813bb19ff7ae6d0,
+ hash_data = <hmac.HMAC object at 0x0000000006775A00>,
+ digest = b'C\xb5\x08G\xd0\x11\xad\xd5\xf9L9?.\xbb;\x84'
+
+2023-02-10 11:34:06,306   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:06,306   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'Q7UIR9ARrdX5TDk/Lrs7hA==\n'}), {'sender': 'client'}
+2023-02-10 11:34:06,306   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:34:06,307   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:34:06,307   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:06,307   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:06,308   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:34:06,309   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200}
+2023-02-10 11:34:06,309   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:34:06,310   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676018046.3096433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:34:06,310   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:34:06,311   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:06,311   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:06,949   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:34:07,135   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676018047.1356435, 'user': 'user_1'}
+2023-02-10 11:34:07,136   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676018047.1356435, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:34:07,137   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:34:07,138   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:07,138   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:07,466   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:34:07,466   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:34:07,466   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:34:07,466   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:34:07,468   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:34:08,542   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:08,542   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:10,029   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:10,029   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:11,575   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:11,575   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:13,094   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:13,094   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:14,582   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:14,582   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:16,125   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:16,125   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:17,612   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:17,612   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:19,147   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:19,147   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:20,675   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:20,675   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:22,204   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:22,204   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:23,712   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:23,712   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:25,200   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:25,200   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:26,708   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:26,708   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:28,246   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:28,246   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:29,746   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:29,746   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:31,286   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:31,286   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:32,815   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:32,815   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:34,344   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:34,344   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:35,853   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:35,853   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:37,340   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:37,340   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:38,880   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:34:38,880   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:34:38,880   CRITICAL client_transport.py Соединение с сервером потеряно.
+2023-02-10 11:34:41,525   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции transport.transport_shutdown(). Параметры: (<socket.socket fd=700, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56659), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1676018081.5230434, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:34:41,526   DEBUG    client_transport.py Сокет закрыт
+2023-02-10 11:45:43,455   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:45:50,165   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 11:45:50,324   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 11:45:50,458   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 11:45:50,461   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 11:45:50,498   DEBUG    client_transport.py 
+ self.password = 1234, 
+ passwd_bytes = b'1234', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2'.
+2023-02-10 11:45:50,499   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 11:45:50,505   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676018750.4997432, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 11:45:50,505   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:45:50,506   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:50,506   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:51,014   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:45:51,015   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'cc9ea145f64b0e45723fb81b9a2a66a39960af1f552acc22094997f0281738e7db25c702af63669b52d7df3f1f0bbc36e4e83e4f64ccecd008b95cc8aebc30e1'}.
+2023-02-10 11:45:51,015   DEBUG    client_transport.py passwd_hash_string = b'76da8b1808668e2f58efe957c33438303e139a9b5cded1393194c82ac38b37848bd293a6b5d8832dd97a566de63be3e35b8f9891885887ca27581b4b2ecc60a2',
+ random_str_server = cc9ea145f64b0e45723fb81b9a2a66a39960af1f552acc22094997f0281738e7db25c702af63669b52d7df3f1f0bbc36e4e83e4f64ccecd008b95cc8aebc30e1,
+ hash_data = <hmac.HMAC object at 0x0000000006B45A00>,
+ digest = b'\x80\x1b\xfb\xa5\xeb\x85\xf8\x8d\xe2\x1a\xcd\xbb\xb4\x0e~\xb5'
+
+2023-02-10 11:45:51,016   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:51,016   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'gBv7peuF+I3iGs27tA5+tQ==\n'}), {'sender': 'client'}
+2023-02-10 11:45:51,017   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:45:51,017   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:45:51,018   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:51,018   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:51,020   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:45:51,020   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200}
+2023-02-10 11:45:51,020   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 11:45:51,021   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676018751.0207434, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:45:51,022   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:45:51,023   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:51,023   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:51,620   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:45:51,712   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676018751.7127435, 'user': 'user_1'}
+2023-02-10 11:45:51,714   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676018751.7127435, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:45:51,714   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:45:51,716   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:51,716   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:52,135   INFO     utils.py        Получены новые данные от client.
+2023-02-10 11:45:52,136   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 11:45:52,136   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 11:45:52,136   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 11:45:52,137   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 11:45:53,262   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:53,262   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:54,791   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:54,791   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:56,320   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:56,320   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:57,849   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:57,849   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:45:59,377   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:45:59,377   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:00,893   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:00,893   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:02,422   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:02,422   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:03,939   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:03,939   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:05,467   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:05,467   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:06,996   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:06,996   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:08,525   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:08,525   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:10,054   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:10,054   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:11,583   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:11,583   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:13,055   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:13,055   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:14,595   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:14,595   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:16,124   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:16,124   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:17,653   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:17,653   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:19,181   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:19,181   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:20,710   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:20,710   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:22,239   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:22,239   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:23,768   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:23,768   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:25,297   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:25,297   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:26,825   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:26,825   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:28,354   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:28,354   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:29,883   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:29,883   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:31,412   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:31,412   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:32,927   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:32,927   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:34,457   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:34,457   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:35,976   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:35,976   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:37,505   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:37,505   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:39,034   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:39,034   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:40,562   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:40,562   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:42,091   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:42,091   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:43,261   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции transport.transport_shutdown(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1676018803.2617433, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 11:46:43,261   INFO     utils.py        Сообщение отправлено
+2023-02-10 11:46:43,261   DEBUG    client_transport.py Сокет закрыт
+2023-02-10 11:46:43,620   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56733), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 11:46:43,620   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 11:46:48,628   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:47:20,404   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2023-02-10 11:49:38,452   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:50:53,502   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 11:51:15,057   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2023-02-10 12:01:12,489   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции main(). Параметры: (), {}
+2023-02-10 12:01:51,862   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 12:02:20,481   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 12:03:23,470   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 12:03:27,059   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 12:03:37,929   DEBUG    client_transport.py 
+ self.password = 1233, 
+ passwd_bytes = b'1233', 
+ salt = b'user_1', 
+ Успешно создан хэш пароля b'bbc804297d9ebec69fd903ceb965393deedb1daae7ff119b17ba188b43d8efe6aea31df8e025624531abcde4ec24a9f8227b29968c78b3a1485680c9b60bdbb7'.
+2023-02-10 12:03:45,375   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 12:03:47,863   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции main(). Параметры: (<socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56804), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676019822.9127433, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 12:03:51,237   INFO     utils.py        Сообщение отправлено
+2023-02-10 12:03:51,506   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 12:03:57,972   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции main(). Параметры: (<socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56804), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 12:04:00,795   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 12:04:05,136   INFO     utils.py        Получены новые данные от client.
+2023-02-10 12:04:08,113   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': '415887e8e4bd748c3388ea50b8b0b1fa8b91d7c2b457d14304e391e1933791da724fabea6e4e48d13fc81d7535fce17b28a4f0d9953e9373be2090af6e60f688'}.
+2023-02-10 12:04:16,046   DEBUG    client_transport.py passwd_hash_string = b'bbc804297d9ebec69fd903ceb965393deedb1daae7ff119b17ba188b43d8efe6aea31df8e025624531abcde4ec24a9f8227b29968c78b3a1485680c9b60bdbb7',
+ random_str_server = 415887e8e4bd748c3388ea50b8b0b1fa8b91d7c2b457d14304e391e1933791da724fabea6e4e48d13fc81d7535fce17b28a4f0d9953e9373be2090af6e60f688,
+ hash_data = <hmac.HMAC object at 0x0000000005DE0130>,
+ digest = b'\xa9\xaf\xc5b=p_\x04mq \x93(\xbd\xc64'
+
+2023-02-10 12:04:22,032   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции main(). Параметры: (<socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56804), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'qa/FYj1wXwRtcSCTKL3GNA==\n'}), {'sender': 'client'}
+2023-02-10 12:04:29,147   INFO     utils.py        Сообщение отправлено
+2023-02-10 12:04:40,053   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции main(). Параметры: (<socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 56804), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 12:04:44,985   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 12:04:47,213   CRITICAL client_transport.py Потеряно соединение с сервером! Не обработано приветственное сообщение
+2023-02-10 15:17:21,518   DEBUG    log_deco.py     Вызов функции arg_parser. Из модуля __main__. Из из функции arg_parser(). Параметры: (), {}
+2023-02-10 15:17:37,177   INFO     start_client_app.py Запуск клиентского приложения с параметрами: адрес сервера - 127.0.0.1, порт для подключения - 7777, имя пользователя - user_1.
+2023-02-10 15:17:37,340   INFO     start_client_app.py Ключи загружены успешно
+2023-02-10 15:17:37,474   INFO     client_transport.py Попытка соединения № 1
+2023-02-10 15:17:37,485   DEBUG    client_transport.py Установлено соединение с сервером.
+2023-02-10 15:17:37,521   DEBUG    client_transport.py Сформировано presence сообщение для пользователя user_1. Pubkey 
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb
+n+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY
+9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk
+gOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+
+v3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY
+P+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q
+BwIDAQAB
+-----END PUBLIC KEY-----
+
+2023-02-10 15:17:37,522   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>, {'action': 'presence', 'time': 1676031457.521199, 'user': {'account_name': 'user_1', 'public_key': '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAofIMrDAG2ILk5E/gWNXb\nn+7mi0ebacegSRkWcwtCcSkma6vGcGHtcz925IVSwPQEwWypv2ZmVMvn9lwfLUFY\n9wZg0Tfd8sQpm/vweZP7CCS+kb48HVEXFe/ktlIjXqTx/JlvWv4SXg6djNfgdtlk\ngOWR7wxvjZQrt9IW/NLI2SSP9Iivt2PTAAeoSc+1T77TD1ZRqKtX3btthHYAuqQ+\nv3HukGJVyuuu6ejftipeGHIMkf/9mQ4TTlvyqEJBobE2FFPNMMTaIRC0+pIwb1vY\nP+UC5/aAgj1aPcwst4ZpAzu5hIgWG0FdgwZTr6eUx/cQRLp/RoMAQRcBnGwa4i0q\nBwIDAQAB\n-----END PUBLIC KEY-----'}}), {'sender': 'client'}
+2023-02-10 15:17:37,522   INFO     utils.py        Сообщение отправлено
+2023-02-10 15:17:37,523   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:37,523   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:38,029   INFO     utils.py        Получены новые данные от client.
+2023-02-10 15:17:38,029   DEBUG    client_transport.py Ответ сервера на приветственное сообщение - {'response': 511, 'bin': 'd7736fa215fbedf4ed86129f1f6be0254401856744bc651ed3a11f578069f833ac6459353f41175244899504bff2d7ad87e1a721ac4ad4f69c401ff0044c0e1a'}.
+2023-02-10 15:17:38,030   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:38,030   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>, {'response': 511, 'bin': 'atdzgOSU+0RCf/4cOQtu5A==\n'}), {'sender': 'client'}
+2023-02-10 15:17:38,030   INFO     utils.py        Сообщение отправлено
+2023-02-10 15:17:38,030   INFO     utils.py        Получены новые данные от client.
+2023-02-10 15:17:38,031   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:38,031   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:38,031   INFO     utils.py        Получены новые данные от client.
+2023-02-10 15:17:38,032   DEBUG    client_transport.py разбор сообщения от сервера: {'response': 200}
+2023-02-10 15:17:38,032   DEBUG    client_transport.py Сформирован запрос к серверу на обновление списка известных пользователей
+2023-02-10 15:17:38,032   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>, {'action': 'get_users', 'time': 1676031458.0321991, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 15:17:38,033   INFO     utils.py        Сообщение отправлено
+2023-02-10 15:17:38,033   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:38,033   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:38,701   INFO     utils.py        Получены новые данные от client.
+2023-02-10 15:17:38,808   DEBUG    client_transport.py Сформирован запрос к серверу на получение списка контактов user_1: - {'action': 'get_contact_list', 'time': 1676031458.8081992, 'user': 'user_1'}
+2023-02-10 15:17:38,809   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>, {'action': 'get_contact_list', 'time': 1676031458.8081992, 'user': 'user_1'}), {'sender': 'client'}
+2023-02-10 15:17:38,810   INFO     utils.py        Сообщение отправлено
+2023-02-10 15:17:38,811   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции keys). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:38,811   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:39,217   INFO     utils.py        Получены новые данные от client.
+2023-02-10 15:17:39,217   DEBUG    client_transport.py Получен ответ {'response': 200, 'data_list': []}
+2023-02-10 15:17:39,218   ERROR    client_transport.py Не удалось обновить список контактов
+2023-02-10 15:17:39,218   INFO     start_client_app.py Транспорт - ОК!
+2023-02-10 15:17:39,219   DEBUG    client_transport.py Запуск клиентского транспорта.
+2023-02-10 15:17:40,249   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:40,249   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:41,777   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:41,777   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:43,306   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:43,306   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:44,835   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:44,835   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:46,322   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:46,322   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:47,863   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:47,863   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:49,335   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:49,335   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:50,884   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:50,884   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:52,413   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:52,413   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:53,928   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:53,928   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:55,458   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:55,458   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:56,973   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:56,973   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:17:58,502   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:17:58,502   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:00,017   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:00,017   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:01,527   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:01,527   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:03,056   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:03,056   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:04,585   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:04,585   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:06,114   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:06,114   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:07,643   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:07,643   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:09,171   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:09,171   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:10,700   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:10,700   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:12,229   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:12,229   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:13,758   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:13,758   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:15,287   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:15,287   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:16,815   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:16,815   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:18,344   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:18,344   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:19,873   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:19,873   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:21,388   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:21,388   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:22,917   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:22,917   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:24,418   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:24,418   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:25,946   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:25,946   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:27,475   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:27,475   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:28,962   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:28,962   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:30,507   DEBUG    log_deco.py     Вызов функции get_response. Из модуля mainapp.common.utils. Из из функции self._bootstrap_inner(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>,), {'sender': 'client'}
+2023-02-10 15:18:30,507   DEBUG    utils.py        Ожидается сообщение от client
+2023-02-10 15:18:30,507   CRITICAL client_transport.py Соединение с сервером потеряно.
+2023-02-10 15:18:31,719   DEBUG    log_deco.py     Вызов функции send_response. Из модуля mainapp.common.utils. Из из функции transport.transport_shutdown(). Параметры: (<socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 58071), raddr=('127.0.0.1', 7777)>, {'action': 'exit', 'time': 1676031511.719599, 'account_name': 'user_1'}), {'sender': 'client'}
+2023-02-10 15:18:31,720   DEBUG    client_transport.py Сокет закрыт

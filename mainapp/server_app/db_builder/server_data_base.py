@@ -196,6 +196,7 @@ class ServerDB:
         :return - str - user password's hash
         """
         user = self.session.query(self.AllUsers).filter_by(name=name).first()
+        SERVER_LOG.debug(f'Из базы данных возвращены значения, имя - {name} хэш пароля - {user.passwd_hash}')
         return user.passwd_hash
 
     def get_pubkey(self, name):

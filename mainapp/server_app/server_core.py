@@ -84,11 +84,10 @@ class MessageProcessor(threading.Thread):
                 random_str,
                 'MD5')
             digest = passwd_hash.digest()
-            SERVER_LOG.debug(f'Сообщение авторизации = {message_auth}')
             try:
                 # Обмен с клиентом
                 send_response(sock, message_auth, sender='server')
-                client_answer = get_response(sock, sender='server')
+                client_answer = get_response(sock, sender='client')
             except OSError as err:
                 SERVER_LOG.debug(f'Ошибка авторизации, сведения:\n{err}.\nСокет закрыт.')
                 sock.close()

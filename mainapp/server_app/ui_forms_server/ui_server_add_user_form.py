@@ -139,6 +139,7 @@ class ServerAddUser(QDialog):
                     self.ui.username_input.text(),
                     binascii.hexlify(password_hash),
                 )
+                SERVER_LOG.debug(f'Данные о пользователе записаны в БД: имя пользователя - {self.ui.username_input.text()}, хэш пароля - {binascii.hexlify(password_hash)}')
                 self.messages.information(
                     self, 'Успех!', 'Регистрация пользователя завершена успешно!'
                 )
