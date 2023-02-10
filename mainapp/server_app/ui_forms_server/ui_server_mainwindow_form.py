@@ -13,7 +13,7 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QTableView, QFrame, QWidget, QLabel
 import sys
 from mainapp.server_app.ui_forms_server.ui_server_clientshistory_form import ServerWindowHistory
-from mainapp.server_app.ui_forms_server.ui_server_add_user_form import  ServerAddUser
+from mainapp.server_app.ui_forms_server.ui_server_add_user_form import ServerAddUser
 
 global statistic_window
 global reg_window
@@ -35,6 +35,10 @@ class ServerWindowMain(QMainWindow):
         self.ui.button_log.clicked.connect(self.show_statistic)
         self.ui.button_settings.clicked.connect(self.refresh_tables)
         self.ui.button_new_user.clicked.connect(self.new_user_registration)
+        self.ui.timer = QtCore.QTimer()
+        self.ui.timer.timeout.connect(self.create_main_table)
+        self.ui.timer.start(1000)
+
 
     def show_statistic(self):
         """Метод инициирует запуск окна статистики клиентов"""
@@ -55,6 +59,25 @@ class ServerWindowMain(QMainWindow):
         global reg_window
         reg_window = ServerAddUser(database=self.database, server=self.server)
         reg_window.show()
+
+    def create_main_table(self):
+        user_list = self.database.active_users_list()
+        table_list = QStandardItemModel()
+        table_list.setHorizontalHeaderLabels(['Имя клиента', 'Адрес', 'Порт', 'Время подключения'])
+        for row in user_list:
+            user, ip, port, time = row
+            user = QStandardItem(user)
+            user.setEditable(False)
+            ip = QStandardItem(ip)
+            ip.setEditable(False)
+            port = QStandardItem(port)
+            port.setEditable(False)
+            time = QStandardItem(str(time.replace(microsecond=0)))
+            time.setEditable(False)
+            table_list.appendRow([user, ip, port, time])
+        self.ui.active_clients_tableView.setModel(table_list)
+        self.ui.active_clients_tableView.resizeColumnsToContents()
+        self.ui.active_clients_tableView.resizeRowsToContents()
 
 
 class UiServerMainWindowForm(object):
@@ -165,26 +188,6 @@ class UiServerMainWindowForm(object):
         self.button_log.setText(_translate("ServerMainWindow", "Лог"))
         self.button_settings.setText(_translate("ServerMainWindow", "Настройки"))
         self.button_new_user.setText(_translate("ServerMainWindow", "Новый пользователь"))
-
-
-
-def create_main_table(database):
-    user_list = database.active_users_list()
-    table_list = QStandardItemModel()
-    table_list.setHorizontalHeaderLabels(['Имя клиента', 'Адрес', 'Порт', 'Время подключения'])
-    for row in user_list:
-        user, ip, port, time = row
-        user = QStandardItem(user)
-        user.setEditable(False)
-        ip = QStandardItem(ip)
-        ip.setEditable(False)
-        port = QStandardItem(port)
-        port.setEditable(False)
-        time = QStandardItem(str(time.replace(microseconds=0)))
-        time.setEditable(False)
-        table_list.appendRow([user, ip, port, time])
-    return table_list
-
 
 
 if __name__ == '__main__':

@@ -36,7 +36,7 @@ while True:
         process.append(get_subprocess("start_server_app.py"))
 
         for i in range(2):
-            process.append(get_subprocess(f"start_client_app.py -n test{i+1}"))
+            process.append(get_subprocess(f"start_client_app.py -n user_test_{i+1}"))
 
     elif action == "x":
         while process:
